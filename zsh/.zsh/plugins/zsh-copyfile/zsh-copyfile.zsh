@@ -5,3 +5,5 @@ function copyfile {
   emulate -L zsh
   clipcopy $1
 }
+
+alias cpf=copyfile

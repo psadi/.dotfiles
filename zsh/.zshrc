@@ -1,4 +1,4 @@
-########################################################
+#G#######################################################
 #                      _ _
 #  _ __  ___  __ _  __| (_)
 # | '_ \/ __|/ _` |/ _` | |
@@ -47,7 +47,6 @@ alias cat='bat -p'
 alias ..='cd ..'
 alias ~="cd ~"
 alias pip=pip3
-alias emacs="emacsclient -c -a 'emacs'"
 
 # fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -81,7 +80,7 @@ export PATH="$HOME/.local/bin:$HOME/.emacs.d/bin:$GOBIN:$PATH"
 eval "$(starship init zsh)"
 
 # zsh plguin
-source "${HOME}/.zsh/plugins/zsh-plugins.zsh"
+source "${HOME}/.zsh/_zsh.zsh"
 
 # z
 export _Z_DATA=${HOME}/.zsh/z/data
@@ -96,3 +95,4 @@ source $HOME/.cargo/env
 export BUN_INSTALL="/home/psadi/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export lang=en_us.utf-8
+
