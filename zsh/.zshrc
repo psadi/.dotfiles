@@ -13,9 +13,10 @@
 # functions
 dotpush(){
 	cwd=$PWD
+	
 	cd /media/tb-vol/workspace/dotfiles
-	git add . && git commit -am "$(`date "+%Y-%m-%d %H:%M:%S"`) dotfiles updates" && git push
-	cd ~-$cwd
+	git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
+	cd $cwd
 }
 # aliases
 alias reload='source ~/.zshrc'
