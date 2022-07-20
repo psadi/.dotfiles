@@ -1,4 +1,4 @@
-#G#######################################################
+########################################################
 #                      _ _
 #  _ __  ___  __ _  __| (_)
 # | '_ \/ __|/ _` |/ _` | |
@@ -11,47 +11,20 @@
 ########################################################
 
 # functions
-
-# lazygit - https://github.com/jesseduffield/lazygit
-lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
+dotpush(){
+	cwd=$PWD
+	cd /media/tb-vol/workspace/dotfiles
+	git add . && git commit -am "$(`date "+%Y-%m-%d %H:%M:%S"`) dotfiles updates" && git push
+	cd ~-$cwd
 }
-
-.push(){
-    cd /media/tb-vol/workspace/dotfiles
-    git add .
-    git commit --amend --no-edit && git push -f
-    cd -
-}
-
 # aliases
-alias sc=shellcheck
-alias pdm=podman
-alias ls='exa'
-alias l='exa -1'
-alias ll='exa -l'
-alias la='exa -la'
-alias ld='lazydocker'
-alias lt='exa --tree --icons'
-alias lrth='exa -l --sort modified --icons'
 alias reload='source ~/.zshrc'
-alias cat='bat -p'
 alias ..='cd ..'
 alias ~="cd ~"
-alias pip=pip3
-
-# fzf - https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # z jumparound -  https://github.com/rupa/z
+export _Z_DATA=${HOME}/.zsh/z/data
+. ${HOME}/.zsh/z/z.sh
 
 # exports
 
@@ -69,30 +42,16 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
-
-export GOBIN='/usr/local/go/bin'
-export GOPATH='/home/psadi/workspace/go'
-export PATH="$HOME/.local/bin:$HOME/.emacs.d/bin:$GOBIN:$PATH"
-
-eval "$(starship init zsh)"
-
-# zsh plguin
+# zsh plguins
 source "${HOME}/.zsh/_zsh.zsh"
 
-# z
-export _Z_DATA=${HOME}/.zsh/z/data
-. ${HOME}/.zsh/z/z.sh
-source $HOME/.cargo/env
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+#fpath+=~/.zfunc
 
-
-# bun completions
-[ -s "/home/psadi/.bun/_bun" ] && source "/home/psadi/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="/home/psadi/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export lang=en_us.utf-8
+export LOCAL_DIR=/home/psadi/.local
+export EXTMOUNT=/media/tb-vol
+export GOBIN=$EXTMOUNT/workspace/go/bin
+export GOPATH=$EXTMOUNT/workspace/go
+export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$PATH
 
