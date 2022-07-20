@@ -14,3 +14,5 @@ do
 		zsh-defer source "${PLUGINS_DIRECTORY}/${z}/${z}.zsh"
 	fi
 done
+
+source /home/psadi/.zsh/plugins/zsh-fzf/zsh-fzf.zsh

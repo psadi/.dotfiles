@@ -104,4 +104,4 @@ function detect-clipboard() {
 # which is not really an error. If the user calls them, they will attempt to reetect
 # (for example, perhaps the user has now installed xclip) and then either print an error
 # or proceed successfully.
-detect-clipboard || trued
+detect-clipboard || true
