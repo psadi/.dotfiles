@@ -16,6 +16,7 @@ dotpush(){
 	git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
 	cd -
 }
+
 # aliases
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
