@@ -1,13 +1,20 @@
 #!/usr/bin/env zsh
 
-export PLUGINS_DIRECTORY="${HOME}/.zsh/plugins"
+# ZSH CONFIG
+# ----------
+export _ZSH_CONFIG_PATH="${HOME}/.zsh"
+export _ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
 
-for z in `ls "${PLUGINS_DIRECTORY}"`;
+# ZSH PLUGINS
+# -----------
+for z in `ls "${_ZSH_PLUGINS_PATH}"`;
 do
-	if [ -d "${PLUGINS_DIRECTORY}/${z}" ];
+	if [ -d "${_ZSH_PLUGINS_PATH}/${z}" ];
 	then
-		source "${PLUGINS_DIRECTORY}/${z}/${z}.zsh"
+		source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh"
 	fi
 done
 
-source /home/psadi/.zsh/plugins/zsh-fzf/zsh-fzf.zsh
+# ZSH FZF
+# -------
+source "${_ZSH_CONFIG_PATH}/fzf/fzf.zsh"

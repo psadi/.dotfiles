@@ -18,6 +18,8 @@ dotpush(){
 }
 
 # aliases
+alias vi=nvim
+alias vim=nvim
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
