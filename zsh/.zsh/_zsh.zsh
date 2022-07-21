@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-PLUGINS_DIRECTORY="${HOME}/.zsh/plugins"
+export PLUGINS_DIRECTORY="${HOME}/.zsh/plugins"
 
 for z in `ls "${PLUGINS_DIRECTORY}"`;
 do
