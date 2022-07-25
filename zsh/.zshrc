@@ -18,11 +18,14 @@ dotpush(){
 }
 
 # aliases
-alias vi=nvim
-alias vim=nvim
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
+
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -la'
+alias lrth='ls -lrth'
 
 # z jumparound -  https://github.com/rupa/z
 export _Z_DATA=${HOME}/.zsh/z/data
@@ -35,10 +38,11 @@ then
     export MANPAGER='bat'
 fi
 
-#history control
+# history control
 alias h='history'
 alias hs='history | grep'
 alias hsi='history | grep -i'
+
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -57,3 +61,10 @@ export GOBIN=$EXTMOUNT/workspace/go/bin
 export GOPATH=$EXTMOUNT/workspace/go
 export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$PATH
 
+# prompt
+eval "$(starship init zsh)"
+
+# launch
+clear
+echo ''
+pfetch
