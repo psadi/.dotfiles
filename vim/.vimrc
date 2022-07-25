@@ -84,5 +84,4 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set relativenumber
 
 " vim colorscheme
-colorscheme elflord
-
+colorscheme default

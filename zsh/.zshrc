@@ -64,7 +64,3 @@ export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$HOME/.
 # prompt
 eval "$(starship init zsh)"
 
-# launch
-clear
-echo ''
-pfetch
