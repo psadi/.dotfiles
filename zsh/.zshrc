@@ -55,5 +55,5 @@ export LOCAL_DIR=/home/psadi/.local
 export EXTMOUNT=/media/tb-vol
 export GOBIN=$EXTMOUNT/workspace/go/bin
 export GOPATH=$EXTMOUNT/workspace/go
-export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$PATH
 

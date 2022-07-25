@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+zstyle :compinstall filename '/home/psadi/.zshrc'
+autoload -Uz compinit
+compinit
+
 # ZSH CONFIG
 # ----------
 export _ZSH_CONFIG_PATH="${HOME}/.zsh"
