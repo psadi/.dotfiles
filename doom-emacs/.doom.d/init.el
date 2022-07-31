@@ -192,3 +192,7 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+
+(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 160)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
