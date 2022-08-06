@@ -47,6 +47,7 @@ export _Z_DATA=${HOME}/.zsh/z/data
 
 if ! command -v 'bat --version' &> /dev/null # setting bat as default manpager if exists
 then
+    alias cat='bat -p'
     export MANPAGER='bat'
 fi
 
@@ -69,10 +70,7 @@ zstyle ':completion:*' menu select
 
 export LOCAL_DIR=/home/psadi/.local
 export EXTMOUNT=/media/tb-vol
-export GOBIN=$EXTMOUNT/workspace/go/bin
-export GOPATH=$EXTMOUNT/workspace/go
-export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/go/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$PATH
 
 # prompt
 eval "$(starship init zsh)"
-
