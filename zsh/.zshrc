@@ -39,6 +39,8 @@ alias ll='ls -l'
 alias la='ls -la'
 alias lrth='ls -lrth'
 
+alias sudo=doas
+
 # z jumparound -  https://github.com/rupa/z
 export _Z_DATA=${HOME}/.zsh/z/data
 . ${HOME}/.zsh/z/z.sh
@@ -74,3 +76,4 @@ export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.ema
 
 # prompt
 eval "$(starship init zsh)"
+
