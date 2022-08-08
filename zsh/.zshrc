@@ -12,7 +12,7 @@
 
 # functions
 dotpush(){
-	cd /media/tb-vol/workspace/dotfiles
+	cd /tb-vol/workspace/dotfiles
 	git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
 	cd -
 }
@@ -34,12 +34,11 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
 
-alias ls='ls --color=auto'
+alias ls='exa'
 alias ll='ls -l'
 alias la='ls -la'
-alias lrth='ls -lrth'
-
-alias sudo=doas
+alias lrth='ls -l --sort modified'
+alias lt="ls --tree"
 
 # z jumparound -  https://github.com/rupa/z
 export _Z_DATA=${HOME}/.zsh/z/data
@@ -72,8 +71,8 @@ zstyle ':completion:*' menu select
 
 export LOCAL_DIR=/home/psadi/.local
 export EXTMOUNT=/media/tb-vol
-export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$HOME/.local/opt/nim/bin:$PATH
 
 # prompt
 eval "$(starship init zsh)"
-
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
