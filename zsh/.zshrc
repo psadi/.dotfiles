@@ -10,6 +10,10 @@
 ## gitlab : https://github.com/psadi
 ########################################################
 
+# prompt
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(starship init zsh)"
+
 # functions
 dotpush(){
 	cd /tb-vol/workspace/dotfiles
@@ -30,6 +34,7 @@ lg()
 }
 
 # aliases
+alias nala='sudo nala'
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
@@ -50,6 +55,12 @@ if ! command -v 'bat --version' &> /dev/null # setting bat as default manpager i
 then
     alias cat='bat -p'
     export MANPAGER='bat'
+fi
+
+if ! command -v 'nvim --version' &> /dev/null
+then
+    alias vim='nvim'
+    alias vi='nvim' 
 fi
 
 # history control
@@ -73,6 +84,3 @@ export LOCAL_DIR=/home/psadi/.local
 export EXTMOUNT=/media/tb-vol
 export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$HOME/.local/opt/nim/bin:$PATH
 
-# prompt
-eval "$(starship init zsh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
