@@ -84,3 +84,8 @@ export LOCAL_DIR=/home/psadi/.local
 export EXTMOUNT=/media/tb-vol
 export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$HOME/.local/opt/nim/bin:$PATH
 
+if ! command -v 'which pfetch' &>/dev/null
+then
+		clear
+		pfetch
+fi
