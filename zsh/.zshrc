@@ -94,6 +94,6 @@ fi
 
 if ! command -v 'which pfetch' &>/dev/null
 then
-		clear
-		pfetch
+	clear
+	pfetch
 fi
