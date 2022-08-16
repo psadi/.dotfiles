@@ -81,8 +81,16 @@ zstyle ':completion:*' menu select
 #fpath+=~/.zfunc
 
 export LOCAL_DIR=/home/psadi/.local
+export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
-export PATH=$LOCAL_DIR/bin:$LOCAL_DIR/opt/node/bin:$HOME/.emacs.d/bin:$HOME/.emacs.d/bin:$HOME/.local/opt/nim/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$HOME/.emacs.d/bin:$PATH
+
+if [ -d '/opt/lang/go' ];then
+	export PATH=/opt/lang/go/bin:$PATH
+	export GOPATH=$HOME/workspace/go
+	export GOBIN=$HOME/workspace/go/bin
+fi
+
 
 if ! command -v 'which pfetch' &>/dev/null
 then
