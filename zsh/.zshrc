@@ -50,19 +50,6 @@ alias lzd=lazydocker
 export _Z_DATA=${HOME}/.zsh/z/data
 . ${HOME}/.zsh/z/z.sh
 
-# exports
-
-if ! command -v 'bat --version' &> /dev/null # setting bat as default manpager if exists
-then
-    alias cat='bat -p'
-    export MANPAGER='bat'
-fi
-
-if ! command -v 'nvim --version' &> /dev/null
-then
-    alias vim='nvim'
-    alias vi='nvim' 
-fi
 
 # history control
 alias h='history'
@@ -86,12 +73,33 @@ export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
 export PATH=$LOCAL_DIR/bin:$HOME/.emacs.d/bin:$PATH
 
-if [ -d '/opt/lang/go' ];then
-	export PATH=/opt/lang/go/bin:$PATH
+# Auto source available languages
+if [ -d '/opt/lang' ];then
+	for lang in $(ls /opt/lang);
+	do
+		export PATH=/opt/lang/${lang}/bin:$PATH
+	done
+
+	export PATH
+fi
+
+# Set aliases and exports based on package availability
+if ! command -v 'bat --version' &> /dev/null # setting bat as default manpager if exists
+then
+    alias cat='bat -p'
+    export MANPAGER='bat'
+fi
+
+if ! command -v 'nvim --version' &> /dev/null
+then
+    alias vim='nvim'
+    alias vi='nvim' 
+fi
+if ! command -v 'go version' &>/dev/null
+then
 	export GOPATH=$HOME/workspace/go
 	export GOBIN=$HOME/workspace/go/bin
 fi
-
 
 if ! command -v 'which pfetch' &>/dev/null
 then
