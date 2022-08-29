@@ -11,7 +11,6 @@
 ########################################################
 
 # prompt
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
 
 # functions
@@ -99,6 +98,7 @@ if ! command -v 'go version' &>/dev/null
 then
 	export GOPATH=$HOME/workspace/go
 	export GOBIN=$HOME/workspace/go/bin
+	export PATH=$GOBIN:$PATH
 fi
 
 if ! command -v 'which pfetch' &>/dev/null
