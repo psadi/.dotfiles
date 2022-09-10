@@ -67,6 +67,7 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 #fpath+=~/.zfunc
 
+export DOCKER_BUILDKIT=1
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
@@ -89,11 +90,12 @@ then
     export MANPAGER='bat'
 fi
 
-if ! command -v 'nvim --version' &> /dev/null
-then
-    alias vim='nvim'
-    alias vi='nvim' 
-fi
+#if ! command -v 'nvim --version' &> /dev/null
+#then
+#    alias vim='nvim'
+#    alias vi='nvim' 
+#fi
+
 if ! command -v 'go version' &>/dev/null
 then
 	export GOPATH=$HOME/workspace/go
@@ -106,3 +108,4 @@ then
 	clear
 	pfetch
 fi
+
