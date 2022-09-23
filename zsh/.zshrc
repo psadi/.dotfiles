@@ -44,6 +44,7 @@ alias la='ls -la'
 alias lrth='ls -l --sort modified'
 alias lt="ls --tree"
 alias lzd=lazydocker
+#alias ee="emacsclient -c -F \"'(fullscreen . fullboth)\" -a \"emacs\""
 
 # z jumparound -  https://github.com/rupa/z
 export _Z_DATA=${HOME}/.zsh/z/data
