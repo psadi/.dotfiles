@@ -5,7 +5,6 @@
 [alias]
 	pn = "!git push --set-upstream origin $(git branch --show-current | xargs)"
 	aac = "!git add . && git commit -am"
-	ir = "rebase -i HEAD~"
 	ac = commit -am
 	p = push
 	pf = push --force
