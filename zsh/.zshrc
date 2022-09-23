@@ -15,9 +15,9 @@ eval "$(starship init zsh)"
 
 # functions
 dotpush(){
-	cd /tb-vol/workspace/dotfiles
-	git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
-	cd -
+    cd /tb-vol/workspace/dotfiles
+    git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
+    cd -
 }
 
 lg()
@@ -75,12 +75,12 @@ export PATH=$LOCAL_DIR/bin:$HOME/.emacs.d/bin:$PATH
 
 # Auto source available languages
 if [ -d '/opt/lang' ];then
-	for lang in $(ls /opt/lang);
-	do
-		export PATH=/opt/lang/${lang}/bin:$PATH
-	done
+    for lang in $(ls /opt/lang);
+    do
+        export PATH=/opt/lang/${lang}/bin:$PATH
+    done
 
-	export PATH
+    export PATH
 fi
 
 # Set aliases and exports based on package availability
@@ -90,22 +90,22 @@ then
     export MANPAGER='bat'
 fi
 
-#if ! command -v 'nvim --version' &> /dev/null
-#then
-#    alias vim='nvim'
-#    alias vi='nvim' 
-#fi
+if ! command -v 'nvim --version' &> /dev/null
+then
+    alias vim='nvim'
+    alias vi='nvim'
+fi
 
 if ! command -v 'go version' &>/dev/null
 then
-	export GOPATH=$HOME/workspace/go
-	export GOBIN=$HOME/workspace/go/bin
-	export PATH=$GOBIN:$PATH
+    export GOPATH=$HOME/workspace/go
+    export GOBIN=$HOME/workspace/go/bin
+    export PATH=$GOBIN:$PATH
 fi
 
 if ! command -v 'which pfetch' &>/dev/null
 then
-	clear
-	pfetch
+    clear
+    pfetch
 fi
 
