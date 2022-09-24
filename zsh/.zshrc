@@ -12,6 +12,7 @@
 
 # prompt
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # functions
 dotpush(){
@@ -45,10 +46,6 @@ alias lrth='ls -l --sort modified'
 alias lt="ls --tree"
 alias lzd=lazydocker
 #alias ee="emacsclient -c -F \"'(fullscreen . fullboth)\" -a \"emacs\""
-
-# z jumparound -  https://github.com/rupa/z
-export _Z_DATA=${HOME}/.zsh/z/data
-. ${HOME}/.zsh/z/z.sh
 
 
 # history control
