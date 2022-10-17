@@ -1,0 +1,6 @@
+---
+
+ansible_python_interpreter: "/usr/bin/python3"
+github_url: "https://github.com"
+github_api_url: "https://api.github.com"
+packages_path: "{{ lookup('env','HOME') }}/.local/packages"

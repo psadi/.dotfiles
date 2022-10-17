@@ -1,0 +1,13 @@
+---
+
+github_repositories: {
+    "junegunn/fzf": "{{ github_url }}/junegunn/fzf/releases/download/@tag/fzf-@tag-linux_amd64.tar.gz",
+    "dalance/procs": "{{ github_url }}/dalance/procs/releases/download/@tag/procs-@tag-x86_64-linux.zip",
+    "sharkdp/bat": "{{ github_url }}/sharkdp/bat/releases/download/@tag/bat-@tag-x86_64-unknown-linux-gnu.tar.gz",
+    "BurntSushi/ripgrep": "{{ github_url }}/BurntSushi/ripgrep/releases/download/@tag/ripgrep_@tag_amd64.deb",
+    "sharkdp/fd": "{{ github_url }}/sharkdp/fd/releases/download/@tag/fd-@tag-x86_64-unknown-linux-gnu.tar.gz",
+    "ClementTsang/bottom": "{{ github_url }}/ClementTsang/bottom/releases/download/@tag/bottom_x86_64-unknown-linux-gnu.tar.gz"
+}
+
+
+urls: []

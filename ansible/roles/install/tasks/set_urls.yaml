@@ -1,0 +1,12 @@
+---
+
+- name: "Get {{ key }} tags"
+  uri:
+    url: "{{ github_api_url }}/repos/{{ key }}/tags"
+    method: GET
+    headers:
+      Accept: application/vnd.github+json
+  register: this
+
+- set_fact:
+    urls: "{{ urls + [url | regex_replace('@tag', this.json.0.name)] }}"

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+#----------------------------------------------------------------
+
+#                      _ _
+#  _ __  ___  __ _  __| (_)
+# | '_ \/ __|/ _` |/ _` | |
+# | |_) \__ \ (_| | (_| | |
+# | .__/|___/\__,_|\__,_|_|
+# |_|
+
+## Name   : P S, Adithya
+## email  : adithya3494@gmail.com
+## gitlab : https://github.com/psadi
+
+
+#----------------------------------------------------------------
+
+tabs 2
+
+#----------------------------------------------------------------
+
+echo "> Checking for executable dependencies ..."
+for dep in zsh python3 ansible;
+do
+    echo -e "\t >> ${dep}"
+    if ! command -v "${dep}" &> /dev/null;
+    then
+        echo -e "\t >> ${dep} is required, Script will now exit"
+        exit 1
+    fi
+done;
+
+#----------------------------------------------------------------
+
+echo "> Checking for pip dependencies ..."
+for dep in jmespath;
+do
+    echo -e "\t >> ${dep}"
+    pip3 show "${dep}" >> /dev/null;
+    if [[ $? -eq 1 ]];
+    then
+        echo -e "\t >> ${dep} pip package is required, Script will now exit"
+        exit 1
+    fi
+done;
+
+#----------------------------------------------------------------
+
+echo "> Running playbook ..."
+if [ -f 'setup.yaml' ];
+then
+    ansible-playbook setup.yaml -i localhost,;
+else
+    echo -e "\t >> setup.yaml not found, Script will now exit"
+    exit 1
+fi;

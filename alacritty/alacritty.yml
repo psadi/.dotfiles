@@ -32,11 +32,11 @@ scrolling:
 
 font:
   normal:
-    family: FiraCode Nerd Font
+    family: MonoLisa
     style: Regular
 
   bold:
-    family: FiraCode Nerd Font
+    family: MonoLisa
     style: Bold
 
   offset:

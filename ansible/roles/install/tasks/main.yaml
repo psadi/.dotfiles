@@ -1,0 +1,18 @@
+---
+
+- file:
+    path: "{{ packages_path }}"
+    recurse: true
+    state: directory
+    mode: 0755
+
+- include_tasks: set_urls.yaml
+  vars:
+    key: "{{ item.key }}"
+    url: "{{ item.value }}"
+  loop: "{{ github_repositories | dict2items }}"
+
+- get_url:
+    url: "{{ item }}"
+    dest: "{{ packages_path }}"
+  loop: "{{ urls }}"
