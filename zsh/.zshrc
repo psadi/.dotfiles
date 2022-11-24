@@ -34,6 +34,7 @@ lg()
 }
 
 # aliases
+alias m='micro'
 alias nala='sudo nala'
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
@@ -69,7 +70,7 @@ export DOCKER_BUILDKIT=1
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
-export PATH=$LOCAL_DIR/bin:$HOME/.emacs.d/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$HOME/.local/platform-tools:$PATH
 
 # Auto source available languages
 if [ -d '/opt/lang' ];then
@@ -94,13 +95,6 @@ then
     alias vi='nvim'
 fi
 
-if ! command -v 'go version' &>/dev/null
-then
-    export GOPATH=$HOME/workspace/go
-    export GOBIN=$HOME/workspace/go/bin
-    export PATH=$GOBIN:$PATH
-fi
-
 if ! command -v 'which pfetch' &>/dev/null
 then
     clear
@@ -111,3 +105,10 @@ if [ -d "$HOME/.cargo" ]
 then
 	source "$HOME/.cargo/env"
 fi
+
+# pnpm
+export PNPM_HOME="/home/psadi/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+
