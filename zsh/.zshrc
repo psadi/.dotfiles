@@ -74,9 +74,10 @@ export PATH=$LOCAL_DIR/bin:$HOME/.local/platform-tools:$PATH
 
 # Auto source available languages
 if [ -d '/opt/lang' ];then
-    for lang in $(ls /opt/lang);
+    for lang in $(ls /opt/lang | grep '>' | awk '{print $1}');
     do
         export PATH=/opt/lang/${lang}/bin:$PATH
+	export LD_LIBRARY_PATH=/opt/lang/$lang/lib:$PATH
     done
 
     export PATH

@@ -1,13 +1,13 @@
 env:
   TERM: xterm-256color
 
-shell:
-  program: /usr/bin/tmux
-  args:
-    - 'new-session'
-    - '-A'
-    - '-s'
-    - 'main'
+    #shell:
+    #program: /usr/bin/tmux
+    #args:
+    #- 'new-session'
+    #- '-A'
+    #- '-s'
+    #- 'main'
 window:
   dimensions:
     columns: 0
