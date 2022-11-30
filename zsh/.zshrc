@@ -15,7 +15,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # functions
-dotpush(){
+.p(){
     cd /tb-vol/workspace/dotfiles
     git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
     cd -
