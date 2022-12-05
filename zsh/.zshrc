@@ -10,7 +10,8 @@
 ## gitlab : https://github.com/psadi
 ########################################################
 
-# prompt
+# evals
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -66,7 +67,7 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 #fpath+=~/.zfunc
 
-export DOCKER_BUILDKIT=1
+export DOCKER_BUILevals
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
@@ -84,7 +85,7 @@ if [ -d '/opt/lang' ];then
 fi
 
 # Set aliases and exports based on package availability
-if ! command -v 'bat --version' &> /dev/null # setting bat as default manpager if exists
+if ! command -v 'which bat' &> /dev/null
 then
     alias cat='bat -p'
     export MANPAGER='bat'

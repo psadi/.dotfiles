@@ -69,35 +69,34 @@ cursor:
 
 live_config_reload: true
 
-
-# Colors (Ayu Dark)
 colors:
   # Default colors
   primary:
-    background: '0x0A0E14'
-    foreground: '0xB3B1AD'
+    background: '#1f2430'
+    foreground: '#cbccc6'
+    bright_foreground: '#f28779'
 
   # Normal colors
   normal:
-    black:   '0x01060E'
-    red:     '0xEA6C73'
-    green:   '0x91B362'
-    yellow:  '0xF9AF4F'
-    blue:    '0x53BDFA'
-    magenta: '0xFAE994'
-    cyan:    '0x90E1C6'
-    white:   '0xC7C7C7'
+    black:   '#212733' #
+    red:     '#f08778' #
+    green:   '#53bf97' #
+    yellow:  '#fdcc60' #
+    blue:    '#60b8d6' # 
+    magenta: '#ec7171' #
+    cyan:    '#98e6ca' #
+    white:   '#fafafa' #
 
-  # Bright colors
+  # Brightened
   bright:
-    black:   '0x686868'
-    red:     '0xF07178'
-    green:   '0xC2D94C'
-    yellow:  '0xFFB454'
-    blue:    '0x59C2FF'
-    magenta: '0xFFEE99'
-    cyan:    '0x95E6CB'
-    white:   '0xFFFFFF'
+    black: '#686868'
+    red: '#f58c7d'
+    green: '#58c49c'
+    yellow: '#ffd165'
+    blue: '#65bddb'
+    magenta: '#f17676'
+    cyan: '#9debcf'
+    white: '#ffffff'
 
 mouse_bindings:
   - { mouse: Right,                 action: ExpandSelection }
