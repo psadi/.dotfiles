@@ -63,11 +63,10 @@ SAVEHIST=10000
 # zsh plguins
 source "${HOME}/.zsh/_zsh.zsh"
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
+#autoload -Uz compinit
+#zstyle ':completion:*' menu select
 #fpath+=~/.zfunc
 
-export DOCKER_BUILevals
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
@@ -108,20 +107,13 @@ then
     alias vi='nvim'
 fi
 
-if ! command -v 'which pfetch' &>/dev/null
-then
-    clear
-    pfetch
-fi
+#if ! command -v 'which pfetch' &>/dev/null
+#then
+#    pfetch
+#fi
 
 if [ -d "$HOME/.cargo" ]
 then
 	source "$HOME/.cargo/env"
 fi
-
-# pnpm
-export PNPM_HOME="/home/psadi/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-zstyle :compinstall filename '/home/psadi/.zshrc'
-autoload -Uz compinit
-compinit
+#zstyle :compinstall filename '/home/psadi/.zshrc'
+#autoload -Uz compinit
+#compinit
 
 # ZSH CONFIG
 # ----------
