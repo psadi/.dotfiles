@@ -1,0 +1,14 @@
+# evals
+source "${ZSH_DOTFILES_DIR}/.evals"
+
+# functions
+source "${ZSH_DOTFILES_DIR}/.functions"
+
+# Set aliases and exports based on package availability
+source "${ZSH_DOTFILES_DIR}/.commands"
+
+# aliases
+source "${ZSH_DOTFILES_DIR}/.aliases"
+
+# zsh plguins
+source "${HOME}/.zsh/_zsh.zsh"
