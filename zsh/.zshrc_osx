@@ -9,3 +9,7 @@ source "${ZSH_DOTFILES_DIR}/.commands"
 
 # aliases
 source "${ZSH_DOTFILES_DIR}/.aliases"
+
+
+# export
+export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/adithyaps/Library/Python/3.11/bin:${PATH}"

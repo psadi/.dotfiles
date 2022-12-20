@@ -12,3 +12,5 @@
 	fa = fetch --all
 	co = checkout
 	cob = checkout -b
+[core]
+	editor = hx
