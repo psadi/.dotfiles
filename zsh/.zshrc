@@ -19,3 +19,5 @@ case "${OSTYPE}" in
   "Darwin") source "${ZSH_DOTFILES_DIR}/.zshrc_osx" ;;
   *) echo "unsupported ostype" ;;
 esac
+
+source "${ZSH_DOTFILES_DIR}/.zsh/_zsh.zsh"

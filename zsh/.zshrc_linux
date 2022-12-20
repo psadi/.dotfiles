@@ -10,9 +10,6 @@ alias m='micro'
 alias nala='sudo nala'
 source "${ZSH_DOTFILES_DIR}/.aliases"
 
-# zsh plguins
-source "${HOME}/.zsh/_zsh.zsh"
-
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
 export EXTMOUNT=/media/tb-vol
