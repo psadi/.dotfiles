@@ -1,13 +1,6 @@
 env:
   TERM: xterm-256color
 
-    #shell:
-    #program: /usr/bin/tmux
-    #args:
-    #- 'new-session'
-    #- '-A'
-    #- '-s'
-    #- 'main'
 window:
   dimensions:
     columns: 0
@@ -63,52 +56,79 @@ selection:
 
 cursor:
   style:
-    shape: Block 
+    shape: Block
 
     blinking: On
 
 live_config_reload: true
 
 colors:
+  name: TokyoNight Night
+  author: Folke
   # Default colors
   primary:
-    background: '#1f2430'
-    foreground: '#cbccc6'
-    bright_foreground: '#f28779'
+    background: '0x1a1b26'
+    foreground: '0xc0caf5'
 
   # Normal colors
   normal:
-    black:   '#212733' #
-    red:     '#f08778' #
-    green:   '#53bf97' #
-    yellow:  '#fdcc60' #
-    blue:    '#60b8d6' # 
-    magenta: '#ec7171' #
-    cyan:    '#98e6ca' #
-    white:   '#fafafa' #
+    black: '0x15161E'
+    red: '0xf7768e'
+    green: '0x9ece6a'
+    yellow: '0xe0af68'
+    blue: '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan: '0x7dcfff'
+    white: '0xa9b1d6'
 
-  # Brightened
+  # Bright colors
   bright:
-    black: '#686868'
-    red: '#f58c7d'
-    green: '#58c49c'
-    yellow: '#ffd165'
-    blue: '#65bddb'
-    magenta: '#f17676'
-    cyan: '#9debcf'
-    white: '#ffffff'
+    black: '0x414868'
+    red: '0xf7768e'
+    green: '0x9ece6a'
+    yellow: '0xe0af68'
+    blue: '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan: '0x7dcfff'
+    white: '0xc0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
+
+theme: Tokyonight_Night
 
 mouse_bindings:
-  - { mouse: Right,                 action: ExpandSelection }
-  - { mouse: Right,  mods: Control, action: ExpandSelection }
-  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
+  - { mouse: Right, action: ExpandSelection }
+  - { mouse: Right, mods: Control, action: ExpandSelection }
+  - { mouse: Middle, mode: ~Vi, action: PasteSelection }
 
 key_bindings:
-  - { key: Paste,                                       action: Paste          }
-  - { key: Copy,                                        action: Copy           }
-  - { key: L,         mods: Control,                    action: ClearLogNotice }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
-  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\f" }
+  - {
+      key: PageUp,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageUp
+    }
+  - {
+      key: PageDown,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageDown
+    }
+  - {
+      key: Home,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToTop
+    }
+  - {
+      key: End,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToBottom
+    }
