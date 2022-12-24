@@ -1,0 +1,36 @@
+
+[[language]]
+name = "hcl"
+scope = "source.hcl"
+injection-regex = "(hcl|tf|nomad)"
+file-types = ["hcl", "tf", "nomad"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "terraform-ls", args = ["serve"], language-id = "terraform" }
+auto-format = true
+
+[[language]]
+name = "python"
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = true
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py"]
+shebangs = ["python"]
+roots = []
+comment-token = "#"
+language-server = { command = "pylsp" }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "gopls" }
+# TODO: gopls needs utf-8 offsets?
+indent = { tab-width = 4, unit = "\t" }

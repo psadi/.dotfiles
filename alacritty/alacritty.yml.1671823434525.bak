@@ -1,0 +1,134 @@
+env:
+  TERM: xterm-256color
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+
+  position:
+    x: 10
+    y: 10
+
+  padding:
+    x: 10
+    y: 5
+
+  dynamic_padding: true
+
+  decorations: full
+
+  opacity: 0.99
+
+  title: Terminal
+
+  dynamic_title: true
+
+  startup_mode: Maximized
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: MonoLisa
+    style: Regular
+
+  bold:
+    family: MonoLisa
+    style: Bold
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  size: 18.0
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  save_to_clipboard: true
+
+cursor:
+  style:
+    shape: Block
+
+    blinking: On
+
+live_config_reload: true
+
+colors:
+  name: TokyoNight Night
+  author: Folke
+  # Default colors
+  primary:
+    background: '0x1a1b26'
+    foreground: '0xc0caf5'
+
+  # Normal colors
+  normal:
+    black: '0x15161E'
+    red: '0xf7768e'
+    green: '0x9ece6a'
+    yellow: '0xe0af68'
+    blue: '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan: '0x7dcfff'
+    white: '0xa9b1d6'
+
+  # Bright colors
+  bright:
+    black: '0x414868'
+    red: '0xf7768e'
+    green: '0x9ece6a'
+    yellow: '0xe0af68'
+    blue: '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan: '0x7dcfff'
+    white: '0xc0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
+
+theme: Tokyonight_Night
+
+mouse_bindings:
+  - { mouse: Right, action: ExpandSelection }
+  - { mouse: Right, mods: Control, action: ExpandSelection }
+  - { mouse: Middle, mode: ~Vi, action: PasteSelection }
+
+key_bindings:
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\f" }
+  - {
+      key: PageUp,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageUp
+    }
+  - {
+      key: PageDown,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageDown
+    }
+  - {
+      key: Home,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToTop
+    }
+  - {
+      key: End,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToBottom
+    }
