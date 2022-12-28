@@ -16,4 +16,5 @@ if [ -d "/Applications/Emacs.app/Contents/MacOS" ]; then
 	export PATH="${EMACS_INSTALL_PATH}:${EMACS_INSTALL_PATH}/bin:${PATH}"
 fi
 
-export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/adithyaps/Library/Python/3.11/bin:${PATH}"
+export PYTHONUSERBASE="${HOME}/.local"
+export PATH="${HOME}/.local/bin:${PATH}"

@@ -60,8 +60,9 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>EMACSCLIENT="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+EMACS="/Applications/Emacs.app/Contents/MacOS/emacs"
 if [ -f "${EMACSCLIENT}" ]; then
-	"${EMACSCLIENT}" -c -a "emacs" -- "$@"
+	nohup "${EMACSCLIENT}" -c -a "${EMACS}" -- "$@" &gt; /dev/null 2&gt;&amp;1 &amp;
 fi</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
