@@ -10,6 +10,10 @@ source "${ZSH_DOTFILES_DIR}/.commands"
 # aliases
 source "${ZSH_DOTFILES_DIR}/.aliases"
 
-
 # export
+if [ -d "/Applications/Emacs.app/Contents/MacOS" ]; then
+	EMACS_INSTALL_PATH="/Applications/Emacs.app/Contents/MacOS"
+	export PATH="${EMACS_INSTALL_PATH}:${EMACS_INSTALL_PATH}/bin:${PATH}"
+fi
+
 export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/adithyaps/Library/Python/3.11/bin:${PATH}"
