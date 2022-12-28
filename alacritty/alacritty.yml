@@ -63,40 +63,32 @@ cursor:
 live_config_reload: true
 
 colors:
-  name: TokyoNight Night
-  author: Folke
   # Default colors
   primary:
     background: '0x1a1b26'
-    foreground: '0xc0caf5'
+    foreground: '0xa9b1d6'
 
   # Normal colors
   normal:
-    black: '0x15161E'
-    red: '0xf7768e'
-    green: '0x9ece6a'
-    yellow: '0xe0af68'
-    blue: '0x7aa2f7'
-    magenta: '0xbb9af7'
-    cyan: '0x7dcfff'
-    white: '0xa9b1d6'
+    black:   '0x32344a'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xad8ee6'
+    cyan:    '0x449dab'
+    white:   '0x787c99'
 
   # Bright colors
   bright:
-    black: '0x414868'
-    red: '0xf7768e'
-    green: '0x9ece6a'
-    yellow: '0xe0af68'
-    blue: '0x7aa2f7'
+    black:   '0x444b6a'
+    red:     '0xff7a93'
+    green:   '0xb9f27c'
+    yellow:  '0xff9e64'
+    blue:    '0x7da6ff'
     magenta: '0xbb9af7'
-    cyan: '0x7dcfff'
-    white: '0xc0caf5'
-
-  indexed_colors:
-    - { index: 16, color: '0xff9e64' }
-    - { index: 17, color: '0xdb4b4b' }
-
-theme: Tokyonight_Night
+    cyan:    '0x0db9d7'
+    white:   '0xacb0d0'
 
 mouse_bindings:
   - { mouse: Right, action: ExpandSelection }
@@ -104,36 +96,31 @@ mouse_bindings:
   - { mouse: Middle, mode: ~Vi, action: PasteSelection }
 
 key_bindings:
-  - { key: Paste,                                       action: Paste          }
-  - { key: Copy,                                        action: Copy           }
-  - { key: L,         mods: Control,                    action: ClearLogNotice }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
-  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-
-  # (macOS only)
-  - { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
-  - { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
-  - { key: Key0,           mods: Command,                    action: ResetFontSize         }
-  - { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
-  - { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
-  - { key: NumpadAdd,      mods: Command,                    action: IncreaseFontSize      }
-  - { key: Minus,          mods: Command,                    action: DecreaseFontSize      }
-  - { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
-  - { key: V,              mods: Command,                    action: Paste                 }
-  - { key: C,              mods: Command,                    action: Copy                  }
-  - { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
-  - { key: H,              mods: Command,                    action: Hide                  }
-  - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
-  - { key: M,              mods: Command,                    action: Minimize              }
-  - { key: Q,              mods: Command,                    action: Quit                  }
-  - { key: W,              mods: Command,                    action: Quit                  }
-  - { key: N,              mods: Command,                    action: SpawnNewInstance      }
-  - { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
-  - { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
-  - { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
-  - { key: Right, mods: Alt, chars: "\x1BF"}
-  - { key: Left, mods: Alt, chars: "\x1BB"}
-  - { key: Delete, mods: Alt, chars: "\x7f"}
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\f" }
+  - {
+      key: PageUp,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageUp
+    }
+  - {
+      key: PageDown,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollPageDown
+    }
+  - {
+      key: Home,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToTop
+    }
+  - {
+      key: End,
+      mods: Shift,
+      mode: ~Alt,
+      action: ScrollToBottom
+    }
