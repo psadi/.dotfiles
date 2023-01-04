@@ -6,28 +6,19 @@ mouse = false
 cursorline = true
 bufferline = "multiple"
 
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
 [editor.file-picker]
 hidden = false
 
 [editor.cursor-shape]
 insert = "bar"
 
-
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-
-# [editor.whitespace.render]
-# space = "all"
-# tab = "all"
-# newline ="none"
-
-[editor.whitespace.characters]
-space = "·"
-nbsp = "⍽"
-tab = "→"
-newline = "⏎"
-tabpad = "·" 
-
-# [editor.indent-guides]
-# render = false
-# character = "╎"
