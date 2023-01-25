@@ -6,13 +6,14 @@ then
     export MANPAGER='bat'
 fi
 
-# if ! command -v 'nvim --version' &> /dev/null
-# then
-#     alias vim='nvim'
-#     alias vi='nvim'
-# fi
+if ! type "hx --version" > /dev/null; then
+  export EDITOR=hx
+	export editor=hx
+  alias vim=hx
+  alias vi=hx
+fi
 
-# if [ -d "$HOME/.cargo" ]
-# then
-# 	source "$HOME/.cargo/env"
-# fi
+if [ -d "$HOME/.cargo" ]
+then
+	source "$HOME/.cargo/env"
+fi

@@ -12,7 +12,6 @@
 
 ZSH_DOTFILES_DIR="${HOME}/workspace/dotfiles/zsh"
 OSTYPE=$(uname -a | awk '{print $1}')
-export EDITOR=hx
 
 case "${OSTYPE}" in
   "Linux") source "${ZSH_DOTFILES_DIR}/.zshrc_linux" ;;
