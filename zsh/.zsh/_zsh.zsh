@@ -8,16 +8,16 @@ export _ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
 # ZSH PLUGINS
 # -----------
 
-source "${_ZSH_CONFIG_PATH}/zsh-defer/zsh-defer.plugin.zsh"
+autoload -Uz "${_ZSH_CONFIG_PATH}/zsh-defer/zsh-defer"
 
 for z in `ls "${_ZSH_PLUGINS_PATH}"`;
 do
 	if [ -d "${_ZSH_PLUGINS_PATH}/${z}" ];
 	then
-		zsh-defer "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh"
+		zsh-defer source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh"
 	fi
 done
 
 # ZSH FZF
 # -------
-source "${_ZSH_CONFIG_PATH}/fzf/fzf.zsh"
+zsh-defer source "${_ZSH_CONFIG_PATH}/fzf/fzf.zsh"
