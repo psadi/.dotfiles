@@ -9,8 +9,6 @@ fi
 if ! type "hx --version" > /dev/null; then
   export EDITOR=hx
 	export editor=hx
-  alias vim=hx
-  alias vi=hx
 fi
 
 if [ -d "$HOME/.cargo" ]

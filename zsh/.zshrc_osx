@@ -11,11 +11,16 @@ source "${ZSH_DOTFILES_DIR}/.commands"
 source "${ZSH_DOTFILES_DIR}/.aliases"
 
 # export
-if [ -d "/Applications/Emacs.app/Contents/MacOS" ]; then
-	EMACS_INSTALL_PATH="/Applications/Emacs.app/Contents/MacOS"
-	export PATH="${EMACS_INSTALL_PATH}:${EMACS_INSTALL_PATH}/bin:${PATH}"
-fi
-
+# python
 export PYTHONPATH="$(brew --prefix python@3.11)"
 export PYTHONUSERBASE="${HOME}/.local"
-export PATH="${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${HOME}/.local/lsp/jdtls/bin:${PATH}"
+if [ -n "$PYTHONPATH" ]; then
+    export PYTHONPATH='/usr/local/lib/python3.11/site-packages/pdm/pep582':$PYTHONPATH
+else
+    export PYTHONPATH='/usr/local/lib/python3.11/site-packages/pdm/pep582'
+fi
+
+
+export GROOVY_HOME=/Users/adithyaps/opt/groovy-4.0.8
+export M2_HOME=/Users/adithyaps/opt/apache-maven-3.8.7
+export PATH="${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${PATH}"
