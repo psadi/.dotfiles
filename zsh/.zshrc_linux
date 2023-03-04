@@ -1,5 +1,4 @@
 # evals
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source "${ZSH_DOTFILES_DIR}/.evals"
 
 # functions

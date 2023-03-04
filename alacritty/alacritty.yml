@@ -47,7 +47,7 @@ font:
     x: 0
     y: 0
 
-  size: 18.0
+  size: 12
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -120,7 +120,7 @@ key_bindings:
   - { key: C,              mods: Command,                    action: Copy                  }
   - { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
   - { key: H,              mods: Command,                    action: Hide                  }
-  - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
+  # - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
   - { key: M,              mods: Command,                    action: Minimize              }
   - { key: Q,              mods: Command,                    action: Quit                  }
   - { key: W,              mods: Command,                    action: Quit                  }
