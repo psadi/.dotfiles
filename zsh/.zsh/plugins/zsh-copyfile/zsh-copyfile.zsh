@@ -3,7 +3,12 @@
 # copyfile <file>
 function copyfile {
   emulate -L zsh
-  clipcopy $1
+  case "${OSTYPE}" in
+    "Linux") clipcopy $1 ;;
+    "Darwin") cat $1 | pbcopy ;;
+    *) echo "unsupported ostype" ;;
+  esac
+    # clipcopy $1
 }
 
 alias cpf=copyfile
