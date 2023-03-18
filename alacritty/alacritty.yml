@@ -45,7 +45,7 @@ font:
     x: 0
     y: 0
 
-  size: 16
+  size: 18
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
