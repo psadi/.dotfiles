@@ -17,7 +17,7 @@ auto-format = true
 scope = "source.python"
 injection-regex = "python"
 file-types = ["py"]
-shebangs = ["python"]
+# shebangs = ["python"]
 roots = []
 comment-token = "#"
 language-server = { command = "pylsp" }

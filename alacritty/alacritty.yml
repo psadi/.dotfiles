@@ -16,7 +16,7 @@ window:
 
   dynamic_padding: true
 
-  decorations: full
+  decorations: none
 
   opacity: 0.99
 
@@ -45,7 +45,7 @@ font:
     x: 0
     y: 0
 
-  size: 18
+  size: 14
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
