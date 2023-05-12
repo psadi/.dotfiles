@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 if ! command -v 'which bat' &> /dev/null
 then

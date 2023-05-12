@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 .p(){
     cd ${ZSH_DOTFILES_DIR}

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 alias reload='source ~/.zshrc'
 alias ..='cd ..'

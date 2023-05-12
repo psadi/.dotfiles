@@ -1,3 +1,5 @@
+#!/bin/sh 
+
 # evals
 source "${ZSH_DOTFILES_DIR}/.evals"
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 if [ -d '/home/linuxbrew/.linuxbrew' ];
 then
