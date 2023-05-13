@@ -2,9 +2,6 @@ env:
   TERM: xterm-256color
 
 window:
-  dimensions:
-    columns: 0
-    lines: 0
 
   position:
     x: 10
@@ -16,7 +13,7 @@ window:
 
   dynamic_padding: true
 
-  decorations: none
+  decorations: full
 
   opacity: 0.99
 
@@ -45,7 +42,7 @@ font:
     x: 0
     y: 0
 
-  size: 14
+  size: 22
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -77,21 +74,16 @@ colors:
 
 mouse_bindings:
   - { mouse: Right, action: ExpandSelection }
-  - { mouse: Right, mods: Control, action: ExpandSelection }
-  - { mouse: Middle, mode: ~Vi, action: PasteSelection }
 
 key_bindings:
   - { key: Paste, action: Paste }
   - { key: Copy, action: Copy }
   - { key: L, mods: Control, action: ClearLogNotice }
-  - { key: L, mods: Control, mode: ~Vi|~Search, chars: "\f" }
   - { key: PageUp,mods: Shift,mode: ~Alt,action: ScrollPageUp }
   - { key: PageDown,mods: Shift,mode: ~Alt,action: ScrollPageDown }
   - { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
   - { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
 
-  - { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
-  - { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
   - { key: Key0,           mods: Command,                    action: ResetFontSize         }
   - { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
   - { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
@@ -100,9 +92,7 @@ key_bindings:
   - { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
   - { key: V,              mods: Command,                    action: Paste                 }
   - { key: C,              mods: Command,                    action: Copy                  }
-  - { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
   - { key: H,              mods: Command,                    action: Hide                  }
-  # - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
   - { key: M,              mods: Command,                    action: Minimize              }
   - { key: Q,              mods: Command,                    action: Quit                  }
   - { key: W,              mods: Command,                    action: Quit                  }
