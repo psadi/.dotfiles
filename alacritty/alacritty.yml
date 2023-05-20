@@ -16,7 +16,7 @@ window:
 
   dynamic_padding: true
 
-  decorations: none
+  decorations: full
 
   opacity: 0.99
 
