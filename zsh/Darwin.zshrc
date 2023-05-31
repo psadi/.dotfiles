@@ -25,4 +25,4 @@ fi
 
 export GROOVY_HOME=/Users/adithyaps/opt/groovy-4.0.8
 export M2_HOME=/Users/adithyaps/opt/apache-maven-3.8.7
-export PATH="${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${HOME}/opt/v:${HOME}/.local/flutter/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${HOME}/opt/v:${HOME}/.docker/bin:${PATH}"
