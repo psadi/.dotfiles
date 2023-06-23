@@ -1,15 +1,18 @@
 #!/bin/sh 
 
 # evals
-source "${ZSH_DOTFILES_DIR}/.evals"
+source "${ZSH_DOTFILES_DIR}/evals.zsh"
 
 # functions
-source "${ZSH_DOTFILES_DIR}/.functions"
+source "${ZSH_DOTFILES_DIR}/functions.zsh"
+
+# Set aliases and exports based on package availability
+source "${ZSH_DOTFILES_DIR}/commands.zsh"
 
 # aliases
+source "${ZSH_DOTFILES_DIR}/aliases.zsh"
 alias m='micro'
 alias nala='sudo nala'
-source "${ZSH_DOTFILES_DIR}/.aliases"
 
 export LOCAL_DIR=/home/psadi/.local
 export OPT_PATH=/opt
