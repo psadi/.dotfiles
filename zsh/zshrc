@@ -12,7 +12,7 @@
 ## gitlab : https://github.com/psadi
 ########################################################
 
-ZSH_DOTFILES_DIR="${HOME}/workspace/dotfiles/zsh"
+ZSH_DOTFILES_DIR="${HOME}/Developer/dotfiles/zsh"
 
 source "${ZSH_DOTFILES_DIR}/$(uname -a | awk '{print $1}').zshrc"
 source "${ZSH_DOTFILES_DIR}/.zsh/_zsh.zsh"

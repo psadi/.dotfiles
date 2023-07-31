@@ -1,4 +1,8 @@
 {
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
     "theme": "Andromeda",
     "buffer_font_size": 15,
     "buffer_font_family": "MonoLisa",
