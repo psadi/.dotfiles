@@ -5,5 +5,5 @@ then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
