@@ -1,33 +1,33 @@
 {
-    "telemetry": {
-        "diagnostics": false,
-        "metrics": false
-    },
-    "theme": "Andromeda",
-    "buffer_font_size": 15,
-    "buffer_font_family": "MonoLisa",
-    "experimental_themes": true,
-    "language_overrides": {
-        "Python": {
-            "format_on_save": {
-                "external": {
-                    "command": "black",
-                    "arguments": [
-                        "-"
-                    ]
-                }
-            }
-        },
-        "JavaScript": {
-            "format_on_save": {
-                "external": {
-                    "command": "prettier",
-                    "arguments": [
-                        "--stdin-filepath",
-                        "{buffer_path}"
-                    ]
-                }
-            }
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": "Ayu Dark",
+  "buffer_font_size": 15,
+  "buffer_font_family": "MonoLisa",
+  "experimental_themes": true,
+  "language_overrides": {
+    "Python": {
+      "format_on_save": {
+        "external": {
+          "command": "black",
+          "arguments": [
+            "-"
+          ]
         }
+      }
+    },
+    "JavaScript": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
     }
+  }
 }
