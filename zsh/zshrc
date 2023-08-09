@@ -12,7 +12,6 @@
 ## gitlab : https://github.com/psadi
 ########################################################
 
-export PS1='%F{blue}%~ %(?.%F{green}.%F{red})%#%f '
 ZSH_DOTFILES_DIR="${HOME}/Developer/dotfiles/zsh"
 
 source "${ZSH_DOTFILES_DIR}/$(uname -a | awk '{print $1}').zshrc"
