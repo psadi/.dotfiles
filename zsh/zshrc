@@ -12,7 +12,9 @@
 ## gitlab : https://github.com/psadi
 ########################################################
 
+
+export OSTYPE="$(uname -a | awk '{print $1}')"
 ZSH_DOTFILES_DIR="${HOME}/Developer/dotfiles/zsh"
 
-source "${ZSH_DOTFILES_DIR}/$(uname -a | awk '{print $1}').zshrc"
+source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
 source "${ZSH_DOTFILES_DIR}/_zsh.zsh"
