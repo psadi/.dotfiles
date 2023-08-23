@@ -17,3 +17,7 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
+
+zj(){
+    zellij -s "$(basename $PWD)"
+}

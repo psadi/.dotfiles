@@ -16,8 +16,6 @@ alias h='history'
 alias hs='history | grep'
 alias hsi='history | grep -i'
 
-alias zj=zellij
-
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000

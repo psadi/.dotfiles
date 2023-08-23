@@ -212,4 +212,3 @@ copy_command "pbcopy"
 copy_on_select true
 
 scrollback_editor "/usr/local/bin/hx"
-
