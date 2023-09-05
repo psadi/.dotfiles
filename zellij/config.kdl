@@ -186,9 +186,23 @@ pane_frames false
 default_layout "compact"
 
 themes {
+    gruvbox-dark {
+        fg 213 196 161
+        bg 40 40 40
+        black 60 56 54
+        red 204 36 29
+        green 152 151 26
+        yellow 215 153 33
+        blue 69 133 136
+        magenta 177 98 134
+        cyan 104 157 106
+        white 251 241 199
+        orange 214 93 14
+    }
+
     dark_plus {
         fg "#D4D4D4"
-        bg "#1E1E1E"
+        bg "#FFFFFF"
         black "#1E1E1E"
         red "#F44747"
         green "#608B4E"
@@ -201,7 +215,7 @@ themes {
     }
 }
 
-theme "dark_plus"
+theme "gruvbox-dark"
 
 mouse_mode true
 
