@@ -215,7 +215,7 @@ themes {
     }
 }
 
-theme "gruvbox-dark"
+theme "dark_plus"
 
 mouse_mode true
 
