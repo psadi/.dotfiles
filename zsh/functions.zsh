@@ -21,3 +21,10 @@ lg()
 zj(){
     zellij -s "$(basename $PWD)"
 }
+
+
+lxl(){
+    if [ -f "/Applications/Lite XL.app/Contents/MacOS/lite-xl" ]; then
+        "/Applications/Lite XL.app/Contents/MacOS/lite-xl" &
+    fi
+}

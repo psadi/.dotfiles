@@ -12,18 +12,18 @@ source "${ZSH_DOTFILES_DIR}/commands.zsh"
 # aliases
 source "${ZSH_DOTFILES_DIR}/aliases.zsh"
 
-# export
-# python
+# exports
 export PYTHONPATH="$(brew --prefix python@3.11)"
 export PYTHONUSERBASE="${HOME}/.local"
-if [ -n "$PYTHONPATH" ]; then
-    export PYTHONPATH='/usr/local/lib/python3.11/site-packages/pdm/pep582':$PYTHONPATH
-else
-    export PYTHONPATH='/usr/local/lib/python3.11/site-packages/pdm/pep582'
-fi
-
-
 export GROOVY_HOME=/Users/adithyaps/opt/groovy-4.0.8
 export M2_HOME=/Users/adithyaps/opt/apache-maven-3.8.7
 export GOBIN="/Users/adithyaps/go/bin"
-export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${HOME}/opt/v:${HOME}/.docker/bin:${HOME}/.local/nvim-macos/bin:${HOME}/.config/emacs/bin:${PATH}"
+export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${HOME}/.docker/bin:${PATH}"
+
+if [ -d "${HOME}/.config/emacs/bin" ]; then
+  export PATH="${HOME}/.config/emacs/bin:${PATH}"
+fi
+
+if [ -S "/Users/adithyaps/.local/share/containers/podman/machine/qemu/podman.sock" ]; then
+  export DOCKER_HOST='unix:///Users/adithyaps/.local/share/containers/podman/machine/qemu/podman.sock'
+fi
