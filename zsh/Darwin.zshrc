@@ -23,7 +23,3 @@ export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROO
 if [ -d "${HOME}/.config/emacs/bin" ]; then
   export PATH="${HOME}/.config/emacs/bin:${PATH}"
 fi
-
-if [ -S "/Users/adithyaps/.local/share/containers/podman/machine/qemu/podman.sock" ]; then
-  export DOCKER_HOST='unix:///Users/adithyaps/.local/share/containers/podman/machine/qemu/podman.sock'
-fi
