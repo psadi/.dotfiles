@@ -30,11 +30,11 @@ scrolling:
 
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: MonoLisa
     style: Regular
 
   bold:
-    family: SauceCodePro Nerd Font
+    family: MonoLisa
     style: Bold
 
   offset:
@@ -60,48 +60,20 @@ cursor:
 
 live_config_reload: true
 
-# colors:
-#   primary:
-#     background: '0x1E1E1E'
-#     foreground: '0xD4D4D4'
-
-#   normal:
-#     black:   '0x1E1E1E'
-#     red:     '0xF44747'
-#     green:   '0x608B4E'
-#     yellow:  '0xD7BA7D'
-#     blue:    '0x569CD6'
-#     magenta: '0xC586C0'
-#     cyan:    '0x9CDCFE'
-#     white:   '0xD4D4D4'
-
 colors:
-  # Default Colours
   primary:
-    background: '#000000'
-    foreground: '#FFFFFF'
+    background: '0x1E1E1E'
+    foreground: '0xD4D4D4'
 
-  # Normal Colours
   normal:
-    black:   '#1a1a1a'
-    red:     '#f4005f'
-    green:   '#98e024'
-    yellow:  '#fa8419'
-    blue:    '#9d65ff'
-    magenta: '#f4005f'
-    cyan:    '#58d1eb'
-    white:   '#c4c5b5'
-
-  # Bright Colours
-  bright:
-    black:   '#625e4c'
-    red:     '#f4005f'
-    green:   '#98e024'
-    yellow:  '#e0d561'
-    blue:    '#9d65ff'
-    magenta: '#f4005f'
-    cyan:    '#58d1eb'
-    white:   '#f6f6ef'
+    black:   '0x1E1E1E'
+    red:     '0xF44747'
+    green:   '0x608B4E'
+    yellow:  '0xD7BA7D'
+    blue:    '0x569CD6'
+    magenta: '0xC586C0'
+    cyan:    '0x9CDCFE'
+    white:   '0xD4D4D4'
 
 mouse_bindings:
   - { mouse: Right, action: ExpandSelection }

@@ -15,11 +15,6 @@ source "${ZSH_DOTFILES_DIR}/aliases.zsh"
 # exports
 export PYTHONPATH="$(brew --prefix python@3.11)"
 export PYTHONUSERBASE="${HOME}/.local"
-export GROOVY_HOME=/Users/adithyaps/opt/groovy-4.0.8
-export M2_HOME=/Users/adithyaps/opt/apache-maven-3.8.7
 export GOBIN="/Users/adithyaps/go/bin"
-export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${GROOVY_HOME}/bin:${M2_HOME}/bin:${HOME}/.docker/bin:${PATH}"
-
-if [ -d "${HOME}/.config/emacs/bin" ]; then
-  export PATH="${HOME}/.config/emacs/bin:${PATH}"
-fi
+export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHONPATH}/bin:${HOME}/go/bin:${HOME}/.docker/bin:${PATH}"
+export DOCKER_HOST="tcp://192.168.1.100:2375"
