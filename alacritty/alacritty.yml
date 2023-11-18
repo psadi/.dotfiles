@@ -30,11 +30,11 @@ scrolling:
 
 font:
   normal:
-    family: MonoLisa
+    family: MesloLGL Nerd Font
     style: Regular
 
   bold:
-    family: MonoLisa
+    family: MesloLGL Nerd Font
     style: Bold
 
   offset:
