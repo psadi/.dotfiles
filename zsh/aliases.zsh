@@ -4,7 +4,7 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
 
-alias ls='exa'
+alias ls='eza'
 alias ll='ls -l'
 alias la='ls -la'
 alias lrth='ls -l --sort modified'
