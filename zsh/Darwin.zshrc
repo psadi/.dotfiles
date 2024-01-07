@@ -3,11 +3,11 @@
 # HOMEBREW
 #---------
 export HOMEBREW_NO_ENV_HINTS
-export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Desktop/Applications"
+# export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Desktop/Applications"
 
 # PYTHON
 #--------
-PYTHON_VERSION='python@3.12'
+PYTHON_VERSION='python@3.11'
 export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
 export PYTHONUSERBASE="${HOME}/.local"
 export PIP_EXTRA_INDEX_URL=https://artifactory.global.standardchartered.com/artifactory/api/pypi/pypi/simple
