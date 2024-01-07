@@ -54,13 +54,10 @@ source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
 # Load Plugins
 #---------------------------------------------
 for z in `ls ${_ZSH_PLUGINS_PATH}`; 
-do
-  
-  if [ ! -f "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh" ]; then
-    return
+do 
+  if [ -f "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh" ]; then
+    source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh";
   fi
-
-  source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh";
 done;
 
 # Zsh Completions + Keybindings
@@ -69,4 +66,5 @@ source ${_ZSH_COMPLETIONS_PATH}/completions.zsh
 
 # Load Tools
 #---------------------------------------------
-LoadTools
+type LoadTools &>/dev/null && LoadTools
+

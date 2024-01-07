@@ -1,52 +1,5 @@
-Host UAT-Webserver
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.23.41.11
-    User scbappsup
-    Port 22
+Host picolo
+HostName 192.168.1.100
+User psadi
+Port 22
 
-Host UAT-Podman
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.229.202.31
-    User pii
-    Port 22
-
-Host Devops-58
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.13.240.58
-    User devops
-    Port 22
-
-Host Devops-PII
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.13.133.97
-    User devops
-    Port 22
-
-Host Devops-108
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.23.210.108
-    User devops
-    Port 22
-
-Host UAT-Docker
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.229.202.224
-    User piiappadmin
-    Port 22
-
-Host OWS-APP-NP
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.27.240.65
-    User owsadmcn
-    Port 22
-    #_desc tomadm 23HCCb3hTK7d0!
-
-Host OWS-DB-NP
-    IdentityFile ~/.ssh/58/id_rsa
-    Hostname 10.27.239.239
-    User devadmin
-    Port 22
-
-Host ssh.dev.azure.com
-    ProxyCommand connect-proxy -H 10.239.9.188:443 %h %p
-    ForwardAgent yes
