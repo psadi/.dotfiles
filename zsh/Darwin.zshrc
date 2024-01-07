@@ -10,7 +10,6 @@ export HOMEBREW_NO_ENV_HINTS
 PYTHON_VERSION='python@3.11'
 export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
 export PYTHONUSERBASE="${HOME}/.local"
-export PIP_EXTRA_INDEX_URL=https://artifactory.global.standardchartered.com/artifactory/api/pypi/pypi/simple
 export PIP_USE_DEPRICATED=html5lib
 
 # CORE-UTILS

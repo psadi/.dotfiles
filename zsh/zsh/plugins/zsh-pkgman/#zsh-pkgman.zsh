@@ -18,7 +18,6 @@ function LanguageExporter {
         "go")
             export GOROOT="${TOOLS_PATH}/${1}/this/bin"
             export GOBIN="${HOME}/go/bin"
-            export GOPROXY="https://artifactory.global.standardchartered.com/artifactory/api/go/go-release"
         ;;
         "liquibase") export LIQUIBASE_HOME="${TOOLS_PATH}/${1}/this" ;;
         # "v") export PATH="${TOOLS_PATH}/${1}:${PATH}" ;;

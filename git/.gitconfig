@@ -13,7 +13,7 @@
 	co = checkout
 	cob = checkout -b
 [core]
-	editor = hx
+	editor = vim
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/local/bin/gh auth git-credential
