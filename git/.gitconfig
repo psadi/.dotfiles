@@ -1,6 +1,6 @@
 [user]
 	name = psadi
-	email = adithya3494@gmail.com
+	email = ps.adithya@icloud.com
 
 [alias]
 	pn = "!git push --set-upstream origin $(git branch --show-current | xargs)"

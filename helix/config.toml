@@ -2,8 +2,9 @@ theme = "dark_plus"
 
 [editor]
 line-number = "relative"
-mouse = true
+mouse = false
 cursorline = true
+cursorcolumn = true
 bufferline = "multiple"
 
 [editor.auto-pairs]
@@ -18,16 +19,27 @@ bufferline = "multiple"
 hidden = false
 
 [editor.cursor-shape]
+normal = "block"
 insert = "bar"
+select = "underline"
 
-[editor.statusline]
-left = ["mode", "spinner", "version-control", "file-name"]
+[editor.indent-guides]
+render = true
+character = "│"
+skip-levels = 1
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-A-r = ":config-reload"
-A-s = ":w"
-A-o = ":open ~/.config/helix/config.toml"
-A-l = ":open ~/.config/helix/languages.toml"
-A-q = ":buffer-close"
-A-Q = ":buffer-close!"
+C-r = ":config-reload"
+C-s = ":w"
+C-Q = ":buffer-close!"
+C-q = ":buffer-close"
+C-o = ":open ~/.config/helix/config.toml"
+C-l = ":open ~/.config/helix/languages.toml"

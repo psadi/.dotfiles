@@ -1,20 +1,32 @@
 #!/bin/sh
 
-# evals
-source "${ZSH_DOTFILES_DIR}/evals.zsh"
+# HOMEBREW
+#---------
+export HOMEBREW_NO_ENV_HINTS
+export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Desktop/Applications"
 
-# functions
-source "${ZSH_DOTFILES_DIR}/functions.zsh"
-
-# Set aliases and exports based on package availability
-source "${ZSH_DOTFILES_DIR}/commands.zsh"
-
-# aliases
-source "${ZSH_DOTFILES_DIR}/aliases.zsh"
-
-# exports
-export PYTHON_HOME="$(brew --prefix python@3.11)"
+# PYTHON
+#--------
+PYTHON_VERSION='python@3.12'
+export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
 export PYTHONUSERBASE="${HOME}/.local"
-export GOBIN="/Users/adithyaps/go/bin"
-export PATH="${GOBIN}:${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:${HOME}/go/bin:${HOME}/.docker/bin:${PATH}"
-export DOCKER_HOST="tcp://192.168.1.100:2375"
+export PIP_EXTRA_INDEX_URL=https://artifactory.global.standardchartered.com/artifactory/api/pypi/pypi/simple
+export PIP_USE_DEPRICATED=html5lib
+
+# CORE-UTILS
+#-----------
+export COREUTILS=${HOME}/.local/opt/homebrew/opt/coreutils/libexec/gnubin
+export LD_LIBRARY_PATH=${OPENSSL_PATH}/lib:${GLIB_PATH}/lib:${LD_LIBRARY_PATH}
+export LDFLAGS="-L ${OPENSSL_PATH}/lib -Wl,-rpath,${OPENSSL_PATH}/lib"
+
+PATH="${HOME}/.local/bin:${COREUTILS}:${PYTHON_HOME}/libexec/bin:${PATH}"
+export PATH
+
+# NEOVIM
+#-------
+NVIM_PATH="${HOME}/.local/nvim-macos"
+if [ -d "${NVIM_PATH}" ]; then
+	export PATH="${NVIM_PATH}/bin:${PATH}"
+	export LD_LIBRARY_PATH="${NVIM_PATH}/lib:${LD_LIBRARY_PATH}"
+	export MANPATH="${NVIM_PATH}/share/man:${MANPATH}"
+fi
