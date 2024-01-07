@@ -8,7 +8,7 @@
 # | .__/|___/\__,_|\__,_|_|
 # |_|
 ## Name   : P S, Adithya
-## email  : adithya3494@gmail.com
+## email  : ps.adithya@icloud.com
 ## gitlab : https://github.com/psadi
 ########################################################
 
@@ -53,7 +53,15 @@ source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
 
 # Load Plugins
 #---------------------------------------------
-for z in `ls ${_ZSH_PLUGINS_PATH}`; do source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh"; done;
+for z in `ls ${_ZSH_PLUGINS_PATH}`; 
+do
+  
+  if [ ! -f "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh" ]; then
+    return
+  fi
+
+  source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh";
+done;
 
 # Zsh Completions + Keybindings
 #---------------------------------------------
