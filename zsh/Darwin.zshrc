@@ -21,11 +21,5 @@ export LDFLAGS="-L ${OPENSSL_PATH}/lib -Wl,-rpath,${OPENSSL_PATH}/lib"
 PATH="${HOME}/.local/bin:${COREUTILS}:${PYTHON_HOME}/libexec/bin:${PATH}"
 export PATH
 
-# NEOVIM
-#-------
-NVIM_PATH="${HOME}/.local/nvim-macos"
-if [ -d "${NVIM_PATH}" ]; then
-	export PATH="${NVIM_PATH}/bin:${PATH}"
-	export LD_LIBRARY_PATH="${NVIM_PATH}/lib:${LD_LIBRARY_PATH}"
-	export MANPATH="${NVIM_PATH}/share/man:${MANPATH}"
-fi
+cmd=$(nc -zv 192.168.1.100 2375 &> /dev/null)
+if [ $? -eq 0 ]; then export DOCKER_HOST="tcp://192.168.1.100:2375"; fi;
