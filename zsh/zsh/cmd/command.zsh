@@ -10,8 +10,8 @@ if command -v bat &> /dev/null; then
   export MANPAGER="bat"
 fi
 
-if [ -d /opt/nvim-linux64 ]; then
-  export PATH=$PATH:/opt/nvim-linux64/bin
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/nvim-linux64/lib
-  export MANPATH=$MANPATH:/opt/nvim-linux64/man
+if [ -d /opt/pkg/nvim-linux64 ]; then
+  export PATH=$PATH:/opt/pkg/nvim-linux64/bin
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/pkg/nvim-linux64/lib
+  export MANPATH=$MANPATH:/opt/pkg/nvim-linux64/man
 fi
