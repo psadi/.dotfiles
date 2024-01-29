@@ -136,6 +136,6 @@ RUN git clone https://github.com/LazyVim/starter ~/.config/nvim && \
     # Pip Packages Installations
     # --------------------------
     python3 -m pip install --upgrade pip && \
-    python3 -m pip install ansible jmespath pdm pynvim
+    python3 -m pip install ansible jmespath pdm pynvim awscli
 
 ENTRYPOINT ["/usr/bin/zsh"]
