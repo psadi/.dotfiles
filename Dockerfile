@@ -72,12 +72,46 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     chmod +x /usr/local/bin/terraform && \
     rm "/opt/pkg/terraform_${tf_latest}_linux_amd64.zip" && \
     # --------------------------
+    # PROCS
+    # --------------------------
+    procs_version=$(curl -L -s "https://api.github.com/repos/dalance/procs/tags" | jq -r '.[0].name') && \
+    axel --quiet https://github.com/dalance/procs/releases/download/${procs_version}/procs-${procs_version}-x86_64-linux.zip --output=/opt/pkg && \
+    unzip -q "/opt/pkg/procs-${procs_version}-x86_64-linux.zip" -d /usr/local/bin && \
+    chmod +x /usr/local/bin/procs && \
+    rm "/opt/pkg/procs-${procs_version}-x86_64-linux.zip" && \
+    # --------------------------
+    # BAT
+    # --------------------------
+    bat_version=$(curl -L -s "https://api.github.com/repos/sharkdp/bat/tags" | jq -r '.[0].name') && \
+    axel --quiet https://github.com/sharkdp/bat/releases/download/${bat_version}/bat-${bat_version}-x86_64-unknown-linux-gnu.tar.gz --output=/opt/pkg && \
+    tar -C /opt/pkg -xzf /opt/pkg/bat-${bat_version}-x86_64-unknown-linux-gnu.tar.gz bat-${bat_version}-x86_64-unknown-linux-gnu/bat --strip-components=1 && \
+    mv /opt/pkg/bat /usr/local/bin/bat && \
+    chmod +x /usr/local/bin/bat && \
+    rm /opt/pkg/bat-${bat_version}-x86_64-unknown-linux-gnu.tar.gz && \
+    # --------------------------
+    # RIPGREP
+    # --------------------------
+    rg_version=$(curl -L -s "https://api.github.com/repos/BurntSushi/ripgrep/tags" | jq -r '.[0].name' | cut -d '-' -f2) && \
+    axel --quiet https://github.com/BurntSushi/ripgrep/releases/download/${rg_version}/ripgrep-${rg_version}-x86_64-unknown-linux-musl.tar.gz --output=/opt/pkg && \
+    tar -C /opt/pkg -xzf /opt/pkg/ripgrep-${rg_version}-x86_64-unknown-linux-musl.tar.gz ripgrep-${rg_version}-x86_64-unknown-linux-musl/rg --strip-components=1 && \
+    mv /opt/pkg/rg /usr/local/bin/rg && \
+    chmod +x /usr/local/bin/rg && \
+    rm /opt/pkg/ripgrep-${rg_version}-x86_64-unknown-linux-musl.tar.gz && \
+    # --------------------------
+    # FD
+    # --------------------------
+    fd_version=$(curl -L -s "https://api.github.com/repos/sharkdp/fd/tags" | jq -r '.[0].name') && \
+    axel --quiet https://github.com/sharkdp/fd/releases/download/${fd_version}/fd-${fd_version}-x86_64-unknown-linux-gnu.tar.gz --output=/opt/pkg && \
+    tar -C /opt/pkg -xzf /opt/pkg/fd-${fd_version}-x86_64-unknown-linux-gnu.tar.gz fd-${fd_version}-x86_64-unknown-linux-gnu/fd --strip-components=1 && \
+    mv /opt/pkg/fd /usr/local/bin/fd && \
+    chmod +x /usr/local/bin/fd && \
+    rm /opt/pkg/fd-${fd_version}-x86_64-unknown-linux-gnu.tar.gz && \
+    # --------------------------
     # FINALIZE & CLEANUP
     # --------------------------
     apt-get clean && \
     apt-get autoclean && \
     apt-get autoremove --purge && \
-    python3 -m pip cache purge && \
     rm -rf /var/log/* && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/cache/apt/archives/* && \
@@ -89,6 +123,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     ln -s /home/psadi/dotfiles/zsh/zshrc /home/psadi/.zshrc && \
     ln -s /home/psadi/dotfiles/git/.gitconfig /home/psadi/.gitconfig && \
     ln -s /home/psadi/dotfiles/zellij /home/psadi/.config/zellij && \
+    ln -s /home/psadi/dotfiles/pip /home/psadi/.config/pip && \
     chown -R psadi:psadi /home/psadi
 
 WORKDIR /home/psadi
@@ -96,6 +131,11 @@ WORKDIR /home/psadi
 USER psadi
 
 RUN git clone https://github.com/LazyVim/starter ~/.config/nvim && \
-    /opt/pkg/nvim-linux64/bin/nvim -c "qa"
+    /opt/pkg/nvim-linux64/bin/nvim -c "qa" && \
+    # --------------------------
+    # Pip Packages Installations
+    # --------------------------
+    python3 -m pip install --upgrade pip && \
+    python3 -m pip install ansible jmespath pdm pynvim
 
 ENTRYPOINT ["/usr/bin/zsh"]
