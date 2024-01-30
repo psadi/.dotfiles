@@ -107,6 +107,15 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     chmod +x /usr/local/bin/fd && \
     rm /opt/pkg/fd-${fd_version}-x86_64-unknown-linux-gnu.tar.gz && \
     # --------------------------
+    # LAZYGIT
+    # --------------------------
+    lg_version=$(curl -L -s "https://api.github.com/repos/jesseduffield/lazygit/tags" | jq -r '.[0].name' | sed -e 's/v//g') && \
+    axel --quiet https://github.com/jesseduffield/lazygit/releases/download/v${lg_version}/lazygit_${lg_version}_Linux_x86_64.tar.gz --output=/opt/pkg && \
+    tar -C /opt/pkg -xzf /opt/pkg/lazygit_${lg_version}_Linux_x86_64.tar.gz lazygit && \
+    mv /opt/pkg/lazygit /usr/local/bin/lazygit && \
+    chmod +x /usr/local/bin/lazygit && \
+    rm /opt/pkg/lazygit_${lg_version}_Linux_x86_64.tar.gz && \
+    # --------------------------
     # FINALIZE & CLEANUP
     # --------------------------
     apt-get clean && \
