@@ -6,7 +6,7 @@ COPY . /tmp/dotfiles
 # SETUP
 # --------------------------
 RUN apt-get update && apt-get upgrade && apt-get install -y \
-    build-essential git curl wget axel sudo zsh jq zip unzip \
+    build-essential git curl wget axel sudo zsh jq zip unzip stow \
     python3 python3-pip python3-setuptools python3-wheel && \
     # --------------------------
     # CREATE & CONFIGURE USER
@@ -41,11 +41,12 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # --------------------------
     # FZF
     # --------------------------
-    axel --quiet https://github.com/junegunn/fzf/releases/download/$(curl -L -s "https://api.github.com/repos/junegunn/fzf/tags" | jq -r '.[0].name')/fzf-0.46.0-linux_amd64.tar.gz --output=/opt/pkg && \
-    tar -xzf /opt/pkg/fzf-0.46.0-linux_amd64.tar.gz -C /opt/pkg && \
+    fzf_version=$(curl -L -s "https://api.github.com/repos/junegunn/fzf/tags" | jq -r '.[0].name') && \
+    axel --quiet https://github.com/junegunn/fzf/releases/download/${fzf_version}/fzf-${fzf_version}-linux_amd64.tar.gz --output=/opt/pkg && \
+    tar -xzf /opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz -C /opt/pkg && \
     mv /opt/pkg/fzf /usr/local/bin/fzf && \
     chmod +x /usr/local/bin/fzf && \
-    rm /opt/pkg/fzf-0.46.0-linux_amd64.tar.gz && \
+    rm /opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz && \
     # --------------------------
     # KUBECTL
     # --------------------------
@@ -128,19 +129,14 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     rm /home/psadi/.profile && rm /home/psadi/.bash* && \
     chown -R root:root /usr/local/bin && \
     mv /tmp/dotfiles /home/psadi/dotfiles && \
-    mkdir -p /home/psadi/.config && \
-    ln -s /home/psadi/dotfiles/zsh/zshrc /home/psadi/.zshrc && \
-    ln -s /home/psadi/dotfiles/git/.gitconfig /home/psadi/.gitconfig && \
-    ln -s /home/psadi/dotfiles/zellij /home/psadi/.config/zellij && \
-    ln -s /home/psadi/dotfiles/pip /home/psadi/.config/pip && \
     chown -R psadi:psadi /home/psadi
 
 WORKDIR /home/psadi
 
 USER psadi
 
-RUN git clone https://github.com/LazyVim/starter ~/.config/nvim && \
-    /opt/pkg/nvim-linux64/bin/nvim -c "qa" && \
+RUN stow . && \
+    /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
     # --------------------------
     # Pip Packages Installations
     # --------------------------
