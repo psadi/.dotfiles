@@ -32,10 +32,10 @@ unsetp(){
     export NO_PROXY=
 }
 
-set-eks-proxy(){
-    export http_proxy=http://10.239.9.190:443
-    export https_proxy=http://10.239.9.190:443
-    export no_proxy=.standardchartered.com,.internal.sc.com,.sc.net,169.254.169.254,.eks.amazonaws.com,.awscloud.dev.net
+setp(){
+    export http_proxy=
+    export https_proxy=
+    export no_proxy=
 
     export HTTP_PROXY="${http_proxy}"
     export HTTPS_PROXY="${https_proxy}"
@@ -109,30 +109,6 @@ gitlfs()
         sort --numeric-sort --key=2 |
         cut -c 1-12,41- |
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
-}
-
-sc(){
-    cat ~/.git-credentials \
-        | grep "$(git remote get-url origin \
-            | awk -F '@' '{print $1}' \
-            | awk -F '/' '{print $3}'):" \
-        | head -n1 \
-        | awk -F ':' '{print $3}' \
-        | awk -F '@' '{print $1}' \
-        | pbcopy
-    sc-cli -get-proxy && sc-cli -set-proxy
-    case "${1}" in
-        init) sc-cli -init . -pipeline-file $(find . -maxdepth 1 -type f -name "azure-pipeline*") ;;
-        commit)
-            if [ -z "${2}" ]; then
-                echo "${0} ${1} : commit message required"
-                return 1
-            fi
-            sc-cli git add . && sc-cli git commit -m "${2}" && sc-cli git push
-        ;;
-        status) sc-cli -status ;;
-        *) sc-cli "-${@}" ;;
-    esac
 }
 
 clone(){
