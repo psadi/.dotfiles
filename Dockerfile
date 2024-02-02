@@ -1,7 +1,5 @@
 FROM debian:bookworm-slim
 
-COPY . /tmp/dotfiles
-
 # --------------------------
 # SETUP
 # --------------------------
@@ -21,7 +19,6 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     mkdir -p /opt/pkg && chown psadi:psadi /opt/pkg && \
     axel --quiet https://github.com/neovim/neovim/releases/download/$(curl -L -s "https://api.github.com/repos/neovim/neovim/tags" | jq -r '.[0].name')/nvim-linux64.tar.gz --output=/opt/pkg && \
     tar -xzf /opt/pkg/nvim-linux64.tar.gz -C /opt/pkg && \
-    touch /home/psadi/.hushlogin && \
     # --------------------------
     # ZELLIJ
     # --------------------------
@@ -126,16 +123,17 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/cache/apt/archives/* && \
     rm -rf /opt/pkg/nvim-linux64.tar.gz && \
-    rm /home/psadi/.profile && rm /home/psadi/.bash* && \
-    chown -R root:root /usr/local/bin && \
-    mv /tmp/dotfiles /home/psadi/dotfiles && \
-    chown -R psadi:psadi /home/psadi
+    chown -R root:root /usr/local/bin
 
 WORKDIR /home/psadi
 
 USER psadi
 
-RUN stow . && \
+COPY --chown=psadi:psadi --chmod=755 . dotfiles
+
+RUN rm /home/psadi/.profile && rm /home/psadi/.bash* && \
+    touch /home/psadi/.hushlogin && \
+    stow . && \
     /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
     # --------------------------
     # Pip Packages Installations
