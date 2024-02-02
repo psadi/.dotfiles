@@ -1,7 +1,8 @@
 zsh
 Dockerfile
-README.md
-LICENSE
-.git
-.github
-.gitignore
+^/README.*
+^/LICENSE.*
+^/COPYING
+\.git
+\.gitignore
+\.github

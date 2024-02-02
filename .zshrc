@@ -9,7 +9,6 @@
 # |_|
 ## Name   : P S, Adithya
 ## email  : ps.adithya@icloud.com
-## gitlab : https://github.com/psadi
 ########################################################
 
 # Set Opts
