@@ -11,7 +11,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # --------------------------
     useradd -m -s /usr/bin/zsh -G sudo -u 1000 -U psadi && \
     echo "psadi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    usermod --password $LINUX_USER_PASSWORD psadi && \
+    usermod --password "${LINUX_USER_PASSWORD}" psadi && \
     chsh -s /usr/bin/zsh psadi && \
     # --------------------------
     # NEOVIM
