@@ -1,0 +1,5 @@
+---
+- include_tasks: install.yaml
+  loop_control:
+    loop_var: package
+  loop: "{{ github_package_repos }}"

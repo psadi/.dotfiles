@@ -1,0 +1,12 @@
+---
+
+- name: Personal Development Environment
+  hosts: localhost
+  gather_facts: false
+  any_errors_fatal: true
+  connection: local
+  roles:
+    - apt
+    - github
+    - pip
+    - cmd

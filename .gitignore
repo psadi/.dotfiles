@@ -2,3 +2,4 @@
 helix/runtime
 helix/contrib
 vim/files
+ansible/.vault_pass

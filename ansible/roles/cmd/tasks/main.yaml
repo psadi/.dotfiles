@@ -1,0 +1,14 @@
+---
+- name: Configuring user shell
+  ansible.builtin.command: "chsh -s /usr/bin/zsh psadi"
+  become: true
+
+- name: Finalizing the installation
+  ansible.builtin.command: "{{ item }}"
+  args:
+    chdir: "/home/psadi"
+  loop:
+    - rm .profile .bashrc .bash_logout
+    - mkdir .config
+    - stow -d dotfiles -t "${HOME}" .
+    - /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null 2>&1

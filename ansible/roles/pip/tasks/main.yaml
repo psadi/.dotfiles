@@ -1,0 +1,11 @@
+---
+- name: Installing pip dependencies
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    extra_args: "--user --no-warn-script-location --no-cache-dir --upgrade --force-reinstall --break-system-packages"
+  loop:
+    - pip
+    - jmespath
+    - pdm
+    - pynvim
+    - awscli

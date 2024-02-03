@@ -1,0 +1,12 @@
+---
+apt_packages:
+  - build-essential
+  - git
+  - curl
+  - wget
+  - axel
+  - zsh
+  - jq
+  - zip
+  - unzip
+  - stow

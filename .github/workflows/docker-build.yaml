@@ -11,7 +11,6 @@ on:
 
 jobs:
   push_to_registry:
-    environment: dev
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +28,11 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: psadi/pde
+
+      - name: Write secret to .vault_pass
+        run: |
+          echo "${{ secrets.LINUX_USER_PASSWORD }}" > ./ansible/.vault_pass
+        shell: bash
 
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671

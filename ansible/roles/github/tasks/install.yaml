@@ -1,0 +1,45 @@
+---
+- debug:
+    msg: "Installing '{{ package.name }}'..."
+
+- name: Fetch latest github release
+  uri:
+    url: "https://api.github.com/repos/{{ package.name }}/tags"
+    return_content: yes
+    status_code: 200
+  failed_when: github_release.status != 200
+  register: github_release
+
+- set_fact:
+    _version: "{% if package.split %}{{ github_release.json[0].name.split('-')[1] }}{% else %}{{ github_release.json[0].name }}{% endif %}"
+
+- set_fact:
+    _url: "{% if package.replace_version %}{{ package.url | regex_replace('\\[VERSION\\]', _version | regex_replace('v', '')) }}{% else %}{{ package.url | regex_replace('\\[VERSION\\]', _version) }}{% endif %}"
+    _extra_opts: "{{ package.extra_opts | regex_replace('\\[VERSION\\]', _version) }}"
+
+- name: "Downloading '{{ _url }}' package"
+  get_url:
+    url: "{{ _url }}"
+    dest: "/tmp"
+    mode: 0755
+
+- name: Ensure destination directory exists
+  file:
+    path: "{{ package.destination }}"
+    state: directory
+    owner: "psadi"
+    group: "psadi"
+  become: true
+
+- name: "Extracting '{{ _url.split('/')[-1] }}' package"
+  unarchive:
+    src: "/tmp/{{ _url.split('/')[-1] }}"
+    dest: "{{ package.destination }}"
+    mode: 0755
+    extra_opts: "{{ _extra_opts }}"
+    remote_src: true
+
+- name: Cleaning up
+  file:
+    path: "/tmp/{{ _url.split('/')[-1] }}"
+    state: absent
