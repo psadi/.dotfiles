@@ -135,9 +135,7 @@ USER psadi
 
 COPY --chown=psadi:psadi --chmod=755 . dotfiles
 
-RUN rm "${HOME}/.profile" && rm "${HOME}/.bash*" && \
-    touch "${HOME}/.hushlogin" && \
-    stow -d dotfiles -t "${HOME}" . &&\
+RUN stow -d dotfiles -t "${HOME}" . &&\
     /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
     # --------------------------
     # Pip Packages Installations
