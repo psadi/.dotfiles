@@ -56,7 +56,7 @@ for z in `ls ${_ZSH_PLUGINS_PATH}`;
 do
   if [ -f "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh" ]; then
     source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh";
-  fi
+  fi || true
 done;
 
 # Zsh Completions + Keybindings
@@ -65,4 +65,4 @@ source ${_ZSH_COMPLETIONS_PATH}/completions.zsh
 
 # Load Tools
 #---------------------------------------------
-type LoadTools &>/dev/null && LoadTools
+type LoadTools &>/dev/null && LoadTools || true
