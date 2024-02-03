@@ -11,7 +11,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # --------------------------
     useradd -m -s /usr/bin/zsh -G sudo -u 1000 -U psadi && \
     echo "psadi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    usermod --password 3494 psadi && \
+    usermod --password $(openssl passwd -1 -salt xyz $LINUX_USER_PASSWORD) psadi && \
     chsh -s /usr/bin/zsh psadi && \
     # --------------------------
     # NEOVIM
@@ -23,8 +23,8 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # --------------------------
     # ZELLIJ
     # --------------------------
-    zellij_version="$(curl -L -s "https://api.github.com/repos/zellij-org/zellij/tags" | jq -r '.[0].name')" && \
-    axel --quiet https://github.com/zellij-org/zellij/releases/download/${zellij_version}/zellij-x86_64-unknown-linux-musl.tar.gz --output=/opt/pkg && \
+    zellij_version="$(curl -L -s 'https://api.github.com/repos/zellij-org/zellij/tags' | jq -r '.[0].name')" && \
+    axel --quiet "https://github.com/zellij-org/zellij/releases/download/${zellij_version}/zellij-x86_64-unknown-linux-musl.tar.gz" --output=/opt/pkg && \
     tar -xzf /opt/pkg/zellij-x86_64-unknown-linux-musl.tar.gz -C /opt/pkg && \
     mv /opt/pkg/zellij /usr/local/bin/zellij && \
     chmod +x /usr/local/bin/zellij && \
@@ -33,7 +33,7 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # EZA
     # --------------------------
     eza_version="$(curl -L -s 'https://api.github.com/repos/eza-community/eza/tags' | jq -r '.[0].name')" && \
-    axel --quiet https://github.com/eza-community/eza/releases/download/${eza_version}/eza_x86_64-unknown-linux-gnu.tar.gz --output=/opt/pkg && \
+    axel --quiet "https://github.com/eza-community/eza/releases/download/${eza_version}/eza_x86_64-unknown-linux-gnu.tar.gz" --output=/opt/pkg && \
     tar -xzf /opt/pkg/eza_x86_64-unknown-linux-gnu.tar.gz -C /opt/pkg && \
     mv /opt/pkg/eza /usr/local/bin/eza && \
     chmod +x /usr/local/bin/eza && \
@@ -41,12 +41,12 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     # --------------------------
     # FZF
     # --------------------------
-    fzf_version=$(curl -L -s "https://api.github.com/repos/junegunn/fzf/tags" | jq -r '.[0].name') && \
-    axel --quiet https://github.com/junegunn/fzf/releases/download/${fzf_version}/fzf-${fzf_version}-linux_amd64.tar.gz --output=/opt/pkg && \
-    tar -xzf /opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz -C /opt/pkg && \
+    fzf_version="$(curl -L -s "https://api.github.com/repos/junegunn/fzf/tags" | jq -r '.[0].name')" && \
+    axel --quiet "https://github.com/junegunn/fzf/releases/download/${fzf_version}/fzf-${fzf_version}-linux_amd64.tar.gz" --output=/opt/pkg && \
+    tar -xzf "/opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz" -C /opt/pkg && \
     mv /opt/pkg/fzf /usr/local/bin/fzf && \
     chmod +x /usr/local/bin/fzf && \
-    rm /opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz && \
+    rm "/opt/pkg/fzf-${fzf_version}-linux_amd64.tar.gz" && \
     # --------------------------
     # KUBECTL
     # --------------------------
@@ -135,12 +135,15 @@ USER psadi
 
 COPY --chown=psadi:psadi --chmod=755 . dotfiles
 
-RUN stow -d dotfiles -t "${HOME}" . &&\
+RUN rm -rf "${HOME}"/.profile && \
+    rm -rf "${HOME}"/.bash* && \
+    mkdir -p "${HOME}"/.config && \
+    stow -d dotfiles -t "${HOME}" . &&\
     /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
     # --------------------------
     # Pip Packages Installations
     # --------------------------
-    python3 -m pip install --upgrade pip && \
-    python3 -m pip install ansible jmespath pdm pynvim awscli
+    python3 -m pip install --no-warn-script-location --upgrade pip && \
+    python3 -m pip install --no-warn-script-location ansible jmespath pdm pynvim awscli
 
 ENTRYPOINT ["/usr/bin/zsh"]
