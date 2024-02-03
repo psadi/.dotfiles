@@ -131,10 +131,13 @@ USER psadi
 
 COPY --chown=psadi:psadi --chmod=755 . dotfiles
 
-RUN rm /home/psadi/.profile && rm /home/psadi/.bash* && \
-    touch /home/psadi/.hushlogin && \
-    stow . && \
-    /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
+RUN rm /home/psadi/.profile && rm /home/psadi/.bash*
+
+RUN touch /home/psadi/.hushlogin
+
+RUN stow .
+
+RUN /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null && \
     # --------------------------
     # Pip Packages Installations
     # --------------------------
