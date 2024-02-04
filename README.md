@@ -8,6 +8,17 @@
 
 This repository contains the configuration files for my personal development environment.
 
+The idea is to have a single repository with all the configuration files for my development environment, so that I can easily set up a new machine with all the tools and configurations I need with the below principles in mind
+
+- Reproducible
+- Version Controlled
+- Immutabe
+- Secure
+- Portable
+- Scalabe
+- Flexible
+- Maintainable
+
 ## Pre-requisites
 
 The following software must be installed on your system:
@@ -15,6 +26,7 @@ The following software must be installed on your system:
 - [Git](https://git-scm.com/)
 - [Python3](https://www.python.org/)
 - [ansible](https://www.ansible.com/)
+- [docker](https://www.docker.com/) or [podman](https://podman.io/) - To leverage the built image
 
 ## Installation
 
@@ -24,13 +36,35 @@ To install the configuration files, run the following commands:
 git clone https://psadi/dotfiles.git
 cd dotfiles
 
-export ANSIBLE_CONFIG=ansible/ansible.cfg
+export ANSIBLE_CONFIG="${PWD}/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=False
-export ANSIBLE_VAULT_PASSWORD_FILE=ansible/.vault_pass
 
 # Remember vault password file at ansible/.vault_pass
+export ANSIBLE_VAULT_PASSWORD_FILE=ansible/.vault_pass
+
 ansible-playbook ansible/site.yaml
 ```
+## Docker Environment
+
+A docker image is available with all the tools and configurations pre-installed. To use the docker image, run the following commands:
+
+```bash
+docker run -it psadi/dotfiles:latest
+```
+
+A shell [script](https://github.com/psadi/dotfiles/blob/main/.local/bin/devsh) is available to run the docker image with optional arguments to be passed during runtime.
+
+***Pre-requisite:** dotfiles to be cloned to the home directory & configured as per the above instructions*
+
+To Invoke the script, run the following commands:
+
+|INVOKE TYPE|COMMAND|
+|---|---|
+|Standalone|`devsh`|
+|With Arguments|`devsh -v ./path/to/volume:/path/to/mount`|
+
+## Disclaimer
+Though the configurations are tested on my personal machine, it is recommended to review the configurations before using them on your machine. The configurations are provided as-is without any warranty and the author is not responsible for any damage caused by the use of these configurations.
 
 ## License
 
