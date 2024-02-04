@@ -33,8 +33,8 @@ The idea is to have a single repository with all the configuration files for my 
 
 The following software must be installed on your system:
 
-- [Git](https://git-scm.com/)
-- [Python3](https://www.python.org/)
+- [git](https://git-scm.com/)
+- [python3](https://www.python.org/)
 - [ansible](https://www.ansible.com/)
 - [docker](https://www.docker.com/) or [podman](https://podman.io/) - To leverage the built image
 
@@ -73,10 +73,7 @@ To Invoke the script, run the following commands:
 |Standalone|`devsh`|
 |With Arguments|`devsh -v ./path/to/volume:/path/to/mount`|
 
----
-
 ## Contributing
-
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Disclaimer
@@ -84,5 +81,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 2. The configurations are provided as-is without any warranty and the author is not responsible for any damage caused by the use of these configurations.
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE)
