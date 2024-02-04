@@ -49,7 +49,7 @@ ansible-playbook ansible/site.yaml
 A docker image is available with all the tools and configurations pre-installed. To use the docker image, run the following commands:
 
 ```bash
-docker run -it psadi/dotfiles:latest
+docker run -it psadi/pde:latest
 ```
 
 A shell [script](https://github.com/psadi/dotfiles/blob/main/.local/bin/devsh) is available to run the docker image with optional arguments to be passed during runtime.
