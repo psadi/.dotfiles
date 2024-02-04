@@ -1,7 +1,7 @@
 # Dotfiles & Personal Development Environment (PDE) 🚀
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/psadi/dotfiles/main/assets/image.png" alt="alt text" width="150" height="150">
+  <img src="https://raw.githubusercontent.com/psadi/dotfiles/main/assets/image.png" alt="alt text" width="200" height="200">
 </p>
 
 ## Introduction
