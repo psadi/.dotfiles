@@ -1,0 +1,14 @@
+---
+- name: Get stable K8s release version
+  ansible.builtin.uri:
+    url: "https://dl.k8s.io/release/stable.txt"
+    return_content: true
+    status_code: 200
+  register: k8s_stable_version
+  failed_when: k8s_stable_version.status != 200
+
+- name: Download kubectl binary
+  ansible.builtin.get_url:
+    url: "https://dl.k8s.io/release/{{ k8s_stable_version.content }}/bin/linux/amd64/kubectl"
+    dest: "/usr/local/bin/kubectl"
+    mode: "0755"

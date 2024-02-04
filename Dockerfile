@@ -1,5 +1,8 @@
 FROM debian:bookworm-slim as base
 
+LABEL maintainer="psadi (ps.adithya@icloud.com)" \
+    description="Docker image for my personal development environment"
+
 # --------------------------
 # SETUP
 # --------------------------
@@ -22,7 +25,8 @@ USER psadi
 
 COPY --chown=psadi:psadi . dotfiles
 
-ENV ANSIBLE_CONFIG=/home/psadi/dotfiles/ansible/ansible.cfg
+ENV ANSIBLE_CONFIG=/home/psadi/dotfiles/ansible/ansible.cfg \
+    ANSIBLE_INVENTORY_WARNING=false
 
 RUN ansible-playbook dotfiles/ansible/site.yaml
 

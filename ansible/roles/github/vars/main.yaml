@@ -72,4 +72,12 @@ github_package_repos:
     extra_opts: "lazygit"
     replace_version: true
     split: false
+  - name: helm/helm
+    url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "linux-amd64/helm"
+      - "--strip-components=1"
+    replace_version: false
+    split: false
 # # kubectl and helm pending

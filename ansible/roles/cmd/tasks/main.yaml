@@ -1,4 +1,12 @@
 ---
+- name: Cleaning up the system
+  ansible.builtin.command: "{{ item }}"
+  become: true
+  loop:
+    - rm -rf /var/log/*
+    - rm -rf /var/lib/apt/lists/*
+    - rm -rf /var/cache/apt/archives/*
+
 - name: Configuring user shell
   ansible.builtin.command: "chsh -s /usr/bin/zsh psadi"
   become: true
