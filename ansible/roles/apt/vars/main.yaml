@@ -10,3 +10,4 @@ apt_packages:
   - zip
   - unzip
   - stow
+  - locales
