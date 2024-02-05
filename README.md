@@ -10,7 +10,6 @@
 - [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
 - [Docker Environment](#docker-environment)
-- [Contributing](#contributing)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
@@ -73,8 +72,6 @@ To Invoke the script, run the following commands:
 |Standalone|`devsh`|
 |With Arguments|`devsh -v ./path/to/volume:/path/to/mount`|
 
-## Contributing
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Disclaimer
 1. Though the configurations are tested on my personal machine, it is recommended to review the configurations before using them on your machine.
