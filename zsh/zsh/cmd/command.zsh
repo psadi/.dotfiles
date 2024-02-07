@@ -10,6 +10,14 @@ if command -v bat &> /dev/null; then
   export MANPAGER="bat"
 fi
 
+if command -v eza &> /dev/null; then
+  alias ls='eza'
+  alias ll='eza -l'
+  alias la='eza -la'
+  alias lrth='eza -l --sort modified'
+  alias lt="eza --tree"
+fi
+
 if [ -d /opt/pkg/nvim-linux64 ]; then
   export PATH=$PATH:/opt/pkg/nvim-linux64/bin
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/pkg/nvim-linux64/lib
