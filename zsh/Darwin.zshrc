@@ -18,7 +18,7 @@ export COREUTILS=${HOME}/.local/opt/homebrew/opt/coreutils/libexec/gnubin
 export LD_LIBRARY_PATH=${OPENSSL_PATH}/lib:${GLIB_PATH}/lib:${LD_LIBRARY_PATH}
 export LDFLAGS="-L ${OPENSSL_PATH}/lib -Wl,-rpath,${OPENSSL_PATH}/lib"
 
-PATH="${HOME}/.local/bin:${COREUTILS}:${PYTHON_HOME}/libexec/bin:${PATH}"
+PATH="${HOME}/.local/bin:${COREUTILS}:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
 export PATH
 
 cmd=$(nc -zv 192.168.1.100 2375 &> /dev/null)
