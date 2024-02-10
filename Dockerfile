@@ -7,7 +7,7 @@ LABEL maintainer="psadi (ps.adithya@icloud.com)" \
 # SETUP
 # --------------------------
 
-RUN apt-get update && apt-get upgrade && apt-get install -y \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
     sudo python3-minimal python3-pip && \
     pip3 install ansible --break-system-packages --no-cache-dir --no-warn-script-location && \
     # --------------------------
