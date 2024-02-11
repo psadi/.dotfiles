@@ -1,18 +1,32 @@
 live_config_reload = true
 
 [colors.normal]
-black = "0x1E1E1E"
-blue = "0x569CD6"
-cyan = "0x9CDCFE"
-green = "0x608B4E"
-magenta = "0xC586C0"
-red = "0xF44747"
-white = "0xD4D4D4"
-yellow = "0xD7BA7D"
+black = "#15141b"
+blue = "#82e2ff"
+cyan = "#61ffca"
+green = "#61ffca"
+magenta = "#a277ff"
+red = "#ff6767"
+white = "#edecee"
+yellow = "#ffca85"
 
 [colors.primary]
-background = "0x1E1E1E"
-foreground = "0xD4D4D4"
+background = "#15141b"
+foreground = "#edecee"
+
+[colors.bright]
+black = "#29263c"
+blue = "#82e2ff"
+cyan = "#61ffca"
+green = "#61ffca"
+magenta = "#a277ff"
+red = "#ff6767"
+white = "#edecee"
+yellow = "#ffca85"
+
+[colors.selection]
+text = "#edecee"
+background = "#29263c"
 
 [cursor.style]
 blinking = "On"
@@ -25,7 +39,7 @@ TERM = "xterm-256color"
 size = 18
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Geist Mono"
 style = "Bold"
 
 [font.glyph_offset]
@@ -33,7 +47,7 @@ x = 0
 y = 0
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Geist Mono"
 style = "Regular"
 
 [font.offset]

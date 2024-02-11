@@ -99,7 +99,9 @@
       "statusBar.background": "#110f17",
       "statusBar.noFolderBackground": "#110f17",
       "tab.inactiveBackground": "#110f17",
-      "terminal.background": "#110f17"
+      "terminal.background": "#110f17",
+      "terminal.ansiGreen": "#61ffca",
+      "terminal.ansiBrightGreen": "#61ffca"
     }
   },
   "workbench.colorTheme": "Aura Dark",
