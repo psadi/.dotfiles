@@ -1,32 +1,35 @@
 live_config_reload = true
 
 [colors.normal]
-black = "#15141b"
-blue = "#82e2ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
+black = '#110f18'
+red = '#ff6767'
+green = '#61ffca'
+yellow = '#ffca85'
+blue = '#a277ff'
+magenta = '#a277ff'
+cyan = '#61ffca'
+white = '#edecee'
 
 [colors.primary]
 background = "#15141b"
 foreground = "#edecee"
 
+[colors.cursor]
+cursor = '#a277ff'
+
 [colors.bright]
-black = "#29263c"
-blue = "#82e2ff"
-cyan = "#61ffca"
-green = "#61ffca"
-magenta = "#a277ff"
-red = "#ff6767"
-white = "#edecee"
-yellow = "#ffca85"
+black = '#4d4d4d'
+red = '#ff6767'
+green = '#61ffca'
+yellow = '#ffca85'
+blue = '#a277ff'
+magenta = '#a277ff'
+cyan = '#61ffca'
+white = '#edecee'
 
 [colors.selection]
-text = "#edecee"
-background = "#29263c"
+text = "CellForeground"
+background = '#29263c'
 
 [cursor.style]
 blinking = "On"
