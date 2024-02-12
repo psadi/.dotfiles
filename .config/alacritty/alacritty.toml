@@ -228,7 +228,7 @@ mods = "Command"
 
 [[keyboard.bindings]]
 chars = "\u001B"
-key = "Back"
+key = "Right"
 mods = "Alt"
 
 [[mouse.bindings]]
