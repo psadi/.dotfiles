@@ -11,6 +11,7 @@
   register: github_release
 
 - set_fact:
+    _version: "{{ github_release.json[0].name }}"
     _url: "{% if package.replace_version %}{{ package.url | regex_replace('\\[VERSION\\]', _version | regex_replace('v', '')) }}{% else %}{{ package.url | regex_replace('\\[VERSION\\]', _version) }}{% endif %}"
     _extra_opts: "{{ package.extra_opts | regex_replace('\\[VERSION\\]', _version) }}"
 
