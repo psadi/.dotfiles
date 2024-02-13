@@ -11,12 +11,7 @@
   register: github_release
 
 - set_fact:
-    _url: |
-      "{% if package.replace_version %}
-        {{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name  | regex_replace('v', '')) }}
-      {% else %}
-        {{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}
-      {% endif %}"
+    _url: "{% if package.replace_version %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name  | regex_replace('v', '')) }}{% else %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}{% endif %}"
     _extra_opts: "{{ package.extra_opts | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}"
 
 - name: "Downloading '{{ _url }}' package"
