@@ -118,3 +118,13 @@ clone(){
     fi
     git clone $1 && cd $(basename $1) && code -a .
 }
+
+c(){
+  CONTENTS="/Applications/Visual Studio Code.app/Contents"
+  CLI="${CONTENTS}/Resources/app/out/cli.js"
+  ELECTRON="${CONTENTS}/MacOS/Electron"
+
+  if [ -f "${CLI}" ]; then
+    ELECTRON_RUN_AS_NODE=1 "${ELECTRON}" "${CLI}" $@
+  fi;
+}

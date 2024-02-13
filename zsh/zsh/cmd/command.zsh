@@ -13,4 +13,5 @@ if [ -d /opt/pkg/nvim-linux64 ]; then
   export PATH=$PATH:/opt/pkg/nvim-linux64/bin
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/pkg/nvim-linux64/lib
   export MANPATH=$MANPATH:/opt/pkg/nvim-linux64/man
+  alias vim="nvim"
 fi
