@@ -15,6 +15,16 @@
 #---------------------------------------------
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
+setopt APPEND_HISTORY
+setopt HIST_FCNTL_LOCK
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_BY_COPY
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+setopt NO_CASE_GLOB
+setopt AUTO_CD
+setopt interactivecomments
 unsetopt BEEP
 
 # Set Language
@@ -35,9 +45,23 @@ export TOOLS_PATH="${HOME}/.local/opt/tools"
 export _ZSH_CONFIG_PATH="${ZSH_DOTFILES_DIR}/zsh"
 export _ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
 export _ZSH_COMPLETIONS_PATH="${_ZSH_CONFIG_PATH}/completions"
-export HISTFILE=~/.histfile
-export HISTSIZE=10000
-export SAVEHIST=10000
+
+# ls/completion colors
+export LS_COLORS='ow=36:di=34:fi=32:ex=31:ln=35:'
+
+# History
+export HISTFILE=$HOME/.zsh_history
+export SAVEHIST=1000000
+export HISTSIZE=1000000
+
+# Manpages
+export LESS_TERMCAP_md=$'\e[32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[100;37m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[34m'
+export GROFF_NO_SGR=1
 
 # Set Zsh Prompt
 #---------------------------------------------
