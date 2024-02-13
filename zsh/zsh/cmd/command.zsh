@@ -1,21 +1,12 @@
 #!/usr/bin/env zsh
 
-if [ -d "$HOME/.cargo" ]
-then
-	source "$HOME/.cargo/env"
-fi
-
 if command -v bat &> /dev/null; then
   alias cat="bat -p"
   export MANPAGER="bat"
 fi
 
-if command -v eza &> /dev/null; then
-  alias ls='eza'
-  alias ll='eza -l'
-  alias la='eza -la'
-  alias lrth='eza -l --sort modified'
-  alias lt="eza --tree"
+if command -v k9s &> /dev/null; then
+  alias k9s="k9s --logoless --headless --readonly --crumbsless"
 fi
 
 if [ -d /opt/pkg/nvim-linux64 ]; then
