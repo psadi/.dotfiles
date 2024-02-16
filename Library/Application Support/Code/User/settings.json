@@ -91,19 +91,7 @@
   "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
   "window.zoomLevel": 1.5,
-  "workbench.colorCustomizations": {
-    "[Aura Dark]": {
-      "activityBar.background": "#110f17",
-      "editor.background": "#110f17",
-      "editorGroupHeader.tabsBackground": "#110f17",
-      "statusBar.background": "#110f17",
-      "statusBar.noFolderBackground": "#110f17",
-      "tab.inactiveBackground": "#110f17",
-      "terminal.background": "#110f17",
-      "terminal.ansiGreen": "#61ffca",
-      "terminal.ansiBrightGreen": "#61ffca"
-    }
-  },
+  "workbench.colorCustomizations": {},
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.iconTheme": "quill-icons-minimal",
