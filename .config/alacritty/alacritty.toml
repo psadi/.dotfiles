@@ -1,31 +1,31 @@
 live_config_reload = true
 
 [colors.bright]
-black = "#5C5C5C"
-red = "#FF5370"
-green = "#C3E88D"
-yellow = "#FFCB6B"
-blue = "#82AAFF"
-magenta = "#FF79C6"
-cyan = "#89DDFF"
-white = "#FFFFFF"
+black = "#5c5c5c"
+red = "#ff5370"
+green = "#c3e88d"
+yellow = "#ffcb6b"
+blue = "#82aaff"
+magenta = "#ff79c6"
+cyan = "#89ddff"
+white = "#ffffff"
 
 [colors.cursor]
-cursor = '#FFFFFF'
+cursor = '#afafae'
 
 [colors.normal]
 black = "#000000"
-red = "#E06C75"
-green = "#98C379"
-yellow = "#D19A66"
-blue = "#61AFEF"
-magenta = "#C678DD"
-cyan = "#56B6C2"
-white = "#ABABAB"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#d19a66"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#ababab"
 
 [colors.primary]
-background = "#1E1E1E"
-foreground = "#F8F8F8"
+background = "#1e1e1e"
+foreground = "#f8f8f8"
 
 [colors.selection]
 background = '#2e4e75'
