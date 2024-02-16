@@ -1,39 +1,39 @@
 live_config_reload = true
 
 [colors.bright]
-black = '#4d4d4d'
-blue = '#a277ff'
-cyan = '#61ffca'
-green = '#61ffca'
-magenta = '#a277ff'
-red = '#ff6767'
-white = '#edecee'
-yellow = '#ffca85'
+black = "#5C5C5C"
+red = "#FF5370"
+green = "#C3E88D"
+yellow = "#FFCB6B"
+blue = "#82AAFF"
+magenta = "#FF79C6"
+cyan = "#89DDFF"
+white = "#FFFFFF"
 
 [colors.cursor]
-cursor = '#a277ff'
+cursor = '#FFFFFF'
 
 [colors.normal]
-black = '#110f18'
-blue = '#a277ff'
-cyan = '#61ffca'
-green = '#61ffca'
-magenta = '#a277ff'
-red = '#ff6767'
-white = '#edecee'
-yellow = '#ffca85'
+black = "#000000"
+red = "#E06C75"
+green = "#98C379"
+yellow = "#D19A66"
+blue = "#61AFEF"
+magenta = "#C678DD"
+cyan = "#56B6C2"
+white = "#ABABAB"
 
 [colors.primary]
-background = "#15141b"
-foreground = "#edecee"
+background = "#1E1E1E"
+foreground = "#F8F8F8"
 
 [colors.selection]
-background = '#29263c'
+background = '#2e4e75'
 text = "CellForeground"
 
 [cursor.style]
 blinking = "On"
-shape = "Block"
+shape = "Underline"
 
 [env]
 TERM = "xterm-256color"

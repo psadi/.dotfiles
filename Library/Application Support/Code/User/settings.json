@@ -104,7 +104,6 @@
       "terminal.ansiBrightGreen": "#61ffca"
     }
   },
-  "workbench.colorTheme": "Aura Dark",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.iconTheme": "quill-icons-minimal",
