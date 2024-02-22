@@ -9,19 +9,6 @@
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
-  // Apc
-  "apc.activityBar": {
-    "hideSettings": true,
-    "position": "bottom"
-  },
-  "apc.electron": {
-    "titleBarStyle": "hiddenInset"
-  },
-  "apc.font.family": "Geist",
-  "apc.monospace.font.family": "Geist Mono",
-  "apc.statusBar": {
-    "position": "editor-bottom"
-  },
   // Editor
   "editor.bracketPairColorization.enabled": true,
   "editor.codeLens": false,
@@ -94,7 +81,6 @@
   "workbench.colorCustomizations": {},
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
-  "workbench.iconTheme": "quill-icons-minimal",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
@@ -104,5 +90,7 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  "zenMode.silentNotifications": false
+  "zenMode.silentNotifications": false,
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "Default Dark+"
 }

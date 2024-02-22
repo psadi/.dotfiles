@@ -33,7 +33,7 @@ text = "CellForeground"
 
 [cursor.style]
 blinking = "On"
-shape = "Underline"
+shape = "Beam"
 
 [env]
 TERM = "xterm-256color"
@@ -42,7 +42,7 @@ TERM = "xterm-256color"
 size = 18
 
 [font.bold]
-family = "Geist Mono"
+family = "MonoLisa"
 style = "Bold"
 
 [font.glyph_offset]
@@ -50,7 +50,7 @@ x = 0
 y = 0
 
 [font.normal]
-family = "Geist Mono"
+family = "MonoLisa"
 style = "Regular"
 
 [font.offset]
