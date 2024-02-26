@@ -4,7 +4,7 @@
 
 - name: Fetch latest github release
   uri:
-    url: "https://api.github.com/repos/{{ package.name }}/releases/latest"
+    url: "https://api.github.com/repos/{{ package.name }}/tags"
     return_content: yes
     status_code: 200
   failed_when: github_release.status != 200
