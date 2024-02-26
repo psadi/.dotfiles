@@ -67,10 +67,10 @@ github_package_repos:
     extra_opts: "lazygit"
     replace_version: true
   - name: helix-editor/helix
-    url: https://github.com/helix-editor/helix/releases/download/[VERSION]/helix-[VERSION]-x86_64-linux.tar.xz
+    url: https://github.com/helix-editor/helix/releases/download/23.10/helix-23.10-x86_64-linux.tar.xz
     destination: /usr/local/bin
     extra_opts:
-      - "helix-[VERSION]-x86_64-linux/hx"
+      - "helix-23.10-x86_64-linux/hx"
       - "--strip-components=1"
     replace_version: true
   - name: helm/helm
