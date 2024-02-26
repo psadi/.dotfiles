@@ -91,4 +91,3 @@ source ${_ZSH_COMPLETIONS_PATH}/completions.zsh
 # Load Tools
 #---------------------------------------------
 type LoadTools &>/dev/null && LoadTools || true
-. "$HOME/.cargo/env"
