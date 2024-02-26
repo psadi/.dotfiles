@@ -91,6 +91,5 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "workbench.activityBar.location": "top",
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.activityBar.location": "top"
 }

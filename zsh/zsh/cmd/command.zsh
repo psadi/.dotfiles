@@ -15,3 +15,8 @@ if [ -d /opt/pkg/nvim-linux64 ]; then
   export MANPATH=$MANPATH:/opt/pkg/nvim-linux64/man
   alias vim="nvim"
 fi
+
+if [ -d "${HOME}/go/bin" ];
+then
+  export PATH="${HOME}/go/bin:${PATH}"
+fi;

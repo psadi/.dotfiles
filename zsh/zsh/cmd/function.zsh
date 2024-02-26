@@ -163,3 +163,10 @@ zi() {
         echo "No selection made"
     fi
 }
+
+
+procs(){
+    tput rmam;
+    ps -ef | grep -i "${1}" | grep -v grep
+    tput smam;
+}
