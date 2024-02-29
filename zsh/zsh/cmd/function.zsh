@@ -48,51 +48,47 @@ show-proxy(){
     echo "no proxy :: ${no_proxy}"
 }
 
-zj(){
+zj() {
+    in_zj() {
+        if [ -z "$ZELLIJ" ]; then
+            echo "Not in a Zellij session"
+            return 1
+        fi
+    }
 
-  in_zj(){
-    if [ -z $ZELLIJ ]; then
-      "Not in a Zellij session"
-      return 1
-    fi
-  }
-
-  case "${1}" in
-    rt)
-      in_zj || return $?
-      if [ -z "${2}" ]; then
-        zellij action rename-tab $(basename $PWD)
-      else
-        zellij action rename-tab "${2}"
-      fi
-    ;;
-    rp)
-      in_zj || return $?
-      if [ -z "${2}" ]; then
-        echo "${0}, ${1}: Pane name required";
-        return 1
-      else
-        zellij action rename-pane "${2}";
-      fi
-    ;;
-    rs)
-      in_zj || return $?
-      if [ -z "${2}" ]; then
-        echo "${0}, ${1}: Session name required";
-        return 1
-      else
-        zellij action rename-session "${2}";
-      fi
-    ;;
-    *)
-      if [ -z "${1}" ]; then
-        zellij -s "$(basename ${PWD})";
-      else
-        zellij "${@}";
-      fi
-    ;;
-  esac
+    case "${1}" in
+        rt)
+            in_zj || return $?
+            tab_name="${2:-$(basename "$PWD")}"
+            zellij action rename-tab "$tab_name"
+            ;;
+        rp)
+            in_zj || return $?
+            if [ -z "${2}" ]; then
+                echo "$0, $1: Pane name required"
+                return 1
+            fi
+            zellij action rename-pane "${2}"
+            ;;
+        rs)
+            in_zj || return $?
+            if [ -z "${2}" ]; then
+                echo "$0, $1: Session name required"
+                return 1
+            fi
+            zellij action rename-session "${2}"
+            ;;
+        *)
+            if [ -z "${1}" ]; then
+                session_name="${1:-$(basename "$PWD")}"
+                zellij -s "$session_name"
+            else
+                zellij "${@}";
+            fi
+            ;;
+    esac
 }
+
 
 autotune()
 {
@@ -164,9 +160,14 @@ zi() {
     fi
 }
 
+procs() {
+    if [ "${2}" != '--no-wrap' ]; then
+        tput rmam
+    fi
 
-procs(){
-    tput rmam;
-    ps -ef | grep -i "${1}" | grep -v grep
-    tput smam;
+    ps -ef | grep -i "${1}" | grep -v grep | awk '{printf "\033[0;36m%s\033[0m ", $2; for (i=8; i<=NF; i++) {if (i==8) printf "\033[0;33m%s", $i; else printf " %s", $i}; print ""}'
+
+    if [ "${2}" != '--no-wrap' ]; then
+        tput smam
+    fi
 }

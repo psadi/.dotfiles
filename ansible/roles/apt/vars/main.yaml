@@ -13,3 +13,4 @@ apt_packages:
   - man
   - fonts-powerline
   - procps
+  - vim

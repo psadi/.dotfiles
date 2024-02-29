@@ -91,5 +91,8 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "workbench.activityBar.location": "top"
+  "workbench.activityBar.location": "top",
+  "zig.initialSetupDone": true,
+  "zig.path": "/Users/adithyaps/.local/opt/tools/zig/this/zig",
+  "zig.zls.path": "/Users/adithyaps/.local/bin/zls"
 }
