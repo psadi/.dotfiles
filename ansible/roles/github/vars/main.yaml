@@ -1,66 +1,39 @@
 ---
 github_package_repos:
-  # - name: neovim/neovim
-  #   url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
-  #   destination: /opt/pkg
-  #   extra_opts: ""
-  #   replace_version: false
+  - name: neovim/neovim
+    url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
+    destination: /opt/pkg
+    extra_opts: ""
+    replace_version: false
   - name: zellij-org/zellij
     url: https://github.com/zellij-org/zellij/releases/download/[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
     extra_opts: ""
     replace_version: false
-  # - name: eza-community/eza
-  #   url: https://github.com/eza-community/eza/releases/download/[VERSION]/eza_x86_64-unknown-linux-gnu.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts: ""
-  #   replace_version: false
-  #
   - name: junegunn/fzf
     url: https://github.com/junegunn/fzf/releases/download/[VERSION]/fzf-[VERSION]-linux_amd64.tar.gz
     destination: /usr/local/bin
     extra_opts: ""
     replace_version: false
-  # - name: derailed/k9s
-  #   url: https://github.com/derailed/k9s/releases/download/[VERSION]/k9s_Linux_amd64.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts: "k9s"
-  #   replace_version: false
   - name: hashicorp/terraform
     url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
     destination: /usr/local/bin
     extra_opts: "-qq"
     replace_version: true
-  # - name: dalance/procs
-  #   url: https://github.com/dalance/procs/releases/download/[VERSION]/procs-[VERSION]-x86_64-linux.zip
-  #   destination: /usr/local/bin
-  #   extra_opts: "-qq"
-  #   replace_version: false
-  #
-  # - name: sharkdp/bat
-  #   url: https://github.com/sharkdp/bat/releases/download/[VERSION]/bat-[VERSION]-x86_64-unknown-linux-gnu.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts:
-  #     - "bat-[VERSION]-x86_64-unknown-linux-gnu/bat"
-  #     - "--strip-components=1"
-  #   replace_version: false
-  #
-  # - name: BurntSushi/ripgrep
-  #   url: https://github.com/BurntSushi/ripgrep/releases/download/[VERSION]/ripgrep-[VERSION]-x86_64-unknown-linux-musl.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts:
-  #     - "ripgrep-[VERSION]-x86_64-unknown-linux-musl/rg"
-  #     - "--strip-components=1"
-  #   replace_version: false
-  #
-  # - name: sharkdp/fd
-  #   url: https://github.com/sharkdp/fd/releases/download/[VERSION]/fd-[VERSION]-x86_64-unknown-linux-gnu.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts:
-  #     - "fd-[VERSION]-x86_64-unknown-linux-gnu/fd"
-  #     - "--strip-components=1"
-  #   replace_version: false
-  #
+  - name: BurntSushi/ripgrep
+    url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
+      - "--strip-components=1"
+    replace_version: false
+  - name: sharkdp/fd
+    url: https://github.com/sharkdp/fd/releases/download/[VERSION]/fd-[VERSION]-x86_64-unknown-linux-gnu.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "fd-[VERSION]-x86_64-unknown-linux-gnu/fd"
+      - "--strip-components=1"
+    replace_version: false
   - name: jesseduffield/lazygit
     url: https://github.com/jesseduffield/lazygit/releases/download/v[VERSION]/lazygit_[VERSION]_Linux_x86_64.tar.gz
     destination: /usr/local/bin

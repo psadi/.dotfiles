@@ -3,6 +3,7 @@
   ansible.builtin.command: "{{ item }}"
   become: true
   loop:
+    - ln -s /opt/pkg/nvim-linux64/bin/nvim /usr/local/bin
     - rm -rf /var/log/*
     - rm -rf /var/lib/apt/lists/*
     - rm -rf /var/cache/apt/archives/*
@@ -19,3 +20,4 @@
     - rm .profile .bashrc .bash_logout
     - mkdir .config
     - stow -d dotfiles -t "${HOME}" .
+    - /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null 2>&1

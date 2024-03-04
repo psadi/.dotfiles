@@ -9,10 +9,20 @@ if command -v k9s &> /dev/null; then
   alias k9s="k9s --logoless --headless --readonly --crumbsless"
 fi
 
-if [ -d /opt/pkg/nvim-linux64 ]; then
-  export PATH=$PATH:/opt/pkg/nvim-linux64/bin
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/pkg/nvim-linux64/lib
-  export MANPATH=$MANPATH:/opt/pkg/nvim-linux64/man
+# NVIM
+case "${OSTYPE}" in
+  "Linux")
+    export NVIM_PACKAGE_NAME="nvim-linux64"
+    ;;
+  "Darwin")
+    export NVIM_PACKAGE_NAME="nvim-macos"
+esac
+
+if [ -d "/opt/pkg/${NVIM_PACKAGE_NAME}" ]; then
+  export PATH="${PATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/bin"
+  export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/lib"
+  export MANPATH="${MANPATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/share/man"
+  export EDITOR=nvim
   alias vim="nvim"
 fi
 
