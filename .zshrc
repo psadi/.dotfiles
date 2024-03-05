@@ -1,15 +1,20 @@
 #!/bin/sh
 
-########################################################
-#                      _ _
-#  _ __  ___  __ _  __| (_)
-# | '_ \/ __|/ _` |/ _` | |
-# | |_) \__ \ (_| | (_| | |
-# | .__/|___/\__,_|\__,_|_|
-# |_|
-## Name   : P S, Adithya
-## email  : ps.adithya@icloud.com
-########################################################
+#---------------------------------------------
+#
+#      _       _    __ _ _
+#     | |     | |  / _(_) |
+#   __| | ___ | |_| |_ _| | ___  ___
+#  / _` |/ _ \| __|  _| | |/ _ \/ __|
+# | (_| | (_) | |_| | | | |  __/\__ \
+#  \__,_|\___/ \__|_| |_|_|\___||___/
+#
+#---------------------------------------------
+#
+# name   : P S, Adithya
+# email  : ps.adithya@icloud.com
+#
+#---------------------------------------------
 
 # Set Opts
 #---------------------------------------------
@@ -64,30 +69,34 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[34m'
 export GROFF_NO_SGR=1
 
+# Load Zap
+#---------------------------------------------
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+
+# Load Commands
+#---------------------------------------------
+for z (${ZSH_CMD_PATH}/**/*(N.)) plug $z
+source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
+
+# Load Plugins
+#---------------------------------------------
+
+for z in `ls ${_ZSH_PLUGINS_PATH}`;
+do
+  plug "${_ZSH_PLUGINS_PATH}/${z}";
+done
+
+# Zsh Completions + Keybindings
+#---------------------------------------------
+plug ${_ZSH_COMPLETIONS_PATH}/completions.zsh
+
+# Load Tools
+#---------------------------------------------
+type LoadTools &>/dev/null && LoadTools || true
+
 # Set Zsh Prompt
 #---------------------------------------------
 fpath+=("${_ZSH_CONFIG_PATH}/pure")
 autoload -U promptinit; promptinit
 prompt pure
 
-# Load Commands
-#---------------------------------------------
-for z (${ZSH_CMD_PATH}/**/*(N.)) source $z
-source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
-
-# Load Plugins
-#---------------------------------------------
-for z in `ls ${_ZSH_PLUGINS_PATH}`;
-do
-  if [ -f "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh" ]; then
-    source "${_ZSH_PLUGINS_PATH}/${z}/${z}.zsh";
-  fi || true
-done;
-
-# Zsh Completions + Keybindings
-#---------------------------------------------
-source ${_ZSH_COMPLETIONS_PATH}/completions.zsh
-
-# Load Tools
-#---------------------------------------------
-type LoadTools &>/dev/null && LoadTools || true
