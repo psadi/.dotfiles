@@ -5,11 +5,11 @@ github_package_repos:
     destination: /opt/pkg
     extra_opts: ""
     replace_version: false
-  - name: zellij-org/zellij
-    url: https://github.com/zellij-org/zellij/releases/download/[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
-    destination: /usr/local/bin
-    extra_opts: ""
-    replace_version: false
+  # - name: zellij-org/zellij
+  #   url: https://github.com/zellij-org/zellij/releases/download/[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
+  #   destination: /usr/local/bin
+  #   extra_opts: ""
+  #   replace_version: false
   - name: junegunn/fzf
     url: https://github.com/junegunn/fzf/releases/download/[VERSION]/fzf-[VERSION]-linux_amd64.tar.gz
     destination: /usr/local/bin
