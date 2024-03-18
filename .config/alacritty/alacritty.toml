@@ -42,7 +42,7 @@ TERM = "xterm-256color"
 size = 18
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "MonoLisa Nerd Font"
 style = "Bold"
 
 [font.glyph_offset]
@@ -50,7 +50,7 @@ x = 0
 y = 0
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "MonoLisa Nerd Font"
 style = "Regular"
 
 [font.offset]

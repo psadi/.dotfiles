@@ -3,20 +3,18 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
   // Editor
+  "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.codeLens": false,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorStyle": "line",
+  "editor.cursorStyle": "block",
   "editor.foldingHighlight": false,
-  "editor.fontFamily": "Geist Mono",
+  "editor.fontFamily": "MonoLisa Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.formatOnSave": true,
@@ -58,14 +56,13 @@
     "plaintext": true,
     "scminput": true
   },
-  "liveServer.settings.donotShowInfoMsg": true,
   // Symbols
-  "symbols.hidesExplorerArrows": false,
+  "symbols.hidesExplorerArrows": true,
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
-  "terminal.external.osxExec": "Alacritty.app",
-  "terminal.integrated.fontFamily": "Geist Mono",
+  "terminal.external.osxExec": "WezTerm.app",
+  "terminal.integrated.fontFamily": "MonoLisa Nerd Font",
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.smoothScrolling": true,
   // Terraform
@@ -78,11 +75,15 @@
   "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
   "window.zoomLevel": 1.5,
+  "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
+  "workbench.colorTheme": "Min Dark",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.iconTheme": "symbols",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
+  "workbench.productIconTheme": "fluent-icons",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
@@ -91,8 +92,4 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "workbench.activityBar.location": "top",
-  "zig.initialSetupDone": true,
-  "zig.path": "/Users/adithyaps/.local/opt/tools/zig/this/zig",
-  "zig.zls.path": "/Users/adithyaps/.local/bin/zls"
 }
