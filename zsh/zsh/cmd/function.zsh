@@ -48,47 +48,47 @@ show-proxy(){
     echo "no proxy :: ${no_proxy}"
 }
 
-zj() {
-    in_zj() {
-        if [ -z "$ZELLIJ" ]; then
-            echo "Not in a Zellij session"
-            return 1
-        fi
-    }
-
-    case "${1}" in
-        rt)
-            in_zj || return $?
-            tab_name="${2:-$(basename "$PWD")}"
-            zellij action rename-tab "$tab_name"
-            ;;
-        rp)
-            in_zj || return $?
-            if [ -z "${2}" ]; then
-                echo "$0, $1: Pane name required"
-                return 1
-            fi
-            zellij action rename-pane "${2}"
-            ;;
-        rs)
-            in_zj || return $?
-            if [ -z "${2}" ]; then
-                echo "$0, $1: Session name required"
-                return 1
-            fi
-            zellij action rename-session "${2}"
-            ;;
-        *)
-            if [ -z "${1}" ]; then
-                session_name="${1:-$(basename "$PWD")}"
-                zellij -s "$session_name"
-            else
-                zellij "${@}";
-            fi
-            ;;
-    esac
-}
-
+# zj() {
+#     in_zj() {
+#         if [ -z "$ZELLIJ" ]; then
+#             echo "Not in a Zellij session"
+#             return 1
+#         fi
+#     }
+#
+#     case "${1}" in
+#         rt)
+#             in_zj || return $?
+#             tab_name="${2:-$(basename "$PWD")}"
+#             zellij action rename-tab "$tab_name"
+#             ;;
+#         rp)
+#             in_zj || return $?
+#             if [ -z "${2}" ]; then
+#                 echo "$0, $1: Pane name required"
+#                 return 1
+#             fi
+#             zellij action rename-pane "${2}"
+#             ;;
+#         rs)
+#             in_zj || return $?
+#             if [ -z "${2}" ]; then
+#                 echo "$0, $1: Session name required"
+#                 return 1
+#             fi
+#             zellij action rename-session "${2}"
+#             ;;
+#         *)
+#             if [ -z "${1}" ]; then
+#                 session_name="${1:-$(basename "$PWD")}"
+#                 zellij -s "$session_name"
+#             else
+#                 zellij "${@}";
+#             fi
+#             ;;
+#     esac
+# }
+#
 
 autotune()
 {
@@ -113,16 +113,6 @@ clone(){
         return 1
     fi
     git clone $1 && cd $(basename $1) && code -a .
-}
-
-c.(){
-  CONTENTS="/Applications/Visual Studio Code.app/Contents"
-  CLI="${CONTENTS}/Resources/app/out/cli.js"
-  ELECTRON="${CONTENTS}/MacOS/Electron"
-
-  if [ -f "${CLI}" ]; then
-    ELECTRON_RUN_AS_NODE=1 "${ELECTRON}" "${CLI}" . -a
-  fi;
 }
 
 zi() {
