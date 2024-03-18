@@ -79,13 +79,11 @@
   "window.zoomLevel": 1.5,
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
-  "workbench.colorTheme": "Min Dark",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.iconTheme": "symbols",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
-  "workbench.productIconTheme": "fluent-icons",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
