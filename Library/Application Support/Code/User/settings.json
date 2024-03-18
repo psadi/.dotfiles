@@ -41,7 +41,7 @@
   "explorer.sortOrder": "type",
   // Extensions
   "extensions.autoCheckUpdates": false,
-  "extensions.autoUpdate": false,
+  "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -56,8 +56,6 @@
     "plaintext": true,
     "scminput": true
   },
-  // Symbols
-  "symbols.hidesExplorerArrows": true,
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
@@ -74,14 +72,12 @@
   "update.showReleaseNotes": false,
   // Window
   "window.autoDetectColorScheme": true,
-  "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
   "window.zoomLevel": 1.5,
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.tabActionCloseVisibility": false,
-  "workbench.iconTheme": "symbols",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
   "workbench.sideBar.location": "right",
@@ -92,5 +88,6 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "workbench.editor.enablePreview": false
+  "workbench.editor.enablePreview": false,
+  "window.commandCenter": false
 }
