@@ -91,5 +91,6 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  "zenMode.silentNotifications": false
+  "zenMode.silentNotifications": false,
+  "workbench.editor.enablePreview": false
 }
