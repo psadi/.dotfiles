@@ -17,4 +17,6 @@
       tags: darwin
 
     - role: pip
-      tags: all
+      tags:
+        - linux
+        - darwin
