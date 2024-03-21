@@ -41,9 +41,11 @@ function plug() {
 
 function lsplug() {
     local _plugin
+    echo "-------------"
     echo "Plugins List:"
-    echo "------- ----\n"
+    echo "-------------\n"
     for _plugin in ${INSTALLED_PLUGINS[@]}; do
         printf '%4s  🔌 %s\n' $INSTALLED_PLUGINS[(Ie)$_plugin] $_plugin
     done
+    echo "\nEpilogue: With great plugins comes great extensibility."
 }

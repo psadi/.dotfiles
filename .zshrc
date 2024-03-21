@@ -71,7 +71,7 @@ export GROFF_NO_SGR=1
 
 # Load Plug
 #---------------------------------------------
-source "${ZSH_DOTFILES_DIR}/Plug.zsh"
+source "${_ZSH_CONFIG_PATH}/Plug.zsh"
 
 # Load Commands
 #---------------------------------------------
@@ -96,6 +96,7 @@ type LoadTools &>/dev/null && LoadTools || true
 
 # Set Zsh Prompt
 #---------------------------------------------
+export PURE_PROMPT_SYMBOL="Σ"
 fpath+=("${_ZSH_CONFIG_PATH}/pure")
 autoload -U promptinit; promptinit
 prompt pure
