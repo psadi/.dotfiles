@@ -10,6 +10,7 @@
 
 - set_fact:
     brew_leaves: "{{ lookup('file', 'brew.leaves') | regex_replace('\n', ' ') }}"
+    brew_casks: "{{ lookup('file', 'brew.casks') | regex_replace('\n', ' ') }}"
 
 - name: Installing homebrew dependencies
   command: "brew install {{ brew_leaves }}"
@@ -17,6 +18,13 @@
 
 - debug: var=brew_install.stderr_lines
 - debug: var=brew_install.stdout_lines
+
+- name: Installing homebrew casks
+  command: "brew install --cask {{ brew_casks }}"
+  register: brew_cask_install
+
+- debug: var=brew_cask_install.stderr_lines
+- debug: var=brew_cask_install.stdout_lines
 
 - name: Performing brew system upgrade
   command: "{{ item }}"

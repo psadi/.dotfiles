@@ -165,6 +165,7 @@ procs() {
 brew_leaves_gen(){
     if command -v brew &> /dev/null; then
         brew leaves > "${DOTFILES}/ansible/roles/homebrew/files/brew.leaves"
+        brew list --cask -1 > "${DOTFILES}/ansible/roles/homebrew/files/brew.casks"
     else
         echo "homebrew is required to generate leaves"
         return
