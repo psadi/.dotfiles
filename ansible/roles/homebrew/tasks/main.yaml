@@ -1,0 +1,28 @@
+- name: Check if homebrew is installed
+  command: which brew
+  register: check_homebrew
+
+- name: Install homebrew if it dosent exist
+  command: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  become: true
+  when: check_homebrew.rc != 0
+
+- set_fact:
+    brew_leaves: "{{ lookup('file', 'brew.leaves') | regex_replace('\n', ' ') }}"
+
+- name: Installing homebrew dependencies
+  command: "brew install {{ brew_leaves }}"
+  register: brew_install
+
+- debug: var=brew_install.stderr_lines
+- debug: var=brew_install.stdout_lines
+
+- name: Performing brew system upgrade
+  command: "{{ item }}"
+  loop:
+    - brew update
+    - brew upgrade
+
+- name: Cleaning up!
+  command: brew cleanup -s && brew cleanup --prune=all && brew autoremove

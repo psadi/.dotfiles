@@ -1,23 +1,25 @@
 ---
-- name: Cleaning up the system
-  ansible.builtin.command: "{{ item }}"
-  become: true
-  loop:
-    - ln -s /opt/pkg/nvim-linux64/bin/nvim /usr/local/bin
-    - rm -rf /var/log/*
-    - rm -rf /var/lib/apt/lists/*
-    - rm -rf /var/cache/apt/archives/*
+- block:
+    - name: Cleaning up the system
+      ansible.builtin.command: "{{ item }}"
+      become: true
+      loop:
+        - ln -s /opt/pkg/nvim-linux64/bin/nvim /usr/local/bin
+        - rm -rf /var/log/*
+        - rm -rf /var/lib/apt/lists/*
+        - rm -rf /var/cache/apt/archives/*
 
-- name: Configuring user shell
-  ansible.builtin.command: "chsh -s /usr/bin/zsh psadi"
-  become: true
+    - name: Configuring user shell
+      ansible.builtin.command: "chsh -s /usr/bin/zsh psadi"
+      become: true
 
-- name: Finalizing the installation
-  ansible.builtin.command: "{{ item }}"
-  args:
-    chdir: "/home/psadi"
-  loop:
-    - rm .profile .bashrc .bash_logout
-    - mkdir .config
-    - stow -d dotfiles -t "${HOME}" .
-    - /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null 2>&1
+    - name: Finalizing the installation
+      ansible.builtin.command: "{{ item }}"
+      args:
+        chdir: "/home/psadi"
+      loop:
+        - rm .profile .bashrc .bash_logout
+        - mkdir .config
+        - stow -d dotfiles -t "${HOME}" .
+        - /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null 2>&1
+  tags: linux

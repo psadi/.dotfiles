@@ -161,3 +161,12 @@ procs() {
         tput smam
     fi
 }
+
+brew_leaves_gen(){
+    if command -v brew &> /dev/null; then
+        brew leaves > "${DOTFILES}/ansible/roles/homebrew/files/brew.leaves"
+    else
+        echo "homebrew is required to generate leaves"
+        return
+    fi
+}
