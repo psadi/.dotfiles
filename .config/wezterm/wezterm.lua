@@ -25,24 +25,25 @@ config.color_schemes = {
 		selection_bg = "#2e4e75",
 		scrollbar_thumb = "#4f4f4f",
 		ansi = {
-			"#000000",
-			"#e06c75",
-			"#98c379",
-			"#ffcb6b",
-			"#82aaff",
-			"#ff79c6",
-			"#89ddff",
-			"#ffffff",
+			-- With reference to https://wezfurlong.org/wezterm/config/appearance.html
+			"#000000", -- black
+			"#e06c75", -- maroon
+			"#98c379", -- green
+			"#ffcb6b", -- olive
+			"#82aaff", -- navy
+			"#ff79c6", --purple
+			"#89ddff", -- teal
+			"#ffffff", -- silver
 		},
 		brights = {
-			"#5c5c5c",
-			"#ff5370",
-			"#c3e88d",
-			"#ffcb6b",
-			"#61afef",
-			"#ff79c6",
-			"#89ddff",
-			"#ffffff",
+			"#5c5c5c", -- grey
+			"#ff5370", -- red
+			"#c3e88d", -- lime
+			"#ffcb6b", -- yellow
+			"#61afef", -- blue
+			"#ff79c6", -- fuchsia
+			"#89ddff", -- aqua
+			"#ffffff", -- white
 		},
 	},
 }

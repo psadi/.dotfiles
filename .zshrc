@@ -69,9 +69,9 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[34m'
 export GROFF_NO_SGR=1
 
-# Load Zap
+# Load Plug
 #---------------------------------------------
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+source "${ZSH_DOTFILES_DIR}/Plug.zsh"
 
 # Load Commands
 #---------------------------------------------
@@ -99,4 +99,3 @@ type LoadTools &>/dev/null && LoadTools || true
 fpath+=("${_ZSH_CONFIG_PATH}/pure")
 autoload -U promptinit; promptinit
 prompt pure
-
