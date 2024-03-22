@@ -25,4 +25,4 @@
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
-    nvim_dir: "{% if ansible_facts['distribution'] == 'MacOSX' %}nvim-macos{% else %}nvim-linux{% endif %}"
+    nvim_dir: "{% if ansible_facts['distribution'] == 'MacOSX' %}nvim-macos{% else %}nvim-linux64{% endif %}"
