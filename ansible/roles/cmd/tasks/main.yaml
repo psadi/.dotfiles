@@ -1,25 +1,28 @@
 ---
 - block:
     - name: Cleaning up the system
-      ansible.builtin.command: "{{ item }}"
+      ansible.builtin.shell: "{{ item }}"
       become: true
       loop:
-        - ln -s /opt/pkg/nvim-linux64/bin/nvim /usr/local/bin
-        - rm -rf /var/log/*
-        - rm -rf /var/lib/apt/lists/*
-        - rm -rf /var/cache/apt/archives/*
+        - "ln -s /opt/pkg/{{ nvim_dir }}/bin/nvim /usr/local/bin || true"
+        - if [ -d '/var/log' ]; then rm -rf /var/log/*; fi;
+        - if [ -d '/var/lib/apt/lists/' ]; then rm -rf /var/lib/apt/lists/*; fi;
+        - if [ -d '/var/cache/apt/archives' ]; then rm -rf /var/cache/apt/archives/*; fi
 
     - name: Configuring user shell
-      ansible.builtin.command: "chsh -s /usr/bin/zsh psadi"
+      ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
 
     - name: Finalizing the installation
-      ansible.builtin.command: "{{ item }}"
+      ansible.builtin.shell: "{{ item }}"
       args:
-        chdir: "/home/psadi"
+        chdir: "{{ cmd_home }}"
       loop:
-        - rm .profile .bashrc .bash_logout
-        - mkdir .config
+        - rm .profile .bashrc .bash_logout || true
+        - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d dotfiles -t "${HOME}" .
-        - /opt/pkg/nvim-linux64/bin/nvim -c "qa" >/dev/null 2>&1
-  tags: linux
+        - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'qa' >/dev/null 2>&1"
+  vars:
+    cmd_home: "{{ lookup('env','HOME') }}"
+    cmd_user: "{{ lookup('env', 'USER') }}"
+    nvim_dir: "{% if ansible_facts['distribution'] == 'MacOSX' %}nvim-macos{% else %}nvim-linux{% endif %}"

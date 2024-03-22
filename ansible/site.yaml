@@ -1,6 +1,6 @@
 - name: Personal Development Environment
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   any_errors_fatal: true
   connection: local
   roles:
@@ -10,11 +10,13 @@
     - role: github
       tags: linux
 
-    - role: cmd
-      tags: linux
-
     - role: homebrew
       tags: darwin
+
+    - role: cmd
+      tags:
+        - linux
+        - darwin
 
     - role: pip
       tags:
