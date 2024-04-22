@@ -97,7 +97,7 @@ type LoadTools &>/dev/null && LoadTools || true
 
 # Set Zsh Prompt
 #---------------------------------------------
-export PURE_PROMPT_SYMBOL="Σ"
+# export PURE_PROMPT_SYMBOL="Σ"
 fpath+=("${_ZSH_CONFIG_PATH}/pure")
 autoload -U promptinit; promptinit
 prompt pure
