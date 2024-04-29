@@ -1,0 +1,20 @@
+[[language]]
+name = "python"
+formatter = { command = "ruff", args = ["--quiet", "-"] }
+auto-format = true
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod"]
+auto-format = true
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
