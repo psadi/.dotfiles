@@ -16,17 +16,33 @@
 #
 #---------------------------------------------
 
+# Bindkeys
+#---------------------------------------------
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# History
+#---------------------------------------------
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
 # Set Opts
 #---------------------------------------------
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
-setopt APPEND_HISTORY
-setopt HIST_FCNTL_LOCK
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_BY_COPY
-setopt HIST_VERIFY
-setopt SHARE_HISTORY
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
+setopt hist_save_by_copy
+setopt hist_verify
 setopt NO_CASE_GLOB
 setopt AUTO_CD
 setopt interactivecomments
@@ -49,19 +65,15 @@ export DOTFILES="${HOME}/dotfiles"
 export ZSH_DOTFILES_DIR="${DOTFILES}/zsh"
 export ZSH_CMD_PATH="${ZSH_DOTFILES_DIR}/zsh/cmd"
 export TOOLS_PATH="${HOME}/.local/opt/tools"
-export _ZSH_CONFIG_PATH="${ZSH_DOTFILES_DIR}/zsh"
-export _ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
-export _ZSH_COMPLETIONS_PATH="${_ZSH_CONFIG_PATH}/completions"
+export ZSH_CONFIG_PATH="${ZSH_DOTFILES_DIR}/zsh"
+export ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
 
 # ls/completion colors
+#---------------------------------------------
 export LS_COLORS='ow=36:di=34:fi=32:ex=31:ln=35:'
 
-# History
-export HISTFILE=$HOME/.zsh_history
-export SAVEHIST=1000000
-export HISTSIZE=1000000
-
-# Manpages
+# Man pager
+#---------------------------------------------
 export LESS_TERMCAP_md=$'\e[32m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
@@ -70,9 +82,24 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[34m'
 export GROFF_NO_SGR=1
 
+
+# Load Zap
+#---------------------------------------------
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "sindresorhus/pure"
+plug "zsh-users/zsh-completions"
+plug "Aloxaf/fzf-tab"
+
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
+
 # Load Plug
 #---------------------------------------------
-source "${_ZSH_CONFIG_PATH}/Plug.zsh"
+#source "${_ZSH_CONFIG_PATH}/Plug.zsh"
 
 # Load Commands
 #---------------------------------------------
@@ -82,22 +109,25 @@ source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
 # Load Plugins
 #---------------------------------------------
 
-for z in `ls ${_ZSH_PLUGINS_PATH}`;
+for z in `ls ${ZSH_PLUGINS_PATH}`;
 do
-  plug "${_ZSH_PLUGINS_PATH}/${z}";
+  plug "${ZSH_PLUGINS_PATH}/${z}";
 done
-
-# Zsh Completions + Keybindings
-#---------------------------------------------
-plug ${_ZSH_COMPLETIONS_PATH}/completions.zsh
 
 # Load Tools
 #---------------------------------------------
-type LoadTools &>/dev/null && LoadTools || true
+#type LoadTools &>/dev/null && LoadTools || true
 
 # Set Zsh Prompt
 #---------------------------------------------
-# export PURE_PROMPT_SYMBOL="Σ"
-fpath+=("${_ZSH_CONFIG_PATH}/pure")
+fpath+=($HOME/.local/share/zap/plugins/pure)
 autoload -U promptinit; promptinit
 prompt pure
+
+# ZStyle
+#---------------------------------------------
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' switch-group '<' '>'
