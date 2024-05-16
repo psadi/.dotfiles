@@ -66,7 +66,7 @@ export ZSH_DOTFILES_DIR="${DOTFILES}/zsh"
 export ZSH_CMD_PATH="${ZSH_DOTFILES_DIR}/zsh/cmd"
 export TOOLS_PATH="${HOME}/.local/opt/tools"
 export ZSH_CONFIG_PATH="${ZSH_DOTFILES_DIR}/zsh"
-export ZSH_PLUGINS_PATH="${_ZSH_CONFIG_PATH}/plugins"
+export ZSH_PLUGINS_PATH="${ZSH_CONFIG_PATH}/plugins"
 
 # ls/completion colors
 #---------------------------------------------
@@ -82,7 +82,6 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[34m'
 export GROFF_NO_SGR=1
 
-
 # Load Zap
 #---------------------------------------------
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
@@ -94,33 +93,19 @@ plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
 # Load and initialise completion system
+#---------------------------------------------
 autoload -Uz compinit
 compinit
 
-# Load Plug
-#---------------------------------------------
-#source "${_ZSH_CONFIG_PATH}/Plug.zsh"
-
-# Load Commands
+# Load Commands & Local Plugins
 #---------------------------------------------
 for z (${ZSH_CMD_PATH}/**/*(N.)) plug $z
+for z (${ZSH_PLUGINS_PATH}/**/*(N.)) plug $z
 source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
-
-# Load Plugins
-#---------------------------------------------
-
-for z in `ls ${ZSH_PLUGINS_PATH}`;
-do
-  plug "${ZSH_PLUGINS_PATH}/${z}";
-done
-
-# Load Tools
-#---------------------------------------------
-#type LoadTools &>/dev/null && LoadTools || true
 
 # Set Zsh Prompt
 #---------------------------------------------
-fpath+=($HOME/.local/share/zap/plugins/pure)
+fpath+=($ZAP_PLUGIN_DIR/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
