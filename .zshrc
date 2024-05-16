@@ -58,15 +58,12 @@ export LC_CTYPE="en_US.UTF-8"
 # Set Base Config
 #---------------------------------------------
 export SHELL=$(which zsh)
-export OSTYPE=$(uname -a | awk '{print $1}')
 export CLICOLOR=1
 export TERM=xterm-256color
 export DOTFILES="${HOME}/dotfiles"
 export ZSH_DOTFILES_DIR="${DOTFILES}/zsh"
-export ZSH_CMD_PATH="${ZSH_DOTFILES_DIR}/zsh/cmd"
-export TOOLS_PATH="${HOME}/.local/opt/tools"
-export ZSH_CONFIG_PATH="${ZSH_DOTFILES_DIR}/zsh"
-export ZSH_PLUGINS_PATH="${ZSH_CONFIG_PATH}/plugins"
+export ZSH_CMD_PATH="${ZSH_DOTFILES_DIR}/cmd"
+export ZSH_PLUGINS_PATH="${ZSH_DOTFILES_DIR}/plugins"
 
 # ls/completion colors
 #---------------------------------------------
@@ -97,15 +94,14 @@ plug "Aloxaf/fzf-tab"
 autoload -Uz compinit
 compinit
 
-# Load Commands & Local Plugins
+# Load (evals,aliases,functions) & plugins
 #---------------------------------------------
 for z (${ZSH_CMD_PATH}/**/*(N.)) plug $z
 for z (${ZSH_PLUGINS_PATH}/**/*(N.)) plug $z
-source "${ZSH_DOTFILES_DIR}/${OSTYPE}.zshrc"
 
 # Set Zsh Prompt
 #---------------------------------------------
-fpath+=($ZAP_PLUGIN_DIR/pure)
+fpath+=($ZAP_PLUGIN_DIR/pure);
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -116,3 +112,15 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' switch-group '<' '>'
+
+# PYTHON
+#---------------------------------------------
+PYTHON_VERSION='python@3.12'
+export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
+export PYTHONUSERBASE="${HOME}/.local"
+export PIP_USE_DEPRICATED=html5lib
+
+# PATH
+#---------------------------------------------
+PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
+export PATH

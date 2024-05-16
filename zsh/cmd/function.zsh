@@ -107,49 +107,6 @@ gitlfs()
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
 
-clone(){
-    if [ -z $1 ]; then
-        echo "$0 : url is required to clone"
-        return 1
-    fi
-    git clone $1 && cd $(basename $1) && code -a .
-}
-
-zi() {
-    local z_file="$HOME/.z"
-
-    # Check if .z file exists
-    if [ ! -f "$z_file" ]; then
-        echo "Error: .z file not found"
-        return 1
-    fi
-
-    # Extract directory paths and scores from .z file
-    local paths=($(awk -F'|' '{print $1}' "$z_file"))
-    local scores=($(awk -F'|' '{print $2}' "$z_file"))
-
-    # Combine paths and scores into single lines
-    local z_list=()
-    for ((i=0; i<${#paths[@]}; i++)); do
-        z_list+=("${scores[i]} ${paths[i]}")
-    done
-
-    # Sort list by scores in descending order
-    sorted_list=$(printf "%s\n" "${z_list[@]}" | sort -rn | cut -d" " -f2-)
-
-    # Use fzf to display list and navigate
-    local selected_path
-    selected_path=$(echo "$sorted_list" | fzf --preview "echo {}" --reverse --height 5)
-
-    # Check if a selection was made
-    if [ -n "$selected_path" ]; then
-        echo "$selected_path"
-        cd "$selected_path" || return 1
-    else
-        echo "No selection made"
-    fi
-}
-
 procs() {
     if [ "${2}" != '--no-wrap' ]; then
         tput rmam
