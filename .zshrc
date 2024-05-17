@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #!/bin/sh
 
 #---------------------------------------------
@@ -85,7 +92,8 @@ export GROFF_NO_SGR=1
 
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "sindresorhus/pure"
+#plug "sindresorhus/pure"
+plug "romkatv/powerlevel10k"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
@@ -98,12 +106,6 @@ compinit
 #---------------------------------------------
 for z (${ZSH_CMD_PATH}/**/*(N.)) plug $z
 for z (${ZSH_PLUGINS_PATH}/**/*(N.)) plug $z
-
-# Set Zsh Prompt
-#---------------------------------------------
-fpath+=($ZAP_PLUGIN_DIR/pure);
-autoload -U promptinit; promptinit
-prompt pure
 
 # ZStyle
 #---------------------------------------------
@@ -124,3 +126,9 @@ export PIP_USE_DEPRICATED=html5lib
 #---------------------------------------------
 PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
 export PATH
+
+# Set Zsh Prompt
+#---------------------------------------------
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#---------------------------------------------
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
