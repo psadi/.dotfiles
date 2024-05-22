@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-          ensure_installed = { "lua_ls", "ruff", "ruff_lsp", "zls" },
+        ensure_installed = { "lua_ls", "ruff", "ruff_lsp", "zls" },
       }
     end
   },
@@ -17,13 +17,13 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require('lspconfig')
-      lspconfig.ruff.setup{}
+      lspconfig.ruff.setup {}
       lspconfig.ruff_lsp.setup({})
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
             diagnostics = {
-              globals = {'vim'}
+              globals = { 'vim' }
             }
           }
         }
