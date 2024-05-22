@@ -1,9 +1,3 @@
-Vmap = vim.keymap.set
-vim.cmd.set "expandtab"
-vim.cmd.set "tabstop=2"
-vim.cmd.set "softtabstop=2"
-vim.cmd.set "shiftwidth=2"
-vim.g.mapleader = " "
 
 -- Lazy Plugin Manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -20,9 +14,10 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+require("vopts")
 require("lazy").setup("plugins")
 
--- KeyVmaps
+-- Keymaps
 Vmap("n", "<C-`>", "<CMD>terminal<CR>", { silent = true })
 Vmap("n", "<leader>q", "<CMD>bd<CR>", { silent = true })
 Vmap("n", "<leader>Q", "<CMD>bd!<CR>", { silent = true })
