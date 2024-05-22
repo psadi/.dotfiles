@@ -9,4 +9,4 @@ Dockerfile
 \.gitignore
 \.github
 Library/Fonts
-.config/(wezterm|nvim)
+.config/(wezterm)

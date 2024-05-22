@@ -41,7 +41,6 @@
   "explorer.sortOrder": "type",
   // Extensions
   "extensions.autoCheckUpdates": false,
-  "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
