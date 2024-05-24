@@ -117,10 +117,12 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # PYTHON
 #---------------------------------------------
-PYTHON_VERSION='python@3.12'
-export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
-export PYTHONUSERBASE="${HOME}/.local"
-export PIP_USE_DEPRICATED=html5lib
+if command -v bat &> /dev/null; then
+  PYTHON_VERSION='python@3.12'
+  export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
+  export PYTHONUSERBASE="${HOME}/.local"
+  export PIP_USE_DEPRICATED=html5lib
+fi
 
 # PATH
 #---------------------------------------------
