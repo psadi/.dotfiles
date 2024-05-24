@@ -46,3 +46,9 @@ github_package_repos:
       - "linux-amd64/helm"
       - "--strip-components=1"
     replace_version: false
+
+  - name: ajeetdsouza/zoxide
+    url: https://github.com/ajeetdsouza/zoxide/releases/download/v[VERSION]/zoxide-[VERSION]-x86_64-unknown-linux-musl.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "zoxide"
+    replace_version: true
