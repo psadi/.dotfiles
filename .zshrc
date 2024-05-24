@@ -64,6 +64,7 @@ export LC_CTYPE="en_US.UTF-8"
 # Set Base Config
 #---------------------------------------------
 export SHELL=$(which zsh)
+export OSTYPE=$(uname -a | awk '{print $1}')
 export CLICOLOR=1
 export TERM=xterm-256color
 export DOTFILES="${HOME}/dotfiles"
