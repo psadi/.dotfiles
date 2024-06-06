@@ -17,7 +17,3 @@ vim.opt.rtp:prepend(lazypath)
 require("vopts")
 require("lazy").setup("plugins")
 
--- Keymaps
-Vmap("n", "<C-`>", "<CMD>terminal<CR>", { silent = true })
-Vmap("n", "<leader>q", "<CMD>bd<CR>", { silent = true })
-Vmap("n", "<leader>Q", "<CMD>bd!<CR>", { silent = true })

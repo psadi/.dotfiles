@@ -20,3 +20,8 @@ Vmap('n', '<c-h>', ':wincmd h<CR>')
 Vmap('n', '<c-l>', ':wincmd l<CR>')
 
 Vmap('n', '<leader>h', ':nohlsearch<CR>')
+
+-- Keymaps
+Vmap("n", "<C-`>", "<CMD>terminal<CR>", { silent = true })
+Vmap("n", "<leader>q", "<CMD>bd<CR>", { silent = true })
+Vmap("n", "<leader>Q", "<CMD>bd!<CR>", { silent = true })
