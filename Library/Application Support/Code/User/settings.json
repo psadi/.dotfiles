@@ -49,12 +49,12 @@
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
   // GitHub Copilot
-  "github.copilot.enable": {
-    "*": false,
-    "markdown": true,
-    "plaintext": true,
-    "scminput": true
-  },
+  // "github.copilot.enable": {
+  //   "*": false,
+  //   "markdown": true,
+  //   "plaintext": true,
+  //   "scminput": true
+  // },
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
@@ -88,5 +88,7 @@
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
   "workbench.editor.enablePreview": false,
-  "window.commandCenter": false
+  "window.commandCenter": false,
+  "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Spectrum)",
+  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons"
 }
