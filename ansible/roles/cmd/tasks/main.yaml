@@ -18,7 +18,7 @@
       args:
         chdir: "{{ cmd_home }}"
       loop:
-        - "zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1"
+        - "zsh <(curl -s 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1"
         - rm .profile .bashrc .bash_logout .zshrc || true
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d dotfiles -t "${HOME}" .
