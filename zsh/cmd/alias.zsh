@@ -4,7 +4,6 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
 
-alias ls="ls --color=auto"
 alias ll="ls -l -go"
 alias la="ll -a"
 alias lrth="ll -rth"

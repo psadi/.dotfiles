@@ -48,13 +48,6 @@
   // Git
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
-  // GitHub Copilot
-  // "github.copilot.enable": {
-  //   "*": false,
-  //   "markdown": true,
-  //   "plaintext": true,
-  //   "scminput": true
-  // },
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
@@ -71,11 +64,13 @@
   "update.showReleaseNotes": false,
   // Window
   "window.autoDetectColorScheme": true,
+  "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
   "window.zoomLevel": 1.5,
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
   "workbench.editor.empty.hint": "hidden",
+  "workbench.editor.enablePreview": false,
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
@@ -86,9 +81,5 @@
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  "zenMode.silentNotifications": false,
-  "workbench.editor.enablePreview": false,
-  "window.commandCenter": false,
-  "workbench.preferredDarkColorTheme": "Monokai Pro (Filter Spectrum)",
-  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons"
+  "zenMode.silentNotifications": false
 }

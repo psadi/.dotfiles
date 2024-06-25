@@ -18,7 +18,15 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
       lspconfig.ruff.setup {}
-      lspconfig.ruff_lsp.setup({})
+      lspconfig.ruff_lsp.setup({
+      -- on_attach = on_attach,
+        init_options = {
+          settings = {
+            -- Any extra CLI arguments for `ruff` go here.
+            args = {},
+          }
+        }
+      })
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {

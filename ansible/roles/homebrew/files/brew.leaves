@@ -5,11 +5,13 @@ bottom
 curl
 docker
 dos2unix
+eza
 fd
 freetype
 fzf
 gh
 git
+git-delta
 gnutls
 hadolint
 helm
@@ -27,12 +29,11 @@ qpdf
 ripgrep
 stow
 tealdeer
+telnet
 terraform
 terraform-ls
-terragrunt
 tokei
 watch
 wget
-zellij
 zig
 zoxide
