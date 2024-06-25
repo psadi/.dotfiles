@@ -13,14 +13,12 @@
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
 
-    - name: Install Zap
-      command: "zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1"
-
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
       args:
         chdir: "{{ cmd_home }}"
       loop:
+        - bash -c "zsh <(curl -s 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1"
         - rm .profile .bashrc .bash_logout .zshrc || true
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d dotfiles -t "${HOME}" .
