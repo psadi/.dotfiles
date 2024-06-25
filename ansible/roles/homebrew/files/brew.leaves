@@ -35,5 +35,6 @@ terraform-ls
 tokei
 watch
 wget
+zellij
 zig
 zoxide

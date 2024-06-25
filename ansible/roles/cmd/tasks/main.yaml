@@ -14,7 +14,7 @@
       become: true
 
     - name: Install Zap
-      command: zsh <(curl -s 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1
+      command: "zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1"
 
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"

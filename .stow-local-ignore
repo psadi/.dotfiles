@@ -9,4 +9,4 @@ Dockerfile
 \.gitignore
 \.github
 Library/Fonts
-.config/(alacritty|zellij)
+.config/(wezterm)
