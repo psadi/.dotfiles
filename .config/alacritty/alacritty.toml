@@ -1,35 +1,68 @@
 live_config_reload = true
 
-[colors.bright]
-black = "#5c5c5c"
-red = "#ff5370"
-green = "#c3e88d"
-yellow = "#ffcb6b"
-blue = "#82aaff"
-magenta = "#ff79c6"
-cyan = "#89ddff"
-white = "#ffffff"
-
-[colors.cursor]
-cursor = '#afafae'
-
-[colors.normal]
-black = "#000000"
-red = "#e06c75"
-green = "#98c379"
-yellow = "#d19a66"
-blue = "#61afef"
-magenta = "#c678dd"
-cyan = "#56b6c2"
-white = "#ababab"
-
 [colors.primary]
-background = "#1e1e1e"
-foreground = "#f8f8f8"
+background = '#15141b'
+foreground = '#edecee'
+
+# Normal colors
+[colors.normal]
+black = '#110f18'
+red = '#ff6767'
+green = '#61ffca'
+yellow = '#ffca85'
+blue = '#a277ff'
+magenta = '#a277ff'
+cyan = '#61ffca'
+white = '#edecee'
+
+# Bright colors
+[colors.bright]
+black = '#4d4d4d'
+red = '#ff6767'
+green = '#61ffca'
+yellow = '#ffca85'
+blue = '#a277ff'
+magenta = '#a277ff'
+cyan = '#61ffca'
+white = '#edecee'
 
 [colors.selection]
-background = '#2e4e75'
-text = "CellForeground"
+text = 'CellForeground'
+background = '#29263c'
+
+[colors.cursor]
+cursor = '#a277ff'
+
+# [colors.bright]
+# black = "#5c5c5c"
+# red = "#ff5370"
+# green = "#c3e88d"
+# yellow = "#ffcb6b"
+# blue = "#82aaff"
+# magenta = "#ff79c6"
+# cyan = "#89ddff"
+# white = "#ffffff"
+
+# [colors.cursor]
+# cursor = '#afafae'
+
+# [colors.normal]
+# black = "#000000"
+# red = "#e06c75"
+# green = "#98c379"
+# yellow = "#d19a66"
+# blue = "#61afef"
+# magenta = "#c678dd"
+# cyan = "#56b6c2"
+# white = "#ababab"
+
+# [colors.primary]
+# background = "#1e1e1e"
+# foreground = "#f8f8f8"
+
+# [colors.selection]
+# background = '#2e4e75'
+# text = "CellForeground"
 
 [cursor.style]
 blinking = "On"

@@ -13,7 +13,7 @@ if command -v k9s &> /dev/null; then
 fi
 
 if command -v eza &> /dev/null; then
-  alias ls="eza --icons=always"
+  alias ls="eza --icons=always --no-permissions --no-filesize --no-user --no-quotes --no-time --git"
   alias lt="ls --tree --level=2"
   export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 else
