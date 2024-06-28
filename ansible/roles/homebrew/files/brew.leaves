@@ -2,6 +2,7 @@ axel
 bat
 bitwarden-cli
 bottom
+coreutils
 curl
 docker
 dos2unix
@@ -22,7 +23,6 @@ kubernetes-cli
 lazydocker
 lazygit
 miniserve
-pfetch
 pyenv
 python@3.12
 qpdf
@@ -30,11 +30,10 @@ ripgrep
 stow
 tealdeer
 telnet
-terraform
-terraform-ls
 tokei
 watch
 wget
+yazi
 zellij
 zig
 zoxide

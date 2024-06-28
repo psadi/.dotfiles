@@ -16,8 +16,17 @@
 #
 #---------------------------------------------
 
-# p10k instant prompt
+# PATH
 #---------------------------------------------
+PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
+export PATH
+
+# Set Zsh Prompt
+#---------------------------------------------
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# p10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -117,21 +126,10 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # PYTHON
 #---------------------------------------------
-if command -v bat &> /dev/null; then
+if command -v brew &> /dev/null; then
   PYTHON_VERSION='python@3.12'
   export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
 fi
-
-# PATH
-#---------------------------------------------
-PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
-export PATH
-
-# Set Zsh Prompt
-#---------------------------------------------
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#---------------------------------------------
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

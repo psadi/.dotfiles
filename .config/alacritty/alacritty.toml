@@ -290,7 +290,8 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 decorations = "full"
 dynamic_padding = true
 dynamic_title = false
-opacity = 1
+opacity = 0.9
+blur = true
 startup_mode = "Maximized"
 title = "Terminal"
 
