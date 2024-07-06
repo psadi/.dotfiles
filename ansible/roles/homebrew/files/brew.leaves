@@ -14,6 +14,7 @@ gh
 git
 git-delta
 gnutls
+go
 hadolint
 helm
 jhead
@@ -30,10 +31,11 @@ ripgrep
 stow
 tealdeer
 telnet
+terraform
+terraform-ls
 tokei
 watch
 wget
 yazi
-zellij
 zig
 zoxide

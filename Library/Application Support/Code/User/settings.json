@@ -75,7 +75,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
-  "workbench.preferredDarkColorTheme": "Aura Dark",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
