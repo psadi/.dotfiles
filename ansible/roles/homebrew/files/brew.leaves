@@ -1,6 +1,5 @@
 axel
 bat
-bitwarden-cli
 bottom
 coreutils
 curl
@@ -37,5 +36,4 @@ tokei
 watch
 wget
 yazi
-zig
 zoxide

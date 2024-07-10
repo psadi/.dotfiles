@@ -14,10 +14,16 @@ fi
 
 if command -v eza &> /dev/null; then
   alias ls="eza --icons=always --no-permissions --no-filesize --no-user --no-quotes --no-time --git"
+  alias ll=" ls -l"
+  alias la="ll -a"
   alias lt="ls --tree --level=2"
   export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 else
   alias ls="ls --color=auto"
+  alias ll="ls -l -go"
+  alias la="ll -a"
+  alias lrth="ll -rth"
+  alias larth="la -rth"
 fi
 
 if command -v zoxide &> /dev/null; then

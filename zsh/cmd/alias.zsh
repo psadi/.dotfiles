@@ -4,10 +4,6 @@ alias reload='source ~/.zshrc'
 alias ..='cd ..'
 alias ~="cd ~"
 
-alias ll="ls -l -go"
-alias la="ll -a"
-alias lrth="ll -rth"
-alias larth="la -rth"
 alias grep="grep --color=auto"
 alias lzd=lazydocker
 alias pip3="python3 -m pip"
