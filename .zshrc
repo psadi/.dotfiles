@@ -101,8 +101,8 @@ export GROFF_NO_SGR=1
 
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-#plug "sindresorhus/pure"
 plug "romkatv/powerlevel10k"
+plug "romkatv/gitstatus"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
