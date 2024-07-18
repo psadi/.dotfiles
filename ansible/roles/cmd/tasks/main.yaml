@@ -23,7 +23,7 @@
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d dotfiles -t "${HOME}" .
         - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'qa' >/dev/null 2>&1"
-        - bash -c "zsh"
+        - bash -c "zsh -c 'source ~/.zshrc && zap update all'"
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
