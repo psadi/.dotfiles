@@ -23,7 +23,7 @@ config.font_size = 17
 -- ------------
 -- Color Scheme
 -- ------------
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Dark+"
 config.color_schemes = {
 	["Dark+"] = {
 		foreground = "#f8f8f8",
