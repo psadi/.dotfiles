@@ -14,7 +14,7 @@ github_package_repos:
     url: https://github.com/junegunn/fzf/releases/download/[VERSION]/fzf-[VERSION]-linux_amd64.tar.gz
     destination: /usr/local/bin
     extra_opts: ""
-    replace_version: false
+    replace_version: true
   - name: hashicorp/terraform
     url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
     destination: /usr/local/bin
