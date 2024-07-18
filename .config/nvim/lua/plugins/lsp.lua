@@ -37,11 +37,6 @@ return {
         }
       })
       lspconfig.zls.setup({})
-
-      Vmap('n', "<C-X>", "<CMD>Mason<CR>", {})
-      Vmap('n', "K", vim.lsp.buf.hover, {})
-      Vmap('n', "gd", vim.lsp.buf.definition, {})
-      Vmap('n', "cm", "<CMD>Mason<CR>", {})
     end
   }
 }

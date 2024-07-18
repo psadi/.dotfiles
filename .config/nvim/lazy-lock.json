@@ -1,5 +1,5 @@
 {
-  "fzf-lua": { "branch": "main", "commit": "023b95078f9cc28ce67d7a7a6b4ea1bc7cfa488d" },
+  "fzf-lua": { "branch": "main", "commit": "6b5c48fe40695c0b1df61c1bbf7fdcfca04c7e16" },
   "lazy.nvim": { "branch": "main", "commit": "c92c6b5fd2b3a13c8999ab8379e43a79c9406e59" },
   "lualine.nvim": { "branch": "master", "commit": "544dd1583f9bb27b393f598475c89809c4d5e86b" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "37a336b653f8594df75c827ed589f1c91d91ff6c" },
