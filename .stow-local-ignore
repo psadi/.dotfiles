@@ -10,3 +10,4 @@ Dockerfile
 \.github
 Library/Fonts
 .config/(alacritty|zellij|helix)
+.DS_Store
