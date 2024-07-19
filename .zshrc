@@ -23,6 +23,7 @@ export PATH
 
 # Set Zsh Prompt
 #---------------------------------------------
+export POWERLEVEL9K_DISABLE_GITSTATUS=true
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -102,7 +103,6 @@ export GROFF_NO_SGR=1
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
-plug "romkatv/gitstatus"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
@@ -132,4 +132,3 @@ if command -v brew &> /dev/null; then
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
 fi
-
