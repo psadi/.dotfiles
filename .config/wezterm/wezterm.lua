@@ -69,7 +69,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.clean_exit_codes = { 130 }
 config.enable_scroll_bar = false
 config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.97
 config.macos_window_background_blur = 10
 config.window_decorations = "RESIZE"
 
@@ -79,17 +79,6 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
-
---wezterm.on("update-status", function(window)
---	local overrides = window:get_config_overrides() or {}
---	overrides.window_padding = {
---		left = 0,
---		right = 0,
---		top = 0,
---		bottom = 0,
---	}
---	window:set_config_overrides(overrides)
---end)
 
 -- -----------------------------------------------------
 -- MacOS navigation between words using Opt + Arrow Keys
