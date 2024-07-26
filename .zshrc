@@ -44,7 +44,7 @@ export ZSH_PLUGINS_PATH="${ZSH_DOTFILES_DIR}/plugins"
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 plug "psadi/supercharge"
-plug "zap-zsh/zap-prompt"
+plug "psadi/zap-prompt"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
