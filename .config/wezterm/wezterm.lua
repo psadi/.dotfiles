@@ -18,12 +18,12 @@ local config = wezterm.config_builder()
 -- Font
 -- ----
 config.font = wezterm.font("MonoLisa Nerd Font")
-config.font_size = 17
+config.font_size = 19
 
 -- ------------
 -- Color Scheme
 -- ------------
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "GruvboxDarkHard"
 config.color_schemes = {
 	["Dark+"] = {
 		foreground = "#f8f8f8",
@@ -61,10 +61,10 @@ config.color_schemes = {
 -- --------------------
 -- Tabs, Windows & More
 -- --------------------
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
--- config.tab_max_width = 20
+config.tab_max_width = 20
 config.show_new_tab_button_in_tab_bar = false
 config.clean_exit_codes = { 130 }
 config.enable_scroll_bar = false
@@ -73,12 +73,12 @@ config.window_background_opacity = 0.97
 config.macos_window_background_blur = 10
 config.window_decorations = "RESIZE"
 
-config.window_padding = {
-  left = 2,
-  right = 2,
-  top = 0,
-  bottom = 0,
-}
+-- config.window_padding = {
+--   left = 2,
+--   right = 2,
+--   top = 0,
+--   bottom = 0,
+-- }
 
 -- -----------------------------------------------------
 -- MacOS navigation between words using Opt + Arrow Keys

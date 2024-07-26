@@ -3,7 +3,7 @@
 if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
-  export BAT_THEME="base16"
+  export BAT_THEME="gruvbox-dark"
   show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
   export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 fi
