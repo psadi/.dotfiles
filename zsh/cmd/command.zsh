@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if command -v bat &> /dev/null; then
+if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
   export BAT_THEME="base16"
@@ -12,11 +12,11 @@ if command -v k9s &> /dev/null; then
   alias k9s="k9s --logoless --headless --readonly --crumbsless"
 fi
 
-if command -v eza &> /dev/null; then
-  alias ls="eza --icons=always --no-permissions --no-filesize --no-user --no-quotes --no-time --git"
-  alias ll=" ls -l"
+if (( $+commands[eza] )); then
+  alias ls='eza --group-directories-first --icons'
+  alias ll='ls -lh --git'
   alias la="ll -a"
-  alias lt="ls --tree --level=2"
+  alias lt="ll --tree --level=2"
   export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 else
   alias ls="ls --color=auto"
@@ -26,7 +26,7 @@ else
   alias larth="la -rth"
 fi
 
-if command -v zoxide &> /dev/null; then
+if (( $+commands[zoxide] )); then
   alias cd="z"
 fi
 

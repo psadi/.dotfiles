@@ -21,48 +21,6 @@
 PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
 export PATH
 
-# Set Zsh Prompt
-#---------------------------------------------
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# p10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Bindkeys
-#---------------------------------------------
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-
-# History
-#---------------------------------------------
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-
-# Set Opts
-#---------------------------------------------
-setopt autocd extendedglob nomatch menucomplete
-setopt interactive_comments
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-setopt hist_reduce_blanks
-setopt hist_save_by_copy
-setopt hist_verify
-setopt NO_CASE_GLOB
-setopt AUTO_CD
-setopt interactivecomments
-unsetopt BEEP
-
 # Set Language
 #---------------------------------------------
 export LANGUAGE="en_US.UTF-8"
@@ -81,27 +39,14 @@ export ZSH_DOTFILES_DIR="${DOTFILES}/zsh"
 export ZSH_CMD_PATH="${ZSH_DOTFILES_DIR}/cmd"
 export ZSH_PLUGINS_PATH="${ZSH_DOTFILES_DIR}/plugins"
 
-# ls/completion colors
-#---------------------------------------------
-export LS_COLORS='ow=36:di=34:fi=32:ex=31:ln=35:'
-
-# Man pager
-#---------------------------------------------
-export LESS_TERMCAP_md=$'\e[32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[100;37m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[34m'
-export GROFF_NO_SGR=1
-
 # Load Zap
 #---------------------------------------------
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
+plug "psadi/supercharge"
+plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "romkatv/powerlevel10k"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
