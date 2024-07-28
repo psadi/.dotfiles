@@ -69,7 +69,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.clean_exit_codes = { 130 }
 config.enable_scroll_bar = false
 -- config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.97
+config.window_background_opacity = 0.945
 config.macos_window_background_blur = 10
 config.window_decorations = "RESIZE"
 
