@@ -88,5 +88,6 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "workbench.preferredDarkColorTheme": "Tokyo Night"
 }

@@ -23,7 +23,7 @@ config.font_size = 20
 -- ------------
 -- Color Scheme
 -- ------------
-config.color_scheme = "GruvboxDarkHard"
+config.color_scheme = "Tokyo Night"
 config.color_schemes = {
 	["Dark+"] = {
 		foreground = "#f8f8f8",
