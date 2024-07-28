@@ -8,7 +8,7 @@ if (( $+commands[bat] )); then
   export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 fi
 
-if command -v k9s &> /dev/null; then
+if (( $+commands[k9s] )); then
   alias k9s="k9s --logoless --headless --readonly --crumbsless"
 fi
 
@@ -46,12 +46,11 @@ if [ -d "/opt/pkg/${NVIM_PACKAGE_NAME}" ]; then
   alias vim="nvim"
 fi
 
-if [ -d "${HOME}/go/bin" ];
-then
-  export PATH="${HOME}/go/bin:${PATH}"
-fi;
-
-if [ -f "${HOME}/.cargo/env" ];
-then
-  . "$HOME/.cargo/env"
-fi;
+# PYTHON
+#---------------------------------------------
+if (( $+commands[brew] )); then
+  PYTHON_VERSION='python@3.12'
+  export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
+  export PYTHONUSERBASE="${HOME}/.local"
+  export PIP_USE_DEPRICATED=html5lib
+fi

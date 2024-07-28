@@ -49,7 +49,6 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
-#plug "romkatv/powerlevel10k"
 
 # Load and initialise completion system
 #---------------------------------------------
@@ -69,14 +68,3 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# PYTHON
-#---------------------------------------------
-if command -v brew &> /dev/null; then
-  PYTHON_VERSION='python@3.12'
-  export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
-  export PYTHONUSERBASE="${HOME}/.local"
-  export PIP_USE_DEPRICATED=html5lib
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
-[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
