@@ -12,7 +12,6 @@
   "editor.codeLens": false,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorStyle": "block",
   "editor.foldingHighlight": false,
   "editor.fontFamily": "MonoLisa Nerd Font",
   "editor.fontLigatures": true,
@@ -48,6 +47,12 @@
   // Git
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": false,
+    "markdown": false,
+    "plaintext": false,
+    "scminput": false
+  },
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
@@ -75,6 +80,8 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
+  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
+  "workbench.productIconTheme": "material-product-icons",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
@@ -83,11 +90,7 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "workbench.preferredDarkColorTheme": "Tokyo Night"
+  "zig.path": "zig",
+  "zig.zls.path": "zls",
+  "zig.initialSetupDone": true,
 }

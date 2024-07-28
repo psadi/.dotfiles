@@ -21,16 +21,6 @@
 PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
 export PATH
 
-# Set Zsh Prompt
-#---------------------------------------------
-# p10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Set Language
 #---------------------------------------------
 export LANGUAGE="en_US.UTF-8"
@@ -53,12 +43,13 @@ export ZSH_PLUGINS_PATH="${ZSH_DOTFILES_DIR}/plugins"
 #---------------------------------------------
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
+plug "psadi/zap-prompt"
 plug "psadi/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
-plug "romkatv/powerlevel10k"
+#plug "romkatv/powerlevel10k"
 
 # Load and initialise completion system
 #---------------------------------------------
@@ -86,3 +77,6 @@ if command -v brew &> /dev/null; then
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
+[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
