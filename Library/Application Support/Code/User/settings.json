@@ -80,7 +80,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
-  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
   "workbench.productIconTheme": "material-product-icons",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -93,4 +92,5 @@
   "zig.path": "zig",
   "zig.zls.path": "zls",
   "zig.initialSetupDone": true,
+  "workbench.preferredDarkColorTheme": "Min Gruvbox",
 }

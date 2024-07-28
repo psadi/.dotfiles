@@ -27,6 +27,9 @@ Vmap("n", "<leader>bd", "<CMD>bd<CR>", { silent = true })
 Vmap("n", "<leader>BD", "<CMD>bd!<CR>", { silent = true })
 Vmap("n", "<leader>qq", "<CMD>q!<CR>", { silent = true })
 
+-- Lazy
+Vmap('n', "l", "<CMD>Lazy<CR>", {})
+
 -- Mason
 Vmap('n', "<C-X>", "<CMD>Mason<CR>", {})
 Vmap('n', "K", vim.lsp.buf.hover, {})
@@ -41,4 +44,3 @@ Vmap({ 'n', 'v' }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
 Vmap("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-

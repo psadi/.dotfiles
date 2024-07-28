@@ -9,20 +9,31 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls" },
+        ensure_installed = { "lua_ls", "zls", "ruff", "ruff_lsp" },
       }
     end
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
+    dependencies = {
+      { "ms-jpq/coq_nvim",       branch = "coq" },
+      { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+      { 'ms-jpq/coq.thirdparty', branch = "3p" }
+    },
+    init = function()
+      vim.g.coq_settings = {
+        auto_start = 'shut-up',
+
+        -- Your COQ settings here
+      }
+    end,
     config = function()
       local lspconfig = require('lspconfig')
       lspconfig.ruff.setup {}
       lspconfig.ruff_lsp.setup({
-      -- on_attach = on_attach,
         init_options = {
           settings = {
-            -- Any extra CLI arguments for `ruff` go here.
             args = {},
           }
         }
@@ -36,6 +47,7 @@ return {
           }
         }
       })
+      lspconfig.zls.setup({})
     end
-  }
+  },
 }
