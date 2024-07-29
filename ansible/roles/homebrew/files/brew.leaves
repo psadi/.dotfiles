@@ -1,4 +1,3 @@
-axel
 bat
 bottom
 coreutils
@@ -13,7 +12,6 @@ gh
 git
 git-delta
 gnutls
-go
 hadolint
 helm
 jhead
@@ -24,7 +22,6 @@ lazydocker
 lazygit
 miniserve
 node
-pyenv
 python@3.12
 qpdf
 ripgrep
@@ -35,5 +32,6 @@ terraform-ls
 tokei
 watch
 wget
+yazi
 zls
 zoxide

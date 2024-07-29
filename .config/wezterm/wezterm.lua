@@ -13,13 +13,48 @@ wezterm.on("gui-startup", function()
   window:gui_window():maximize()
 end)
 
-
 -- --------------------
 -- Configs
 -- --------------------
 config.font = wezterm.font("MonoLisa Nerd Font")
 config.font_size = 19
-config.color_scheme = "GruvboxDarkHard"
+
+config.color_schemes = {
+  ["Dark+"] = {
+    foreground = "#f8f8f8",
+    background = "#1e1e1e",
+    cursor_bg = "#aeafad",
+    cursor_fg = "#1e1e1e",
+    cursor_border = "#52ad70",
+    selection_fg = "black",
+    selection_bg = "#2e4e75",
+    scrollbar_thumb = "#4f4f4f",
+    ansi = {
+      -- With reference to https://wezfurlong.org/wezterm/config/appearance.html
+      "#000000", -- black
+      "#e06c75", -- maroon
+      "#98c379", -- green
+      "#ffcb6b", -- olive
+      "#82aaff", -- navy
+      "#ff79c6", --purple
+      "#89ddff", -- teal
+      "#ffffff", -- silver
+    },
+    brights = {
+      "#5c5c5c", -- grey
+      "#ff5370", -- red
+      "#c3e88d", -- lime
+      "#ffcb6b", -- yellow
+      "#61afef", -- blue
+      "#ff79c6", -- fuchsia
+      "#89ddff", -- aqua
+      "#ffffff", -- white
+    },
+  },
+}
+
+config.color_scheme = "Dark+"
+
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false

@@ -92,5 +92,4 @@
   "zig.path": "zig",
   "zig.zls.path": "zls",
   "zig.initialSetupDone": true,
-  "workbench.preferredDarkColorTheme": "Min Gruvbox",
 }
