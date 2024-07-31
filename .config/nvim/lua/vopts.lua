@@ -44,3 +44,17 @@ Vmap({ 'n', 'v' }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
 Vmap("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Zig
+function ZigBuild()
+  vim.cmd('vsplit')
+  vim.cmd('wincmd L')
+  vim.cmd('terminal zig build')
+  vim.cmd('startinsert')
+end
+
+vim.api.nvim_set_keymap("n", "<leader>zb", ":lua ZigBuild()<CR>", { noremap = true, silent = true })
+
+vim.cmd [[
+  autocmd TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>:bd!<CR>
+]]
