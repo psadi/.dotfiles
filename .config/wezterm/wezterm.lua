@@ -74,8 +74,9 @@ config.window_padding = {
 -- MacOS navigation between words using Opt + Arrow Keys
 -- -----------------------------------------------------
 config.keys = {
-  { key = "LeftArrow",  mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
-  { key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
+  { key = "LeftArrow",  mods = "OPT",      action = wezterm.action({ SendString = "\x1bb" }) },
+  { key = "RightArrow", mods = "OPT",      action = wezterm.action({ SendString = "\x1bf" }) },
+  { key = 'f',          mods = 'CTRL|CMD', action = wezterm.action.ToggleFullScreen }
 }
 
 return config
