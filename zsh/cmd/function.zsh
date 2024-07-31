@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
 .p(){
-    cd ${ZSH_DOTFILES_DIR}
+    cd ${ZSH_CONFIG_DIR}
     git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
     cd -
 }
 
 p.(){
-    cd ${ZSH_DOTFILES_DIR}
+    cd ${ZSH_CONFIG_DIR}
     git pull --rebase origin master
     cd -
 }
