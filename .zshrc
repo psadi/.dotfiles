@@ -46,14 +46,14 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 
+# Load evals,aliases, functions, plugins & completions
+#---------------------------------------------
+for z (${ZSH_CONFIG_DIR}/**/*(N.)) plug $z
+
 # Load and initialise completion system
 #---------------------------------------------
 autoload -Uz compinit
 compinit
-
-# Load evals,aliases, functions, plugins & completions
-#---------------------------------------------
-for z (${ZSH_CONFIG_DIR}/**/*(N.)) plug $z
 
 # ZStyle
 #---------------------------------------------

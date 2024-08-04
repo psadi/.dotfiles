@@ -30,22 +30,6 @@ if (( $+commands[zoxide] )); then
   alias cd="z"
 fi
 
-case "${OSTYPE}" in
-  "Linux")
-    export NVIM_PACKAGE_NAME="nvim-linux64"
-    ;;
-  "Darwin")
-    export NVIM_PACKAGE_NAME="nvim-macos"
-esac
-
-if [ -d "/opt/pkg/${NVIM_PACKAGE_NAME}" ]; then
-  export PATH="${PATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/bin"
-  export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/lib"
-  export MANPATH="${MANPATH}:/opt/pkg/${NVIM_PACKAGE_NAME}/share/man"
-  export EDITOR=nvim
-  alias vim="nvim"
-fi
-
 # PYTHON
 #---------------------------------------------
 if (( $+commands[brew] )); then
