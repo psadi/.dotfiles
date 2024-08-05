@@ -3,7 +3,7 @@
 if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
-  export BAT_THEME="Visual Studio Dark+"
+  export BAT_THEME="base16"
   show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
   export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 fi
@@ -38,3 +38,17 @@ if (( $+commands[brew] )); then
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
 fi
+
+# NEOVIM
+# ---------------------------------------------
+nvim_dir=(/opt/pkg/nvim-*/)
+if (( ${#nvim_dir} )); then
+  for dir in $nvim_dir; do
+    export PATH="${PATH}:${dir}bin"
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${dir}lib"
+    export MANPATH="${MANPATH}:${dir}share/man"
+  done
+  export EDITOR=nvim
+  alias vim="nvim"
+fi
+unset nvim_dir
