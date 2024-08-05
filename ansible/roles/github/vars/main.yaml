@@ -1,25 +1,20 @@
 ---
 github_package_repos:
-  #- name: neovim/neovim
-  #  url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
-  #  destination: /opt/pkg
-  #  extra_opts: ""
-  #  replace_version: false
-  # - name: zellij-org/zellij
-  #   url: https://github.com/zellij-org/zellij/releases/download/[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts: ""
-  #   replace_version: false
+  - name: neovim/neovim
+    url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
+    destination: /opt/pkg
+    extra_opts: ""
+    replace_version: false
   - name: junegunn/fzf
     url: https://github.com/junegunn/fzf/releases/download/v0.54.0/fzf-0.54.0-linux_amd64.tar.gz
     destination: /usr/local/bin
     extra_opts: ""
     replace_version: false
-  - name: hashicorp/terraform
-    url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
-    destination: /usr/local/bin
-    extra_opts: "-qq"
-    replace_version: true
+  #- name: hashicorp/terraform
+  #  url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
+  #  destination: /usr/local/bin
+  #  extra_opts: "-qq"
+  #  replace_version: true
   - name: BurntSushi/ripgrep
     url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
@@ -39,13 +34,13 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "lazygit"
     replace_version: true
-  - name: helm/helm
-    url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
-    destination: /usr/local/bin
-    extra_opts:
-      - "linux-amd64/helm"
-      - "--strip-components=1"
-    replace_version: false
+  #- name: helm/helm
+  #  url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
+  #  destination: /usr/local/bin
+  #  extra_opts:
+  #    - "linux-amd64/helm"
+  #    - "--strip-components=1"
+  #  replace_version: false
   - name: ajeetdsouza/zoxide
     url: https://github.com/ajeetdsouza/zoxide/releases/download/v[VERSION]/zoxide-[VERSION]-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
