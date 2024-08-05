@@ -53,7 +53,8 @@ config.color_schemes = {
   },
 }
 
-config.color_scheme = "Dark+"
+config.color_scheme_dirs = { "/Users/adithyaps/.config/wezterm/colorschemes" }
+config.color_scheme = "carbonfox"
 
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true

@@ -3,11 +3,15 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons'
   },
-
   config = function()
+    vim.cmd("colorscheme Carbonfox")
     require('lualine').setup {
       options = {
-        theme = "codedark"
+        icons_enabled = false,
+        theme = "auto",
+        globalstatus = true,
+        component_separators = { left = '|', right = '|' },
+        section_separators = { left = '', right = '' },
       }
     }
   end
