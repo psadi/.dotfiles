@@ -1,6 +1,6 @@
 ---
 github_package_repos:
-  - name: nodejs
+  - name: node
     url: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.xz
     destination: /opt/pkg
     extra_opts: ""
