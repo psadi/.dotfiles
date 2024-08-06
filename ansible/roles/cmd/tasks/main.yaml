@@ -19,7 +19,7 @@
         chdir: /opt/pkg
       loop:
         - curl -O 'https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.xz'
-        - tar -zxf node-v20.16.0-linux-x64.tar.xz
+        - tar -Jxf node-v20.16.0-linux-x64.tar.xz
         - rm node-v20.16.0-linux-x64.tar.xz
 
     - name: Finalizing the installation
