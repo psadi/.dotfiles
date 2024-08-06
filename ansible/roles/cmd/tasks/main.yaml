@@ -31,8 +31,8 @@
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d dotfiles -t "${HOME}" .
         - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'qa' >/dev/null 2>&1"
-        - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'TSUpdate' >/dev/null 2>&1"
-        - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'COQdeps' >/dev/null 2>&1"
+        - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'TSUpdate' -c 'qa' >/dev/null 2>&1"
+        - "/opt/pkg/{{ nvim_dir }}/bin/nvim -c 'COQdeps' -c 'qa' >/dev/null 2>&1"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
