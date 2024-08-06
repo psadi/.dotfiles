@@ -3,7 +3,6 @@ apt_packages:
   - build-essential
   - git
   - curl
-  - axel
   - zsh
   - jq
   - zip
