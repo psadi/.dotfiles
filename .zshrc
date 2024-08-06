@@ -30,7 +30,7 @@ export LC_CTYPE="en_US.UTF-8"
 
 # Set Base Config
 #---------------------------------------------
-export OSTYPE=$(uname -a | awk '{print $1}')
+export OSTYPE=$(uname -s)
 export DOTFILES="${HOME}/dotfiles"
 export ZSH_CONFIG_DIR="${DOTFILES}/zsh"
 
