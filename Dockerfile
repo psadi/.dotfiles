@@ -9,7 +9,7 @@ ENV LANG=en_US.UTF-8
 # --------------------------
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install --no-install-recommends -y \
-    sudo python3-minimal python3-pip locales && \
+    sudo python3-minimal python3-pip python3-venv locales && \
     pip3 install ansible --break-system-packages --no-cache-dir --no-warn-script-location && \
     # --------------------------
     # CREATE & CONFIGURE USER

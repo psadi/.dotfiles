@@ -1,5 +1,10 @@
 ---
 github_package_repos:
+  - name: nodejs
+    url: https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.xz
+    destination: /opt/pkg
+    extra_opts: ""
+    replace_version: false
   - name: neovim/neovim
     url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
     destination: /opt/pkg

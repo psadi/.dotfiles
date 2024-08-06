@@ -39,16 +39,17 @@ if (( $+commands[brew] )); then
   export PIP_USE_DEPRICATED=html5lib
 fi
 
-# NEOVIM
+# Optional Packages
 # ---------------------------------------------
-nvim_dir=(/opt/pkg/nvim-*/)
-if (( ${#nvim_dir} )); then
-  for dir in $nvim_dir; do
-    export PATH="${PATH}:${dir}bin"
-    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${dir}lib"
-    export MANPATH="${MANPATH}:${dir}share/man"
-  done
+for dir in /opt/pkg/*; do
+  if [ -d "$dir" ]; then
+    export PATH="${PATH}:${dir}/bin"
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${dir}/lib"
+    export MANPATH="${MANPATH}:${dir}/share/man"
+  fi
+done
+
+if (( $+commands[nvim])); then
   export EDITOR=nvim
   alias vim="nvim"
 fi
-unset nvim_dir
