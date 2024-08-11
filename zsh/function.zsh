@@ -1,13 +1,25 @@
 #!/usr/bin/env zsh
 
+function copyfile {
+  emulate -L zsh
+
+  clipcopy $1
+}
+
+function copydir {
+  emulate -L zsh
+
+  print -n $PWD | clipcopy
+}
+
 .p(){
-    cd ${DOTFILES}
+    cd ${DOTFILES_DIR}
     git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
     cd -
 }
 
 p.(){
-    cd ${DOTFILES}
+    cd ${DOTFILES_DIR}
     git pull --rebase origin master
     cd -
 }
@@ -104,8 +116,8 @@ procs() {
 
 brew_leaves_gen(){
     if command -v brew &> /dev/null; then
-        brew leaves > "${DOTFILES}/ansible/roles/homebrew/files/brew.leaves"
-        brew list --cask -1 > "${DOTFILES}/ansible/roles/homebrew/files/brew.casks"
+        brew leaves > "${DOTFILES_DIR}/ansible/roles/homebrew/files/brew.leaves"
+        brew list --cask -1 > "${DOTFILES_DIR}/ansible/roles/homebrew/files/brew.casks"
     else
         echo "homebrew is required to generate leaves"
         return

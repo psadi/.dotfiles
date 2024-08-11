@@ -30,9 +30,8 @@ export LC_CTYPE="en_US.UTF-8"
 
 # Set Base Config
 #---------------------------------------------
-export OSTYPE=$(uname -s)
-export DOTFILES="${HOME}/dotfiles"
-export ZSH_CONFIG_DIR="${DOTFILES}/zsh"
+export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
+export DOTFILES_DIR="${HOME}/dotfiles"
 
 # Load Zap
 #---------------------------------------------
@@ -45,10 +44,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
-
-# Load evals,aliases, functions, plugins & completions
-#---------------------------------------------
-for z (${ZSH_CONFIG_DIR}/**/*(N.)) plug $z
+plug "${DOTFILES_DIR}/zsh/*"
 
 # Load and initialise completion system
 #---------------------------------------------
