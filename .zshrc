@@ -46,11 +46,6 @@ plug "zsh-users/zsh-completions"
 plug "Aloxaf/fzf-tab"
 plug "${DOTFILES_DIR}/zsh/*"
 
-# Load and initialise completion system
-#---------------------------------------------
-autoload -Uz compinit
-compinit
-
 # ZStyle
 #---------------------------------------------
 zstyle ':completion:*:git-checkout:*' sort false
