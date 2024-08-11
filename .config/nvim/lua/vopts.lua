@@ -39,7 +39,7 @@ Vmap('n', "cm", "<CMD>Mason<CR>", {})
 -- Fzf Lua
 Vmap("n", "<leader>ff", "<CMD>FzfLua files<CR>", { silent = true })
 Vmap("n", "<leader>fb", "<CMD>FzfLua buffers<CR>", { silent = true })
-Vmap("n", "<leader>f/", "<CMD>FzfLua grep_visual<CR>", { silent = true })
+Vmap("n", "<leader>fg", "<CMD>FzfLua grep_visual<CR>", { silent = true })
 Vmap({ 'n', 'v' }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
