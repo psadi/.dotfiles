@@ -18,12 +18,6 @@ function copydir {
     cd -
 }
 
-p.(){
-    cd ${DOTFILES_DIR}
-    git pull --rebase origin master
-    cd -
-}
-
 lg(){
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
 
@@ -42,16 +36,6 @@ unsetp(){
     export HTTP_PROXY=
     export HTTPS_PROXY=
     export NO_PROXY=
-}
-
-setp(){
-    export http_proxy=
-    export https_proxy=
-    export no_proxy=
-
-    export HTTP_PROXY="${http_proxy}"
-    export HTTPS_PROXY="${https_proxy}"
-    export NO_PROXY="${no_proxy}"
 }
 
 show-proxy(){
@@ -83,13 +67,6 @@ zj() {
             fi
             ;;
     esac
-}
-
-autotune()
-{
-    chmod -R 755 *
-    fd -t f -X dos2unix
-    git grep -I --name-only -z -e '' | xargs -0 sed -i 's/[ \t]\+\(\r\?\)$/\1/'
 }
 
 gitlfs()
