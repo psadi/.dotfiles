@@ -29,12 +29,12 @@ config.show_new_tab_button_in_tab_bar = false
 config.enable_scroll_bar = false
 config.window_background_opacity = 10
 config.macos_window_background_blur = 10
---config.window_padding = {
---  left = 0,
---  right = 0,
---  top = 1,
---  bottom = 0,
---}
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 1,
+  bottom = 0,
+}
 config.window_close_confirmation = "AlwaysPrompt"
 config.default_workspace = "home"
 -- -----------------------------------------------------
