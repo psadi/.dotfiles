@@ -46,3 +46,16 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "zoxide"
     replace_version: true
+  - name: eza-community/eza
+    url: https://github.com/eza-community/eza/releases/download/v[VERSION]/eza_x86_64-unknown-linux-gnu.tar.gz
+    destination: /usr/local/bin
+    extra_opts: ""
+    replace_version: true
+  - name: cli/cli
+    url: https://github.com/cli/cli/releases/download/v[VERSION]/gh_[VERSION]_linux_amd64.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "--strip-components=2"
+      - "--wildcards"
+      - "*/bin/gh"
+    replace_version: true

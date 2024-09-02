@@ -32,23 +32,47 @@ log() {
 check_docker() {
 	log "INFO" "Checking if Docker is installed..."
 	log "INFO" "Evaluating: 'command -v docker'"
+
 	if ! command -v docker &>/dev/null; then
 		log "ERROR" "Docker is required to start the development environment. Please install Docker and try again."
-		exit 1
-	fi
-	log "INFO" "Docker is installed."
+    return 1
+  fi
+
+  exists="Docker"
+	log "INFO" "${exists} is installed."
 }
 
-run_docker_command() {
-	local cmd="docker run --rm -it ${@} psadi/pde:latest"
+check_podman() {
+
+	log "INFO" "Checking if Podman is installed..."
+	log "INFO" "Evaluating: 'command -v podman'"
+  if ! command -v podman &>/dev/null; then
+		log "ERROR" "Podman is required to start the development environment. Please install Podman and try again."
+    return 1
+	fi
+  
+  exists="Podman"
+	log "INFO" "${exists} is installed."
+}
+
+run_command() {
+  case $exists in 
+    'Docker')
+	    local cmd="docker run --rm -it ${@} psadi/pde:latest"
+      ;;
+    'Podman')
+	    local cmd="podman run --rm -it ${@} docker.io/psadi/pde:latest"
+      ;;
+    esac
+
 	log "INFO" "Executing: '${cmd}'"
 	eval "${cmd}"
 	exit $?
 }
 
 main() {
-	check_docker
-	run_docker_command "${@}"
+	check_docker || check_podman || exit 1
+	run_command "${@}"
 }
 
 main "${@}"
