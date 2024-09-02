@@ -3,3 +3,4 @@ vim/files
 ansible/.vault_pass
 .config/helix/contrib
 .config/helix/runtime
+.config/gh/hosts.yml
