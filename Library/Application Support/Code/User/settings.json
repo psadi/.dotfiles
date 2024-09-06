@@ -1,8 +1,5 @@
 {
-  // Language's
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
-  },
+  // Language
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
@@ -47,12 +44,6 @@
   // Git
   "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
-  "github.copilot.enable": {
-    "*": false,
-    "markdown": false,
-    "plaintext": false,
-    "scminput": false
-  },
   // Telemetry
   "telemetry.telemetryLevel": "off",
   // Terminal
@@ -72,13 +63,17 @@
   "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
   "window.zoomLevel": 1.5,
+  // workbench
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
+  "workbench.editor.editorActionsLocation": "titleBar",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
+  "workbench.editor.pinnedTabSizing": "compact",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
+  "workbench.preferredDarkColorTheme": "Carbonfox",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
@@ -87,11 +82,7 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "zig.path": "zig",
-  "zig.zls.path": "zls",
   "zig.initialSetupDone": true,
-  "workbench.preferredDarkColorTheme": "Carbonfox",
-  "dev.containers.executeInWSL": true,
-  "dev.containers.executeInWSLDistro": "Debian",
-  "workbench.editor.editorActionsLocation": "hidden",
+  "zig.path": "zig",
+  "zig.zls.path": "zls"
 }
