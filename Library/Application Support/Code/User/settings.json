@@ -91,4 +91,7 @@
   "zig.zls.path": "zls",
   "zig.initialSetupDone": true,
   "workbench.preferredDarkColorTheme": "Carbonfox",
+  "dev.containers.executeInWSL": true,
+  "dev.containers.executeInWSLDistro": "Debian",
+  "workbench.editor.editorActionsLocation": "hidden",
 }

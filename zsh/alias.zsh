@@ -13,4 +13,3 @@ alias ssh="TERM=xterm-256color ssh"
 
 alias cpf=copyfile
 alias cpd=copydir
-

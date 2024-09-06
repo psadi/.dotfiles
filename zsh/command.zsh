@@ -53,3 +53,14 @@ if (( $+commands[nvim])); then
   export EDITOR=nvim
   alias vim="nvim"
 fi
+
+
+if (( $+commands[wezterm])); then
+  wz(){
+    case "${1}" in
+    ls) wezterm cli list ;;
+    lsc) wezterm cli list-clients ;;
+    *) wezterm "${2}" --help ;;
+    esac
+  }
+fi
