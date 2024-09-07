@@ -3,6 +3,11 @@
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
+  "[zig]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ziglang.vscode-zig",
+    "files.eol": "\n"
+  },
   // Editor
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
@@ -26,6 +31,7 @@
   "editor.renderLineHighlight": "none",
   "editor.renderWhitespace": "all",
   "editor.scrollbar.horizontal": "hidden",
+  "editor.semanticHighlighting.enabled": true,
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": true,
   // Explorer
@@ -51,6 +57,7 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.enableMultiLinePasteWarning": "auto",
   "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.minimumContrastRatio": 1,
   "terminal.integrated.rightClickBehavior": "paste",
   "terminal.integrated.smoothScrolling": true,
   // Terraform
@@ -62,11 +69,12 @@
   "window.autoDetectColorScheme": true,
   "window.commandCenter": false,
   "window.confirmSaveUntitledWorkspace": false,
+  "window.titleBarStyle": "custom",
   "window.zoomLevel": 1.5,
   // workbench
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
-  "workbench.editor.editorActionsLocation": "titleBar",
+  "workbench.editor.editorActionsLocation": "hidden",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.pinnedTabSizing": "compact",
@@ -82,7 +90,4 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "zig.initialSetupDone": true,
-  "zig.path": "zig",
-  "zig.zls.path": "zls"
 }

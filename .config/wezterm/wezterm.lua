@@ -38,7 +38,7 @@ config.window_padding = {
 config.window_close_confirmation = "AlwaysPrompt"
 config.default_workspace = "home"
 -- -----------------------------------------------------
--- MacOS navigation between words using Opt + Arrow Keys
+-- MacOS Keybindings
 -- -----------------------------------------------------
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {

@@ -1,4 +1,4 @@
-FROM debian:bookworm-20240701-slim as base
+FROM debian:bookworm-slim as base
 
 LABEL maintainer="psadi (ps.adithya@icloud.com)" \
     description="Docker image for my personal development environment"
