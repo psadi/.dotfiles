@@ -37,7 +37,7 @@ export LC_CTYPE="en_US.UTF-8"
 # Set Base Config
 #---------------------------------------------
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
-export DOTFILES_DIR="${HOME}/dotfiles"
+export DOTFILES_DIR="${HOME}/.dotfiles"
 
 # Load Zap
 #---------------------------------------------
