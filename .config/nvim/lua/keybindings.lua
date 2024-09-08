@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 vim.g.mapleader = " "
 vim.wo.number = true
 
@@ -11,6 +12,7 @@ cmd("tabstop=2")
 cmd("softtabstop=2")
 cmd("shiftwidth=2")
 cmd("relativenumber")
+cmd("colorcolumn=80")
 
 opt = false
 
@@ -40,6 +42,11 @@ map("n", "cm", "<CMD>Mason<CR>", {})
 map("n", "<leader>ff", "<CMD>FzfLua files<CR>", { silent = true })
 map("n", "<leader>fb", "<CMD>FzfLua buffers<CR>", { silent = true })
 map("n", "<leader>fg", "<CMD>FzfLua grep_visual<CR>", { silent = true })
+map("n", "<leader>gco", "<CMD>FzfLua git_commits<CR>", { silent = true })
+map("n", "<leader>gs", "<CMD>FzfLua git_status<CR>", { silent = true })
+map("n", "<leader>gb", "<CMD>FzfLua git_branches<CR>", { silent = true })
+map("n", "<leader>gt", "<CMD>FzfLua git_tags<CR>", { silent = true })
+map("n", "<leader>H", "<CMD>FzfLua search_history<CR>", { silent = true })
 map({ "n", "v" }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
@@ -51,10 +58,10 @@ map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
 
 -- Zig
 function ZigBuild()
-	vim.cmd("vsplit")
-	vim.cmd("wincmd L")
-	vim.cmd("terminal zig build")
-	vim.cmd("startinsert")
+  vim.cmd("vsplit")
+  vim.cmd("wincmd L")
+  vim.cmd("terminal zig build")
+  vim.cmd("startinsert")
 end
 
 vim.api.nvim_set_keymap("n", "<leader>zb", ":lua ZigBuild()<CR>", { noremap = true, silent = true })
