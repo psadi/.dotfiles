@@ -47,6 +47,7 @@ map("n", "<leader>gs", "<CMD>FzfLua git_status<CR>", { silent = true })
 map("n", "<leader>gb", "<CMD>FzfLua git_branches<CR>", { silent = true })
 map("n", "<leader>gt", "<CMD>FzfLua git_tags<CR>", { silent = true })
 map("n", "<leader>H", "<CMD>FzfLua search_history<CR>", { silent = true })
+map("n", "<leader>K", "<CMD>FzfLua keymaps<CR>", { silent = true })
 map({ "n", "v" }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
