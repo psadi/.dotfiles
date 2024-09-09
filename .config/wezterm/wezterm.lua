@@ -20,7 +20,8 @@ end)
 config.font = wezterm.font("MonoLisa Nerd Font")
 config.font_size = 19
 config.color_scheme_dirs = { "/Users/adithyaps/.config/wezterm/themes" }
-config.color_scheme = "carbonfox"
+config.color_scheme = "Github Dark (Gogh)"
+-- config.color_scheme = "carbonfox"
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false

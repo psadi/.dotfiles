@@ -47,13 +47,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  // Git
-  "git.autofetch": true,
-  "git.openRepositoryInParentFolders": "never",
-  // Telemetry
-  "telemetry.telemetryLevel": "off",
   // Terminal
-  "terminal.external.osxExec": "WezTerm.app",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.enableMultiLinePasteWarning": "auto",
   "terminal.integrated.gpuAcceleration": "on",
@@ -74,14 +68,12 @@
   // workbench
   "workbench.activityBar.location": "top",
   "workbench.colorCustomizations": {},
-  "workbench.editor.editorActionsLocation": "hidden",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.pinnedTabSizing": "compact",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
-  "workbench.preferredDarkColorTheme": "Carbonfox",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
@@ -90,4 +82,5 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
+  "workbench.preferredDarkColorTheme": "Carbonfox",
 }

@@ -50,8 +50,8 @@ map("n", "<leader>H", "<CMD>FzfLua search_history<CR>", { silent = true })
 map({ "n", "v" }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
---map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-map("n", "_", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open parent directory" })
+map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+-- map("n", "_", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open parent directory" })
 
 -- Reload Config
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })

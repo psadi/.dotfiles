@@ -16,5 +16,4 @@ vim.opt.rtp:prepend(lazypath)
 require("keybindings")
 require("lazy").setup({
   { import = "plugins" },
-  { import = "plugins/mini" },
 })
