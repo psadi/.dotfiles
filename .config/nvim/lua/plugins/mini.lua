@@ -17,13 +17,13 @@ return {
       })
     end,
   },
-  {
-    "echasnovski/mini.starter",
-    version = "false",
-    config = function()
-      require("mini.starter").setup()
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.starter",
+  --   version = "false",
+  --   config = function()
+  --     require("mini.starter").setup()
+  --   end,
+  -- },
   {
     "echasnovski/mini.surround",
     version = "false",
@@ -33,4 +33,22 @@ return {
       })
     end,
   },
+  {
+    "echasnovski/mini.icons",
+    version = false,
+    config = function()
+      require("mini.icons").setup({
+        defaults = { lazy = true }
+      })
+    end,
+  },
+  -- {
+  --   "echasnovski/mini.statusline",
+  --   version = false,
+  --   config = function()
+  --     require("mini.statusline").setup({
+  --       defaults = { lazy = true }
+  --     })
+  --   end,
+  -- }
 }
