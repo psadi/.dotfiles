@@ -13,9 +13,9 @@ return {
         lualine_x = { 'encoding' },
         lualine_z = { 'location' }
       },
-      tabline = {
-        lualine_a = { 'buffers' },
-      },
+      -- tabline = {
+      --   lualine_a = { 'buffers' },
+      -- },
     }
   end
 }

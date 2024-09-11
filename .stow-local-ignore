@@ -9,5 +9,5 @@ Dockerfile
 \.gitignore
 \.github
 Library/Fonts
-.config/(alacritty|zellij|helix)
 .DS_Store
+\.config/wezterm

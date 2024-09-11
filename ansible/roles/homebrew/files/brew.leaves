@@ -25,5 +25,6 @@ terraform
 terraform-ls
 watch
 wget
+zellij
 zls
 zoxide

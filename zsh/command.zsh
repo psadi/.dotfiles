@@ -3,7 +3,7 @@
 if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
-  export BAT_THEME="GitHub"
+  export BAT_THEME="ansi"
   show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
   export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 fi
@@ -61,6 +61,33 @@ if (( $+commands[wezterm])); then
     ls) wezterm cli list ;;
     lsc) wezterm cli list-clients ;;
     *) wezterm "${2}" --help ;;
+    esac
+  }
+fi
+
+if (( $+commands[zellij])); then
+  zj() {
+    in_zj() {
+      [ -n "$ZELLIJ" ] || { echo "Not in a Zellij session"; return 1; }
+    }
+
+    case "${1}" in
+      rt)
+        in_zj || return $?
+        zellij action rename-tab "${2:-$(basename "$PWD")}"
+        ;;
+      rp|rs)
+        in_zj || return $?
+        [ -z "${2}" ] && { echo "$0 $1: Name required"; return 1; }
+        zellij action rename-${1#r} "${2}"
+        ;;
+      *)
+        if [ -z "${1}" ]; then
+            zellij -s "$(basename "$PWD")"
+        else
+            zellij "$@"
+        fi
+        ;;
     esac
   }
 fi

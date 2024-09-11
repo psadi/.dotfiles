@@ -4,8 +4,8 @@
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[zig]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "ziglang.vscode-zig",
+    "editor.formatOnSave": true,
     "files.eol": "\n"
   },
   // Editor
@@ -74,6 +74,7 @@
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.layoutControl.enabled": false,
   "workbench.list.smoothScrolling": true,
+  "workbench.preferredDarkColorTheme": "Carbonfox",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
   // Zenmode
@@ -82,5 +83,11 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.silentNotifications": false,
-  "workbench.preferredDarkColorTheme": "Carbonfox",
+  "zig.initialSetupDone": true,
+  "zig.path": "zig",
+  "zig.zls.path": "zls",
+  "codeium.enableConfig": {
+    "*": true,
+    "zig": true
+  }
 }
