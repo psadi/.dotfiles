@@ -89,6 +89,5 @@
   "codeium.enableConfig": {
     "*": true,
     "zig": true
-  },
-  "workbench.editor.editorActionsLocation": "hidden"
+  }
 }

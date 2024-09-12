@@ -14,8 +14,10 @@
   "mini.starter": { "branch": "main", "commit": "3e0af795938ee800846708bed92fbe4e8583141a" },
   "mini.surround": { "branch": "main", "commit": "d8913ed23be0a1a4585ae34414821cc343a46174" },
   "neocodeium": { "branch": "main", "commit": "ed635629e17d4f8cc70afa65bf883b3c57e3e85b" },
+  "neogit": { "branch": "master", "commit": "eb5b156a41fb7147eed9f971504dfa8753d8b006" },
   "nightfox.nvim": { "branch": "main", "commit": "7557f26defd093c4e9bc17f28b08403f706f5a44" },
   "nvim-lspconfig": { "branch": "master", "commit": "0ef64599b8aa0187ee5f6d92cb39c951f348f041" },
   "nvim-treesitter": { "branch": "master", "commit": "5b8b126de02ebfd92e46ed5986b3e58e870b85de" },
-  "oil.nvim": { "branch": "master", "commit": "1fe476daf0b3c108cb8ee1fc1226cc282fa2c9c1" }
+  "oil.nvim": { "branch": "master", "commit": "1fe476daf0b3c108cb8ee1fc1226cc282fa2c9c1" },
+  "plenary.nvim": { "branch": "master", "commit": "ec289423a1693aeae6cd0d503bac2856af74edaa" }
 }
