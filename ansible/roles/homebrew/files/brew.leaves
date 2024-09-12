@@ -21,7 +21,6 @@ python@3.12
 ripgrep
 stow
 telnet
-terraform
 terraform-ls
 watch
 wget

@@ -38,6 +38,7 @@ if (( $+commands[brew] )); then
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
   pathman PATH "${PYTHON_HOME}/libexec/bin"
+  pathman PATH "/usr/local/sbin"
 fi
 
 # Optional Packages
