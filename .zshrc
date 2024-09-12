@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 #---------------------------------------------
 #
@@ -22,10 +22,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# PATH
 #---------------------------------------------
-PATH="${HOME}/.local/bin:${PYTHON_HOME}/libexec/bin:/usr/local/sbin:${PATH}"
-export PATH
+function pathman() {
+  local var_name="$1"
+  local new_dir="$2"
+
+  eval "val=\$$var_name"
+
+  case ":$val:" in
+    *":$new_dir:"*) ;;
+    *) eval "$var_name=\"$new_dir:\$$var_name\"" ;;
+  esac
+}
 
 # Set Language
 #---------------------------------------------
@@ -53,7 +61,7 @@ plug "Aloxaf/fzf-tab"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
-for z (${DOTFILES_DIR}/zsh/**/*(N.)) source $z
+for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 
 # ZStyle
 #---------------------------------------------

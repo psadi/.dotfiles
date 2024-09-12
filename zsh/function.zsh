@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+function paths(){
+  echo $PATH | awk -F: '{for (i=1; i<=NF; i++) print $i}'
+}
+
 function copyfile {
   emulate -L zsh
 

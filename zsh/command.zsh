@@ -37,15 +37,16 @@ if (( $+commands[brew] )); then
   export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
   export PYTHONUSERBASE="${HOME}/.local"
   export PIP_USE_DEPRICATED=html5lib
+  pathman PATH "${PYTHON_HOME}/libexec/bin"
 fi
 
 # Optional Packages
 # ---------------------------------------------
 for dir in /opt/pkg/*; do
   if [ -d "$dir" ]; then
-    export PATH="${PATH}:${dir}/bin"
-    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${dir}/lib"
-    export MANPATH="${MANPATH}:${dir}/share/man"
+    pathman PATH "${dir}/bin"
+    pathman LD_LIBRARY_PATH "${dir}/lib"
+    pathman MANPATH "${dir}/share/man"
   fi
 done
 
