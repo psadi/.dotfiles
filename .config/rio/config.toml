@@ -1,0 +1,49 @@
+# Defaults
+
+theme = "carbonfox"
+padding-x = 10
+padding-y = [15, 10]
+option-as-alt = 'left'
+
+[cursor]
+shape = 'underline'
+
+[window]
+mode = "Maximized"
+decorations = "Enabled"
+
+[renderer]
+performance = "high"
+backend = "automatic"
+disable-unfocused-render = false
+max-fps = 120
+
+[fonts]
+size = 20
+
+[fonts.regular]
+family = "MonoLisa Nerd Font"
+style = "normal"
+weight = 400
+
+[fonts.bold]
+family = "MonoLisa Nerd Font"
+style = "normal"
+weight = 800
+
+[fonts.italic]
+family = "MonoLisa Nerd Font"
+style = "italic"
+weight = 400
+
+[fonts.bold-italic]
+family = "MonoLisa Nerd Font"
+style = "italic"
+weight = 800
+
+[navigation]
+mode = "collapsedtab"
+clickable = true
+hide-if-single = false
+use-current-path = true
+
