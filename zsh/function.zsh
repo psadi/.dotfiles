@@ -1,8 +1,6 @@
 #!/usr/bin/env zsh
 
-function paths(){
-  echo $PATH | awk -F: '{for (i=1; i<=NF; i++) print $i}'
-}
+function mkcd { mkdir "$1" && cd "$1"; }; compdef mkcd=mkdir
 
 function copyfile {
   emulate -L zsh

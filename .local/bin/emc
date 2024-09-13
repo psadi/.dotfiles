@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title emc
+# @raycast.mode silent
+
+# Optional parameters:
+# @raycast.icon 🤖
+# @raycast.packageName EmacsClient
+
+# Documentation:
+# @raycast.description Open EmacsClient
+# @raycast.author psadi
+# @raycast.authorURL github.com/psadi
+
+emacsclient -c -a 'emacs'

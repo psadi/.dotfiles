@@ -13,3 +13,7 @@ alias ssh="TERM=xterm-256color ssh"
 
 alias cpf=copyfile
 alias cpd=copydir
+
+alias path='echo -e ${PATH//:/\\n}'
+alias rm='rm -i'
+alias mkdir='mkdir -pv'

@@ -5,6 +5,8 @@
 if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
+  # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  export MANROFFOPT='-c'
   export BAT_THEME="ansi"
   show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
   export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
@@ -49,6 +51,7 @@ if (( $+commands[brew] )); then
   # Path
   pathman PATH "${PYTHON_HOME}/libexec/bin"
   pathman PATH "/usr/local/sbin"
+  pathman PATH "/usr/local/opt/m4/bin"
 fi
 
 # Optional Packages
@@ -81,4 +84,17 @@ if (( $+commands[wezterm])); then
     *) wezterm "${2}" --help ;;
     esac
   }
+fi
+
+
+# Emacs
+# ---------------------------------------------
+
+if (( $+commands[emacs] )); then
+  pathman PATH "${HOME}/.config/emacs/bin"
+  alias emacs="emacs -nw"
+
+  if [[ $OSTYPE == "darwin" && ! -d "/Applications/Emacs.app" && -d "/usr/local/Cellar/emacs-plus@29/29.4/Emacs.app/Contents/MacOS" ]]; then
+    ln -s /usr/local/Cellar/emacs-plus@29/29.4/Emacs.app /Applications/Emacs.app
+  fi
 fi

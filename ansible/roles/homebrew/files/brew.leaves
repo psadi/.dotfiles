@@ -1,3 +1,4 @@
+automake
 axel
 bat
 coreutils
@@ -17,6 +18,7 @@ jq
 kubernetes-cli
 lazydocker
 lazygit
+libgccjit
 python@3.12
 ripgrep
 stow
