@@ -73,28 +73,3 @@ if (( $+commands[nvim])); then
   alias v="nvim"
 fi
 
-
-# Wezterm
-# ---------------------------------------------
-if (( $+commands[wezterm])); then
-  wz(){
-    case "${1}" in
-    ls) wezterm cli list ;;
-    lsc) wezterm cli list-clients ;;
-    *) wezterm "${2}" --help ;;
-    esac
-  }
-fi
-
-
-# Emacs
-# ---------------------------------------------
-
-if (( $+commands[emacs] )); then
-  pathman PATH "${HOME}/.config/emacs/bin"
-  alias emacs="emacs -nw"
-
-  if [[ $OSTYPE == "darwin" && ! -d "/Applications/Emacs.app" && -d "/usr/local/Cellar/emacs-plus@29/29.4/Emacs.app/Contents/MacOS" ]]; then
-    ln -s /usr/local/Cellar/emacs-plus@29/29.4/Emacs.app /Applications/Emacs.app
-  fi
-fi

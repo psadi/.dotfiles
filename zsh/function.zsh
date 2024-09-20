@@ -81,17 +81,17 @@ gitlfs()
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
 
-procs() {
-    if [ "${2}" != '--no-wrap' ]; then
-        tput rmam
-    fi
-
-    ps -ef | grep -i "${1}" | grep -v grep | awk '{printf "\033[0;36m%s\033[0m ", $2; for (i=8; i<=NF; i++) {if (i==8) printf "\033[0;33m%s", $i; else printf " %s", $i}; print ""}'
-
-    if [ "${2}" != '--no-wrap' ]; then
-        tput smam
-    fi
-}
+# procs() {
+#     if [ "${2}" != '--no-wrap' ]; then
+#         tput rmam
+#     fi
+#
+#     ps -ef | grep -i "${1}" | grep -v grep | awk '{printf "\033[0;36m%s\033[0m ", $2; for (i=8; i<=NF; i++) {if (i==8) printf "\033[0;33m%s", $i; else printf " %s", $i}; print ""}'
+#
+#     if [ "${2}" != '--no-wrap' ]; then
+#         tput smam
+#     fi
+# }
 
 brew_leaves_gen(){
     if command -v brew &> /dev/null; then

@@ -11,12 +11,15 @@ local config = wezterm.config_builder()
 -- ---------------------------------
 wezterm.on("gui-startup", function()
   local tab, pane, window = mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
+  -- window:gui_window():maximize()
+  window:toggle_fullscreen()
 end)
 
 -- --------------------
 -- Configs
 -- --------------------
+-- config.window_startup_fullscreen = true
+config.front_end = "WebGpu"
 config.font = wezterm.font("MonoLisa Nerd Font")
 config.font_size = 19
 config.color_scheme_dirs = { "/Users/adithyaps/.config/wezterm/themes" }
