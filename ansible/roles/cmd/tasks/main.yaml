@@ -14,15 +14,6 @@
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
 
-    - name: Installing NodeJs
-      ansible.builtin.shell: "{{ item }}"
-      args:
-        chdir: /opt/pkg
-      loop:
-        - curl -O 'https://nodejs.org/dist/v20.16.0/node-v20.16.0-linux-x64.tar.xz'
-        - tar -Jxf node-v20.16.0-linux-x64.tar.xz
-        - rm node-v20.16.0-linux-x64.tar.xz
-
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
       args:

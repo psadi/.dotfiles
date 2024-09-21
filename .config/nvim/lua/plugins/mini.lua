@@ -1,45 +1,12 @@
 return {
-  {
-    "echasnovski/mini.pairs",
-    version = "false",
-    config = function()
-      require("mini.pairs").setup({
-        defaults = { lazy = true }
-      })
-    end,
-  },
-  {
-    "echasnovski/mini.comment",
-    version = "false",
-    config = function()
-      require("mini.comment").setup({
-        defaults = { lazy = true }
-      })
-    end,
-  },
-  {
-    "echasnovski/mini.icons",
-    version = false,
-    config = function()
-      require("mini.icons").setup({
-        defaults = { lazy = true }
-      })
-    end,
-  },
-  {
-    "echasnovski/mini.starter",
-    version = "false",
-    config = function()
-      require("mini.starter").setup()
-    end,
-  },
-  {
-    "echasnovski/mini.surround",
-    version = "false",
-    config = function()
-      require("mini.surround").setup({
-        defaults = { lazy = true }
-      })
-    end,
-  },
+  'echasnovski/mini.nvim',
+  version = false,
+  config = function()
+    require("mini.pairs").setup()
+    require("mini.comment").setup()
+    require("mini.icons").setup()
+    require("mini.starter").setup()
+    require("mini.surround").setup()
+    require('mini.operators').setup()
+  end
 }

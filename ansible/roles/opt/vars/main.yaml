@@ -1,0 +1,15 @@
+
+packages:
+  nodejs:
+    version: 20.17.0
+    linux: https://nodejs.org/dist/v%version%/node-v%version%-linux-x64.tar.xz
+    darwin: https://nodejs.org/dist/v%version%/node-v%version%-darwin-x64.tar.gz
+  go:
+    version: 1.23.1
+    linux: https://go.dev/dl/go%version%.linux-amd64.tar.gz
+    darwin: https://go.dev/dl/go%version%.darwin-amd64.tar.gz
+  nvim:
+    version: 0.10.1
+    linux: https://github.com/neovim/neovim/releases/download/v%version%/nvim-linux64.tar.gz
+    darwin: https://github.com/neovim/neovim/releases/download/v%version%/nvim-macos-x86_64.tar.gz
+

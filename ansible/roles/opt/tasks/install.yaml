@@ -1,0 +1,31 @@
+---
+- debug:
+    msg: "Installing package {{ pkg.key }} version {{ pkg.value.version }}"
+
+- set_fact:
+    url: "{{ pkg.value[os] | regex_replace('%version%', version) }}"
+
+- name: Ensure destination directory exists
+  file:
+    path: "/opt/pkg"
+    state: directory
+    owner: "psadi"
+  become: true
+
+- name: "Downloading '{{ url }}' package"
+  get_url:
+    url: "{{ url }}"
+    dest: "/tmp"
+    mode: 0755
+
+- name: "Extracting '{{ url.split('/')[-1] }}' package"
+  unarchive:
+    src: "/tmp/{{ url.split('/')[-1] }}"
+    dest: "/opt/pkg"
+    mode: 0755
+    remote_src: true
+
+- name: Cleaning up
+  file:
+    path: "/tmp/{{ url.split('/')[-1] }}"
+    state: absent

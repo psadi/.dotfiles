@@ -43,6 +43,7 @@ fi
 # Homebrew
 #---------------------------------------------
 if (( $+commands[brew] )); then
+  export HOMEBREW_NO_ANALYTICS=1
   # Python
   PYTHON_VERSION='python@3.12'
   export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"

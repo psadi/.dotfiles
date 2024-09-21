@@ -1,0 +1,13 @@
+---
+
+- debug:
+    msg: "Optional Packages"
+
+- include_tasks: install.yaml
+  vars:
+    os: "{% if ansible_facts['distribution'] == 'MacOSX' %}darwin{% else %}linux{% endif %}"
+    version: "{{ pkg.value.version }}"
+  loop_control:
+    loop_var: pkg
+  loop: "{{ packages | dict2items }}"
+

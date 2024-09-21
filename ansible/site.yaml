@@ -13,6 +13,11 @@
     - role: homebrew
       tags: darwin
 
+    - role: opt
+      tags:
+        - linux
+        - darwin
+
     - role: cmd
       tags:
         - linux
