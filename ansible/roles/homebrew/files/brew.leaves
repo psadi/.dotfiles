@@ -17,6 +17,7 @@ jq
 kubernetes-cli
 lazydocker
 lazygit
+procs
 python@3.12
 ripgrep
 stow
