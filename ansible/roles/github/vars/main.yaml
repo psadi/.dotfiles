@@ -1,10 +1,5 @@
 ---
 github_package_repos:
-  - name: neovim/neovim
-    url: https://github.com/neovim/neovim/releases/download/[VERSION]/nvim-linux64.tar.gz
-    destination: /opt/pkg
-    extra_opts: ""
-    replace_version: false
   - name: junegunn/fzf
     url: https://github.com/junegunn/fzf/releases/download/v0.54.0/fzf-0.54.0-linux_amd64.tar.gz
     destination: /usr/local/bin

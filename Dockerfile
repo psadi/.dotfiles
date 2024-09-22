@@ -30,7 +30,7 @@ WORKDIR /home/psadi
 
 USER psadi
 
-COPY --chown=psadi:psadi . dotfiles
+COPY --chown=psadi:psadi . .dotfiles
 
 ENV ANSIBLE_CONFIG=/home/psadi/dotfiles/ansible/ansible.cfg \
     ANSIBLE_INVENTORY_WARNING=false

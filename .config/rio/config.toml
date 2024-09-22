@@ -1,6 +1,6 @@
 # Defaults
 
-theme = "rosepine"
+theme = "carbonfox"
 padding-x = 10
 padding-y = [15, 10]
 option-as-alt = 'left'
