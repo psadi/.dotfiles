@@ -31,7 +31,7 @@ jobs:
 
       - name: Write secret to .vault_pass
         run: |
-          echo "${{ secrets.LINUX_USER_PASSWORD }}" > ./ansible/.vault_pass
+          echo "${{ secrets.LINUX_USER_PASSWORD }}" > /home/psadi/.dotfiles/ansible/.vault_pass
         shell: bash
 
       - name: Build and push Docker image
