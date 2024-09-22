@@ -27,15 +27,6 @@
         - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'TSUpdate' -c 'COQdeps' -c 'MasonUpdate' -c 'qall!'"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
 
-    - name: "MacOS disable dock for good"
-      ansible.builtin.shell: "{{ item }}"
-      args:
-        chdir: "{{ cmd_home }}"
-      loop:
-        - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
-        # - "defaults delete com.apple.dock autohide-delay; killall Dock" # enable back dock
-      when: ansible_facts['distrubution'] == 'MacOSX'
-
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"

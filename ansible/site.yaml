@@ -23,6 +23,9 @@
         - linux
         - darwin
 
+    - role: macos
+      tags: darwin
+
     - role: pip
       tags:
         - linux

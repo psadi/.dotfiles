@@ -1,0 +1,12 @@
+---
+
+- block:
+  - name: "MacOS disable dock for good"
+    ansible.builtin.shell: "{{ item }}"
+    args:
+      chdir: "{{ cmd_home }}"
+    loop:
+      - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
+      - "defaults write com.apple.dock persistent-apps -array; killall Dock"
+  vars:
+    cmd_home: "{{ lookup('env','HOME') }}"
