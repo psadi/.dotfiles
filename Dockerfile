@@ -32,9 +32,9 @@ USER psadi
 
 COPY --chown=psadi:psadi . .dotfiles
 
-ENV ANSIBLE_CONFIG=/home/psadi/dotfiles/ansible/ansible.cfg \
+ENV ANSIBLE_CONFIG=/home/psadi/.dotfiles/ansible/ansible.cfg \
     ANSIBLE_INVENTORY_WARNING=false
 
-RUN ansible-playbook dotfiles/ansible/site.yaml --tags linux
+RUN ansible-playbook .dotfiles/ansible/site.yaml --tags linux
 
 ENTRYPOINT ["/usr/bin/zsh"]
