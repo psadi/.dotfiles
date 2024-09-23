@@ -10,4 +10,4 @@ Dockerfile
 \.github
 Library/Fonts
 .DS_Store
-\.config/(alacritty|zellij|wezterm)
+\.config/(zellij)
