@@ -30,13 +30,12 @@ map("n", "<leader>BD", "<CMD>bd!<CR>", { silent = true })
 map("n", "<leader>qq", "<CMD>q!<CR>", { silent = true })
 
 -- Lazy
-map("n", "l", "<CMD>Lazy<CR>", {})
+map("n", "ll", "<CMD>Lazy<CR>", {})
 
 -- Mason
-map("n", "<C-X>", "<CMD>Mason<CR>", {})
 map("n", "K", vim.lsp.buf.hover, {})
 map("n", "gd", vim.lsp.buf.definition, {})
-map("n", "cm", "<CMD>Mason<CR>", {})
+map("n", "lm", "<CMD>Mason<CR>", {})
 
 -- Fzf Lua
 map("n", "<leader>ff", "<CMD>FzfLua files<CR>", { silent = true })
