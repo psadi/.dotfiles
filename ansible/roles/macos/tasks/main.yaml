@@ -1,12 +1,14 @@
 ---
 
 - block:
-  - name: "MacOS disable dock for good"
+  - name: "MacOS Dock & Docker Config"
     ansible.builtin.shell: "{{ item }}"
     args:
       chdir: "{{ cmd_home }}"
     loop:
       - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
       - "defaults write com.apple.dock persistent-apps -array; killall Dock"
+      - "docker context create remote-context --docker 'host=tcp://192.168.1.100:2375'"
+      - "docker context use remote-context"
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"

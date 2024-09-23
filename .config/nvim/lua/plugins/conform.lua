@@ -11,7 +11,6 @@ return {
         markdown = { "prettier" },
         lua = { "stylua" },
         python = { "ruff_format" },
-        zig = { lsp_format = "fallback" },
         go = { lsp_format = "fallback" },
       },
       format_on_save = {

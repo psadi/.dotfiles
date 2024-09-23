@@ -9,13 +9,12 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "zls", "ruff", "ruff_lsp", "pyright", "gopls" },
+        ensure_installed = { "lua_ls", "ruff", "ruff_lsp", "pyright", "gopls" },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
     dependencies = {
       { "ms-jpq/coq_nvim",       branch = "coq" },
       { "ms-jpq/coq.artifacts",  branch = "artifacts" },

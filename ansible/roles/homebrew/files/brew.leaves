@@ -10,6 +10,7 @@ fzf
 gh
 git
 git-delta
+gnu-tar
 gnutls
 helm
 jhead
@@ -22,9 +23,6 @@ python@3.12
 ripgrep
 stow
 telnet
-terraform
-terraform-ls
 watch
 wget
-zls
 zoxide
