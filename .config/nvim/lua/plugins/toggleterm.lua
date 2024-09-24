@@ -9,10 +9,10 @@ return {
       hide_numbers = true,
       auto_scroll = true,
       float_opts = {
-        width = 150,
-        height = 35
-      }
-
+        border = "curved",
+        width = 143,
+        height = 34,
+      },
     })
 
     local Terminal   = require('toggleterm.terminal').Terminal
