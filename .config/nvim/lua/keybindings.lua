@@ -13,6 +13,8 @@ cmd("softtabstop=2")
 cmd("shiftwidth=2")
 cmd("relativenumber")
 cmd("colorcolumn=80")
+-- cmd("shm+=I")
+cmd("shortmess+=I")
 
 opt = false
 
@@ -52,34 +54,5 @@ map({ "n", "v" }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 -- Oil
 map("n", "_", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 
-
--- Neogit
-map("n", "<leader>gg", "<CMD>Neogit<CR>", {})
-map("n", "<leader>gc", "<CMD>Neogit commit<CR>", {})
-map("n", "<leader>gl", "<CMD>Neogit log<CR>", {})
-map("n", "<leader>gp", "<CMD>Neogit pull<CR>", {})
-map("n", "<leader>gP", "<CMD>Neogit push<CR>", {})
-map("n", "<leader>gf", "<CMD>Neogit fetch<CR>", {})
-map("n", "<leader>gb", "<CMD>Neogit branch<CR>", {})
-map("n", "<leader>gd", "<CMD>Neogit diff<CR>", {})
-map("n", "<leader>gr", "<CMD>Neogit rebase<CR>", {})
-map("n", "<leader>gw", "<CMD>Neogit worktree<CR>", {})
-map("n", "<leader>gm", "<CMD>Neogit commit --amend<CR>", {})
-
--- map("n", "_", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open parent directory" })
 -- Reload Config
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
-
--- Zig
-function ZigBuild()
-  vim.cmd("vsplit")
-  vim.cmd("wincmd L")
-  vim.cmd("terminal zig build")
-  vim.cmd("startinsert")
-end
-
-vim.api.nvim_set_keymap("n", "<leader>zb", ":lua ZigBuild()<CR>", { noremap = true, silent = true })
-
-vim.cmd([[
-  autocmd TermOpen * tnoremap <buffer> <Esc> <C-\><C-n>:bd!<CR>
-]])

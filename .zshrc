@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
-
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
 #---------------------------------------------
 #
 #      _       _    __ _ _
@@ -58,20 +59,15 @@ plug "psadi/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "Aloxaf/fzf-tab"
+plug "mroth/evalcache"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
 for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 
-# ZStyle
-#---------------------------------------------
-zstyle ':completion:*:git-checkout:*' sort false
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:*' switch-group '<' '>'
-
 # Set ZSH Prompt
 #---------------------------------------------
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+typeset -U path cdpath fpath manpath
 

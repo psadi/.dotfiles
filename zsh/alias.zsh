@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
 
 alias reload='source ~/.zshrc'
 alias ..='cd ..'
@@ -17,3 +19,9 @@ alias cpd=copydir
 alias path='echo -e ${PATH//:/\\n}'
 alias rm='rm -i'
 alias mkdir='mkdir -pv'
+
+alias ls="ls --color=auto"
+alias ll="ls -l -go"
+alias la="ll -a"
+alias lrth="ll -rth"
+alias larth="la -rth"

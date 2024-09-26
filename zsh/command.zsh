@@ -1,37 +1,14 @@
 #!/usr/bin/env zsh
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
 
 # Bat
 #---------------------------------------------
 if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat"
-  # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   export MANROFFOPT='-c'
   export BAT_THEME="ansi"
-  show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-  export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-fi
-
-# K9s
-#---------------------------------------------
-if (( $+commands[k9s] )); then
-  alias k9s="k9s --logoless --headless --readonly --crumbsless"
-fi
-
-# Eza
-#---------------------------------------------
-if (( $+commands[eza] )); then
-  alias ls='eza --group-directories-first --icons'
-  alias ll='ls -lh --git'
-  alias la="ll -a"
-  alias lt="ll --tree --level=2"
-  export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-else # fallback 
-  alias ls="ls --color=auto"
-  alias ll="ls -l -go"
-  alias la="ll -a"
-  alias lrth="ll -rth"
-  alias larth="la -rth"
 fi
 
 # Zoxide
@@ -44,6 +21,8 @@ fi
 #---------------------------------------------
 if (( $+commands[brew] )); then
   export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_UPGRADE_GREEDY=1
+  export HOMEBREW_NO_AUTO_UPDATE=1
   # Python
   PYTHON_VERSION='python@3.12'
   export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
@@ -59,7 +38,11 @@ fi
 # ---------------------------------------------
 for dir in /opt/pkg/*; do
   if [ -d "$dir" ]; then
-    pathman PATH "${dir}/bin"
+    if [ -d "${dir}/bin" ]; then
+      pathman PATH "${dir}/bin"
+    else
+      pathman PATH "${dir}"
+    fi
     pathman LD_LIBRARY_PATH "${dir}/lib"
     pathman MANPATH "${dir}/share/man"
   fi
