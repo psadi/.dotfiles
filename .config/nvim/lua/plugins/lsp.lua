@@ -15,18 +15,6 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      { "ms-jpq/coq_nvim",       branch = "coq" },
-      { "ms-jpq/coq.artifacts",  branch = "artifacts" },
-      { "ms-jpq/coq.thirdparty", branch = "3p" },
-    },
-    init = function()
-      vim.g.coq_settings = {
-        auto_start = "shut-up",
-
-        -- Your COQ settings here
-      }
-    end,
     config = function()
       local lspconfig = require("lspconfig")
 
@@ -64,7 +52,7 @@ return {
           },
         },
       })
-      -- lspconfig.zls.setup({})
+      lspconfig.zls.setup({})
       lspconfig.gopls.setup({})
     end,
   },
