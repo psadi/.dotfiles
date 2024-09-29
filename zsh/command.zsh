@@ -17,6 +17,12 @@ if (( $+commands[zoxide] )); then
   alias cd="z"
 fi
 
+# K9s
+#---------------------------------------------
+if (( $+commands[k9s] )); then
+  alias k9s="k9s --logoless --headless --readonly --crumbsless"
+fi
+
 # Homebrew
 #---------------------------------------------
 if (( $+commands[brew] )); then
