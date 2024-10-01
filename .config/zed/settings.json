@@ -4,6 +4,7 @@
   },
   "auto_update": true,
   "buffer_font_family": "Geist Mono",
+  "buffer_font_weight": 500,
   "buffer_font_size": 18,
   "buffer_line_height": "comfortable",
   "chat_panel": { "button": false },
@@ -15,10 +16,10 @@
   "remove_trailing_whitespace_on_save": true,
   "show_whitespaces": "all",
   "telemetry": { "diagnostics": false, "metrics": false },
-  "theme": "Carbonfox",
+  "theme": "Rosé Pine",
   "ui_font_family": "Geist",
   "ui_font_size": 18,
-  "vim": { "toggle_relative_line_numbers": true },
+  "relative_line_numbers": true,
   "vim_mode": true,
   "assistant": { "enabled": false, "version": "2" }
 }

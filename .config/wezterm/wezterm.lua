@@ -13,8 +13,8 @@ config.font = wezterm.font("Geist Mono", {
 	stretch = "Normal",
 	italic = false,
 })
-config.font_size = 19
-config.color_scheme = "Poimandres"
+config.font_size = 20
+config.color_scheme = "rose-pine"
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
 config.window_padding = {

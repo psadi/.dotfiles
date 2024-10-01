@@ -52,7 +52,7 @@ return {
 					},
 				},
 			})
-			lspconfig.zls.setup({})
+			-- lspconfig.zls.setup({})
 			lspconfig.gopls.setup({})
 		end,
 	},
