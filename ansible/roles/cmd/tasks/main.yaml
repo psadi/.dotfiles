@@ -15,7 +15,7 @@
 
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
-      args
+      args:
         chdir: "{{ cmd_home }}"
       loop:
         - bash -c "zsh <(curl -s 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1"
