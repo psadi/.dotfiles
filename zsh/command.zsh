@@ -6,7 +6,7 @@
 #---------------------------------------------
 if (( $+commands[bat] )); then
   alias cat="bat -p"
-  export MANPAGER="bat"
+  export MANPAGER="bat -l man -p"
   export MANROFFOPT='-c'
   export BAT_THEME="ansi"
 fi
@@ -62,4 +62,3 @@ if (( $+commands[nvim])); then
   alias vi="nvim"
   alias v="nvim"
 fi
-

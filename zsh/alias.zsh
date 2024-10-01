@@ -17,10 +17,10 @@ alias cpf=copyfile
 alias cpd=copydir
 
 alias path='echo -e ${PATH//:/\\n}'
+alias ldpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias rm='rm -i'
 alias mkdir='mkdir -pv'
 
-alias ls="ls --color=auto"
 alias ll="ls -l -go"
 alias la="ll -a"
 alias lrth="ll -rth"
