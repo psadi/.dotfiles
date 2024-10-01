@@ -1,5 +1,4 @@
 ---
-
 - block:
     - name: Cleaning up the system
       ansible.builtin.shell: "{{ item }}"
@@ -16,7 +15,7 @@
 
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
-      args:
+      args
         chdir: "{{ cmd_home }}"
       loop:
         - bash -c "zsh <(curl -s 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1"
@@ -24,7 +23,6 @@
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d .dotfiles -t "${HOME}" .
         - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'qall!'"
-        - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'TSUpdate' -c 'COQdeps' -c 'MasonUpdate' -c 'qall!'"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
 
   vars:
