@@ -52,7 +52,7 @@ map("n", "<leader>K", "<CMD>FzfLua keymaps<CR>", { silent = true })
 map({ "n", "v" }, "<leader>ca", "<CMD>FzfLua lsp_code_actions<CR>", {})
 
 -- Oil
-map("n", "_", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Reload Config
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
