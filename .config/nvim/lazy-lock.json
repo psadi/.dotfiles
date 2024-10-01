@@ -11,9 +11,9 @@
   "mini.pairs": { "branch": "main", "commit": "919a89ed3c9f4142215a44c9fffca72fa8c8e792" },
   "mini.surround": { "branch": "main", "commit": "e1ac1ce5c7499aa4cc2ca9fb1adec9e730dd9394" },
   "neocodeium": { "branch": "main", "commit": "37e66aa0e7d69601fe6a410a5dee65c48aaeb6f7" },
-  "nightfox.nvim": { "branch": "main", "commit": "7557f26defd093c4e9bc17f28b08403f706f5a44" },
   "nvim-lspconfig": { "branch": "master", "commit": "36f21ab9555dacac485f35059e20f327501320d5" },
   "nvim-treesitter": { "branch": "master", "commit": "ef52e44bb24161e5138b3de5beadab3f3fcff233" },
   "oil.nvim": { "branch": "master", "commit": "9e6fb844fe4cce13d9e3f6a7c970cbc669bb1629" },
+  "poimandres.nvim": { "branch": "main", "commit": "77635055e686ae3c8a519198006ff0b43b6b2eae" },
   "toggleterm.nvim": { "branch": "main", "commit": "48be57eaba817f038d61bbf64d2c597f578c0827" }
 }

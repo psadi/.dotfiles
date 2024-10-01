@@ -20,5 +20,5 @@
   "ui_font_size": 18,
   "vim": { "toggle_relative_line_numbers": true },
   "vim_mode": true,
-  "assistant": { "enabled": false, "version": "1" }
+  "assistant": { "enabled": false, "version": "2" }
 }

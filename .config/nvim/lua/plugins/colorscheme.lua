@@ -1,6 +1,10 @@
 return {
-  "EdenEast/nightfox.nvim",
-  config = function()
-    vim.cmd("colorscheme carbonfox")
-  end
+	"olivercederborg/poimandres.nvim",
+	config = function()
+		require("poimandres").setup({
+			disable_italics = true,
+			dim_nc_background = true,
+		})
+		vim.cmd("colorscheme poimandres")
+	end,
 }

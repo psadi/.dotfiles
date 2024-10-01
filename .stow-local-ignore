@@ -11,3 +11,4 @@ Dockerfile
 Library/Fonts
 .DS_Store
 \.config/(zellij)
+bootstrap
