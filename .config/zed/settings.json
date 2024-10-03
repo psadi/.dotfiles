@@ -3,7 +3,7 @@
     "inline_completion_provider": "supermaven"
   },
   "auto_update": true,
-  "buffer_font_family": "Geist Mono",
+  "buffer_font_family": "MonoLisa Nerd Font",
   "buffer_font_weight": 500,
   "buffer_font_size": 18,
   "buffer_line_height": "comfortable",
@@ -17,7 +17,6 @@
   "show_whitespaces": "all",
   "telemetry": { "diagnostics": false, "metrics": false },
   "theme": "Rosé Pine",
-  "ui_font_family": "Geist",
   "ui_font_size": 18,
   "relative_line_numbers": true,
   "vim_mode": true,

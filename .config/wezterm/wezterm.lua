@@ -8,12 +8,12 @@ local config = wezterm.config_builder()
 -- --------------------
 -- Configs
 -- --------------------
-config.font = wezterm.font("Geist Mono", {
+config.font = wezterm.font("MonoLisa Nerd Font", {
 	weight = "DemiBold",
 	stretch = "Normal",
 	italic = false,
 })
-config.font_size = 20
+config.font_size = 19
 config.color_scheme = "rose-pine"
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
