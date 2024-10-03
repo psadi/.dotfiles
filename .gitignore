@@ -4,3 +4,5 @@ ansible/.vault_pass
 .config/helix/contrib
 .config/helix/runtime
 .config/gh/hosts.yml
+.config/zed/*
+!.config/zed/settings.json
