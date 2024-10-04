@@ -4,17 +4,18 @@ vim.wo.number = true
 
 -- global keymaps
 map = vim.keymap.set
-cmd = vim.cmd.set
-opt = vim.cmd.opt
+cmd = vim.cmd
+set = cmd.set
+opt = cmd.opt
 
-cmd("expandtab")
-cmd("tabstop=2")
-cmd("softtabstop=2")
-cmd("shiftwidth=2")
-cmd("relativenumber")
-cmd("colorcolumn=80")
--- cmd("shm+=I")
-cmd("shortmess+=I")
+set("expandtab")
+set("tabstop=2")
+set("softtabstop=2")
+set("shiftwidth=2")
+set("relativenumber")
+set("colorcolumn=80")
+set("shortmess+=I")
+cmd("colorscheme default")
 
 opt = false
 
@@ -56,3 +57,5 @@ map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Reload Config
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
+
+map("n", "<leader>ss", require("skeleton").show, {})

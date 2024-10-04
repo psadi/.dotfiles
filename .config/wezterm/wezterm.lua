@@ -9,18 +9,19 @@ local config = wezterm.config_builder()
 -- Configs
 -- --------------------
 config.font = wezterm.font("MonoLisa Nerd Font", {
-	weight = "DemiBold",
+	-- weight = "Bold",
 	stretch = "Normal",
 	italic = false,
 })
 config.font_size = 19
-config.color_scheme = "rose-pine"
+config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
+-- config.color_scheme = "rose-pine"
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
 config.window_padding = {
 	left = 0,
 	right = 0,
-	top = 0,
+	top = 10,
 	bottom = 0,
 }
 config.window_close_confirmation = "NeverPrompt"
