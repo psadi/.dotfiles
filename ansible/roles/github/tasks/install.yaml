@@ -19,13 +19,15 @@
     url: "{{ _url }}"
     dest: "/tmp"
     mode: 0755
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
 
 - name: Ensure destination directory exists
   file:
     path: "{{ package.destination }}"
     state: directory
-    owner: "psadi"
-    group: "psadi"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
   become: true
 
 - name: "Extracting '{{ _url.split('/')[-1] }}' package"
@@ -33,6 +35,8 @@
     src: "/tmp/{{ _url.split('/')[-1] }}"
     dest: "{{ package.destination }}"
     mode: 0755
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     extra_opts: "{{ _extra_opts }}"
     remote_src: true
 

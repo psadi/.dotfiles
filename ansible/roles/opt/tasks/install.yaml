@@ -9,13 +9,16 @@
   file:
     path: "/opt/pkg"
     state: directory
-    owner: "psadi"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
   become: true
 
 - name: "Downloading '{{ url }}' package"
   get_url:
     url: "{{ url }}"
     dest: "/tmp"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     mode: 0755
 
 - name: "Extracting '{{ url.split('/')[-1] }}' package"
@@ -23,6 +26,8 @@
     src: "/tmp/{{ url.split('/')[-1] }}"
     dest: "/opt/pkg"
     mode: 0755
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     remote_src: true
 
 - name: Cleaning up

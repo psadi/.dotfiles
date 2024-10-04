@@ -17,8 +17,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Installing Linux dependencies"
     LANG=en_US.UTF-8
-    sudo apt-get update -y && apt-get upgrade -y && apt-get install --no-install-recommends -y \
-    sudo python3-minimal python3-pip python3-venv locales git zsh
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git zsh
 
     echo "Updating Locale"
     sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen
