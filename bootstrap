@@ -57,4 +57,4 @@ export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_VAULT_PASSWORD_FILE="${VAULT_PASS_FILE}"
 
 echo "Running Ansible Playbook"
-ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}"
+ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
