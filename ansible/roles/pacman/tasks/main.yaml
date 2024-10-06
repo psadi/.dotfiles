@@ -1,0 +1,13 @@
+- block:
+    - name: Update & Upgrade all packages
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+
+    - name: Installing apt dependencies
+      community.general.pacman:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ pacman_packages }}"
+      # become: true
+  tags: linux

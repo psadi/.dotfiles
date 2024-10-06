@@ -1,0 +1,13 @@
+---
+apt_packages:
+  - git
+  - curl
+  - zsh
+  - jq
+  - zip
+  - unzip
+  - stow
+  - locales
+  - man
+  - fonts-powerline
+  - procps
