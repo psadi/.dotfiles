@@ -6,6 +6,11 @@
   roles:
     - role: apt
       tags: linux
+      when: "ansible_distribution == 'debian'"
+
+    - role: pacman
+      tags: linux
+      when: "ansible_distribution == 'Archlinux'"
 
     - role: github
       tags: linux

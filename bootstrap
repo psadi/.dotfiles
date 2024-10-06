@@ -2,6 +2,7 @@
 
 echo "Bootstrapping your system..."
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
+export DIST=$(awk -F= '$1=="ID" { print $2 ;}' '/etc/os-release')
 
 echo "OSTYPE: $OSTYPE"
 
@@ -16,15 +17,23 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Installing Linux dependencies"
-    LANG=en_US.UTF-8
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
-    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git zsh
+    
+    if [ $DIST == 'debian' ]; then
+	    LANG=en_US.UTF-8
+	    sudo apt-get update -y
+	    sudo apt-get upgrade -y
+	    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git zsh
 
-    echo "Updating Locale"
-    sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen
-    dpkg-reconfigure --frontend=noninteractive locales
-    update-locale LANG="${LANG}"
+	    echo "Updating Locale"
+	    sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen
+	    dpkg-reconfigure --frontend=noninteractive locales
+	    update-locale LANG="${LANG}"
+	elif [ $DIST == 'crystal' ]; then
+		ame upgrade
+		ame install python-pip git
+	else
+		echo "No task defined for $OSTYPE, $DIST"
+	fi
 else
     echo "Unsupported OS"
     exit 1
