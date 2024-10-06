@@ -34,8 +34,9 @@ github_package_repos:
   - name: dalance/procs
     url: https://github.com/dalance/procs/releases/download/v[VERSION]/procs-v[VERSION]-x86_64-linux.zip
     destination: /usr/local/bin
-    extra_opts:
-      - "-qq"
+    extra_opts: "" ""
+ansible-playbook ansible/site.yaml
+    #   - "-qq"
     replace_version: true
   - name: jesseduffield/lazygit
     url: https://github.com/jesseduffield/lazygit/releases/download/v[VERSION]/lazygit_[VERSION]_Linux_x86_64.tar.gz
