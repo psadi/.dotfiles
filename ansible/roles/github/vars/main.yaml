@@ -11,23 +11,41 @@ github_package_repos:
   #  extra_opts: "-qq"
   #  replace_version: true
   - name: BurntSushi/ripgrep
-    url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz
+    url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
     extra_opts:
-      - "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
       - "--strip-components=1"
+      - "ripgrep-14.1.1-x86_64-unknown-linux-musl/rg"
     replace_version: false
   - name: sharkdp/fd
-    url: https://github.com/sharkdp/fd/releases/download/[VERSION]/fd-[VERSION]-x86_64-unknown-linux-gnu.tar.gz
+    url: https://github.com/sharkdp/fd/releases/download/v[VERSION]/fd-v[VERSION]-x86_64-unknown-linux-gnu.tar.gz
     destination: /usr/local/bin
     extra_opts:
-      - "fd-[VERSION]-x86_64-unknown-linux-gnu/fd"
       - "--strip-components=1"
-    replace_version: false
+      - "fd-[VERSION]-x86_64-unknown-linux-gnu/fd"
+    replace_version: true
+  - name: sharkdp/bat
+    url: https://github.com/sharkdp/bat/releases/download/v[VERSION]/bat-v[VERSION]-x86_64-unknown-linux-gnu.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "--strip-components=1"
+      - "bat-[VERSION]-x86_64-unknown-linux-gnu/bat"
+    replace_version: true
+  - name: dalance/procs
+    url: https://github.com/dalance/procs/releases/download/v[VERSION]/procs-v[VERSION]-x86_64-linux.zip
+    destination: /usr/local/bin
+    extra_opts:
+      - "-qq"
+    replace_version: true
   - name: jesseduffield/lazygit
     url: https://github.com/jesseduffield/lazygit/releases/download/v[VERSION]/lazygit_[VERSION]_Linux_x86_64.tar.gz
     destination: /usr/local/bin
     extra_opts: "lazygit"
+    replace_version: true
+  - name: jesseduffield/lazydocker
+    url: https://github.com/jesseduffield/lazydocker/releases/download/v[VERSION]/lazydocker_[VERSION]_Linux_x86_64.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "lazydocker"
     replace_version: true
   #- name: helm/helm
   #  url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz

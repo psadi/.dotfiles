@@ -1,6 +1,8 @@
 ---@diagnostic disable: lowercase-global
 vim.g.mapleader = " "
 vim.wo.number = true
+vim.opt.guifont = { "MonoLisa Nerd Font", ":h16" }
+
 
 -- global keymaps
 map = vim.keymap.set
