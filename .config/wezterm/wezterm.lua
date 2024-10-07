@@ -13,7 +13,7 @@ config.font = wezterm.font("MonoLisa Nerd Font", {
 	stretch = "Normal",
 	italic = false,
 })
-config.font_size = 19
+config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
 -- config.color_scheme = "rose-pine"
 config.enable_tab_bar = false
