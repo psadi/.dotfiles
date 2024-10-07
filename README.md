@@ -42,7 +42,7 @@ The following software must be installed on your system:
 One Script Installer
 
 ```bash
-curl -o- https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap | bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap)"
 ```
 
 Manual Steps:

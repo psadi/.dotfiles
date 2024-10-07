@@ -2,6 +2,12 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
+# Bottom
+#---------------------------------------------
+if (( $+commands[bat] )); then
+  alias btm="btm -b"
+fi
+
 # Bat
 #---------------------------------------------
 if (( $+commands[bat] )); then
@@ -9,6 +15,22 @@ if (( $+commands[bat] )); then
   export MANPAGER="bat -l man -p"
   export MANROFFOPT='-c'
   export BAT_THEME="ansi"
+fi
+
+# Eza
+#---------------------------------------------
+if (( $+commands[eza] )); then
+  alias ls='eza --group-directories-first --icons'
+  alias ll='ls -lh --git'
+  alias la="ll -a"
+  alias lt="ll --tree --level=2"
+  export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+else
+  alias ls="ls --color=auto"
+  alias ll="ls -l -go"
+  alias la="ll -a"
+  alias lrth="ll -rth"
+  alias larth="la -rth"
 fi
 
 # Zoxide
