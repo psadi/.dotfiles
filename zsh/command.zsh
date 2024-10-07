@@ -20,7 +20,7 @@ fi
 # Eza
 #---------------------------------------------
 if (( $+commands[eza] )); then
-  alias ls='eza --group-directories-first --icons'
+  alias ls='eza --group-directories-first --icons --no-filesize --no-time --no-git'
   alias ll='ls -lh --git'
   alias la="ll -a"
   alias lt="ll --tree --level=2"
