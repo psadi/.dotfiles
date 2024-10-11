@@ -1,11 +1,14 @@
 ---
-- name: Check if "{{ package.name }} exists"
+- set_fact:
+    package_name: "{% if package.name.binary }{{ package.name.binary }}{% else %}{{ package.name.split('/')[-1] }}{% endif %}"
+
+- name: Check if "{{ package_name }} exists"
   stat:
-    path: "{{ package.destination }}/{{ package.name.split('/')[-1] }}"
+    path: "{{ package.destination }}/{{ package_name }}"
   register: st
 
 - debug:
-    msg: "'{{ package.name }}' already exists at '{{ st.stat.path }}', Skipping ..."
+    msg: "'{{ package_name }}' already exists at '{{ st.stat.path }}', Skipping ..."
   when: "st.stat.path is defined"
 
 - block:
