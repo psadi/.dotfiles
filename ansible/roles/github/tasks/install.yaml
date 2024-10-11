@@ -1,8 +1,8 @@
 ---
 - set_fact:
-    package_name: "{% if package.name.binary }{{ package.name.binary }}{% else %}{{ package.name.split('/')[-1] }}{% endif %}"
+    package_name: "{% if 'binary' in package %}{{ package.binary }}{% else %}{{ package.name.split('/')[-1] }}{% endif %}"
 
-- name: Check if "{{ package_name }} exists"
+- name: Check if '{{ package_name }}' exists
   stat:
     path: "{{ package.destination }}/{{ package_name }}"
   register: st

@@ -4,13 +4,13 @@
   any_errors_fatal: true
   connection: local
   roles:
-    - role: apt
-      tags: linux
-      when: "ansible_distribution != 'Archlinux'"
-
-    - role: pacman
-      tags: linux
-      when: "ansible_distribution == 'Archlinux'"
+    # - role: apt
+    #   tags: linux
+    #   when: "ansible_distribution != 'Archlinux'"
+    #
+    # - role: pacman
+    #   tags: linux
+    #   when: "ansible_distribution == 'Archlinux'"
 
     - role: github
       tags: linux
