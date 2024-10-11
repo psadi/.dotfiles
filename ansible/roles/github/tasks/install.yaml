@@ -1,46 +1,58 @@
 ---
+- name: Check if "{{ package.name }} exists"
+  stat:
+    path: "{{ package.destination }}/{{ package.name.split('/')[-1] }}"
+  register: st
+
 - debug:
-    msg: "Installing '{{ package.name }}'..."
+    msg: "'{{ package.name }}' already exists at '{{ st.stat.path }}', Skipping ..."
+  when: "st.stat.path is defined"
 
-- name: Fetch latest github release
-  uri:
-    url: "https://api.github.com/repos/{{ package.name }}/tags"
-    return_content: yes
-    status_code: 200
-  failed_when: github_release.status != 200
-  register: github_release
+- block:
+    - debug:
+        msg: "Installing '{{ package.name }}'..."
 
-- set_fact:
-    _url: "{% if package.replace_version %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name  | regex_replace('v', '')) }}{% else %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}{% endif %}"
-    _extra_opts: "{{ package.extra_opts | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}"
+    - name: Fetch latest github release
+      uri:
+        url: "https://api.github.com/repos/{{ package.name }}/tags"
+        return_content: yes
+        status_code: 200
+      failed_when: github_release.status != 200
+      register: github_release
 
-- name: "Downloading '{{ _url }}' package"
-  get_url:
-    url: "{{ _url }}"
-    dest: "/tmp"
-    mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    - set_fact:
+        _url: "{% if package.replace_version %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name  | regex_replace('v', '')) }}{% else %}{{ package.url | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}{% endif %}"
+        _extra_opts: "{{ package.extra_opts | regex_replace('\\[VERSION\\]', github_release.json[0].name ) }}"
 
-- name: Ensure destination directory exists
-  file:
-    path: "{{ package.destination }}"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
-  become: true
+    - name: "Downloading '{{ _url }}' package"
+      get_url:
+        url: "{{ _url }}"
+        dest: "/tmp"
+        mode: 0755
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
 
-- name: "Extracting '{{ _url.split('/')[-1] }}' package"
-  unarchive:
-    src: "/tmp/{{ _url.split('/')[-1] }}"
-    dest: "{{ package.destination }}"
-    mode: 0755
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
-    extra_opts: "{{ _extra_opts }}"
-    remote_src: true
+    - name: Ensure destination directory exists
+      file:
+        path: "{{ package.destination }}"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+      become: true
 
-- name: Cleaning up
-  file:
-    path: "/tmp/{{ _url.split('/')[-1] }}"
-    state: absent
+    - name: "Extracting '{{ _url.split('/')[-1] }}' package"
+      unarchive:
+        src: "/tmp/{{ _url.split('/')[-1] }}"
+        dest: "{{ package.destination }}"
+        mode: 0755
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+        extra_opts: "{{ _extra_opts }}"
+        remote_src: true
+
+    - name: Cleaning up
+      file:
+        path: "/tmp/{{ _url.split('/')[-1] }}"
+        state: absent
+
+  when: "st.stat.path is undefined"

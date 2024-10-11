@@ -4,24 +4,19 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
-local mux = wezterm.mux
-
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
-end)
 
 -- --------------------
 -- Configs
 -- --------------------
-config.font = wezterm.font("MonoLisa Nerd Font", {
-	-- weight = "Bold",
-	stretch = "Normal",
-	italic = false,
+config.font = wezterm.font("JetBrainsMono", {
+	weight = "DemiBold",
+	-- stretch = "Normal",
+	-- italic = false,
 })
 config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
 -- config.color_scheme = "rose-pine"
+config.color_scheme = "Gruber (base16)"
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
 config.window_padding = {

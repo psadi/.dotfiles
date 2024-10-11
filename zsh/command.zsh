@@ -5,7 +5,7 @@
 # Bottom
 #---------------------------------------------
 if (( $+commands[bat] )); then
-  alias btm="btm -b"
+  alias htop="btm -b"
 fi
 
 # Bat
@@ -20,8 +20,8 @@ fi
 # Eza
 #---------------------------------------------
 if (( $+commands[eza] )); then
-  alias ls='eza --group-directories-first --icons --no-filesize --no-time --no-git'
-  alias ll='ls -lh --git'
+  alias ls='eza --no-filesize --no-time --git'
+  alias ll='ls -l'
   alias la="ll -a"
   alias lt="ll --tree --level=2"
   export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
