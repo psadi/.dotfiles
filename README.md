@@ -61,6 +61,16 @@ export ANSIBLE_VAULT_PASSWORD_FILE="${HOME}/.dotfiles/ansible/.vault_pass"
 ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
 ```
 
+NOTE:
+
+The file [vault.yaml](https://github.com/psadi/.dotfiles/blob/main/ansible/group_vars/all/vault.yaml) contains the sudo password for ansible to run commands in elevated mode.
+
+You need to edit this file for your user, and the create a vault credential to secure it as a one time activity.
+
+Contents:
+
+`ansible_become_pass: <your_sudo_password>`
+
 ## Docker Environment
 
 A docker image is available with all the tools and configurations pre-installed. To use the docker image, run the following commands:
