@@ -1,8 +1,7 @@
 ---@diagnostic disable: lowercase-global
 vim.g.mapleader = " "
-vim.wo.number = true
-vim.opt.guifont = { "MonoLisa Nerd Font", ":h16" }
-
+-- vim.wo.number = true
+-- vim.opt.guifont = { "MonoLisa Nerd Font", ":h16" }
 
 -- global keymaps
 map = vim.keymap.set
@@ -17,7 +16,7 @@ set("shiftwidth=2")
 set("relativenumber")
 set("colorcolumn=80")
 set("shortmess+=I")
-cmd("colorscheme default")
+-- cmd("colorscheme default")
 
 opt = false
 
