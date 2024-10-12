@@ -1,5 +1,13 @@
 ---
 - block:
+    - name: Enabling systemd services
+      ansible.builtin.shell: "{{ item }}"
+      become: true
+      loop:
+        - "systemctl enable --now tlp"
+        - "systemctl enable --now powertop"
+      when: "ansible_distribution == 'Ubuntu'"
+
     - name: Cleaning up the system
       ansible.builtin.shell: "{{ item }}"
       become: true
