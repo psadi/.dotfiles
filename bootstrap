@@ -18,19 +18,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Installing Linux dependencies"
     
-    if [ $DIST == 'debian' ]; then
+    if [[ $DIST ~= "^(debian|ubuntu)" ]]; then
 	    LANG=en_US.UTF-8
 	    sudo apt-get update -y
 	    sudo apt-get upgrade -y
-	    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git zsh
+	    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git
 
 	    echo "Updating Locale"
 	    sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen
 	    dpkg-reconfigure --frontend=noninteractive locales
 	    update-locale LANG="${LANG}"
-	elif [ $DIST == 'crystal' ]; then
-		ame upgrade
-		ame install python-pip git
 	else
 		echo "No task defined for $OSTYPE, $DIST"
 	fi
@@ -67,4 +64,4 @@ export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_VAULT_PASSWORD_FILE="${VAULT_PASS_FILE}"
 
 echo "Running Ansible Playbook"
-ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
+ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
