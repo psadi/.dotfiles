@@ -5,11 +5,11 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: ""
     replace_version: false
-  #- name: hashicorp/terraform
-  #  url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
-  #  destination: /usr/local/bin
-  #  extra_opts: "-qq"
-  #  replace_version: true
+  - name: hashicorp/terraform
+    url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
+    destination: /usr/local/bin
+    extra_opts: "-qq"
+    replace_version: true
   - name: BurntSushi/ripgrep
     binary: rg
     url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
