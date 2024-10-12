@@ -18,7 +18,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux"* ]]; then
     echo "Installing Linux dependencies"
     
-    if [[ $DIST ~= "^(debian|ubuntu)" ]]; then
+    if [[ $DIST =~ ^(debian|ubuntu)$ ]]; then
 	    LANG=en_US.UTF-8
 	    sudo apt-get update -y
 	    sudo apt-get upgrade -y
