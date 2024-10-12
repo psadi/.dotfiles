@@ -46,15 +46,6 @@ else
     echo "psadi/.dotfiles already exists"
 fi
 
-# Ask input password and save it to a file
-VAULT_PASS_FILE="${HOME}/.dotfiles/ansible/.vault_pass"
-
-if [ ! -f "${VAULT_PASS_FILE}" ]; then
-    echo "Creating '${VAULT_PASS_FILE}' as Ansible Vault password file"
-    touch "${VAULT_PASS_FILE}"
-    chmod 600 "${VAULT_PASS_FILE}"
-fi
-
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
 
