@@ -55,13 +55,8 @@ if [ ! -f "${VAULT_PASS_FILE}" ]; then
     chmod 600 "${VAULT_PASS_FILE}"
 fi
 
-echo "Enter your password for Ansible Vault"
-read -s -p "Password: " LINUX_USER_PASSWORD
-echo $LINUX_USER_PASSWORD > "${VAULT_PASS_FILE}"
-
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
-export ANSIBLE_VAULT_PASSWORD_FILE="${VAULT_PASS_FILE}"
 
 echo "Running Ansible Playbook"
 ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
