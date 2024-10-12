@@ -46,6 +46,7 @@ else
     echo "psadi/.dotfiles already exists"
 fi
 
+export PATH="${PATH}:${HOME}/.local/bin"
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
 
