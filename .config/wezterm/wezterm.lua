@@ -10,12 +10,11 @@ local config = wezterm.config_builder()
 -- --------------------
 config.font = wezterm.font("JetBrainsMono", {
 	weight = "DemiBold",
-	-- stretch = "Normal",
-	-- italic = false,
+	stretch = "Normal",
+	italic = false,
 })
 config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
--- config.color_scheme = "rose-pine"
 config.color_scheme = "Gruber (base16)"
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
@@ -43,10 +42,10 @@ config.keys = {
 	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "s", mods = "LEADER", action = act.RotatePanes("Clockwise") },
 	{ key = "R", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
-	{ key = "n", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "[", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "]", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
+	{ key = "t", mods = "CTRL", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "[", mods = "CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "]", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "T", mods = "CTRL", action = act.ShowTabNavigator },
 }
 
 config.key_tables = {
