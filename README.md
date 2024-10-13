@@ -45,6 +45,12 @@ One Script Installer
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap)"
 ```
 
+Shorterend Version
+
+```bash
+/bin/bash -c "$(curl -fsSL https://bit.ly/3NlTbaf)"
+```
+
 Manual Steps:
 
 To install the configuration files, run the following commands:
