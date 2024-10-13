@@ -9,12 +9,17 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+LOG_FILE="/tmp/bootstrap_log.txt"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
 export HISTIGNORE='*sudo -S*'
 
 # Print colored header
 echo -e "\n${BLUE}-----------------------------------${NC}"
 echo -e "${GREEN}Bootstrapping your system${NC}"
 echo -e "${BLUE}-----------------------------------${NC}\n"
+
+echo -e "${GREEN}Log file created at: ${LOG_FILE}${NC}"
 
 # Detecting the operating system
 OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -24,10 +29,57 @@ echo -e "${YELLOW}OSTYPE:${NC} ${OSTYPE}"
 echo -e "${YELLOW}DIST  :${NC} ${DIST}"
 echo -e "${BLUE}-----------------------------------${NC}"
 
-# Prompt for sudo password
+# Function to handle errors
+handle_error() {
+    echo -e "${RED}An error occurred during execution. Please check the log file for details.${NC}"
+    exit 1
+}
+trap handle_error ERR
+
+# Validate Sudo Access
 echo -e "\n${YELLOW}Please enter your sudo password (for installing base packages and Ansible privileges):${NC}"
 read -s -p "Password: " SUDO_PASSWORD
 echo -e '\n'
+echo "${SUDO_PASSWORD}" | sudo -S -v &> /dev/null
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error: Invalid sudo password or no sudo privileges.${NC}"
+    exit 1
+fi
+
+# Check for Internet Connection
+check_internet_connection() {
+    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${GREEN}Checking Internet Connection${NC}"
+    echo -e "${BLUE}-----------------------------------${NC}"
+
+    if ping -c 1 google.com &> /dev/null; then
+        echo -e "${GREEN}Internet connection is available.${NC}"
+    else
+        echo -e "${RED}No internet connection detected. Please check your network.${NC}"
+        exit 1
+    fi
+}
+
+check_internet_connection
+
+# Function to check if a command exists
+check_command() {
+    if ! command -v $1 &> /dev/null; then
+        echo -e "${RED}Error: $1 is not installed. Please install $1 and rerun the script.${NC}"
+        exit 1
+    fi
+}
+
+check_command "git"
+
+# Backup function for important files
+backup_file() {
+    local FILE=$1
+    if [ -f "$FILE" ]; then
+        echo -e "${YELLOW}Backing up ${FILE} to ${FILE}.bak${NC}"
+        echo "${SUDO_PASSWORD}" | sudo -S -k cp "$FILE" "${FILE}.bak"
+    fi
+}
 
 install_homebrew() {
     echo -e "${BLUE}-----------------------------------${NC}"
@@ -48,15 +100,26 @@ install_linux_dependencies() {
     echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y \
         python3-minimal python3-pip python3-venv locales git
 
+    # Backup locale file before updating
+    backup_file "/etc/locale.gen"
+
     # Update locale if needed
-    if [[ $LANG != $SYS_LANG ]]; then
-        echo -e "${BLUE}-----------------------------------${NC}"
-        echo -e "${GREEN}Updating System Locale${NC}"
-        echo -e "${BLUE}-----------------------------------${NC}"
-        echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
-        echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
-        echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
-    fi
+    update_locale_if_needed() {
+        CURRENT_LANG=$(locale | grep 'LANG=' | cut -d= -f2)
+
+        if [[ "$CURRENT_LANG" != "$SYS_LANG" ]]; then
+            echo -e "${BLUE}-----------------------------------${NC}"
+            echo -e "${GREEN}Updating System Locale${NC}"
+            echo -e "${BLUE}-----------------------------------${NC}"
+            echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
+            echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
+            echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
+        else
+            echo -e "${YELLOW}System locale is already set to ${SYS_LANG}, skipping update.${NC}"
+        fi
+    }
+
+    update_locale_if_needed
 }
 
 # Install dependencies based on OS type
@@ -102,11 +165,25 @@ export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_BECOME_PASSWORD="${SUDO_PASSWORD}"
 
-# Run Ansible playbook
-echo -e "${BLUE}-----------------------------------${NC}"
-echo -e "${GREEN}Running Ansible Playbook${NC}"
-echo -e "${BLUE}-----------------------------------${NC}"
-ansible-playbook "${DOTFILES_DIR}/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
+# Dynamic tag support for Ansible playbook
+TAGS=${1:-$OSTYPE} # Use first argument or fallback to OSTYPE
+echo -e "${BLUE}Running Ansible Playbook with tags: ${TAGS}${NC}"
+ansible-playbook "${DOTFILES_DIR}/ansible/site.yaml" --tags "${TAGS}" --user "${USER}"
+
+# Prompt for reboot if needed
+prompt_for_reboot() {
+    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${YELLOW}Some changes may require a system reboot. Would you like to reboot now? (y/n):${NC}"
+    read -r REBOOT
+    if [[ "$REBOOT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        echo -e "${YELLOW}Rebooting...${NC}"
+        sudo reboot
+    else
+        echo -e "${YELLOW}Please reboot manually for all changes to take effect.${NC}"
+    fi
+}
+
+prompt_for_reboot
 
 exit $?
 
