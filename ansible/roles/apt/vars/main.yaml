@@ -15,6 +15,7 @@ apt_packages:
   - tlp
   - powertop
   - preload
+  - xclip
 
 ubuntu_deb_packages:
   libssl:
