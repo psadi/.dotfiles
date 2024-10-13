@@ -56,26 +56,12 @@ Manual Steps:
 To install the configuration files, run the following commands:
 
 ```bash
-git clone https://psadi/.dotfiles.git && cd dotfiles
+git clone https://psadi/.dotfiles.git "${HOME}/.dotfiles" && cd "${HOME}/.dotfiles"
 
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
-export ANSIBLE_INVENTORY_WARNING=False
 
-# Remember vault password file at ansible/.vault_pass
-export ANSIBLE_VAULT_PASSWORD_FILE="${HOME}/.dotfiles/ansible/.vault_pass"
-
-ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
+ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
 ```
-
-NOTE:
-
-The file [vault.yaml](https://github.com/psadi/.dotfiles/blob/main/ansible/group_vars/all/vault.yaml) contains the sudo password for ansible to run commands in elevated mode.
-
-You need to edit this file for your user, and the create a vault credential to secure it as a one time activity.
-
-Contents:
-
-`ansible_become_pass: <your_sudo_password>`
 
 ## Docker Environment
 
