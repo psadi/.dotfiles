@@ -1,5 +1,12 @@
 ---
 - block:
+    - name: Add & Set Docker Context
+      ansible.builtin.shell: "{{ item }}"
+      loop:
+        - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375'"
+        - "docker context use remote-context"
+      when: "ansible_distribution in [ 'Ubuntu', 'MacOSX' ]"
+
     - name: Enabling systemd services
       ansible.builtin.shell: "{{ item }}"
       become: true
@@ -7,7 +14,16 @@
         - "systemctl enable --now tlp"
         - "systemctl enable --now powertop"
         - "systemctl enable --now preload"
-      when: "ansible_distribution == 'Ubuntu'"
+      when: "ansible_distribution in [ 'Ubuntu', 'Debian' ]"
+
+    - name: "MacOS Dock Config"
+      ansible.builtin.shell: "{{ item }}"
+      args:
+        chdir: "{{ cmd_home }}"
+      loop:
+        - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
+        - "defaults write com.apple.dock persistent-apps -array; killall Dock"
+      when: "ansible_distribution == 'MacOSX'"
 
     - name: Cleaning up the system
       ansible.builtin.shell: "{{ item }}"
@@ -37,4 +53,4 @@
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
-    nvim_dir: "{% if ansible_facts['distribution'] == 'MacOSX' %}nvim-macos{% else %}nvim-linux64{% endif %}"
+    nvim_dir: "{% if ansible_distribution == 'MacOSX' %}nvim-macos{% else %}nvim-linux64{% endif %}"
