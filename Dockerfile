@@ -34,7 +34,8 @@ COPY --chown=psadi:psadi . .dotfiles
 
 ENV ANSIBLE_CONFIG=/home/psadi/.dotfiles/ansible/ansible.cfg \
     ANSIBLE_INVENTORY_WARNING=false
+    ANSIBLE_BECOME_PASSWORD="${LINUX_USER_PASSWORD}"
 
-RUN ansible-playbook .dotfiles/ansible/site.yaml --tags linux
+RUN ansible-playbook .dotfiles/ansible/site.yaml --tags linux --user "${USER}"
 
 ENTRYPOINT ["/usr/bin/zsh"]

@@ -6,6 +6,7 @@
       loop:
         - "systemctl enable --now tlp"
         - "systemctl enable --now powertop"
+        - "systemctl enable --now preload"
       when: "ansible_distribution == 'Ubuntu'"
 
     - name: Cleaning up the system

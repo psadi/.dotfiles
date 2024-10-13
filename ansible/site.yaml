@@ -2,6 +2,8 @@
   hosts: localhost
   gather_facts: true
   any_errors_fatal: true
+  vars:
+    ansible_become_password: '{{ lookup("env", "ANSIBLE_BECOME_PASSWORD") }}'
   roles:
     - role: apt
       tags: linux

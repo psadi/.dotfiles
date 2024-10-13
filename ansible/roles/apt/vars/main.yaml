@@ -14,6 +14,7 @@ apt_packages:
   - procps
   - tlp
   - powertop
+  - preload
 
 ubuntu_deb_packages:
   libssl:

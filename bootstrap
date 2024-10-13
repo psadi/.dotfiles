@@ -1,13 +1,28 @@
-#!/bin/sh
+#!/bin/bin/env bash
 
-echo "Bootstrapping your system..."
+set -e
+
+export HISTIGNORE='*sudo -S*'
+
+echo -e "\n-----------------------------------"
+echo "Bootstrapping your system"
+echo -e "-----------------------------------\n"
+
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DIST=$(awk -F= '$1=="ID" { print $2 ;}' '/etc/os-release')
 
-echo "OSTYPE: $OSTYPE"
+echo "OSTYPE : $OSTYPE"
+echo "DIST   : $DIST"
+echo "-----------------------------------"
+
+echo -e "\nPlease Enter your password with SUDO privileges.\nThis will be used to install base packages & as \`ansible_become_user\`"
+read -s -p "Password: " SUDO_PASSWORD
+echo -e '\n'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "-----------------------------------"
     echo "Installing Homebrew"
+    echo "-----------------------------------"
     if (( !$+commands[brew] )); then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
         eval "$(/usr/local/bin/brew shellenv)"
@@ -16,18 +31,24 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 
 elif [[ "$OSTYPE" == "linux"* ]]; then
+    echo "-----------------------------------"
     echo "Installing Linux dependencies"
+    echo "-----------------------------------"
     
     if [[ $DIST =~ ^(debian|ubuntu)$ ]]; then
-	    LANG=en_US.UTF-8
-	    sudo apt-get update -y
-	    sudo apt-get upgrade -y
-	    sudo apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git
+	    SYS_LANG=en_US.UTF-8
+	    echo "${SUDO_PASSWORD}" | sudo -S -k apt-get update -y;
+	    echo "${SUDO_PASSWORD}" | sudo -S -k apt-get upgrade -y;
+	    echo "${SUDO_PASSWORD}" | sudo -S -k apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git;
 
-	    echo "Updating Locale"
-	    sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen
-	    dpkg-reconfigure --frontend=noninteractive locales
-	    update-locale LANG="${LANG}"
+      if [ $LANG != $SYS_LANG ]; then
+        echo "-----------------------------------"
+        echo "Updating System Locale"
+        echo "-----------------------------------"
+        echo "${SUDO_PASSWORD}" | sudo -S -k sed -i -e "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen;
+        echo "${SUDO_PASSWORD}" | sudo -S -k dpkg-reconfigure --frontend=noninteractive locales;
+        echo "${SUDO_PASSWORD}" | sudo -S -k update-locale LANG="${SYS_LANG}";
+      fi
 	else
 		echo "No task defined for $OSTYPE, $DIST"
 	fi
@@ -36,7 +57,9 @@ else
     exit 1
 fi
 
+echo "-----------------------------------"
 echo "Installing Python3 Dependencies"
+echo "-----------------------------------"
 pip3 install ansible pip --upgrade --break-system-packages --no-cache-dir --no-warn-script-location
 
 if [ ! -d "${HOME}/.dotfiles" ]; then
@@ -49,6 +72,11 @@ fi
 export PATH="${PATH}:${HOME}/.local/bin"
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
+export ANSIBLE_BECOME_PASSWORD="${SUDO_PASSWORD}"
 
+echo "-----------------------------------"
 echo "Running Ansible Playbook"
-ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
+echo "-----------------------------------"
+ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
+
+exit $?
