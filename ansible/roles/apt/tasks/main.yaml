@@ -16,8 +16,16 @@
       ansible.builtin.apt:
         name: "{{ item }}"
         state: present
-      loop: "{{ apt_packages }}"
+      loop: "{{ apt_packages_0 }}"
       become: true
+
+    - name: Installing apt dependencies
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ apt_packages_0 }}"
+      become: true
+      when: not in_docker
 
     - name: Clean apt cache
       ansible.builtin.apt:

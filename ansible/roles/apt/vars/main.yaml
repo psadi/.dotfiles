@@ -1,5 +1,5 @@
 ---
-apt_packages:
+apt_packages_0:
   - build-essential
   - git
   - curl
@@ -12,6 +12,8 @@ apt_packages:
   - man
   - fonts-powerline
   - procps
+
+apt_package_1:
   - tlp
   - powertop
   - preload
