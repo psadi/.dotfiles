@@ -1,5 +1,4 @@
 ---
-
 - debug:
     msg: "Optional Packages"
 
@@ -10,4 +9,3 @@
   loop_control:
     loop_var: pkg
   loop: "{{ packages | dict2items }}"
-
