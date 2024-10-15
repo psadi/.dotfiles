@@ -28,3 +28,6 @@ ubuntu_deb_packages:
   docker-ce-cli:
     version: 27.3.1-1
     url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
+  google-chrome:
+    version:
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

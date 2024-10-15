@@ -3,8 +3,8 @@
     - name: Add & Set Docker Context
       ansible.builtin.shell: "{{ item }}"
       loop:
-        - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375'"
-        - "docker context use remote-context"
+        - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375' || true"
+        - "docker context use picolo"
       when: "ansible_distribution in [ 'Ubuntu', 'MacOSX' ]"
 
     - name: Enabling systemd services
