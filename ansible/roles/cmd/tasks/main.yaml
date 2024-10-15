@@ -14,7 +14,7 @@
         - "systemctl enable --now tlp"
         - "systemctl enable --now powertop"
         - "systemctl enable --now preload"
-      when: "ansible_distribution in [ 'Ubuntu', 'Debian' ]"
+      when: "ansible_distribution in [ 'Ubuntu', 'Debian' ] and not in_docker|default(false)"
 
     - name: "MacOS Dock Config"
       ansible.builtin.shell: "{{ item }}"
