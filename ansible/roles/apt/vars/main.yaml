@@ -13,7 +13,7 @@ apt_packages_0:
   - fonts-powerline
   - procps
 
-apt_package_1:
+apt_packages_1:
   - tlp
   - powertop
   - preload
@@ -21,7 +21,7 @@ apt_package_1:
   - smartmontools
 
 ubuntu_deb_packages:
-  libssl:
+  libssl1.1:
     version: 1_1.1.1f-1ubuntu2.23
     url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
   wezterm:
@@ -30,6 +30,9 @@ ubuntu_deb_packages:
   docker-ce-cli:
     version: 27.3.1-1
     url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
-  google-chrome:
+  google-chrome-stable:
     version:
     url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  minecraft-launcher:
+    version:
+    url: https://launcher.mojang.com/download/Minecraft.deb
