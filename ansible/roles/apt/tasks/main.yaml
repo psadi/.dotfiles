@@ -1,48 +1,51 @@
 ---
-- block:
-    - name: Update cache & all Packages
-      ansible.builtin.apt:
-        update_cache: true
-        cache_valid_time: 3600
-      become: true
+- name: Update cache & all Packages
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  become: true
 
-    - name: Upgrade all packages to their latest version
-      ansible.builtin.apt:
-        name: "*"
-        state: latest
-      become: true
+- name: Upgrade all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+  become: true
 
-    - name: Installing apt dependencies
-      ansible.builtin.apt:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ apt_packages_0 }}"
-      become: true
+- name: get the apt package facts
+  package_facts:
+    manager: "apt"
 
-    - name: Installing apt dependencies
-      ansible.builtin.apt:
-        name: "{{ item }}"
-        state: present
-      loop: "{{ apt_packages_0 }}"
-      become: true
-      when: not in_docker
+- name: Installing apt dependencies
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ apt_packages_0 }}"
+  become: true
+  when: item not in ansible_facts.packages.keys()
 
-    - name: Clean apt cache
-      ansible.builtin.apt:
-        autoclean: true
-      become: true
+- name: Installing apt dependencies
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ apt_packages_1 }}"
+  become: true
+  when: not in_docker and item not in ansible_facts.packages.keys()
 
-    - name: Remove unused packages
-      ansible.builtin.apt:
-        autoremove: true
-        purge: true
-      become: true
+- name: Clean apt cache
+  ansible.builtin.apt:
+    autoclean: true
+  become: true
 
-    - include_tasks: deb.yaml
-      vars:
-        version: "{{ pkg.value.version }}"
-      loop_control:
-        loop_var: pkg
-      loop: "{{ ubuntu_deb_packages | dict2items }}"
-      when: "ansible_distribution == 'Ubuntu'"
-  tags: linux
+- name: Remove unused packages
+  ansible.builtin.apt:
+    autoremove: true
+    purge: true
+  become: true
+
+- include_tasks: deb.yaml
+  vars:
+    version: "{{ pkg.value.version }}"
+  loop_control:
+    loop_var: pkg
+  loop: "{{ ubuntu_deb_packages | dict2items }}"
+  when: not in_docker and pkg.key not in ansible_facts.packages.keys()

@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+setopt NO_PROMPT_SUBST
+
+# Prompt for sudo password and export it
+echo -n "Enter your sudo password: "
+read -s PASSWORD && export ANSIBLE_BECOME_PASSWORD=$PASSWORD
+echo
+
+# Invalidate any existing sudo timestamp/cache
+sudo -k
+
+# Validate the sudo password
+if ! echo $ANSIBLE_BECOME_PASSWORD | sudo -S -v &> /dev/null; then
+    echo "Invalid Password"
+    exit 1
+fi
+
+# Set the OSTYPE variable based on the system
+export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+# Make the password read-only and hide it from history
+typeset -r ANSIBLE_BECOME_PASSWORD
+typeset +h ANSIBLE_BECOME_PASSWORD
+
+# Run the ansible-playbook with tags based on the OS type
+ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
+
