@@ -36,3 +36,6 @@ ubuntu_deb_packages:
   minecraft-launcher:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb
+  discord:
+    version: 0.0.71
+    url: https://stable.dl2.discordapp.net/apps/linux/%version%/discord-%version%.deb
