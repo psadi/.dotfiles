@@ -8,10 +8,11 @@ local config = wezterm.config_builder()
 -- --------------------
 -- Configs
 -- --------------------
-config.font = wezterm.font("JetBrainsMono", {
-	weight = "DemiBold",
-	stretch = "Normal",
-	italic = false,
+config.font = wezterm.font("MonoLisa Nerd Font", {
+	-- config.font = wezterm.font("JetBrainsMono", {
+	-- weight = "DemiBold",
+	-- stretch = "Normal",
+	-- italic = false,
 })
 config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
@@ -26,7 +27,7 @@ config.window_padding = {
 }
 config.window_close_confirmation = "NeverPrompt"
 -- -----------------------------------------------------
--- MacOS Keybindings
+-- Keybindings
 -- -----------------------------------------------------
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {

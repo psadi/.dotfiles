@@ -39,3 +39,6 @@ ubuntu_deb_packages:
   discord:
     version: 0.0.71
     url: https://stable.dl2.discordapp.net/apps/linux/%version%/discord-%version%.deb
+  zettlr:
+    version: 3.2.2
+    url: https://github.com/Zettlr/Zettlr/releases/download/v%version%/Zettlr-%version%-amd64.deb

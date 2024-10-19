@@ -80,3 +80,8 @@ github_package_repos:
       - "--strip-components=1"
       - "delta-0.18.2-x86_64-unknown-linux-gnu/delta"
     replace_version: false
+  - name: rhysd/actionlint
+    url: https://github.com/rhysd/actionlint/releases/download/v[VERSION]/actionlint_[VERSION]_linux_amd64.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "actionlint"
+    replace_version: true
