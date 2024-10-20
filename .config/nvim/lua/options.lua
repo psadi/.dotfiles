@@ -16,7 +16,8 @@ set("shiftwidth=2")
 set("relativenumber")
 set("colorcolumn=80")
 set("shortmess+=I")
--- cmd("colorscheme default")
+set("t_Co=256")
+set("termguicolors")
 
 opt = false
 
