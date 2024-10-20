@@ -4,7 +4,7 @@
 
 # Bottom
 #---------------------------------------------
-if (( $+commands[bat] )); then
+if (( $+commands[btm] )); then
   alias htop="btm -b"
 fi
 
@@ -14,7 +14,7 @@ if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat -l man -p"
   export MANROFFOPT='-c'
-  export BAT_THEME="ansi"
+  export BAT_THEME="base16-256"
 fi
 
 # Eza
