@@ -6,6 +6,7 @@
           loop:
             - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375' || true"
             - "docker context use picolo"
+          when: ansible_distrubution == 'Ubuntu'
 
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
