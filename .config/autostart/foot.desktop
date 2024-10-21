@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=foot --server
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Foot Terminal
+Name=Foot Terminal
+Comment[en_US]=Start Foot terminal on login
+Comment=Start Foot terminal on login
