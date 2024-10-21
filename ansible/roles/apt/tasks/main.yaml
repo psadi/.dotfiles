@@ -41,11 +41,10 @@
     autoremove: true
     purge: true
   become: true
-
-- include_tasks: deb.yaml
-  vars:
-    version: "{{ pkg.value.version }}"
-  loop_control:
-    loop_var: pkg
-  loop: "{{ ubuntu_deb_packages | dict2items }}"
-  when: ansible_distribution == 'Ubuntu' and not in_docker and pkg.key not in ansible_facts.packages.keys()
+# - include_tasks: deb.yaml
+#   vars:
+#     version: "{{ pkg.value.version }}"
+#   loop_control:
+#     loop_var: pkg
+#   loop: "{{ ubuntu_deb_packages | dict2items }}"
+#   when: ansible_distribution == 'Ubuntu' and not in_docker and pkg.key not in ansible_facts.packages.keys()
