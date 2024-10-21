@@ -29,7 +29,7 @@
     state: present
   loop: "{{ apt_packages_1 }}"
   become: true
-  when: ansible_distrubution == 'Ubuntu' not in_docker and item not in ansible_facts.packages.keys()
+  when: ansible_distrubution == 'Ubuntu' and not in_docker and item not in ansible_facts.packages.keys()
 
 - name: Clean apt cache
   ansible.builtin.apt:
