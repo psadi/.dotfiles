@@ -18,6 +18,8 @@ set("colorcolumn=80")
 set("shortmess+=I")
 set("t_Co=256")
 set("termguicolors")
+set("listchars=tab:⇤–⇥,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×")
+set("list")
 
 opt = false
 

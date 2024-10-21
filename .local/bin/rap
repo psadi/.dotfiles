@@ -24,5 +24,7 @@ typeset -r ANSIBLE_BECOME_PASSWORD
 typeset +h ANSIBLE_BECOME_PASSWORD
 
 # Run the ansible-playbook with tags based on the OS type
+export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
+export ANSIBLE_INVENTORY_WARNING=false
 ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}"
 

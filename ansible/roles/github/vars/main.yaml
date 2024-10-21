@@ -12,12 +12,12 @@ github_package_repos:
     replace_version: true
   - name: BurntSushi/ripgrep
     binary: rg
-    url: https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
+    url: https://github.com/BurntSushi/ripgrep/releases/download/[VERSION]/ripgrep-[VERSION]-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
     extra_opts:
       - "--strip-components=1"
-      - "ripgrep-14.1.1-x86_64-unknown-linux-musl/rg"
-    replace_version: false
+      - "ripgrep-[VERSION]-x86_64-unknown-linux-musl/rg"
+    replace_version: true
   - name: sharkdp/fd
     url: https://github.com/sharkdp/fd/releases/download/v[VERSION]/fd-v[VERSION]-x86_64-unknown-linux-gnu.tar.gz
     destination: /usr/local/bin
@@ -47,13 +47,13 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "lazydocker"
     replace_version: true
-  #- name: helm/helm
-  #  url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
-  #  destination: /usr/local/bin
-  #  extra_opts:
-  #    - "linux-amd64/helm"
-  #    - "--strip-components=1"
-  #  replace_version: false
+  # - name: helm/helm
+  #   url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
+  #   destination: /usr/local/bin
+  #   extra_opts:
+  #     - "linux-amd64/helm"
+  #     - "--strip-components=1"
+  #   replace_version: true
   - name: ajeetdsouza/zoxide
     url: https://github.com/ajeetdsouza/zoxide/releases/download/v[VERSION]/zoxide-[VERSION]-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
@@ -74,14 +74,25 @@ github_package_repos:
       - "*/bin/gh"
     replace_version: true
   - name: dandavison/delta
-    url: https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-x86_64-unknown-linux-gnu.tar.gz
+    url: https://github.com/dandavison/delta/releases/download/[VERSION]/delta-[VERSION]-x86_64-unknown-linux-gnu.tar.gz
     destination: /usr/local/bin
     extra_opts:
       - "--strip-components=1"
-      - "delta-0.18.2-x86_64-unknown-linux-gnu/delta"
-    replace_version: false
+      - "delta-[VERSION]-x86_64-unknown-linux-gnu/delta"
+    replace_version: true
   - name: rhysd/actionlint
     url: https://github.com/rhysd/actionlint/releases/download/v[VERSION]/actionlint_[VERSION]_linux_amd64.tar.gz
     destination: /usr/local/bin
     extra_opts: "actionlint"
+    replace_version: true
+  - name: ClementTsang/bottom
+    binary: btm
+    url: https://github.com/ClementTsang/bottom/releases/download/[VERSION]/bottom_x86_64-unknown-linux-gnu.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "btm"
+    replace_version: true
+  - name: zellij-org/zellij
+    url: https://github.com/zellij-org/zellij/releases/download/v[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "zellij"
     replace_version: true

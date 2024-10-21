@@ -10,5 +10,5 @@ Dockerfile
 \.github
 Library/Fonts
 .DS_Store
-\.config/(zellij)
+\.config/(wezterm)
 bootstrap
