@@ -29,7 +29,7 @@
     state: present
   loop: "{{ apt_packages_1 }}"
   become: true
-  when: ansible_distrubution == 'Ubuntu' and not in_docker and item not in ansible_facts.packages.keys()
+  when: ansible_distribution == 'Ubuntu' and not in_docker and item not in ansible_facts.packages.keys()
 
 - name: Clean apt cache
   ansible.builtin.apt:
@@ -48,4 +48,4 @@
   loop_control:
     loop_var: pkg
   loop: "{{ ubuntu_deb_packages | dict2items }}"
-  when: ansible_distrubution == 'Ubuntu' and not in_docker and pkg.key not in ansible_facts.packages.keys()
+  when: ansible_distribution == 'Ubuntu' and not in_docker and pkg.key not in ansible_facts.packages.keys()
