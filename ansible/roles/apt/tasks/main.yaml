@@ -15,6 +15,9 @@
   package_facts:
     manager: "apt"
 
+- set_fact:
+    is_gui: "{{ ansible_facts.packages['ubuntu-desktop-minimal'] is defined }}"
+
 - name: Installing apt dependencies
   ansible.builtin.apt:
     name: "{{ item }}"
@@ -29,7 +32,7 @@
     state: present
   loop: "{{ apt_packages_1 }}"
   become: true
-  when: ansible_distribution == 'Ubuntu' and not in_docker and item not in ansible_facts.packages.keys()
+  when: is_gui and not in_docker and item not in ansible_facts.packages.keys()
 
 - name: Clean apt cache
   ansible.builtin.apt:
@@ -41,10 +44,10 @@
     autoremove: true
     purge: true
   become: true
-# - include_tasks: deb.yaml
-#   vars:
-#     version: "{{ pkg.value.version }}"
-#   loop_control:
-#     loop_var: pkg
-#   loop: "{{ ubuntu_deb_packages | dict2items }}"
-#   when: ansible_distribution == 'Ubuntu' and not in_docker and pkg.key not in ansible_facts.packages.keys()
+- include_tasks: deb.yaml
+  vars:
+    version: "{{ pkg.value.version }}"
+  loop_control:
+    loop_var: pkg
+  loop: "{{ ubuntu_deb_packages | dict2items }}"
+  when: is_gui and not in_docker and pkg.key not in ansible_facts.packages.keys()
