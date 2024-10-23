@@ -1,12 +1,12 @@
 ---
 - block:
     - block:
-        # - name: Add & Set Docker Context
-        #   ansible.builtin.shell: "{{ item }}"
-        #   loop:
-        #     - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375' || true"
-        #     - "docker context use picolo"
-        #   when: ansible_distrubution == 'Ubuntu'
+        - name: Add & Set Docker Context
+          ansible.builtin.shell: "{{ item }}"
+          loop:
+            - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375' || true"
+            - "docker context use picolo"
+          when: not is_gui
 
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
@@ -15,7 +15,7 @@
             - "systemctl enable --now tlp"
             - "systemctl enable --now powertop"
             - "systemctl enable --now preload"
-      when: "ansible_distribution in [ 'Ubuntu', 'Debian' ] and not in_docker"
+      when: "ansible_distribution == 'Ubuntu' and not in_docker"
 
     - name: "MacOS Dock Config"
       ansible.builtin.shell: "{{ item }}"
