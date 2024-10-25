@@ -7,10 +7,6 @@
     path: "{{ package.destination }}/{{ package_name }}"
   register: st
 
-- debug:
-    msg: "'{{ package_name }}' already exists at '{{ st.stat.path }}', Skipping ..."
-  when: "st.stat.path is defined"
-
 - block:
     - debug:
         msg: "Installing '{{ package.name }}'..."
@@ -57,5 +53,10 @@
       file:
         path: "/tmp/{{ _url.split('/')[-1] }}"
         state: absent
+
+  always:
+    - set_fact:
+        _url: null
+        package_name: null
 
   when: "st.stat.path is undefined"

@@ -51,6 +51,11 @@
         - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'qall!'"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
 
+    - name: Enabling systemd user services
+      ansible.builtin.shell: "{{ item }}"
+      loop:
+        - "systemctl --user enable --now foot-server"
+      when: is_gui and not in_docker
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
