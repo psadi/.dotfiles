@@ -1,10 +1,10 @@
 ---
 github_package_repos:
   - name: junegunn/fzf
-    url: https://github.com/junegunn/fzf/releases/download/v0.54.0/fzf-0.54.0-linux_amd64.tar.gz
+    url: https://github.com/junegunn/fzf/releases/download/v[VERSION]/fzf-[VERSION]-linux_amd64.tar.gz
     destination: /usr/local/bin
     extra_opts: ""
-    replace_version: false
+    replace_version: true
   - name: hashicorp/terraform
     url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
     destination: /usr/local/bin
@@ -47,13 +47,13 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "lazydocker"
     replace_version: true
-  # - name: helm/helm
-  #   url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
-  #   destination: /usr/local/bin
-  #   extra_opts:
-  #     - "linux-amd64/helm"
-  #     - "--strip-components=1"
-  #   replace_version: true
+  - name: helm/helm
+    url: https://get.helm.sh/helm-[VERSION]-linux-amd64.tar.gz
+    destination: /usr/local/bin
+    extra_opts:
+      - "--strip-components=1"
+      - "linux-amd64/helm"
+    replace_version: false
   - name: ajeetdsouza/zoxide
     url: https://github.com/ajeetdsouza/zoxide/releases/download/v[VERSION]/zoxide-[VERSION]-x86_64-unknown-linux-musl.tar.gz
     destination: /usr/local/bin
@@ -96,3 +96,8 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "zellij"
     replace_version: true
+  - name: derailed/k9s
+    url: https://github.com/derailed/k9s/releases/download/[VERSION]/k9s_Linux_amd64.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "k9s"
+    replace_version: false

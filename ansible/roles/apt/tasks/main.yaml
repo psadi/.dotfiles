@@ -44,10 +44,18 @@
     autoremove: true
     purge: true
   become: true
-- include_tasks: deb.yaml
-  vars:
-    version: "{{ pkg.value.version }}"
-  loop_control:
-    loop_var: pkg
-  loop: "{{ ubuntu_deb_packages | dict2items }}"
-  when: is_gui and not in_docker and pkg.key not in ansible_facts.packages.keys()
+
+- block:
+    - include_tasks: deb.yaml
+      vars:
+        version: "{{ pkg.value.version }}"
+      loop_control:
+        loop_var: pkg
+      loop: "{{ ubuntu_deb_packages | dict2items }}"
+      when: pkg.key not in ansible_facts.packages.keys()
+
+    - name: Installing Snap Packages
+      community.general.snap:
+        name: "{{ ubuntu_snap_packages }}"
+      become: true
+  when: is_gui and not in_docker

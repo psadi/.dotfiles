@@ -19,15 +19,9 @@ apt_packages_1:
   - preload
   - xclip
   - smartmontools
-  # - foot
+  - foot
 
 ubuntu_deb_packages:
-  # libssl1.1:
-  #   version: 1_1.1.1f-1ubuntu2.23
-  #   url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
-  # wezterm:
-  #   version: 20240203-110809-5046fc22
-  #   url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
   docker-ce-cli:
     version: 27.3.1-1
     url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
@@ -43,3 +37,10 @@ ubuntu_deb_packages:
   zettlr:
     version: 3.2.2
     url: https://github.com/Zettlr/Zettlr/releases/download/v%version%/Zettlr-%version%-amd64.deb
+
+ubuntu_snap_packages:
+  - firefox
+  - thunderbird
+  - gimp
+  - onlyoffice-desktopeditors
+  - vlc
