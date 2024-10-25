@@ -6,3 +6,5 @@ ansible/.vault_pass
 .config/gh/hosts.yml
 .config/zed/*
 !.config/zed/settings.json
+.config/systemd/user/*
+!.config/systemd/user/foot-server.service
