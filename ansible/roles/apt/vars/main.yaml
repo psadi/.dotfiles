@@ -1,25 +1,26 @@
 ---
 apt_packages_0:
   - build-essential
-  - git
   - curl
-  - zsh
+  - fonts-powerline
+  - git
   - jq
-  - zip
-  - unzip
-  - stow
   - locales
   - man
-  - fonts-powerline
   - procps
+  - stow
+  - unzip
+  - zip
+  - zsh
 
 apt_packages_1:
-  - tlp
+  - foot
+  - gnome-tweaks
   - powertop
   - preload
-  - xclip
   - smartmontools
-  - foot
+  - tlp
+  - xclip
 
 ubuntu_deb_packages:
   docker-ce-cli:
@@ -40,7 +41,7 @@ ubuntu_deb_packages:
 
 ubuntu_snap_packages:
   - firefox
-  - thunderbird
   - gimp
   - onlyoffice-desktopeditors
+  - thunderbird
   - vlc
