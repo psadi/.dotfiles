@@ -8,3 +8,4 @@ ansible/.vault_pass
 !.config/zed/settings.json
 .config/systemd/user/*
 !.config/systemd/user/foot-server.service
+.local/share/fonts/*
