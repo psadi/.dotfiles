@@ -20,8 +20,7 @@ apt_packages_1:
   - preload
   - qpdf
   - smartmontools
-  - tlp
-  - xclip
+  - wl-clipboard
 
 ubuntu_deb_packages:
   docker-ce-cli:
@@ -31,11 +30,8 @@ ubuntu_deb_packages:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb
   discord:
-    version: 0.0.71
+    version: 0.0.72
     url: https://stable.dl2.discordapp.net/apps/linux/%version%/discord-%version%.deb
-  zettlr:
-    version: 3.2.2
-    url: https://github.com/Zettlr/Zettlr/releases/download/v%version%/Zettlr-%version%-amd64.deb
 
 ubuntu_snap_packages:
   - firefox

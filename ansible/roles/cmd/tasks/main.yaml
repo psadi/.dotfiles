@@ -12,7 +12,6 @@
           ansible.builtin.shell: "{{ item }}"
           become: true
           loop:
-            - "systemctl enable --now tlp"
             - "systemctl enable --now powertop"
             - "systemctl enable --now preload"
       when: "ansible_distribution == 'Ubuntu' and not in_docker"
