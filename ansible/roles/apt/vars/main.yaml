@@ -16,6 +16,7 @@ apt_packages_0:
 apt_packages_1:
   - foot
   - gnome-tweaks
+  - mpv
   - powertop
   - preload
   - qpdf
@@ -23,6 +24,9 @@ apt_packages_1:
   - wl-clipboard
 
 ubuntu_deb_packages:
+  google-chrome-stable:
+    version:
+    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   docker-ce-cli:
     version: 27.3.1-1
     url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
