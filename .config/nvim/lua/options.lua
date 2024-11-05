@@ -20,6 +20,8 @@ set("t_Co=256")
 set("termguicolors")
 -- set("listchars=tab:⇤–⇥,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×")
 -- set("list")
+vim.opt.list = true
+vim.opt.listchars = { tab = "▸ ", trail = "•", extends = ">", precedes = "<", nbsp = "%" }
 
 opt = false
 
@@ -63,3 +65,6 @@ map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
 
 map("n", "<leader>ss", require("skeleton").show, {})
+
+-- Toggle Whitespaces
+vim.api.nvim_set_keymap("n", "<leader>w", ":set list!<CR>", { noremap = true, silent = true })
