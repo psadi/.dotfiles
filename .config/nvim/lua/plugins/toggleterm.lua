@@ -1,5 +1,6 @@
 return {
 	"akinsho/toggleterm.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	version = "*",
 	lazy = false,
 	config = function()

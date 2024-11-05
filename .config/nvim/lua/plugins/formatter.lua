@@ -51,6 +51,7 @@ return {
 	},
 	{
 		"zapling/mason-conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-conform").setup()
 		end,
