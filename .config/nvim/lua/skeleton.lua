@@ -29,7 +29,11 @@ function M.show()
 	local lines = vim.fn.systemlist({ "ls", M.path })
 	local filtered = {}
 	for _, v in ipairs(lines) do
-		if string.find(v, vim.bo.filetype) then
+		-- if string.find(v, "py") then
+		-- 	table.insert(filtered, v)
+		-- end
+		-- if string.find(v, vim.bo.filetype) then
+		if string.find(v, vim.api.nvim_buf_get_option(0, "filetype")) then
 			table.insert(filtered, v)
 		end
 	end
