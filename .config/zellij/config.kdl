@@ -1,8 +1,11 @@
-keybinds {
-    normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+layout {
+    pane
+    pane size=1 borderless=true {
+        plugin location="compact-bar"
     }
+}
+
+keybinds {
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
@@ -172,34 +175,28 @@ keybinds {
     }
 }
 
-plugins {
-    tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
-    strider { path "strider"; }
-    compact-bar { path "compact-bar"; }
-}
 
 simplified_ui true
 
 pane_frames false
 
 themes {
-    nvim {
-        fg "#e0e2ea"
-        bg "#14161b"
-        black "#07080d"
-        red "#ffc0b9"
-        green "#b3f6c0"
-        yellow "#fce094"
-        blue "#a6dbff"
-        magenta "#ffcaff"
-        cyan "#8cf8f7"
-        white "#c4c6cd"
-        orange "#fce094"
-    }
+  catppuccin-mocha {
+    bg "#585b70" // Surface2
+    fg "#cdd6f4" // Text
+    red "#f38ba8"
+    green "#a6e3a1"
+    blue "#89b4fa"
+    yellow "#f9e2af"
+    magenta "#f5c2e7" // Pink
+    orange "#fab387" // Peach
+    cyan "#89dceb" // Sky
+    black "#181825" // Mantle
+    white "#cdd6f4" // Text
+  }
 }
 
-theme "nvim"
+theme "catppuccin-mocha"
 
 default_layout "compact"
 

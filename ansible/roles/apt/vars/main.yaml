@@ -26,7 +26,7 @@ apt_packages_1:
 ubuntu_deb_packages:
   brave-browser:
     version: 1.71.121
-    url:https://github.com/brave/brave-browser/releases/download/v%version%/brave-browser_%version%_amd64.deb
+    url: https://github.com/brave/brave-browser/releases/download/v%version%/brave-browser_%version%_amd64.deb
   docker-ce-cli:
     version: 27.3.1-1
     url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
