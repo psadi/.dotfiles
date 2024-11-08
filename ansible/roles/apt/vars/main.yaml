@@ -14,7 +14,6 @@ apt_packages_0:
   - zsh
 
 apt_packages_1:
-  - foot
   - gnome-tweaks
   - mpv
   - powertop
@@ -24,6 +23,12 @@ apt_packages_1:
   - wl-clipboard
 
 ubuntu_deb_packages:
+  libssl1.1:
+    version: 1_1.1.1f-1ubuntu2.23
+    url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
+  wezterm:
+    version: 20240203-110809-5046fc22
+    url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
   brave-browser:
     version: 1.71.121
     url: https://github.com/brave/brave-browser/releases/download/v%version%/brave-browser_%version%_amd64.deb

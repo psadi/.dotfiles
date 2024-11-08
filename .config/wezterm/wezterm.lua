@@ -8,8 +8,8 @@ local config = wezterm.config_builder()
 -- --------------------
 -- Configs
 -- --------------------
-config.font = wezterm.font("MonoLisa Nerd Font", {})
-config.font_size = 16
+config.font = wezterm.font("JetBrainsMono", {})
+config.font_size = 18
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
 config.color_scheme = "Gruber (base16)"
 config.enable_tab_bar = false

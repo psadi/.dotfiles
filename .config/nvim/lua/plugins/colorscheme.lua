@@ -1,13 +1,14 @@
 return {
-	"rose-pine/neovim",
-	name = "rose-pine",
+	"blazkowolf/gruber-darker.nvim",
 	config = function()
-		require("rose-pine").setup({
-			variant = "main",
-			dark_variant = "main",
-			styles = {
-				italic = false,
+		require("gruber-darker").setup({
+			italic = {
+				strings = false,
+				comments = true,
+				operators = false,
+				folds = false,
 			},
 		})
+		vim.cmd.colorscheme("gruber-darker")
 	end,
 }

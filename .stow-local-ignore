@@ -10,5 +10,4 @@ Dockerfile
 \.github
 Library/Fonts
 .DS_Store
-\.config/(wezterm)
 bootstrap
