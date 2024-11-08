@@ -20,7 +20,8 @@ apt_packages_1:
   - preload
   - qpdf
   - smartmontools
-  - wl-clipboard
+  - wl-clipboard # Wayland clipboard manager
+  - xsel # Xorg clipboard manager
 
 ubuntu_deb_packages:
   libssl1.1:
