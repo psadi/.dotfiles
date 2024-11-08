@@ -91,11 +91,6 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "btm"
     replace_version: true
-  - name: zellij-org/zellij
-    url: https://github.com/zellij-org/zellij/releases/download/v[VERSION]/zellij-x86_64-unknown-linux-musl.tar.gz
-    destination: /usr/local/bin
-    extra_opts: "zellij"
-    replace_version: true
   - name: derailed/k9s
     url: https://github.com/derailed/k9s/releases/download/[VERSION]/k9s_Linux_amd64.tar.gz
     destination: /usr/local/bin

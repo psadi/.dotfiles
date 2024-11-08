@@ -20,8 +20,8 @@ apt_packages_1:
   - preload
   - qpdf
   - smartmontools
-  - wl-clipboard # Wayland clipboard manager
-  - xsel # Xorg clipboard manager
+  - wl-clipboard
+  - xsel
 
 ubuntu_deb_packages:
   libssl1.1:
@@ -30,22 +30,16 @@ ubuntu_deb_packages:
   wezterm:
     version: 20240203-110809-5046fc22
     url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
-  brave-browser:
-    version: 1.71.121
-    url: https://github.com/brave/brave-browser/releases/download/v%version%/brave-browser_%version%_amd64.deb
-  docker-ce-cli:
-    version: 27.3.1-1
-    url: https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/docker-ce-cli_%version%~ubuntu.24.04~noble_amd64.deb
   minecraft-launcher:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb
-  discord:
-    version: 0.0.72
-    url: https://stable.dl2.discordapp.net/apps/linux/%version%/discord-%version%.deb
 
 ubuntu_snap_packages:
+  - discord
+  - docker
   - firefox
   - gimp
   - onlyoffice-desktopeditors
+  - shotcut
   - thunderbird
   - vlc

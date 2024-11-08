@@ -54,8 +54,8 @@
       loop: "{{ ubuntu_deb_packages | dict2items }}"
       when: pkg.key not in ansible_facts.packages.keys()
 
-    # - name: Installing Snap Packages
-    #   community.general.snap:
-    #     name: "{{ ubuntu_snap_packages }}"
-    #   become: true
+    - name: Installing Snap Packages
+      community.general.snap:
+        name: "{{ ubuntu_snap_packages }}"
+      become: true
   when: is_gui and not in_docker
