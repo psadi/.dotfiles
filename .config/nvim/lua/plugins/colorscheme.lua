@@ -1,24 +1,13 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
+	"rose-pine/neovim",
+	name = "rose-pine",
 	config = function()
-		require("catppuccin").setup({
-			flavour = "mocha",
-			background = {
-				light = "latte",
-				dark = "mocha",
-			},
-			no_italic = true,
-			integrations = {
-				gitsigns = true,
-				treesitter = true,
-				mini = {
-					enabled = true,
-					indentscope_color = "",
-				},
+		require("rose-pine").setup({
+			variant = "main",
+			dark_variant = "main",
+			styles = {
+				italic = false,
 			},
 		})
-		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 }

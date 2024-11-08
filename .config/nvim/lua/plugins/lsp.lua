@@ -1,28 +1,25 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff_lsp", "pyright", "zls" },
+				ensure_installed = { "lua_ls", "ruff", "pyright", "zls" },
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local lspconfig = require("lspconfig")
 
 			local on_attach = function(client, bufnr)
-				if client.name == "ruff_lsp" then
+				if client.name == "ruff" then
 					client.server_capabilities.hoverProvider = false
 				end
 			end
@@ -38,7 +35,7 @@ return {
 					},
 				},
 			})
-			lspconfig.ruff_lsp.setup({
+			lspconfig.ruff.setup({
 				on_attach = on_attach,
 				init_options = {
 					settings = {

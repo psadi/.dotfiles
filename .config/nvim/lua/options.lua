@@ -68,3 +68,7 @@ map("n", "<leader>ss", require("skeleton").show, {})
 
 -- Toggle Whitespaces
 vim.api.nvim_set_keymap("n", "<leader>w", ":set list!<CR>", { noremap = true, silent = true })
+
+-- Mini TrailSpace
+map("n", "<leader>tr", "<CMD>lua MiniTrailspace.trim()<CR>", { silent = true })
+map("n", "<leader>ltr", "<CMD>lua MiniTrailspace.trim_last_lines()<CR>", { silent = true })

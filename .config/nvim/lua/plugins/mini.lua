@@ -34,4 +34,11 @@ return {
 			require("mini.indentscope").setup()
 		end,
 	},
+	{
+		"echasnovski/mini.trailspace",
+		version = false,
+		config = function()
+			require("mini.trailspace").setup()
+		end,
+	},
 }
