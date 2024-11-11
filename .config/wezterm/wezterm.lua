@@ -17,7 +17,7 @@ config.enable_scroll_bar = false
 config.window_padding = {
 	left = 0,
 	right = 0,
-	top = 10,
+	top = 0,
 	bottom = 0,
 }
 config.window_close_confirmation = "NeverPrompt"
@@ -30,7 +30,7 @@ config.keys = {
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
 	{ key = "C", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "|", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "\\", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
