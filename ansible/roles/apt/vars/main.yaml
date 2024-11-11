@@ -15,7 +15,6 @@ apt_packages_0:
 
 apt_packages_1:
   - gnome-tweaks
-  - mpv
   - powertop
   - preload
   - qpdf

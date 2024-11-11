@@ -8,6 +8,14 @@
             - "docker context use picolo"
           when: "ansible_default_ipv4.address != '192.168.1.100'"
 
+        - name: Set Gnome Settings
+          ansible.builtin.shell: "{{ item }}"
+          loop:
+            - "gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
+            - "gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false"
+            - "gsettings set org.gnome.desktop.interface icon-theme 'Yaru'"
+            - "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
+            - "gsettings set org.gnome.desktop.wm.preferences button-layout ':close'"
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
           become: true
