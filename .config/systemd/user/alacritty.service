@@ -3,7 +3,9 @@ Description=Alacritty Terminal Daemon
 
 [Service]
 ExecStart=/snap/bin/alacritty --daemon
-Restart=always
+Restart=on-failure
+RestartSec=5
+Environment=DISPLAY=:0
 
 [Install]
 WantedBy=default.target
