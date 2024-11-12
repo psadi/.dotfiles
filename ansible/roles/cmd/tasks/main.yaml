@@ -9,13 +9,15 @@
           when: "ansible_default_ipv4.address != '192.168.1.100'"
 
         - name: Set Gnome Settings
-          ansible.builtin.shell: "{{ item }}"
+          ansible.builtin.shell: "gsettings set {{ item }}"
           loop:
-            - "gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
-            - "gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false"
-            - "gsettings set org.gnome.desktop.interface icon-theme 'Yaru'"
-            - "gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'"
-            - "gsettings set org.gnome.desktop.wm.preferences button-layout ':close'"
+            - "org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
+            - "org.gnome.shell.extensions.dash-to-dock dock-fixed false"
+            - "org.gnome.desktop.interface icon-theme 'Yaru'"
+            - "org.gnome.desktop.interface cursor-theme 'Yaru'"
+            - "org.gnome.desktop.wm.preferences button-layout ':close'"
+            - "org.gnome.desktop.interface show-battery-percentage true"
+            - "org.gnome.desktop.default-applications.terminal exec '/snap/alacritty/current/bin/alacritty'"
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
           become: true
@@ -43,7 +45,10 @@
         - if [ -d '/var/cache/apt/archives' ]; then rm -rf /var/cache/apt/archives/*; fi
 
     - name: Configuring user shell
-      ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
+      ansible.builtin.shell: "{{ item }}"
+      loop:
+        - "chsh -s /usr/bin/zsh {{ cmd_user }}"
+        - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/alacritty/current/bin/alacritty 100"
       become: true
 
     - name: Finalizing the installation

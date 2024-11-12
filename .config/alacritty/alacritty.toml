@@ -1,0 +1,46 @@
+[general]
+live_config_reload = true
+
+[font]
+normal = { family = "MonoLisa Nerd Font", style = "Regular" }
+bold = { family = "MonoLisa Nerd Font", style = "Bold" }
+italic = { family = "MonoLisa Nerd Font", style = "Italic" }
+size = 16
+
+[window]
+startup_mode = "Maximized"
+title = "Terminal"
+dynamic_title = true
+
+# [colors]
+#
+# [colors.primary]
+# background = "#181818"
+# foreground = "#e4e4ef"
+#
+# [colors.normal]
+# black = "#000000"
+# red = "#f43841"
+# green = "#73c936"
+# yellow = "#ffdd33"
+# blue = "#5f627f"
+# magenta = "#9e95c7"
+# cyan = "#5f627f"
+# white = "#ffffff"
+#
+# [colors.bright]
+# black = "#282828"
+# red = "#ff4f58"
+# green = "#73c936"
+# yellow = "#ffdd33"
+# blue = "#96a6c8"
+# magenta = "#9e95c7"
+# cyan = "#96a6c8"
+# white = "#ffffff"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+

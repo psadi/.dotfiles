@@ -22,13 +22,16 @@ apt_packages_1:
   - wl-clipboard
   - xsel
 
+apt_purge_packages:
+  - gnome-terminal
+
 ubuntu_deb_packages:
-  libssl1.1:
-    version: 1_1.1.1f-1ubuntu2.23
-    url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
-  wezterm:
-    version: 20240203-110809-5046fc22
-    url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
+  # libssl1.1:
+  #   version: 1_1.1.1f-1ubuntu2.23
+  #   url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
+  # wezterm:
+  #   version: 20240203-110809-5046fc22
+  #   url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
   minecraft-launcher:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb

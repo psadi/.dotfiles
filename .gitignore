@@ -7,5 +7,5 @@ ansible/.vault_pass
 .config/zed/*
 !.config/zed/settings.json
 .config/systemd/user/*
-!.config/systemd/user/foot-server.service
+!.config/systemd/user/alacritty.service
 .local/share/fonts/*

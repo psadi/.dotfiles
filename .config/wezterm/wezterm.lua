@@ -21,6 +21,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_close_confirmation = "NeverPrompt"
+config.window_decorations = "TITLE"
 -- -----------------------------------------------------
 -- Keybindings
 -- -----------------------------------------------------

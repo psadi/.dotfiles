@@ -26,12 +26,19 @@
   become: true
   when: item not in ansible_facts.packages.keys()
 
-- name: Installing apt dependencies
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ apt_packages_1 }}"
-  become: true
+- block:
+    - name: Installing apt dependencies
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ apt_packages_1 }}"
+      become: true
+
+    - name: Remove "{{ item }}" package
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ apt_purge_packages }}"
   when: is_gui and not in_docker and item not in ansible_facts.packages.keys()
 
 - name: Clean apt cache
