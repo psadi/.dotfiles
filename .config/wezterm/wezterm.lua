@@ -8,11 +8,13 @@ local config = wezterm.config_builder()
 -- --------------------
 -- Configs
 -- --------------------
-config.font = wezterm.font("JetBrainsMono", {})
+config.font = wezterm.font("MonoLisa Nerd Font", {})
 config.font_size = 18
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
-config.color_scheme = "Gruber (base16)"
-config.enable_tab_bar = false
+config.color_scheme = "Gruvbox dark, hard (base16)"
+config.tab_max_width = 20
+config.use_fancy_tab_bar = false
+config.enable_tab_bar = true
 config.enable_scroll_bar = false
 config.window_padding = {
 	left = 0,
@@ -21,7 +23,6 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_close_confirmation = "NeverPrompt"
-config.window_decorations = "TITLE"
 -- -----------------------------------------------------
 -- Keybindings
 -- -----------------------------------------------------

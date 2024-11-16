@@ -1,14 +1,8 @@
 return {
-	"blazkowolf/gruber-darker.nvim",
+	"morhetz/gruvbox",
 	config = function()
-		require("gruber-darker").setup({
-			italic = {
-				strings = false,
-				comments = true,
-				operators = false,
-				folds = false,
-			},
-		})
-		vim.cmd.colorscheme("gruber-darker")
+		vim.o.background = "dark"
+		vim.cmd("let g:gruvbox_contrast_dark = 'hard'")
+		vim.cmd("colorscheme gruvbox")
 	end,
 }

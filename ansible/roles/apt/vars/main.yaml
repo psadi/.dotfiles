@@ -14,6 +14,7 @@ apt_packages_0:
   - zsh
 
 apt_packages_1:
+  - chrome-gnome-shell
   - gnome-tweaks
   - powertop
   - preload

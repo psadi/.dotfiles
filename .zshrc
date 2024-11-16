@@ -53,7 +53,6 @@ export DOTFILES_DIR="${HOME}/.dotfiles"
 
 # Plugins
 plug "romkatv/powerlevel10k"
-plug "romkatv/gitstatus"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
