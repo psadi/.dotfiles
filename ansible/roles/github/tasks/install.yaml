@@ -48,6 +48,11 @@
         group: "{{ ansible_user_id }}"
         extra_opts: "{{ _extra_opts }}"
         remote_src: true
+      when: "'.zip' not in _url.split('/')[-1]"
+
+    - name: "Extracting '{{ _url.split('/')[-1] }}' package"
+      command: "unzip -oqj /tmp/{{ _url.split('/')[-1] }} {{ _extra_opts }} -d {{ package.destination }}"
+      when: "'.zip' in _url.split('/')[-1]"
 
     - name: Cleaning up
       file:

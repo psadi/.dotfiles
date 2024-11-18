@@ -8,7 +8,7 @@ github_package_repos:
   - name: hashicorp/terraform
     url: https://releases.hashicorp.com/terraform/[VERSION]/terraform_[VERSION]_linux_amd64.zip
     destination: /usr/local/bin
-    extra_opts: "-qq"
+    extra_opts: "terraform"
     replace_version: true
   - name: BurntSushi/ripgrep
     binary: rg
@@ -35,7 +35,7 @@ github_package_repos:
   - name: dalance/procs
     url: https://github.com/dalance/procs/releases/download/v[VERSION]/procs-v[VERSION]-x86_64-linux.zip
     destination: /usr/local/bin
-    extra_opts: "-qq"
+    extra_opts: "procs"
     replace_version: true
   - name: jesseduffield/lazygit
     url: https://github.com/jesseduffield/lazygit/releases/download/v[VERSION]/lazygit_[VERSION]_Linux_x86_64.tar.gz
@@ -96,3 +96,8 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "k9s"
     replace_version: false
+  - name: sxyazi/yazi
+    url: https://github.com/sxyazi/yazi/releases/download/v[VERSION]/yazi-x86_64-unknown-linux-musl.zip
+    destination: /usr/local/bin
+    extra_opts: "yazi-x86_64-unknown-linux-musl/yazi"
+    replace_version: true
