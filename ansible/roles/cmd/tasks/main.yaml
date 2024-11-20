@@ -21,7 +21,7 @@
             - "org.gnome.desktop.interface cursor-theme 'Yaru'"
             - "org.gnome.desktop.wm.preferences button-layout ':close'"
             - "org.gnome.desktop.interface show-battery-percentage true"
-            - "org.gnome.desktop.default-applications.terminal exec '/snap/alacritty/current/bin/alacritty'"
+            - "org.gnome.desktop.default-applications.terminal exec '/usr/bin/foot'"
 
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
@@ -53,7 +53,7 @@
       ansible.builtin.shell: "{{ item }}"
       loop:
         - "chsh -s /usr/bin/zsh {{ cmd_user }}"
-        - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/alacritty/current/bin/alacritty 100"
+        - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/foot 100"
       become: true
 
     - name: Finalizing the installation
