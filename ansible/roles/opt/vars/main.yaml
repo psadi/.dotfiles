@@ -12,6 +12,6 @@ packages:
     linux: https://github.com/neovim/neovim/releases/download/v%version%/nvim-linux64.tar.gz
     darwin: https://github.com/neovim/neovim/releases/download/v%version%/nvim-macos-x86_64.tar.gz
   zig:
-    version: 0.14.0-dev.1694+3b465ebec
-    linux: https://ziglang.org/builds/zig-linux-x86_64-%version%.tar.xz
+    version: 0.13.0
+    linux: https://ziglang.org/download/%version%/zig-linux-x86-%version%.tar.xz
     macos: https://ziglang.org/builds/zig-macos-x86_64-%version%.tar.xz

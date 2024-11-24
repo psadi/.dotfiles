@@ -16,6 +16,8 @@ apt_packages_0:
 apt_packages_1:
   - chrome-gnome-shell
   - foot
+  - gnome-network-displays
+  - gnome-tweaks
   - gnome-tweaks
   - powertop
   - preload
