@@ -14,12 +14,6 @@
 # email  : therealslimaddy@duck.com
 #---------------------------------------------
 
-# P10K Instant Prompt
-#---------------------------------------------
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Set Path Dynamically
 #---------------------------------------------
 function pathman() {
@@ -52,7 +46,6 @@ export DOTFILES_DIR="${HOME}/.dotfiles"
     && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Plugins
-plug "romkatv/powerlevel10k"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
@@ -62,10 +55,6 @@ plug "mroth/evalcache"
 # Load evals, aliases, functions & commands
 #---------------------------------------------
 for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
-
-# Set ZSH Prompt
-#---------------------------------------------
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Tidying User Path
 # ---------------------------------------------
