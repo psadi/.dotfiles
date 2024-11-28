@@ -21,12 +21,13 @@
             - "org.gnome.desktop.interface cursor-theme 'Yaru'"
             - "org.gnome.desktop.wm.preferences button-layout ':close'"
             - "org.gnome.desktop.interface show-battery-percentage true"
-            - "org.gnome.desktop.default-applications.terminal exec '/usr/bin/foot'"
+            - "org.gnome.desktop.default-applications.terminal exec '/snap/alacritty/current/bin/alacritty'"
 
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
           become: true
           loop:
+            - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/alacritty/current/bin/alacritty 100"
             - "systemctl enable --now powertop"
             - "systemctl enable --now preload"
       when: "ansible_distribution == 'Ubuntu' and not in_docker"
@@ -50,10 +51,7 @@
         - if [ -d '/var/cache/apt/archives' ]; then rm -rf /var/cache/apt/archives/*; fi
 
     - name: Configuring user shell
-      ansible.builtin.shell: "{{ item }}"
-      loop:
-        - "chsh -s /usr/bin/zsh {{ cmd_user }}"
-        - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/foot 100"
+      ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
 
     - name: Finalizing the installation

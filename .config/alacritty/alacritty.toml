@@ -9,7 +9,7 @@ size = 16
 
 [window]
 startup_mode = "Maximized"
-title = "Terminal"
+title = " "
 dynamic_title = true
 
 [selection]
@@ -18,3 +18,10 @@ save_to_clipboard = true
 [cursor]
 style = { shape = "Underline", blinking = "On" }
 
+[keyboard]
+
+bindings = [
+  {chars = "\u001Bb", key = "Left", mods = "Alt"},
+  {chars = "\u001Bf", key = "Right", mods = "Alt"},
+  {chars = "\u001b\u007f", key = "Backspace", mods = "Alt"},
+]

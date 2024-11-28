@@ -101,3 +101,8 @@ github_package_repos:
     destination: /usr/local/bin
     extra_opts: "yazi-x86_64-unknown-linux-musl/yazi"
     replace_version: true
+  - name: starship/starship
+    url: https://github.com/starship/starship/releases/download/v[VERSION]/starship-x86_64-unknown-linux-gnu.tar.gz
+    destination: /usr/local/bin
+    extra_opts: "starship"
+    replace_version: true
