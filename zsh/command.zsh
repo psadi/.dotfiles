@@ -14,7 +14,7 @@ if (( $+commands[bat] )); then
   alias cat="bat -p"
   export MANPAGER="bat -l man -p"
   export MANROFFOPT='-c'
-  export BAT_THEME="gruvbox-dark"
+  export BAT_THEME="base16"
 fi
 
 # Eza
