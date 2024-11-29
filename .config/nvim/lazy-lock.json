@@ -16,6 +16,5 @@
   "nvim-treesitter": { "branch": "master", "commit": "a3a732107f8b529f97bf4921b3e1af5dcc756bb6" },
   "oil.nvim": { "branch": "master", "commit": "21705a1debe6d85a53c138ab944484b685432b2b" },
   "tairiki.nvim": { "branch": "master", "commit": "c704955b447e88986a7a6b523f559d81e3e6c9d5" },
-  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "c39c4af4e6500effb17eeaaa2306dd0bb75afd62" },
   "toggleterm.nvim": { "branch": "main", "commit": "022ff5594acccc8d90d2e46dc43994f7722ebdf7" }
 }
