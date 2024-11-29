@@ -5,5 +5,6 @@ return {
 	config = function()
 		require("tairiki").setup({})
 		require("tairiki").load()
+		require("tairiki").load()
 	end,
 }

@@ -89,17 +89,3 @@ if (( $+commands[neovide] )); then
   alias nv="neovide"
 fi
 
-
-# Docker
-# ---------------------------------------------
-function doco() {
-    local context
-    context=$(docker context ls -q | fzf --exit-0 --layout reverse --border rounded --height 20 --preview="docker context inspect {1} --format '{{json .}}' | jq -C")
-
-    if [ -n "$context" ]; then
-        docker context use "$context"
-    else
-        echo "No context selected."
-    fi
-}
-
