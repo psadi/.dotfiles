@@ -47,4 +47,4 @@
         path: "/tmp/{{ url.split('/')[-1] }}"
         state: absent
 
-  when: basepath_exists.stat.exists == false and not key_exists
+  when: basepath_exists.stat.exists == false and not key_exists.stat.exists
