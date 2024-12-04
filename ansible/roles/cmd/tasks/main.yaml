@@ -30,7 +30,7 @@
             - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/alacritty/current/bin/alacritty 100"
             - "systemctl enable --now powertop"
             - "systemctl enable --now preload"
-      when: "ansible_distribution == 'Ubuntu' and not in_docker"
+      when: "ansible_distribution == 'Ubuntu' and not in_docker and is_gui"
 
     - name: "MacOS Dock Config"
       ansible.builtin.shell: "{{ item }}"
