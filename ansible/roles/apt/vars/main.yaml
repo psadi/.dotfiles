@@ -15,7 +15,6 @@ apt_packages_0:
 
 apt_packages_1:
   - chrome-gnome-shell
-  - foot
   - geary
   - gnome-network-displays
   - gnome-tweaks
@@ -31,24 +30,19 @@ apt_purge_packages:
   - gnome-terminal
 
 ubuntu_deb_packages:
-  # libssl1.1:
-  #   version: 1_1.1.1f-1ubuntu2.23
-  #   url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.%version%_amd64.deb
-  # wezterm:
-  #   version: 20240203-110809-5046fc22
-  #   url: https://github.com/wez/wezterm/releases/download/%version%/wezterm-%version%.Ubuntu20.04.deb
   minecraft-launcher:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb
 
 ubuntu_snap_packages:
-  - discord
-  - docker
-  - firefox
-  - gimp
-  - multipass
-  - obs-studio
-  - onlyoffice-desktopeditors
-  - shotcut
-  - snapcraft
-  - vlc
+  - { name: alacritty, classic: true }
+  - { name: discord, classic: false }
+  - { name: docker, classic: false }
+  - { name: firefox, classic: false }
+  - { name: gimp, classic: false }
+  - { name: multipass, classic: false }
+  - { name: obs-studio, classic: false }
+  - { name: onlyoffice-desktopeditors, classic: false }
+  - { name: shotcut, classic: true }
+  - { name: snapcraft, classic: true }
+  - { name: vlc, classic: false }

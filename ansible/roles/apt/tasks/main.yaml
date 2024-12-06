@@ -63,6 +63,8 @@
 
     - name: Installing Snap Packages
       community.general.snap:
-        name: "{{ ubuntu_snap_packages }}"
+        name: "{{ item.name }}"
+        classic: "{{ item.classic }}"
       become: true
+      loop: "{{ ubuntu_snap_packages }}"
   when: is_gui and not in_docker
