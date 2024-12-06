@@ -33,6 +33,9 @@ ubuntu_deb_packages:
   minecraft-launcher:
     version:
     url: https://launcher.mojang.com/download/Minecraft.deb
+  fastfetch:
+    version: 2.31.0
+    url: https://github.com/fastfetch-cli/fastfetch/releases/download/%version%/fastfetch-linux-amd64.deb
 
 ubuntu_snap_packages:
   - { name: alacritty, classic: true }
