@@ -72,8 +72,6 @@ check_command() {
     fi
 }
 
-check_command "git"
-
 # Backup function for important files
 backup_file() {
     local FILE=$1
@@ -156,6 +154,7 @@ pip3 install --upgrade --no-cache-dir --break-system-packages pip ansible
 DOTFILES_DIR="${HOME}/.dotfiles"
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo -e "${GREEN}Cloning psadi/.dotfiles${NC}"
+    check_command "git"
     git clone https://github.com/psadi/dotfiles.git "$DOTFILES_DIR"
 else
     echo -e "${YELLOW}psadi/.dotfiles already exists, skipping clone${NC}"
