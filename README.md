@@ -42,13 +42,13 @@ The following software must be installed on your system:
 One Script Installer
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap)"
+/bin/bash -c "$(curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap)"
 ```
 
 Shorterend Version
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://bit.ly/3NlTbaf)"
+/bin/bash -c "$(curl --proto '=https' --tlsv1.2 -LsSf https://bit.ly/3NlTbaf)"
 ```
 
 Manual Steps:
