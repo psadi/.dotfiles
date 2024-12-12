@@ -43,8 +43,10 @@ ubuntu_snap_packages:
   - { name: docker, classic: false }
   - { name: firefox, classic: false }
   - { name: gimp, classic: false }
+  - { name: go, classic: true }
   - { name: lxd, classic: false }
   - { name: multipass, classic: false }
+  - { name: nvim, classic: true }
   - { name: obs-studio, classic: false }
   - { name: onlyoffice-desktopeditors, classic: false }
   - { name: shotcut, classic: true }

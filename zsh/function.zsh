@@ -129,3 +129,9 @@ function doco() {
         echo "No context selected."
     fi
 }
+
+# Battery
+# --
+function bstat() {
+    find /sys/class/power_supply/BAT0/* -type f | fzf --exit-0 --layout reverse --border rounded --height 20 --preview 'cat {}'
+}

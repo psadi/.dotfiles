@@ -85,7 +85,3 @@ if (( $+commands[nvim])); then
   alias v="nvim"
 fi
 
-if (( $+commands[neovide] )); then
-  alias nv="neovide"
-fi
-
