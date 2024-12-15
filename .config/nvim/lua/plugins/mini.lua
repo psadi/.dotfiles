@@ -14,13 +14,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.completion",
-		version = false,
-		config = function()
-			require("mini.completion").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.icons",
 		version = false,
 		config = function()

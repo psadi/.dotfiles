@@ -11,12 +11,14 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("MonoLisa Nerd Font", {})
 config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
-config.color_scheme = "Gruvbox dark, hard (base16)"
+config.color_scheme = "Tomorrow Night"
 config.tab_max_width = 20
 config.use_fancy_tab_bar = false
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 config.enable_scroll_bar = false
 config.window_padding = {
+	top = 0,
+	left = 0,
 	right = 0,
 	bottom = 0,
 }
