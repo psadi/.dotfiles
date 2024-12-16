@@ -70,8 +70,7 @@ map("n", "<leader>tr", "<CMD>lua MiniTrailspace.trim()<CR>", { silent = true })
 map("n", "<leader>ltr", "<CMD>lua MiniTrailspace.trim_last_lines()<CR>", { silent = true })
 
 -- Set the background to the terminal's default background color
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
 vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none" })
 vim.api.nvim_set_hl(0, "LineNr", { ctermbg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
