@@ -6,7 +6,8 @@ return {
 	config = function()
 		require("toggleterm").setup({
 			direction = "tab",
-			open_mapping = [[<c-`>]],
+			-- open_mapping = [[<c-`>]],
+			open_mapping = [[<c-\>]],
 			hide_numbers = true,
 			auto_scroll = true,
 		})

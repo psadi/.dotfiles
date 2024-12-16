@@ -6,5 +6,5 @@
   loop:
     - pip
     - jmespath
-    - pdm
     - pynvim
+    - uv

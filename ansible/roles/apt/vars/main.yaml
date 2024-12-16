@@ -26,9 +26,6 @@ apt_packages_1:
   - wl-clipboard
   - xsel
 
-apt_purge_packages:
-  - gnome-terminal
-
 ubuntu_deb_packages:
   minecraft-launcher:
     version:
@@ -38,7 +35,6 @@ ubuntu_deb_packages:
     url: https://github.com/fastfetch-cli/fastfetch/releases/download/%version%/fastfetch-linux-amd64.deb
 
 ubuntu_snap_packages:
-  - { name: alacritty, classic: true }
   - { name: discord, classic: false }
   - { name: docker, classic: false }
   - { name: firefox, classic: false }
