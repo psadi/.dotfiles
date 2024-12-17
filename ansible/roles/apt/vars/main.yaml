@@ -19,12 +19,15 @@ apt_packages_1:
   - gnome-network-displays
   - gnome-tweaks
   - gnome-tweaks
+  - net-tools
   - powertop
   - preload
   - qpdf
   - smartmontools
   - wl-clipboard
   - xsel
+
+apt_purge_packages: []
 
 ubuntu_deb_packages:
   minecraft-launcher:

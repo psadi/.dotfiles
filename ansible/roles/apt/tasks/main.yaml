@@ -39,12 +39,14 @@
         name: "{{ item }}"
         state: absent
       loop: "{{ apt_purge_packages }}"
+      when: ((apt_purge_packages is defined) and (apt_purge_packages | length > 0))
   when: is_gui and not in_docker and item not in ansible_facts.packages.keys()
 
 - name: Clean apt cache
   ansible.builtin.apt:
     autoclean: true
   become: true
+  when: in_docker
 
 - name: Remove unused packages
   ansible.builtin.apt:
