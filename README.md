@@ -2,19 +2,19 @@
 
 ## Installation
 
-### One Script Installer:
+#### One Script Installer:
 
 ```bash
 /bin/bash -c "$(curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/psadi/.dotfiles/refs/heads/main/bootstrap)"
 ```
 
-### Shorterend Version:
+#### Shorterend Version:
 
 ```bash
 /bin/bash -c "$(curl --proto '=https' --tlsv1.2 -LsSf https://bit.ly/3NlTbaf)"
 ```
 
-### Manual Steps:
+#### Manual Steps:
 
 To install the configuration files, run the following commands:
 
