@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 LOG_FILE="/tmp/bootstrap_log.txt"
 exec > >(tee -a "$LOG_FILE") 2>&1
