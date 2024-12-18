@@ -87,10 +87,10 @@ install_homebrew() {
     echo -e "${BLUE}-----------------------------------${NC}"
     if ! command -v brew &> /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        eval "$(/usr/local/bin/brew shellenv)"
     else
         echo -e "${YELLOW}Homebrew is already installed${NC}"
     fi
+    eval "$(/usr/local/bin/brew shellenv)"
 }
 
 install_linux_dependencies() {
@@ -161,7 +161,7 @@ else
 fi
 
 # Export required variables for Ansible
-export PATH="${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_BECOME_PASSWORD="${SUDO_PASSWORD}"
