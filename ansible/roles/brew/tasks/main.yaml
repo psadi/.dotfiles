@@ -1,8 +1,10 @@
 - block:
     - name: Check if homebrew is installed
       command: which brew
-      register: check_homebrew
-      failed_when: check_homebrew.rc != 0
+      stat:
+        path: "/home/linuxbrew/.linuxbrew/bin/brew"
+      register: brew_bin_stat
+      failed_when: not brew_bin_stat.stat.exists
 
     - set_fact:
         brew_leaves: "{{ lookup('file', brew_file) | regex_replace('\n', ' ') }}"
@@ -16,12 +18,12 @@
     - debug: var=brew_install.stdout_lines
 
     - block:
-      - name: Installing homebrew casks
-        command: "brew install --cask {{ brew_casks }}"
-        register: brew_cask_install
+        - name: Installing homebrew casks
+          command: "brew install --cask {{ brew_casks }}"
+          register: brew_cask_install
 
-      - debug: var=brew_cask_install.stderr_lines
-      - debug: var=brew_cask_install.stdout_lines
+        - debug: var=brew_cask_install.stderr_lines
+        - debug: var=brew_cask_install.stdout_lines
       when: ansible_distribution == 'MacOSX'
 
     - name: Performing brew system upgrade

@@ -161,7 +161,7 @@ else
 fi
 
 # Export required variables for Ansible
-export PATH="${HOME}/.local/bin:$PATH"
+export PATH="${HOME}/.local/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_BECOME_PASSWORD="${SUDO_PASSWORD}"
