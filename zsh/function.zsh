@@ -18,7 +18,7 @@ function copydir {
 
 .p(){
     cd ${DOTFILES_DIR}
-    git add . && git commit -am "$(date "+%Y-%m-%d %H:%M:%S") dotfiles updates" && git push
+    git add . && git commit -am "dotfiles update" && git push
     cd -
 }
 
