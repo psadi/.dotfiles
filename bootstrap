@@ -157,7 +157,8 @@ if [ ! -d "$DOTFILES_DIR" ]; then
     check_command "git"
     git clone https://github.com/psadi/dotfiles.git "$DOTFILES_DIR"
 else
-    echo -e "${YELLOW}psadi/.dotfiles already exists, skipping clone${NC}"
+    echo -e "${YELLOW}psadi/.dotfiles already exists, pulling latest changes & skipping clone${NC}"
+    git pull
 fi
 
 # Export required variables for Ansible
