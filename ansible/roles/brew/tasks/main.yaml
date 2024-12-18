@@ -1,6 +1,5 @@
 - block:
     - name: Check if homebrew is installed
-      command: which brew
       stat:
         path: "/home/linuxbrew/.linuxbrew/bin/brew"
       register: brew_bin_stat
