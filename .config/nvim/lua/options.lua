@@ -60,8 +60,6 @@ map("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- Reload Config
 map("n", "<leader>%", "<CMD>source %<CR>", { desc = "Source Config" })
 
-map("n", "<leader>ss", require("skeleton").show, {})
-
 -- Toggle Whitespaces
 vim.api.nvim_set_keymap("n", "<leader>w", ":set list!<CR>", { noremap = true, silent = true })
 

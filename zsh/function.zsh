@@ -97,7 +97,7 @@ gitlfs()
 
 brew_leaves_gen(){
     if command -v brew &> /dev/null; then
-        brew leaves > "${DOTFILES_DIR}/ansible/roles/homebrew/files/brew.${OSTYPE}.leaves"
+        brew leaves > "${DOTFILES_DIR}/ansible/roles/brew/files/brew.${OSTYPE}.leaves"
         [[ $OSTYPE == "darwin" ]] && brew list --cask -1 > "${DOTFILES_DIR}/ansible/roles/homebrew/files/brew.casks"
     else
         echo "homebrew is required to generate leaves"
