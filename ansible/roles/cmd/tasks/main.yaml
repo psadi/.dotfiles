@@ -27,13 +27,11 @@
             - "org.gnome.desktop.interface cursor-theme 'Yaru'"
             - "org.gnome.desktop.wm.preferences button-layout ':close'"
             - "org.gnome.desktop.interface show-battery-percentage true"
-            - "org.gnome.desktop.default-applications.terminal exec '/usr/bin/gnome-terminal'"
 
         - name: Enabling systemd services
           ansible.builtin.shell: "{{ item }}"
           become: true
           loop:
-            - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/gnome-terminal 100"
             - "systemctl enable --now powertop"
             - "systemctl enable --now preload"
       when: "ansible_distribution == 'Ubuntu' and not in_docker and is_gui"
