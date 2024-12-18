@@ -7,9 +7,7 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Pre-requisites](#pre-requisites)
 - [Installation](#installation)
-- [Docker Environment](#docker-environment)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
@@ -27,15 +25,6 @@ The idea is to have a single repository with all the configuration files for my 
 - Scalabe
 - Flexible
 - Maintainable
-
-## Pre-requisites
-
-The following software must be installed on your system:
-
-- [git](https://git-scm.com/)
-- [python3](https://www.python.org/)
-- [ansible](https://www.ansible.com/)
-- [docker](https://www.docker.com/) or [podman](https://podman.io/) - To leverage the built image
 
 ## Installation
 
@@ -62,25 +51,6 @@ export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 
 ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
 ```
-
-## Docker Environment
-
-A docker image is available with all the tools and configurations pre-installed. To use the docker image, run the following commands:
-
-```bash
-docker run -it psadi/pde:latest
-```
-
-A shell [script](https://github.com/psadi/dotfiles/blob/main/.local/bin/devsh) is available to run the docker image with optional arguments to be passed during runtime.
-
-**\*Pre-requisite:** dotfiles to be cloned to the home directory & configured as per the above instructions\*
-
-To Invoke the script, run the following commands:
-
-| INVOKE TYPE    | COMMAND                                    |
-| -------------- | ------------------------------------------ |
-| Standalone     | `devsh`                                    |
-| With Arguments | `devsh -v ./path/to/volume:/path/to/mount` |
 
 ## Disclaimer
 
