@@ -130,7 +130,7 @@ case "$OSTYPE" in
             debian|ubuntu)
                 install_linux_dependencies
                 install_homebrew
-                export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
                 ;;
             *)
                 echo -e "${RED}No task defined for $DIST on Linux${NC}"
