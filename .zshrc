@@ -46,6 +46,7 @@ export DOTFILES_DIR="${HOME}/.dotfiles"
     && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Plugins
+#---------------------------------------------
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"

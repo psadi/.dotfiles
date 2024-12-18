@@ -9,17 +9,19 @@
     - role: apt
       tags: linux
 
-    - role: github
-      tags: linux
+    # - role: github
+    #   tags: linux
 
-    - role: homebrew
-      tags: darwin
-
-    - role: opt
+    - role: brew
       tags:
-        - linux
         - darwin
+        - linux
 
+    # - role: opt
+    #   tags:
+    #     - linux
+    #     - darwin
+    #
     - role: cmd
       tags:
         - linux

@@ -39,6 +39,15 @@ if (( $+commands[zoxide] )); then
   alias cd="z"
 fi
 
+# nvm
+#---------------------------------------------
+if (( $+commands[zoxide] )); then
+  mkdir -p ~/.nvm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
+fi
+
 # K9s
 #---------------------------------------------
 if (( $+commands[k9s] )); then
@@ -52,29 +61,29 @@ if (( $+commands[brew] )); then
   export HOMEBREW_UPGRADE_GREEDY=1
   export HOMEBREW_NO_AUTO_UPDATE=1
   # Python
-  PYTHON_VERSION='python@3.12'
-  export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
-  export PYTHONUSERBASE="${HOME}/.local"
-  export PIP_USE_DEPRICATED=html5lib
-  # Path
-  pathman PATH "${PYTHON_HOME}/libexec/bin"
-  pathman PATH "/usr/local/sbin"
-  pathman PATH "/usr/local/opt/m4/bin"
+  if [ $OSTYPE = "darwin" ]; then
+    PYTHON_VERSION='python@3.12'
+    export PYTHON_HOME="$(brew --prefix ${PYTHON_VERSION})"
+    export PYTHONUSERBASE="${HOME}/.local"
+    export PIP_USE_DEPRICATED=html5lib
+    pathman PATH "${PYTHON_HOME}/libexec/bin"
+    pathman PATH "/usr/local/sbin"
+  fi
 fi
 
 # Optional Packages
 # ---------------------------------------------
-for dir in /opt/pkg/*; do
-  if [ -d "$dir" ]; then
-    if [ -d "${dir}/bin" ]; then
-      pathman PATH "${dir}/bin"
-    else
-      pathman PATH "${dir}"
-    fi
-    pathman LD_LIBRARY_PATH "${dir}/lib"
-    pathman MANPATH "${dir}/share/man"
-  fi
-done
+# for dir in /opt/pkg/*; do
+#   if [ -d "$dir" ]; then
+#     if [ -d "${dir}/bin" ]; then
+#       pathman PATH "${dir}/bin"
+#     else
+#       pathman PATH "${dir}"
+#     fi
+#     pathman LD_LIBRARY_PATH "${dir}/lib"
+#     pathman MANPATH "${dir}/share/man"
+#   fi
+# done
 
 # Neovim
 # ---------------------------------------------

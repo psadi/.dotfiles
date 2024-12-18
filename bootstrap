@@ -97,8 +97,7 @@ install_linux_dependencies() {
     SYS_LANG="en_US.UTF-8"
     echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
     echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
-    echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y \
-        python3-minimal python3-pip python3-venv locales git
+    echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git
 
     # Backup locale file before updating
     backup_file "/etc/locale.gen"
@@ -131,6 +130,7 @@ case "$OSTYPE" in
         case "$DIST" in
             debian|ubuntu)
                 install_linux_dependencies
+                install_homebrew
                 ;;
             *)
                 echo -e "${RED}No task defined for $DIST on Linux${NC}"

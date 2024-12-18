@@ -1,18 +1,9 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+	"folke/tokyonight.nvim",
+	lazy = false,
 	priority = 1000,
 	config = function()
-		require("catppuccin").setup({
-			flavour = "mocha",
-			integrations = {
-				blink_cmp = true,
-				mini = {
-					enabled = true,
-					indentscope_color = "lavender",
-				},
-			},
-		})
-		vim.cmd.colorscheme("catppuccin")
+		require("tokyonight.colors").setup({})
+		vim.cmd([[colorscheme tokyonight-night]])
 	end,
 }
