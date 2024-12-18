@@ -1,4 +1,4 @@
-# Dotfiles & Personal Development Environment (PDE) 🚀
+# .dotfiles 🚀
 
 ## Table of Contents
 
