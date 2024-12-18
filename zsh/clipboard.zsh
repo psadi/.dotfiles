@@ -54,7 +54,7 @@ function detect-clipboard() {
       if detect-clipboard; then
         "${clipcmd}" "$@"
       else
-        print "${clipcmd}: Platform $OSTYPE not supported or xclip/xsel not installed" >&2
+        print "${clipcmd}: Platform $OSTYPE not supported or dependencies are not installed" >&2
         return 1
       fi
     }
