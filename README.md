@@ -1,27 +1,5 @@
 # .dotfiles 🚀
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Disclaimer](#disclaimer)
-- [License](#license)
-
-## Introduction
-
-This repository contains the configuration files for my personal development environment.
-
-The idea is to have a single repository with all the configuration files for my development environment, so that I can easily set up a new machine with all the tools and configurations I need with the below principles in mind
-
-- Reproducible
-- Version Controlled
-- Immutabe
-- Secure
-- Portable
-- Scalabe
-- Flexible
-- Maintainable
-
 ## Installation
 
 ### One Script Installer:
