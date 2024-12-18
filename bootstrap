@@ -90,7 +90,6 @@ install_homebrew() {
     else
         echo -e "${YELLOW}Homebrew is already installed${NC}"
     fi
-    eval "$(/usr/local/bin/brew shellenv)"
 }
 
 install_linux_dependencies() {
@@ -131,6 +130,7 @@ case "$OSTYPE" in
             debian|ubuntu)
                 install_linux_dependencies
                 install_homebrew
+                export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
                 ;;
             *)
                 echo -e "${RED}No task defined for $DIST on Linux${NC}"

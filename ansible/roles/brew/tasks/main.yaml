@@ -34,5 +34,7 @@
     - name: Cleaning up!
       command: brew cleanup -s && brew cleanup --prune=all && brew autoremove
 
+  environment:
+    PATH: "{{ homebrew_bin }}:{{ ansible_env.PATH }}"
   vars:
     brew_file: "{% if ansible_distribution == 'MacOSX' %}brew.darwin.leaves{% else %}brew.linux.leaves{% endif %}"
