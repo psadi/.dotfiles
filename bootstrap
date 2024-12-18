@@ -148,7 +148,7 @@ esac
 echo -e "${BLUE}-----------------------------------${NC}"
 echo -e "${GREEN}Installing Python3 Dependencies${NC}"
 echo -e "${BLUE}-----------------------------------${NC}"
-pip3 install --upgrade --no-cache-dir --break-system-packages pip ansible
+pip3 install --upgrade --no-cache-dir --break-system-packages pip ansible --no-warn-script-location
 
 # Clone or update dotfiles
 DOTFILES_DIR="${HOME}/.dotfiles"
