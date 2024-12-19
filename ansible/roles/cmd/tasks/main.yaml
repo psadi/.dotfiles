@@ -58,6 +58,16 @@
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
 
+    - name: Installing pip dependencies
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        extra_args: "--user --no-warn-script-location --no-cache-dir --upgrade --break-system-packages"
+      loop:
+        - pip
+        - jmespath
+        - pynvim
+        - uv
+
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
       args:

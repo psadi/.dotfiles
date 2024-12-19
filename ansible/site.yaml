@@ -9,25 +9,12 @@
     - role: apt
       tags: linux
 
-    # - role: github
-    #   tags: linux
-
     - role: brew
       tags:
         - darwin
         - linux
 
-    # - role: opt
-    #   tags:
-    #     - linux
-    #     - darwin
-    #
     - role: cmd
-      tags:
-        - linux
-        - darwin
-
-    - role: pip
       tags:
         - linux
         - darwin
