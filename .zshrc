@@ -11,7 +11,7 @@
 #  \__,_|\___/ \__|_| |_|_|\___||___/
 #---------------------------------------------
 # name   : P S, Adithya
-# email  : therealslimaddy@duck.com
+# email  : ps.adithya@icloud.com
 #---------------------------------------------
 
 # P10k Instant Prompt
