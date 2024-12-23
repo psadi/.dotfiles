@@ -1,4 +1,4 @@
-# .dotfiles 🚀
+# .dotfiles 🚀 <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo-ubuntu_cof-orange-hex.svg" alt="Canonical Ubuntu" width="35">
 
 ## Installation
 
