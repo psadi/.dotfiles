@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec /snap/bin/alacritty "$@"

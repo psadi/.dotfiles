@@ -85,17 +85,19 @@ fi
 
 # Optional Packages
 # ---------------------------------------------
-# for dir in /opt/pkg/*; do
-#   if [ -d "$dir" ]; then
-#     if [ -d "${dir}/bin" ]; then
-#       pathman PATH "${dir}/bin"
-#     else
-#       pathman PATH "${dir}"
-#     fi
-#     pathman LD_LIBRARY_PATH "${dir}/lib"
-#     pathman MANPATH "${dir}/share/man"
-#   fi
-# done
+if [[ -d /opt/pkg/*(/) ]]; then
+  for dir in /opt/pkg/*; do
+    if [ -d "$dir" ]; then
+      if [ -d "${dir}/bin" ]; then
+        pathman PATH "${dir}/bin"
+      else
+        pathman PATH "${dir}"
+      fi
+      pathman LD_LIBRARY_PATH "${dir}/lib"
+      pathman MANPATH "${dir}/share/man"
+    fi
+  done
+fi
 
 # Neovim
 # ---------------------------------------------
