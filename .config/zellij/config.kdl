@@ -184,22 +184,22 @@ simplified_ui true
 pane_frames false
 
 themes {
-    tokyonight_night {
-        fg "#c0caf5"
-        bg "#292e42"
-        black "#1a1b26"
-        red "#f7768e"
-        green "#9ece6a"
-        yellow "#e0af68"
-        blue "#7aa2f7"
-        magenta "#bb9af7"
-        cyan "#7dcfff"
-        white "#a9b1d6"
-        orange "#ff9e64"
+    ansi {
+      fg 7
+      bg 8
+      red 1
+      green 2
+      yellow 3
+      blue 4
+      magenta 5
+      orange 9
+      cyan 6
+      black 0
+      white 15
     }
 }
 
-theme "tokyonight_night"
+theme "ansi"
 
 default_layout "compact"
 

@@ -1,9 +1,9 @@
 return {
-	"folke/tokyonight.nvim",
+	"deparr/tairiki.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require("tokyonight.colors").setup({})
-		vim.cmd([[colorscheme tokyonight-night]])
+		require("tairiki").setup({})
+		require("tairiki").load()
 	end,
 }
