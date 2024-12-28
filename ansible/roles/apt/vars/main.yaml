@@ -2,6 +2,7 @@
 apt_packages_0:
   - build-essential
   - curl
+  - dos2unix
   - fonts-powerline
   - git
   - jq
@@ -27,7 +28,8 @@ apt_packages_1:
   - wl-clipboard
   - xsel
 
-apt_purge_packages: []
+apt_purge_packages:
+  - gnome-terminal
 
 ubuntu_deb_packages:
   minecraft-launcher:
