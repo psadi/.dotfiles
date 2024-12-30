@@ -16,7 +16,7 @@ apt_packages_0:
 
 apt_packages_1:
   - chrome-gnome-shell
-  - geary
+  # - geary
   - gnome-network-displays
   - gnome-tweaks
   - gnome-tweaks
@@ -52,4 +52,5 @@ ubuntu_snap_packages:
   - { name: onlyoffice-desktopeditors, classic: false }
   - { name: shotcut, classic: true }
   - { name: snapcraft, classic: true }
+  - { name: thunderbird, classic: false }
   - { name: vlc, classic: false }
