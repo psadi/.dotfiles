@@ -1,7 +1,6 @@
-
-font-family = "Maple Mono NF"
 font-size = 18
-
-
-cursor-style = underline
-cursor-style-blink = true
+copy-on-select = true
+font-family = "MonoLisa Nerd Font"
+theme = "gruber-darker"
+window-padding-x = 0
+window-padding-y = 0

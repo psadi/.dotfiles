@@ -139,3 +139,34 @@ function bstat() {
 function clean_old_snaps() {
   LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
 }
+
+function bak(){
+  if [ ! -f "/mnt/backup/.backup/backup.sh" ]; then
+    echo "Backup Script not found, is 'restic' configured ?"
+    return 1
+  fi
+
+  _eval_str="sudo restic -r /mnt/backup/backup-psadi-thinkpad --password-file /mnt/backup/.backup/config/backup.secret"
+  case $1 in
+    list)
+      eval ${_eval_str} snapshots
+      ;;
+    diff)
+       eval ${_eval_str} diff $2 $3
+      ;;
+    forget)
+      eval ${_eval_str} forget $2
+      ;;
+    forget)
+      eval ${_eval_str} forget $2
+      ;;
+    tag)
+      eval ${_eval_str} tag --set $2 $3
+      ;;
+    *)
+      shift 1
+      # /mnt/backup/.backup/backup.sh "${@}"
+      echo $@
+      ;;
+  esac
+}
