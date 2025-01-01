@@ -6,6 +6,7 @@ fd
 fzf
 gh
 git-delta
+go
 helm
 k9s
 kubernetes-cli
@@ -16,6 +17,5 @@ procs
 ripgrep
 starship
 yazi
-zellij
 zig
 zoxide
