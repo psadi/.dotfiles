@@ -11,5 +11,5 @@ Dockerfile
 Library/Fonts
 .DS_Store
 bootstrap
-.config/(wezterm|systemd|alacritty)
+.config/(systemd|alacritty)
 .local/bin/alacritty-wrapper

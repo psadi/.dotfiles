@@ -1,0 +1,5 @@
+---
+- name: Install Flatpak Packages
+  community.general.flatpak:
+    name: "{{ flatpak_packages_id }}"
+    state: latest

@@ -92,7 +92,7 @@ install_homebrew() {
     fi
 }
 
-install_linux_dependencies() {
+install_apt_deps() {
     SYS_LANG="en_US.UTF-8"
     echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
     echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
@@ -120,6 +120,12 @@ install_linux_dependencies() {
     update_locale_if_needed
 }
 
+install_fedora_deps(){	
+
+    echo "${SUDO_PASSWORD}" | sudo -S dnf install -y python3-pip git stow neovim python3-neovim
+}
+
+
 # Install dependencies based on OS type
 case "$OSTYPE" in
     darwin*)
@@ -132,6 +138,11 @@ case "$OSTYPE" in
                 install_homebrew
                 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
                 ;;
+	    fedora)
+		install_fedora_deps
+                install_homebrew
+                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+		;;
             *)
                 echo -e "${RED}No task defined for $DIST on Linux${NC}"
                 exit 1

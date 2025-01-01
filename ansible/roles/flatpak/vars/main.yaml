@@ -1,0 +1,9 @@
+---
+flatpak_packages_id:
+  - com.discordapp.Discord
+  - com.obsproject.Studio
+  - eu.betterbird.Betterbird
+  - org.gimp.GIMP
+  - org.shotcut.Shotcut
+  - org.videolan.VLC
+  - org.wezfurlong.wezterm
