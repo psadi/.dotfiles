@@ -2,7 +2,7 @@
 Description=Alacritty Terminal Daemon
 
 [Service]
-ExecStart=/snap/bin/alacritty --daemon
+ExecStart=/usr/bin/alacritty --daemon
 Restart=always
 
 [Install]

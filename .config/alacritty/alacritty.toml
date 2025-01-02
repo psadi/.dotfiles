@@ -1,17 +1,17 @@
 [general]
 live_config_reload = true
-# import = ["~/.config/alacritty/colors/tokyonight_night.toml"]
+import = ["~/.config/alacritty/colors/tokyonight_night.toml"]
 
 [font]
-normal = { family = "Maple Mono NF", style = "Regular" }
-bold = { family = "Maple Mono NF", style = "Bold" }
-italic = { family = "Maple Mono NF", style = "Italic" }
+normal = { family = "MonoLisa Nerd Font", style = "Regular" }
+bold = { family = "MonoLisa Nerd Font", style = "Bold" }
+italic = { family = "MonoLisa Nerd Font", style = "Italic" }
 size = 16
 
 [window]
 startup_mode = "Maximized"
 title = "~"
-dynamic_title = true
+dynamic_title = false
 
 [selection]
 save_to_clipboard = true
