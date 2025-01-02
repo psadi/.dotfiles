@@ -8,16 +8,16 @@ local config = wezterm.config_builder()
 -- --------------------
 -- Configs
 -- --------------------
-config.enable_wayland = true
+config.color_scheme = "Gruber (base16)"
 config.default_prog = { "zsh", "-i" }
+config.enable_scroll_bar = false
+config.enable_tab_bar = true
+config.enable_wayland = true
 config.font = wezterm.font("MonoLisa Nerd Font", {})
 config.font_size = 16
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" }
-config.color_scheme = "Gruber (base16)"
 config.tab_max_width = 20
 config.use_fancy_tab_bar = false
-config.enable_tab_bar = true
-config.enable_scroll_bar = false
 config.window_padding = {
 	left = 0,
 	right = 0,

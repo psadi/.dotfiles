@@ -1,6 +1,7 @@
 ---
 flatpak_packages_id:
   - com.discordapp.Discord
+  - com.mattjakeman.ExtensionManager
   - com.obsproject.Studio
   - eu.betterbird.Betterbird
   - org.gimp.GIMP

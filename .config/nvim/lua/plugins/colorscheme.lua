@@ -1,10 +1,10 @@
 return {
-	"blazkowolf/gruber-darker.nvim",
+	"folke/tokyonight.nvim",
+	lazy = false,
+	priority = 1000,
 	config = function()
-		require("gruber-darker").setup({
-			italic = {
-				strings = false,
-			},
+		require("tokyonight.colors").setup({
+			style = "night",
 		})
 	end,
 }

@@ -14,4 +14,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("options")
 require("lazy").setup("plugins")
-cmd("colorscheme gruber-darker")
+cmd("colorscheme tokyonight-night")
