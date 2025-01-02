@@ -23,7 +23,7 @@ echo -e "${BLUE}-----------------------------------${NC}\n"
 
 # Detecting the operating system
 OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
-if [ $OSTYPE == 'linux' ]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
   DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 fi
 
@@ -33,7 +33,7 @@ echo -e "${BLUE}-----------------------------------${NC}"
 
 # Function to handle errors
 handle_error() {
-    echo -e "${RED}An error occurred during execution. Please check the log file for details.${NC}"
+    echo -e "${RED}An error occurred. Please check the log for details.${NC}"
     exit 1
 }
 trap handle_error ERR
@@ -42,8 +42,8 @@ trap handle_error ERR
 echo -e "\n${YELLOW}Please enter your sudo password (for installing base packages and Ansible privileges):${NC}"
 read -s -p "Password: " SUDO_PASSWORD
 echo -e '\n'
-echo "${SUDO_PASSWORD}" | sudo -S -v &> /dev/null
-if [ $? -ne 0 ]; then
+echo "${SUDO_PASSWORD}" | sudo -S -v &>/dev/null
+if [[ $? -ne 0 ]]; then
     echo -e "${RED}Error: Invalid sudo password or no sudo privileges.${NC}"
     exit 1
 fi
@@ -54,7 +54,7 @@ check_internet_connection() {
     echo -e "${GREEN}Checking Internet Connection${NC}"
     echo -e "${BLUE}-----------------------------------${NC}"
 
-    if ping -c 1 google.com &> /dev/null; then
+    if ping -c 1 google.com &>/dev/null; then
         echo -e "${GREEN}Internet connection is available.${NC}"
     else
         echo -e "${RED}No internet connection detected. Please check your network.${NC}"
@@ -64,18 +64,10 @@ check_internet_connection() {
 
 check_internet_connection
 
-# Function to check if a command exists
-check_command() {
-    if ! command -v $1 &> /dev/null; then
-        echo -e "${RED}Error: $1 is not installed. Please install $1 and rerun the script.${NC}"
-        exit 1
-    fi
-}
-
 # Backup function for important files
 backup_file() {
     local FILE=$1
-    if [ -f "$FILE" ]; then
+    if [[ -f "$FILE" ]]; then
         echo -e "${YELLOW}Backing up ${FILE} to ${FILE}.bak${NC}"
         echo "${SUDO_PASSWORD}" | sudo -S -k cp "$FILE" "${FILE}.bak"
     fi
@@ -85,69 +77,45 @@ install_homebrew() {
     echo -e "${BLUE}-----------------------------------${NC}"
     echo -e "${GREEN}Installing Homebrew${NC}"
     echo -e "${BLUE}-----------------------------------${NC}"
-    if ! command -v brew &> /dev/null; then
+    if ! command -v brew &>/dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     else
         echo -e "${YELLOW}Homebrew is already installed${NC}"
     fi
 }
 
-install_apt_deps() {
-    SYS_LANG="en_US.UTF-8"
-    echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
-    echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
-    echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y python3-minimal python3-pip python3-venv locales git
+install_linux_deps(){
+  commonPkgs="python3-pip stow git make gnome-network-displays"
 
-    # Backup locale file before updating
-    backup_file "/etc/locale.gen"
-
-    # Update locale if needed
-    update_locale_if_needed() {
-        CURRENT_LANG=$(locale | grep 'LANG=' | cut -d= -f2)
-
-        if [[ "$CURRENT_LANG" != "$SYS_LANG" ]]; then
-            echo -e "${BLUE}-----------------------------------${NC}"
-            echo -e "${GREEN}Updating System Locale${NC}"
-            echo -e "${BLUE}-----------------------------------${NC}"
-            echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
-            echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
-            echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
-        else
-            echo -e "${YELLOW}System locale is already set to ${SYS_LANG}, skipping update.${NC}"
-        fi
-    }
-
-    update_locale_if_needed
+  case "$DIST" in
+    debian|ubuntu)
+        targetPkgs="python3-minimal python3-venv locales"
+        echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
+        echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
+        echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y $commonPkgs $targetPkgs
+        ;;
+    fedora)
+        targetPkgs="neovim python3-neovim alacritty"
+        echo "${SUDO_PASSWORD}" | sudo -S dnf update -y
+        echo "${SUDO_PASSWORD}" | sudo -S dnf install -y $commonPkgs $targetPkgs --skip-unavailable
+        ;;
+    *)
+        echo -e "${RED}No task defined for $DIST on Linux${NC}"
+        exit 1
+        ;;
+  esac
 }
-
-install_fedora_deps(){	
-
-    echo "${SUDO_PASSWORD}" | sudo -S dnf install -y python3-pip git stow neovim python3-neovim
-}
-
 
 # Install dependencies based on OS type
 case "$OSTYPE" in
     darwin*)
         install_homebrew
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         ;;
     linux*)
-        case "$DIST" in
-            debian|ubuntu)
-                install_linux_dependencies
-                install_homebrew
-                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-                ;;
-	    fedora)
-		install_fedora_deps
-                install_homebrew
-                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-		;;
-            *)
-                echo -e "${RED}No task defined for $DIST on Linux${NC}"
-                exit 1
-                ;;
-        esac
+        install_linux_deps
+        install_homebrew
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         ;;
     *)
         echo -e "${RED}Unsupported OS${NC}"
@@ -163,13 +131,12 @@ pip3 install --upgrade --no-cache-dir --break-system-packages pip ansible --no-w
 
 # Clone or update dotfiles
 DOTFILES_DIR="${HOME}/.dotfiles"
-if [ ! -d "$DOTFILES_DIR" ]; then
+if [[ ! -d "$DOTFILES_DIR" ]]; then
     echo -e "${GREEN}Cloning psadi/.dotfiles${NC}"
-    check_command "git"
     git clone https://github.com/psadi/dotfiles.git "$DOTFILES_DIR"
 else
-    echo -e "${YELLOW}psadi/.dotfiles already exists, pulling latest changes & skipping clone${NC}"
-    cd $DOTFILES_DIR && git pull && cd -
+    echo -e "${YELLOW}psadi/.dotfiles already exists, pulling latest changes${NC}"
+    cd "$DOTFILES_DIR" && git pull && cd -
 fi
 
 # Export required variables for Ansible
@@ -179,24 +146,9 @@ export ANSIBLE_INVENTORY_WARNING=false
 export ANSIBLE_BECOME_PASSWORD="${SUDO_PASSWORD}"
 
 # Dynamic tag support for Ansible playbook
-TAGS=${1:-$OSTYPE} # Use first argument or fallback to OSTYPE
+TAGS="${1:-$OSTYPE}" # Use first argument or fallback to OSTYPE
 echo -e "${BLUE}Running Ansible Playbook with tags: ${TAGS}${NC}"
-ansible-playbook "${DOTFILES_DIR}/ansible/site.yaml" --tags "${TAGS}" --user "${USER}"
-
-# Prompt for reboot if needed
-prompt_for_reboot() {
-    echo -e "${BLUE}-----------------------------------${NC}"
-    echo -e "${YELLOW}Some changes may require a system reboot. Would you like to reboot now? (y/n):${NC}"
-    read -r REBOOT
-    if [[ "$REBOOT" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        echo -e "${YELLOW}Rebooting...${NC}"
-        sudo reboot
-    else
-        echo -e "${YELLOW}Please reboot manually for all changes to take effect.${NC}"
-    fi
-}
-
-prompt_for_reboot
+ansible-playbook "${DOTFILES_DIR}/ansible/site.yaml" --tags "$TAGS" --user "$USER"
 
 exit $?
 

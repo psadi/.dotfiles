@@ -1,8 +1,0 @@
----
-- set_fact:
-    url: "{{ pkg.value.url | regex_replace('%version%', version) }}"
-
-- name: "Installing deb package {{ pkg.key }} version {{ pkg.value.version }}"
-  ansible.builtin.apt:
-    deb: "{{ url }}"
-  become: true

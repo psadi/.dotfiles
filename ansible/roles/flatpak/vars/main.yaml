@@ -7,4 +7,3 @@ flatpak_packages_id:
   - org.gimp.GIMP
   - org.shotcut.Shotcut
   - org.videolan.VLC
-  - org.wezfurlong.wezterm

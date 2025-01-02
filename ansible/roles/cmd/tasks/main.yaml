@@ -1,40 +1,15 @@
 ---
 - block:
-    - block:
-        - name: Configure docker as non-root for current user
-          ansible.builtin.shell: setfacl -m u:{{ cmd_user }}:rw /var/run/docker.sock
-          become: true
-
-        - name: Validate if remote host is up and rechable
-          ansible.builtin.command: "ping -c 1 -W 1 192.168.0.100"
-          register: picolo_ping
-          ignore_errors: true
-          no_log: true
-
-        - name: Add & Set Docker Context
-          ansible.builtin.shell: "{{ item }}"
-          loop:
-            - "docker context create picolo --docker 'host=tcp://192.168.1.100:2375' || true"
-            - "docker context use picolo"
-          when: "picolo_ping.rc == 0 and ansible_default_ipv4.address != '192.168.1.100'"
-
-        - name: Set Gnome Settings
-          ansible.builtin.shell: "gsettings set {{ item }}"
-          loop:
-            - "org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
-            - "org.gnome.shell.extensions.dash-to-dock dock-fixed false"
-            - "org.gnome.desktop.interface icon-theme 'Yaru'"
-            - "org.gnome.desktop.interface cursor-theme 'Yaru'"
-            - "org.gnome.desktop.wm.preferences button-layout ':close'"
-            - "org.gnome.desktop.interface show-battery-percentage true"
-
-        - name: Enabling systemd services
-          ansible.builtin.shell: "{{ item }}"
-          become: true
-          loop:
-            - "systemctl enable --now powertop"
-            - "systemctl enable --now preload"
-      when: "ansible_distribution == 'Ubuntu' and not in_docker and is_gui"
+    - name: Set Gnome Settings
+      ansible.builtin.shell: "gsettings set {{ item }}"
+      loop:
+        # - "org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
+        # - "org.gnome.shell.extensions.dash-to-dock dock-fixed false"
+        # - "org.gnome.desktop.interface icon-theme 'Yaru'"
+        # - "org.gnome.desktop.interface cursor-theme 'Yaru'"
+        - "org.gnome.desktop.wm.preferences button-layout ':close'"
+        - "org.gnome.desktop.interface show-battery-percentage true"
+      when: "ansible_distribution == 'fedora'"
 
     - name: "MacOS Dock Config"
       ansible.builtin.shell: "{{ item }}"
@@ -44,15 +19,6 @@
         - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
         - "defaults write com.apple.dock persistent-apps -array; killall Dock"
       when: "ansible_distribution == 'MacOSX'"
-
-    - name: Cleaning up the system
-      ansible.builtin.shell: "{{ item }}"
-      become: true
-      loop:
-        - "ln -s /opt/pkg/{{ nvim_dir }}/bin/nvim /usr/local/bin || true"
-        - if [ -d '/var/log' ]; then rm -rf /var/log/*; fi;
-        - if [ -d '/var/lib/apt/lists/' ]; then rm -rf /var/lib/apt/lists/*; fi;
-        - if [ -d '/var/cache/apt/archives' ]; then rm -rf /var/cache/apt/archives/*; fi
 
     - name: Configuring user shell
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
@@ -77,10 +43,9 @@
         - rm .profile .bashrc .bash_logout .zshrc || true
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d .dotfiles -t "${HOME}" .
-        - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'qall!' || /snap/bin/nvim --headless -c 'qall' || true"
+        - "/usr/bin/nvim --headless -c 'qall' || true"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
 
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
-    nvim_dir: "{% if ansible_distribution == 'MacOSX' %}nvim-macos{% else %}nvim-linux64{% endif %}"
