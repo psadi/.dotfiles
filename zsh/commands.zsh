@@ -134,3 +134,9 @@ if (( $+commands[fzf] )); then
   --color=spinner:#ff007c \
 "
 fi
+
+# Yazi
+# ---------------------------------------------
+if (( $+commands[yazi])); then
+  alias yz=yazi
+fi
