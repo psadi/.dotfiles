@@ -9,7 +9,7 @@ if (( $+functions[_evalcache] )); then
   [[ $OSTYPE == "linux" ]] && _evalcache /home/linuxbrew/.linuxbrew/bin/brew shellenv
   _evalcache fzf --zsh
   _evalcache zoxide init zsh
-  _evalcache starship init zsh
+  # _evalcache starship init zsh
   _evalcache uv generate-shell-completion zsh
 fi
 
@@ -82,6 +82,12 @@ if (( $+commands[brew] )); then
   fi
 fi
 
+#asdf
+#---------------------------------------------
+if (( $+commands[asdf] )); then
+ source $(brew --prefix asdf)/libexec/asdf.sh
+fi
+
 # Optional Packages
 # ---------------------------------------------
 if [[ -d /opt/pkg/*(/) ]]; then
@@ -139,4 +145,11 @@ fi
 # ---------------------------------------------
 if (( $+commands[yazi])); then
   alias yz=yazi
+fi
+#
+# Yazi
+# ---------------------------------------------
+if (( $+commands[pfetch])); then
+  export PF_INFO="ascii title os host kernel uptime memory"
+
 fi

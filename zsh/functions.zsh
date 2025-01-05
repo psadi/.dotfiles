@@ -63,6 +63,9 @@ zj() {
             [ -z "${2}" ] && { echo "$0 $1: Name required"; return 1; }
             zellij action rename-${1#r} "${2}"
             ;;
+        cls)
+            zellij ka -y && zellij da -f --yes
+            ;;
         *)
             if [ -z "${1}" ]; then
                 zellij -s "$(basename "$PWD")"
@@ -82,18 +85,6 @@ gitlfs()
         cut -c 1-12,41- |
         $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
-
-# procs() {
-#     if [ "${2}" != '--no-wrap' ]; then
-#         tput rmam
-#     fi
-#
-#     ps -ef | grep -i "${1}" | grep -v grep | awk '{printf "\033[0;36m%s\033[0m ", $2; for (i=8; i<=NF; i++) {if (i==8) printf "\033[0;33m%s", $i; else printf " %s", $i}; print ""}'
-#
-#     if [ "${2}" != '--no-wrap' ]; then
-#         tput smam
-#     fi
-# }
 
 brew_leaves_gen(){
     if command -v brew &> /dev/null; then
@@ -119,54 +110,19 @@ _fzf_comprun() {
 
 # Docker
 # ---------------------------------------------
-function doco() {
-    local context
-    context=$(docker context ls -q | fzf --exit-0 --layout reverse --border rounded --height 20 --preview="docker context inspect {1} --format '{{json .}}' | jq -C")
-
-    if [ -n "$context" ]; then
-        docker context use "$context"
-    else
-        echo "No context selected."
-    fi
-}
+# function doco() {
+#     local context
+#     context=$(docker context ls -q | fzf --exit-0 --layout reverse --border rounded --height 20 --preview="docker context inspect {1} --format '{{json .}}' | jq -C")
+#
+#     if [ -n "$context" ]; then
+#         docker context use "$context"
+#     else
+#         echo "No context selected."
+#     fi
+# }
 
 # Battery
-# --
+# ---------------------------------------------
 function bstat() {
     find /sys/class/power_supply/BAT0/* -type f | fzf --exit-0 --layout reverse --border rounded --height 20 --preview 'cat {}'
-}
-
-function clean_old_snaps() {
-  LANG=C snap list --all | while read snapname ver rev trk pub notes; do if [[ $notes = *disabled* ]]; then sudo snap remove "$snapname" --revision="$rev"; fi; done
-}
-
-function bak(){
-  if [ ! -f "/mnt/backup/.backup/backup.sh" ]; then
-    echo "Backup Script not found, is 'restic' configured ?"
-    return 1
-  fi
-
-  _eval_str="sudo restic -r /mnt/backup/backup-psadi-thinkpad --password-file /mnt/backup/.backup/config/backup.secret"
-  case $1 in
-    list)
-      eval ${_eval_str} snapshots
-      ;;
-    diff)
-       eval ${_eval_str} diff $2 $3
-      ;;
-    forget)
-      eval ${_eval_str} forget $2
-      ;;
-    forget)
-      eval ${_eval_str} forget $2
-      ;;
-    tag)
-      eval ${_eval_str} tag --set $2 $3
-      ;;
-    *)
-      shift 1
-      # /mnt/backup/.backup/backup.sh "${@}"
-      echo $@
-      ;;
-  esac
 }

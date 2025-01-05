@@ -14,6 +14,11 @@
 # email  : ps.adithya@icloud.com
 #---------------------------------------------
 
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Set Path Dynamically
 #---------------------------------------------
 function pathman() {
@@ -52,12 +57,15 @@ plug "mroth/evalcache"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "romkatv/powerlevel10k"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
 for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
-

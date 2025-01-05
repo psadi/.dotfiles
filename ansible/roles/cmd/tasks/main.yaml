@@ -40,8 +40,9 @@
         chdir: "{{ cmd_home }}"
       loop:
         - bash -c "zsh <(curl --proto '=https' --tlsv1.2 -LsSf 'https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh') --branch release-v1"
-        - rm .profile .bashrc .bash_logout .zshrc || true
-        - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
+        - rm .profile .bashrc .bash_logout .bash_history .bash_profile .zshrc || true
+        - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir -m 700 .config; fi;
+        - if [ ! -d "{{ cmd_home }}/.ssh" ]; then mkdir -m 700 .ssh ; fi;
         - stow -d .dotfiles -t "${HOME}" .
         - "/usr/bin/nvim --headless -c 'qall' || true"
         - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"

@@ -2,9 +2,9 @@ return {
 	"folke/tokyonight.nvim",
 	lazy = false,
 	priority = 1000,
-	config = function()
-		require("tokyonight.colors").setup({
-			style = "night",
-		})
-	end,
+	opts = {
+		style = "night",
+		transparent = true,
+		lualine_bold = true,
+	},
 }

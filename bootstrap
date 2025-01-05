@@ -116,6 +116,9 @@ case "$OSTYPE" in
         install_linux_deps
         install_homebrew
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        if [ $? -eq 0 ]; then
+          echo "${SUDO_PASSWORD}" | echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' | sudo -S tee -a /root/.bash_profile > /dev/null
+        fi
         ;;
     *)
         echo -e "${RED}Unsupported OS${NC}"
