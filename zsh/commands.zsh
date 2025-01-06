@@ -50,15 +50,6 @@ if (( $+commands[zoxide] )); then
   alias cd="z"
 fi
 
-# nvm
-#---------------------------------------------
-if (( $+commands[zoxide] )); then
-  mkdir -p ~/.nvm
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
-fi
-
 # K9s
 #---------------------------------------------
 if (( $+commands[k9s] )); then

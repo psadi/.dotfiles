@@ -126,3 +126,18 @@ _fzf_comprun() {
 function bstat() {
     find /sys/class/power_supply/BAT0/* -type f | fzf --exit-0 --layout reverse --border rounded --height 20 --preview 'cat {}'
 }
+
+# ASDF
+# -----
+asdf_deps(){
+  #eAdd Asdf Plugins
+  asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+  asdf plugin add zig https://github.com/cheetah/asdf-zig.git
+  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  asdf plugin add neovim
+  # Install latest and set global default
+  asdf install golang latest && asdf global golang latest
+  asdf install zig latest && asdf global zig latest
+  asdf install nodejs latest && asdf global nodejs latest
+  asdf install neovim latest && asdf global neovim latest
+}
