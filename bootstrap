@@ -97,7 +97,7 @@ install_linux_deps(){
     fedora)
         targetPkgs="neovim python3-neovim alacritty"
         echo "${SUDO_PASSWORD}" | sudo -S dnf update -y
-        echo "${SUDO_PASSWORD}" | sudo -S dnf install -y $commonPkgs $targetPkgs --skip-unavailable
+        echo "${SUDO_PASSWORD}" | sudo -S dnf install -y --skip-unavailable $commonPkgs $targetPkgs
         ;;
     *)
         echo -e "${RED}No task defined for $DIST on Linux${NC}"
