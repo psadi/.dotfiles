@@ -84,6 +84,22 @@ install_homebrew() {
     fi
 }
 
+update_locale_if_needed() {
+    CURRENT_LANG=$(locale | grep 'LANG=' | cut -d= -f2)
+
+    if [[ "$CURRENT_LANG" != "$SYS_LANG" ]]; then
+        echo -e "${BLUE}-----------------------------------${NC}"
+        echo -e "${GREEN}Updating System Locale${NC}"
+        echo -e "${BLUE}-----------------------------------${NC}"
+        echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
+        echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
+        echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
+    else
+        echo -e "${YELLOW}System locale is already set to ${SYS_LANG}, skipping update.${NC}"
+    fi
+}
+
+
 install_linux_deps(){
   commonPkgs="python3-pip stow git make gnome-network-displays"
 
@@ -93,6 +109,7 @@ install_linux_deps(){
         echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
         echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
         echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y $commonPkgs $targetPkgs
+        update_locale_if_needed
         ;;
     fedora)
         targetPkgs="neovim python3-neovim alacritty"

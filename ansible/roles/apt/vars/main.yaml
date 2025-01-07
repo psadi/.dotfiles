@@ -1,0 +1,57 @@
+---
+apt_packages_0:
+  - build-essential
+  - curl
+  - dos2unix
+  - fonts-powerline
+  - git
+  - jq
+  - locales
+  - man
+  - procps
+  - stow
+  - unzip
+  - zip
+  - zsh
+
+apt_packages_1:
+  - chrome-gnome-shell
+  - gnome-network-displays
+  - gnome-tweaks
+  - net-tools
+  - powertop
+  - preload
+  - qpdf
+  - smartmontools
+  - wl-clipboard
+  - xsel
+
+apt_purge_packages:
+  - gnome-terminal
+
+ubuntu_deb_packages:
+  minecraft-launcher:
+    version:
+    url: https://launcher.mojang.com/download/Minecraft.deb
+  fastfetch:
+    version: 2.31.0
+    url: https://github.com/fastfetch-cli/fastfetch/releases/download/%version%/fastfetch-linux-amd64.deb
+  ghostty:
+    version: 1.0.1
+    url: https://github.com/mkasberg/ghostty-ubuntu/releases/download/%version%-0-ppa1/ghostty_%version%-0.ppa1_amd64_24.04.deb
+
+ubuntu_snap_packages:
+  - { name: discord, classic: false }
+  - { name: docker, classic: false }
+  - { name: firefox, classic: false }
+  - { name: gimp, classic: false }
+  - { name: go, classic: true }
+  - { name: lxd, classic: false }
+  - { name: multipass, classic: false }
+  - { name: nvim, classic: true }
+  - { name: obs-studio, classic: false }
+  - { name: onlyoffice-desktopeditors, classic: false }
+  - { name: shotcut, classic: true }
+  - { name: snapcraft, classic: true }
+  - { name: thunderbird, classic: false }
+  - { name: vlc, classic: false }

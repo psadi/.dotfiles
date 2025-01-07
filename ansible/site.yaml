@@ -3,15 +3,15 @@
   gather_facts: true
   any_errors_fatal: true
   vars:
+    in_docker: false
     ansible_become_pass: "{{ lookup('env', 'ANSIBLE_BECOME_PASSWORD') }}"
   roles:
+    - role: apt
+      tags: linux
+
     - role: brew
       tags:
         - darwin
-        - linux
-
-    - role: flatpak
-      tags:
         - linux
 
     - role: cmd
