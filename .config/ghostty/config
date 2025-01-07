@@ -1,0 +1,6 @@
+font-family = "MonoLisa Nerd Font"
+font-size = 18
+theme = "tokyonight_night"
+window-theme = "ghostty"
+copy-on-select = true
+shell-integration = "zsh"

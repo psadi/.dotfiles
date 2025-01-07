@@ -1,9 +1,0 @@
-[Unit]
-Description=Alacritty Terminal Daemon
-
-[Service]
-ExecStart=/usr/bin/alacritty --daemon
-Restart=always
-
-[Install]
-WantedBy=default.target
