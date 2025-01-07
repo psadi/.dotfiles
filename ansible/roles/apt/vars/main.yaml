@@ -18,10 +18,12 @@ apt_packages_1:
   - chrome-gnome-shell
   - gnome-network-displays
   - gnome-tweaks
+  - libsass1
   - net-tools
   - powertop
   - preload
   - qpdf
+  - sassc
   - smartmontools
   - wl-clipboard
   - xsel

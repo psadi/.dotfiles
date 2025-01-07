@@ -127,6 +127,36 @@ function bstat() {
     find /sys/class/power_supply/BAT0/* -type f | fzf --exit-0 --layout reverse --border rounded --height 20 --preview 'cat {}'
 }
 
+function bak(){
+  if [ ! -f "/mnt/backup/.backup/backup.sh" ]; then
+    echo "Backup Script not found, is 'restic' configured ?"
+    return 1
+  fi
+
+  _eval_str="sudo restic -r /mnt/backup/backup-psadi-thinkpad --password-file /mnt/backup/.backup/config/backup.secret"
+  case $1 in
+    backup)
+      /mnt/backup/.backup/backup.sh --tag manual
+      ;;
+    list|ls)
+      eval ${_eval_str} snapshots
+      ;;
+    diff)
+       eval ${_eval_str} diff $2 $3
+      ;;
+    forget)
+      eval ${_eval_str} forget $2
+      ;;
+    tag)
+      eval ${_eval_str} tag --set $2 $3
+      ;;
+    *)
+      echo "${0}: no argument provided"
+      return 1
+      ;;
+  esac
+}
+
 # ASDF
 # -----
 asdf_deps(){
@@ -141,3 +171,4 @@ asdf_deps(){
   asdf install nodejs latest && asdf global nodejs latest
   asdf install neovim latest && asdf global neovim latest
 }
+
