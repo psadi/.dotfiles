@@ -9,11 +9,12 @@ fzf
 gh
 git-delta
 helm
+just
 k9s
 kubernetes-cli
 lazydocker
 lazygit
-nvm
+minisign
 procs
 ripgrep
 yazi
