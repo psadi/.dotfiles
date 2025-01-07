@@ -11,6 +11,7 @@ apt_packages_0:
   - procps
   - stow
   - unzip
+  - vim
   - zip
   - zsh
 
@@ -30,6 +31,8 @@ apt_packages_1:
 
 apt_purge_packages:
   - gnome-terminal
+  - nano
+  - vim-tiny
 
 ubuntu_deb_packages:
   minecraft-launcher:

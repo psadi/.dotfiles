@@ -127,6 +127,8 @@ function bstat() {
     find /sys/class/power_supply/BAT0/* -type f | fzf --exit-0 --layout reverse --border rounded --height 20 --preview 'cat {}'
 }
 
+# Backup
+# ---------------------------------------------
 function bak(){
   if [ ! -f "/mnt/backup/.backup/backup.sh" ]; then
     echo "Backup Script not found, is 'restic' configured ?"

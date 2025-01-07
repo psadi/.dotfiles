@@ -21,14 +21,27 @@
         - name: Set Gnome Settings
           ansible.builtin.shell: "gsettings set {{ item }}"
           loop:
+            - "org.gnome.desktop.interface color-scheme 'prefer-dark'"
+            - "org.gnome.desktop.interface cursor-theme 'Yaru'"
+            - "org.gnome.desktop.interface icon-theme 'Yaru'"
+            - "org.gnome.desktop.interface show-battery-percentage true"
+            - "org.gnome.desktop.wm.preferences button-layout ':close'"
+            - "org.gnome.shell.extensions.dash-to-dock always-center-icons true"
             - "org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
             - "org.gnome.shell.extensions.dash-to-dock dock-fixed false"
-            - "org.gnome.desktop.interface icon-theme 'Yaru'"
-            - "org.gnome.desktop.interface cursor-theme 'Yaru'"
-            - "org.gnome.desktop.wm.preferences button-layout ':close'"
-            - "org.gnome.desktop.interface show-battery-percentage true"
+            - "org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'"
 
-        - name: Enabling systemd services
+        - name: Update Alternatives
+          ansible.builtin.shell: "{{ item }}"
+          become: true
+          loop:
+            - "update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100"
+            - "update-alternatives --remove editor /usr/bin/vim.tiny"
+            - "update-alternatives --remove editor /usr/bin/vim.basic"
+            - "update-alternatives --remove editor /bin/ed"
+            - "update-alternatives --remove editor /bin/nano"
+
+        - name: Enabling Systemd Services
           ansible.builtin.shell: "{{ item }}"
           become: true
           loop:
@@ -44,15 +57,6 @@
         - "defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
         - "defaults write com.apple.dock persistent-apps -array; killall Dock"
       when: "ansible_distribution == 'MacOSX'"
-
-    - name: Cleaning up the system
-      ansible.builtin.shell: "{{ item }}"
-      become: true
-      loop:
-        - "ln -s /opt/pkg/{{ nvim_dir }}/bin/nvim /usr/local/bin || true"
-        - if [ -d '/var/log' ]; then rm -rf /var/log/*; fi;
-        - if [ -d '/var/lib/apt/lists/' ]; then rm -rf /var/lib/apt/lists/*; fi;
-        - if [ -d '/var/cache/apt/archives' ]; then rm -rf /var/cache/apt/archives/*; fi
 
     - name: Configuring user shell
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
@@ -77,10 +81,8 @@
         - rm .profile .bashrc .bash_logout .zshrc || true
         - if [ ! -d "{{ cmd_home }}/.config" ]; then mkdir .config; fi;
         - stow -d .dotfiles -t "${HOME}" .
-        - "/opt/pkg/{{ nvim_dir }}/bin/nvim --headless -c 'qall!' || /snap/bin/nvim --headless -c 'qall' || true"
-        - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all'"
+        - bash -c "zsh -c 'rm -rf ~/.local/share/zap/plugins/* && source ~/.zshrc && zap update all && asdf_deps'"
 
   vars:
     cmd_home: "{{ lookup('env','HOME') }}"
     cmd_user: "{{ lookup('env', 'USER') }}"
-    nvim_dir: "{% if ansible_distribution == 'MacOSX' %}nvim-macos{% else %}nvim-linux64{% endif %}"
