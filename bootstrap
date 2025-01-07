@@ -10,16 +10,17 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
+SEPARATOR="-----------------------------------"
 
 echo -e "\n${GREEN}Log file created at: ${LOG_FILE}${NC}"
 
 export HISTIGNORE='*sudo -S*'
 
 # Print colored header
-echo -e "\n${BLUE}-----------------------------------${NC}"
+echo -e "\n${BLUE}${SEPARATOR}${NC}"
 echo -e "${GREEN}Bootstrapping your system${NC}"
-echo -e "${BLUE}-----------------------------------${NC}\n"
+echo -e "${BLUE}${SEPARATOR}${NC}\n"
 
 # Detecting the operating system
 OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -29,7 +30,7 @@ fi
 
 echo -e "${YELLOW}OSTYPE:${NC} ${OSTYPE}"
 echo -e "${YELLOW}DIST  :${NC} ${DIST}"
-echo -e "${BLUE}-----------------------------------${NC}"
+echo -e "${BLUE}${SEPARATOR}${NC}"
 
 # Function to handle errors
 handle_error() {
@@ -50,9 +51,9 @@ fi
 
 # Check for Internet Connection
 check_internet_connection() {
-    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${BLUE}${SEPARATOR}${NC}"
     echo -e "${GREEN}Checking Internet Connection${NC}"
-    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${BLUE}${SEPARATOR}${NC}"
 
     if ping -c 1 google.com &>/dev/null; then
         echo -e "${GREEN}Internet connection is available.${NC}"
@@ -64,19 +65,10 @@ check_internet_connection() {
 
 check_internet_connection
 
-# Backup function for important files
-backup_file() {
-    local FILE=$1
-    if [[ -f "$FILE" ]]; then
-        echo -e "${YELLOW}Backing up ${FILE} to ${FILE}.bak${NC}"
-        echo "${SUDO_PASSWORD}" | sudo -S -k cp "$FILE" "${FILE}.bak"
-    fi
-}
-
 install_homebrew() {
-    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${BLUE}${SEPARATOR}${NC}"
     echo -e "${GREEN}Installing Homebrew${NC}"
-    echo -e "${BLUE}-----------------------------------${NC}"
+    echo -e "${BLUE}${SEPARATOR}${NC}"
     if ! command -v brew &>/dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     else
@@ -86,11 +78,12 @@ install_homebrew() {
 
 update_locale_if_needed() {
     CURRENT_LANG=$(locale | grep 'LANG=' | cut -d= -f2)
+    SYS_LANG="en_US.UTF-8"
 
     if [[ "$CURRENT_LANG" != "$SYS_LANG" ]]; then
-        echo -e "${BLUE}-----------------------------------${NC}"
+        echo -e "${BLUE}${SEPARATOR}${NC}"
         echo -e "${GREEN}Updating System Locale${NC}"
-        echo -e "${BLUE}-----------------------------------${NC}"
+        echo -e "${BLUE}${SEPARATOR}${NC}"
         echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
         echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
         echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
@@ -101,20 +94,14 @@ update_locale_if_needed() {
 
 
 install_linux_deps(){
-  commonPkgs="python3-pip stow git make gnome-network-displays"
 
   case "$DIST" in
     debian|ubuntu)
-        targetPkgs="python3-minimal python3-venv locales"
+        pkgs="python3-minimal python3-venv locales python3-pip git curl"
         echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
         echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
-        echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y $commonPkgs $targetPkgs
+        echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y $pkgs
         update_locale_if_needed
-        ;;
-    fedora)
-        targetPkgs="neovim python3-neovim alacritty"
-        echo "${SUDO_PASSWORD}" | sudo -S dnf update -y
-        echo "${SUDO_PASSWORD}" | sudo -S dnf install -y --skip-unavailable $commonPkgs $targetPkgs
         ;;
     *)
         echo -e "${RED}No task defined for $DIST on Linux${NC}"
@@ -144,10 +131,11 @@ case "$OSTYPE" in
 esac
 
 # Install Python dependencies
-echo -e "${BLUE}-----------------------------------${NC}"
+echo -e "${BLUE}${SEPARATOR}${NC}"
 echo -e "${GREEN}Installing Python3 Dependencies${NC}"
-echo -e "${BLUE}-----------------------------------${NC}"
-pip3 install --upgrade --no-cache-dir --break-system-packages pip ansible --no-warn-script-location
+echo -e "${BLUE}${SEPARATOR}${NC}"
+pip_pkgs="pip ansible jmespath pynvim uv"
+pip3 install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location $pip_pkgs
 
 # Clone or update dotfiles
 DOTFILES_DIR="${HOME}/.dotfiles"
@@ -171,4 +159,3 @@ echo -e "${BLUE}Running Ansible Playbook with tags: ${TAGS}${NC}"
 ansible-playbook "${DOTFILES_DIR}/ansible/site.yaml" --tags "$TAGS" --user "$USER"
 
 exit $?
-

@@ -40,6 +40,9 @@
             - "update-alternatives --remove editor /usr/bin/vim.basic"
             - "update-alternatives --remove editor /bin/ed"
             - "update-alternatives --remove editor /bin/nano"
+            - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 100"
+            - "update-alternatives --remove x-terminal-emulator /usr/bin/gnome-terminal"
+            - "update-alternatives --remove x-terminal-emulator /usr/bin/gnome-terminal.wrapper"
 
         - name: Enabling Systemd Services
           ansible.builtin.shell: "{{ item }}"
@@ -61,16 +64,6 @@
     - name: Configuring user shell
       ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
       become: true
-
-    - name: Installing pip dependencies
-      ansible.builtin.pip:
-        name: "{{ item }}"
-        extra_args: "--user --no-warn-script-location --no-cache-dir --upgrade --break-system-packages"
-      loop:
-        - pip
-        - jmespath
-        - pynvim
-        - uv
 
     - name: Finalizing the installation
       ansible.builtin.shell: "{{ item }}"
