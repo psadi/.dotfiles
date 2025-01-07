@@ -19,11 +19,14 @@
 To install the configuration files, run the following commands:
 
 ```bash
+OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
+
 git clone https://psadi/.dotfiles.git "${HOME}/.dotfiles" && cd "${HOME}/.dotfiles"
 
 export ANSIBLE_CONFIG="${HOME}/.dotfiles/ansible/ansible.cfg"
 
 ansible-playbook "${HOME}/.dotfiles/ansible/site.yaml" --tags "${OSTYPE}" --user "${USER}" --ask-become-pass
+# Note: --ask-become-pass is your system sudo password
 ```
 
 ## Disclaimer

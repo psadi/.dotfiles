@@ -49,22 +49,6 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
-# Check for Internet Connection
-check_internet_connection() {
-    echo -e "${BLUE}${SEPARATOR}${NC}"
-    echo -e "${GREEN}Checking Internet Connection${NC}"
-    echo -e "${BLUE}${SEPARATOR}${NC}"
-
-    if ping -c 1 google.com &>/dev/null; then
-        echo -e "${GREEN}Internet connection is available.${NC}"
-    else
-        echo -e "${RED}No internet connection detected. Please check your network.${NC}"
-        exit 1
-    fi
-}
-
-check_internet_connection
-
 install_homebrew() {
     echo -e "${BLUE}${SEPARATOR}${NC}"
     echo -e "${GREEN}Installing Homebrew${NC}"
@@ -76,23 +60,6 @@ install_homebrew() {
     fi
 }
 
-update_locale_if_needed() {
-    CURRENT_LANG=$(locale | grep 'LANG=' | cut -d= -f2)
-    SYS_LANG="en_US.UTF-8"
-
-    if [[ "$CURRENT_LANG" != "$SYS_LANG" ]]; then
-        echo -e "${BLUE}${SEPARATOR}${NC}"
-        echo -e "${GREEN}Updating System Locale${NC}"
-        echo -e "${BLUE}${SEPARATOR}${NC}"
-        echo "${SUDO_PASSWORD}" | sudo -S sed -i "s/# $SYS_LANG.*/$SYS_LANG UTF-8/" /etc/locale.gen
-        echo "${SUDO_PASSWORD}" | sudo -S dpkg-reconfigure --frontend=noninteractive locales
-        echo "${SUDO_PASSWORD}" | sudo -S update-locale LANG="$SYS_LANG"
-    else
-        echo -e "${YELLOW}System locale is already set to ${SYS_LANG}, skipping update.${NC}"
-    fi
-}
-
-
 install_linux_deps(){
 
   case "$DIST" in
@@ -101,7 +68,6 @@ install_linux_deps(){
         echo "${SUDO_PASSWORD}" | sudo -S apt-get update -y
         echo "${SUDO_PASSWORD}" | sudo -S apt-get upgrade -y
         echo "${SUDO_PASSWORD}" | sudo -S apt-get install --no-install-recommends -y $pkgs
-        update_locale_if_needed
         ;;
     *)
         echo -e "${RED}No task defined for $DIST on Linux${NC}"
@@ -120,9 +86,6 @@ case "$OSTYPE" in
         install_linux_deps
         install_homebrew
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        if [ $? -eq 0 ]; then
-          echo "${SUDO_PASSWORD}" | sudo -S bash -c 'echo "eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> /root/.bash_profile'
-        fi
         ;;
     *)
         echo -e "${RED}Unsupported OS${NC}"
