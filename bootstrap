@@ -134,7 +134,7 @@ case "$OSTYPE" in
         install_homebrew
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         if [ $? -eq 0 ]; then
-          echo "${SUDO_PASSWORD}" | echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' | sudo -S tee -a /root/.bash_profile > /dev/null
+          echo "${SUDO_PASSWORD}" | sudo -S bash -c 'echo "eval \"\$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"" >> /root/.bash_profile'
         fi
         ;;
     *)
