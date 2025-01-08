@@ -30,27 +30,32 @@
             - "org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 42"
             - "org.gnome.shell.extensions.dash-to-dock dock-fixed false"
             - "org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'"
+            - "org.gnome.shell.extensions.ding show-home false"
+            - "org.gnome.shell.extensions.dash-to-dock show-trash false"
+            - "org.gnome.shell.extensions.dash-to-dock show-mounts false"
+            - "org.gnome.shell.extensions.dash-to-dock show-mounts-network false"
+            - "org.gnome.shell.extensions.dash-to-dock hide-tooltip true"
 
         - name: Update Alternatives
-          ansible.builtin.shell: "{{ item }}"
+          ansible.builtin.shell: "update-alternatives {{ item }}"
           become: true
           loop:
-            - "update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100"
-            - "update-alternatives --remove editor /usr/bin/vim.tiny"
-            - "update-alternatives --remove editor /usr/bin/vim.basic"
-            - "update-alternatives --remove editor /bin/ed"
-            - "update-alternatives --remove editor /bin/nano"
-            - "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 100"
-            - "update-alternatives --remove x-terminal-emulator /usr/bin/gnome-terminal"
-            - "update-alternatives --remove x-terminal-emulator /usr/bin/gnome-terminal.wrapper"
+            - "--install /usr/bin/editor editor /usr/bin/vim 100"
+            - "--remove editor /usr/bin/vim.tiny"
+            - "--remove editor /usr/bin/vim.basic"
+            - "--remove editor /bin/ed"
+            - "--remove editor /bin/nano"
+            - "--install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 100"
+            - "--remove x-terminal-emulator /usr/bin/gnome-terminal"
+            - "--remove x-terminal-emulator /usr/bin/gnome-terminal.wrapper"
 
         - name: Enabling Systemd Services
-          ansible.builtin.shell: "{{ item }}"
+          ansible.builtin.shell: "systemctl enable --now {{ item }}"
           become: true
           loop:
-            - "systemctl enable --now powertop"
-            - "systemctl enable --now preload"
-      when: "ansible_distribution == 'Ubuntu' and not in_docker and is_gui"
+            - "powertop"
+            - "preload"
+      when: "ansible_distribution == 'Ubuntu' and is_gui"
 
     - name: "MacOS Dock Config"
       ansible.builtin.shell: "{{ item }}"

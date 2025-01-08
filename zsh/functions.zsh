@@ -129,28 +129,33 @@ function bstat() {
 
 # Backup
 # ---------------------------------------------
-function bak(){
-  if [ ! -f "/mnt/backup/.backup/backup.sh" ]; then
-    echo "Backup Script not found, is 'restic' configured ?"
+function restic_backup() {
+  local backup_script="/mnt/backup/.backup/backup.sh"
+  local restic_repo="/mnt/backup/backup-psadi-thinkpad"
+  local password_file="/mnt/backup/.backup/config/backup.secret"
+
+  if [ ! -f "$backup_script" ]; then
+    echo "Backup Script not found, is 'restic' configured?"
     return 1
   fi
 
-  _eval_str="sudo restic -r /mnt/backup/backup-psadi-thinkpad --password-file /mnt/backup/.backup/config/backup.secret"
+  local restic_cmd="sudo restic -r $restic_repo --password-file $password_file"
+
   case $1 in
     backup)
-      /mnt/backup/.backup/backup.sh --tag manual
+      "$backup_script" --tag manual
       ;;
     list|ls)
-      eval ${_eval_str} snapshots
+      eval "$restic_cmd snapshots"
       ;;
     diff)
-       eval ${_eval_str} diff $2 $3
+      eval "$restic_cmd diff $2 $3"
       ;;
     forget)
-      eval ${_eval_str} forget $2
+      eval "$restic_cmd forget $2"
       ;;
     tag)
-      eval ${_eval_str} tag --set $2 $3
+      eval "$restic_cmd tag --set $2 $3"
       ;;
     *)
       echo "${0}: no argument provided"
@@ -158,7 +163,6 @@ function bak(){
       ;;
   esac
 }
-
 # ASDF
 # -----
 asdf_deps(){

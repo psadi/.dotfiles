@@ -81,7 +81,7 @@ fi
 
 # Optional Packages
 # ---------------------------------------------
-if [[ -d /opt/pkg/*(/) ]]; then
+if [ -d /opt/pkg/*(/) ]; then
   for dir in /opt/pkg/*; do
     if [ -d "$dir" ]; then
       if [ -d "${dir}/bin" ]; then
@@ -89,8 +89,8 @@ if [[ -d /opt/pkg/*(/) ]]; then
       else
         pathman PATH "${dir}"
       fi
-      pathman LD_LIBRARY_PATH "${dir}/lib"
-      pathman MANPATH "${dir}/share/man"
+      [[ -d "${dir}/lib" ]] && pathman LD_LIBRARY_PATH "${dir}/lib"
+      [[ -d "${dir}/share/man" ]] && pathman MANPATH "${dir}/share/man"
     fi
   done
 fi

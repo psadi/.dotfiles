@@ -2,7 +2,6 @@ actionlint
 asdf
 bat
 bottom
-docker
 eza
 fd
 fzf
@@ -15,6 +14,7 @@ kubernetes-cli
 lazydocker
 lazygit
 minisign
+nushell
 procs
 ripgrep
 yazi
