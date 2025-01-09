@@ -1,7 +1,11 @@
+auto-update = "check"
+copy-on-select = true
 font-family = "MonoLisa Nerd Font"
 font-size = 16
-theme = "tokyonight_night"
-window-theme = "ghostty"
-copy-on-select = true
 shell-integration = "zsh"
 shell-integration-features = "sudo"
+theme = "tokyonight_night"
+window-theme = "ghostty"
+auto-update-channel = "stable"
+gtk-wide-tabs = false
+gtk-single-instance = true
