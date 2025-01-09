@@ -4,3 +4,4 @@ theme = "tokyonight_night"
 window-theme = "ghostty"
 copy-on-select = true
 shell-integration = "zsh"
+shell-integration-features = "sudo"
