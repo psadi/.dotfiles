@@ -8,4 +8,6 @@ theme = "tokyonight_night"
 window-theme = "ghostty"
 auto-update-channel = "stable"
 gtk-wide-tabs = false
-gtk-single-instance = true
+quick-terminal-position = "top"
+quick-terminal-screen = "main"
+keybind = global:cmd+shift+space=toggle_quick_terminal
