@@ -53,6 +53,7 @@
           ansible.builtin.shell: "systemctl enable --now {{ item }}"
           become: true
           loop:
+            - "libvirtd"
             - "powertop"
             - "preload"
       when: "ansible_distribution == 'Ubuntu' and is_gui"
@@ -66,8 +67,11 @@
         - "defaults write com.apple.dock persistent-apps -array; killall Dock"
       when: "ansible_distribution == 'MacOSX'"
 
-    - name: Configuring user shell
-      ansible.builtin.shell: "chsh -s /usr/bin/zsh {{ cmd_user }}"
+    - name: User Config
+      ansible.builtin.shell: "{{ item }}"
+      loop:
+        - "chsh -s /usr/bin/zsh {{ cmd_user }}"
+        - "adduser {{ cmd_user }} kvm"
       become: true
 
     - name: Finalizing the installation

@@ -19,12 +19,16 @@ apt_packages_1:
   - gnome-network-displays
   - gnome-tweaks
   - libsass1
+  - libvirt-clients
+  - libvirt-daemon-system
   - net-tools
   - powertop
   - preload
+  - qemu-kvm
   - qpdf
   - sassc
   - smartmontools
+  - virt-manager
   - wl-clipboard
   - xsel
 
@@ -53,4 +57,3 @@ ubuntu_snap_packages:
   - { name: shotcut, classic: true }
   - { name: snapcraft, classic: true }
   - { name: thunderbird, classic: false }
-  - { name: vlc, classic: false }
