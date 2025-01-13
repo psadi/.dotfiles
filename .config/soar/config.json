@@ -1,0 +1,20 @@
+{
+  "soar_root": "/home/adithyaps/.local/share/soar",
+  "soar_cache": "/home/adithyaps/.local/share/soar/cache",
+  "soar_bin": "/home/adithyaps/.local/share/soar/bin",
+  "repositories": [
+    {
+      "name": "pkgforge",
+      "url": "https://bin.pkgforge.dev/x86_64",
+      "metadata": "METADATA.AIO.json",
+      "sources": {
+        "base": "https://bin.pkgforge.dev/x86_64/Baseutils",
+        "bin": "https://bin.pkgforge.dev/x86_64",
+        "pkg": "https://pkg.pkgforge.dev/x86_64"
+      }
+    }
+  ],
+  "parallel": true,
+  "parallel_limit": 4,
+  "search_limit": 20
+}

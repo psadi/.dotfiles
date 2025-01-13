@@ -144,3 +144,7 @@ if (( $+commands[pfetch])); then
   export PF_INFO="ascii title os host kernel uptime memory"
 
 fi
+
+if (( $+commands[soar] )); then
+  pathman PATH "${HOME}/.local/share/soar/bin"
+fi
