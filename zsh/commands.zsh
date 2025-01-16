@@ -3,6 +3,12 @@
 # vim: ft=zsh sw=2 ts=2 et
 
 
+# Soar
+#---------------------------------------------
+if (( $+commands[soar] )); then
+  pathman PATH "${HOME}/.local/share/soar/bin"
+fi
+
 # evalcache
 #---------------------------------------------
 if (( $+functions[_evalcache] )); then
@@ -145,6 +151,3 @@ if (( $+commands[pfetch])); then
 
 fi
 
-if (( $+commands[soar] )); then
-  pathman PATH "${HOME}/.local/share/soar/bin"
-fi

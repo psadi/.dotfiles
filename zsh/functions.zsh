@@ -139,7 +139,7 @@ function restic_backup() {
     return 1
   fi
 
-  local restic_cmd="sudo ${HOME}/.local/share/soar/bin/restic -r $restic_repo --password-file $password_file"
+  local restic_cmd="sudo restic -r $restic_repo --password-file $password_file"
 
   case $1 in
     backup)
