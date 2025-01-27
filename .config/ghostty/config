@@ -1,0 +1,47 @@
+# vim: set ft=config
+
+# Config: font
+font-family = "GeistMono NF"
+font-size = 16
+font-feature = "-calt, -liga, -dlig"
+font-style = "Medium"
+
+# Config: Theme
+theme = "kanagawabones"
+
+# Config: Gtk
+gtk-tabs-location = "top"
+gtk-wide-tabs = false
+gtk-single-instance = true
+
+# Config: Window
+maximize = true
+title = "~"
+window-decoration = "server"
+window-padding-x = 0
+window-padding-y = 0
+
+# Config: Misc
+confirm-close-surface = false
+auto-update = "off"
+shell-integration-features = sudo
+
+# Keybinds: Tabs
+keybind = "ctrl+t=new_tab"
+keybind = "ctrl+shift+t=toggle_tab_overview"
+keybind = "ctrl+[=previous_tab"
+keybind = "ctrl+shift+[=move_tab:-1"
+keybind = "ctrl+]=next_tab"
+keybind = "ctrl+shift+]=move_tab:1"
+
+# Splits
+keybind = "ctrl+shift+j=new_split:down"
+keybind = "ctrl+shift+h=new_split:left"
+keybind = "ctrl+shift+k=new_split:up"
+keybind = "ctrl+shift+l=new_split:right"
+keybind = "ctrl+alt+j=resize_split:down,10"
+keybind = "ctrl+alt+h=resize_split:left,10"
+keybind = "ctrl+alt+k=resize_split:up,10"
+keybind = "ctrl+alt+l=resize_split:right,10"
+keybind = "ctrl+shift+enter=equalize_splits"
+
