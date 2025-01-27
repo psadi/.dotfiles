@@ -1,0 +1,10 @@
+.DS_Store
+vim/files
+ansible/.vault_pass
+.config/helix/contrib
+.config/helix/runtime
+.config/zed/*
+!.config/zed/settings.json
+.local/share/fonts/*
+.local/bin/*
+!.local/bin/rap
