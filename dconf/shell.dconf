@@ -1,0 +1,56 @@
+[/]
+app-picker-layout=[{'9ecbab61-1f36-4b07-ab89-1cc5eaed686f': <{'position': <0>}>, 'Utilities': <{'position': <1>}>, 'System': <{'position': <2>}>, '49361b81-32d3-4b3c-9903-1c308a03c2af': <{'position': <3>}>, '5bdb74de-8fa5-43b4-aad8-07a274ddf313': <{'position': <4>}>, 'org.citron_emu.citron.desktop': <{'position': <5>}>, 'virt-manager.desktop': <{'position': <6>}>, 'vivaldi-stable.desktop': <{'position': <7>}>}]
+disable-user-extensions=false
+disabled-extensions=@as []
+enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'just-perfection-desktop@just-perfection', 'space-bar@luchrioh', 'tactile@lundal.io', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.mitchellh.ghostty.desktop']
+last-selected-power-profile='performance'
+welcome-dialog-last-shown-version='48.0'
+
+[extensions/caffeine]
+indicator-position-max=3
+toggle-shortcut=['<Control><Alt>c']
+user-enabled=true
+
+[extensions/just-perfection]
+animation=3
+dash=false
+dash-app-running=false
+dash-separator=false
+panel=true
+panel-in-overview=false
+power-icon=false
+show-apps-button=false
+startup-status=0
+support-notifier-showed-version=34
+support-notifier-type=0
+theme=true
+top-panel-position=0
+workspaces-in-app-grid=true
+
+[extensions/space-bar/appearance]
+application-styles='.space-bar {\n  -natural-hpadding: 12px;\n}\n\n.space-bar-workspace-label.active {\n  margin: 0 4px;\n  background-color: rgba(255,255,255,0.3);\n  color: rgba(255,255,255,1);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}\n\n.space-bar-workspace-label.inactive {\n  margin: 0 4px;\n  background-color: rgba(0,0,0,0);\n  color: rgba(255,255,255,1);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}\n\n.space-bar-workspace-label.inactive.empty {\n  margin: 0 4px;\n  background-color: rgba(0,0,0,0);\n  color: rgba(255,255,255,0.5);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}'
+
+[extensions/space-bar/behavior]
+always-show-numbers=false
+smart-workspace-names=false
+toggle-overview=false
+
+[extensions/space-bar/state]
+version=33
+
+[extensions/system-monitor]
+show-swap=false
+show-upload=true
+
+[extensions/user-theme]
+name='Kanagawa-Dark'
+
+[keybindings]
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+
+[world-clocks]
+locations=@av []
