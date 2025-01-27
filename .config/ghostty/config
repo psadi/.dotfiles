@@ -1,0 +1,13 @@
+auto-update = "check"
+copy-on-select = true
+font-family = "MonoLisa Nerd Font"
+font-size = 16
+shell-integration = "zsh"
+shell-integration-features = "sudo"
+theme = "tokyonight_night"
+window-theme = "ghostty"
+auto-update-channel = "stable"
+gtk-wide-tabs = false
+quick-terminal-position = "top"
+quick-terminal-screen = "main"
+keybind = global:cmd+shift+space=toggle_quick_terminal
