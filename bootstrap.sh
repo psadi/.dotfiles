@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-G
+
 set -euo pipefail
 
 export HISTIGNORE='*sudo -S*'
@@ -13,12 +13,12 @@ echo "${SUDO_PASSWORD}" | sudo -S -v &>/dev/null || {
   exit 1
 }
 
-run_as() {
+doas() {
   echo "${SUDO_PASSWORD}" | sudo -S "${@}"
 }
 
 install_yay() {
-  run_as pacman -S --needed --noconfirm git base-devel
+  doas pacman -S --needed --noconfirm git base-devel
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   (cd /tmp/yay && makepkg -si --noconfirm)
   rm -rf /tmp/yay
@@ -26,7 +26,7 @@ install_yay() {
 
 install_python_deps() {
   echo "Installing Python3 Dependencies"
-  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
+  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim librosa
 }
 
 install_os_deps() {
@@ -34,16 +34,20 @@ install_os_deps() {
     install_yay
   fi
 
-  local pkgs=(
-    axel auto-cpufreq bat bind bottom dnsmasq eza fd fzf firefox foot git-delta
-    github-cli go lazygit libvirt neovim npm procs pfetch-rs qemu-desktop
+  local install_pkgs=(
+    axel auto-cpufreq bat bind dnsmasq eza fd fzf git-delta
+    github-cli go lazygit libvirt neovim npm procs qemu-desktop
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
-    ripgrep restic starship stow thermald thunderbird unzip virt-manager
-    wl-clipboard zsh zoxide man-db dos2unix
+    ripgrep restic starship stow thermald unzip virt-manager
+    wl-clipboard zsh zoxide man-db dos2unix firefox k9s uv pitivi
+    gst-libav gst-plugin-opencv varia
   )
-  run_as yay -Sy --noconfirm --needed --quiet "${pkgs[@]}"
-  run_as yay -R --noconfirm gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop || true
-  run_as yay -S --noconfirm --clean
+  local remove_pkgs=(
+    gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
+  )
+  doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
+  doas yay -R --noconfirm "${remove_pkgs[@]}" || true
+  doas yay -S --noconfirm --clean
 }
 
 clone_dotfiles() {
@@ -58,13 +62,13 @@ clone_dotfiles() {
 }
 
 configure_user_shell() {
-  run_as chsh -s /usr/bin/zsh "${USER}"
+  doas chsh -s /usr/bin/zsh "${USER}"
 }
 
 configure_systemd_services() {
   local services=(libvirtd auto-cpufreq thermald)
   for service in "${services[@]}"; do
-    run_as systemctl enable --now "${service}"
+    doas systemctl enable --now "${service}"
   done
 }
 
@@ -77,6 +81,50 @@ install_zap() {
   echo "Installing Zap Zsh plugin manager..."
   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   rm -f ~/.zshrc
+}
+
+configure_font() {
+  if [ ! -d "${HOME}/.local/share/fonts" ]; then
+    mkdir -p "${HOME}/.local/share/fonts"
+  fi
+
+  local font_url="https://raw.githubusercontent.com/psadi/MonoLisa-NerdFont/refs/heads/main/Patched/MonoLisaNerdFont"
+
+  for font in Bold.ttf BoldItalic.ttf Italic.ttf Regular.ttf; do
+    if [ ! -f "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}" ]; then
+      wget -q "${font_url}-${font}" -O "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}"
+    fi
+  done
+
+  fc-cache -f -v "${HOME}/.local/share/fonts"
+}
+
+configure_theme() {
+  mkdir -p "${HOME}/.local/share/themes"
+  mkdir -p "${HOME}/.local/share/icons"
+
+  local theme_url="https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme/archive/refs/heads/master.zip"
+  local cursor_url="https://github.com/ful1e5/banana-cursor/releases/download/v2.0.0/Banana.tar.xz"
+
+  if [ ! -d "${HOME}/.local/share/themes/Tokyonight-Dark" ]; then
+    echo "Configuring Theme..."
+    wget -q "${theme_url}" -O /tmp/Tokyonight-GTK-Theme-master.zip
+    unzip -q /tmp/Tokyonight-GTK-Theme-master.zip -d /tmp
+    (
+      cd /tmp/Tokyonight-GTK-Theme-master/themes
+      chmod +x install.sh
+      ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
+    )
+    rm -rf /tmp/Tokyonight-GTK-Theme-master*
+  fi
+
+  if [ ! -d "${HOME}/.local/share/icons/Banana" ]; then
+    echo "Configuring Banana Cursor..."
+    wget -q "${cursor_url}" -O /tmp/Banana.tar.xz
+    tar -xf /tmp/Banana.tar.xz -C "${HOME}/.local/share/icons"
+    rm -rf /tmp/Banana.tar.xz
+  fi
+
 }
 
 finalize() {
@@ -92,4 +140,6 @@ install_zap
 configure_systemd_services
 configure_user_shell
 clone_dotfiles
+configure_font
+configure_theme
 finalize

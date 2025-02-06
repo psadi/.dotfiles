@@ -2,19 +2,7 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
-#---------------------------------------------
-#      _       _    __ _ _
-#     | |     | |  / _(_) |
-#   __| | ___ | |_| |_ _| | ___  ___
-#  / _` |/ _ \| __|  _| | |/ _ \/ __|
-# | (_| | (_) | |_| | | | |  __/\__ \
-#  \__,_|\___/ \__|_| |_|_|\___||___/
-#---------------------------------------------
-# name   : P S, Adithya
-# email  : ps.adithya@icloud.com
-#---------------------------------------------
-
-# Set Base Config
+# Base
 #---------------------------------------------
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DOTFILES_DIR="${HOME}/.dotfiles"

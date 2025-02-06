@@ -1,13 +1,14 @@
-auto-update = "check"
-copy-on-select = true
-font-family = "MonoLisa Nerd Font"
+font-family = Monolisa Nerd Font
 font-size = 16
-shell-integration = "zsh"
-shell-integration-features = "sudo"
-theme = "tokyonight_night"
-window-theme = "ghostty"
-auto-update-channel = "stable"
-gtk-wide-tabs = false
-quick-terminal-position = "top"
-quick-terminal-screen = "main"
-keybind = global:cmd+shift+space=toggle_quick_terminal
+theme = tokyonight_night
+maximize = true
+gtk-tabs-location = hidden
+
+keybind = ctrl+t=new_tab
+keybind = ctrl+shift+t=toggle_tab_overview
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+l=new_split:right
+keybind = ctrl+[=previous_tab
+keybind = ctrl+]=next_tab

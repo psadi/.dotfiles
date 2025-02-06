@@ -16,13 +16,13 @@
 	editor = nvim
   pager = delta
 
-; [credential "https://github.com"]
-; 	helper =
-; 	helper = !/usr/local/bin/gh auth git-credential
-;
-; [credential "https://gist.github.com"]
-; 	helper =
-; 	helper = !/usr/local/bin/gh auth git-credential
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
 
 [interactive]
     diffFilter = delta --color-only
