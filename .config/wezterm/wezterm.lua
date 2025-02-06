@@ -8,6 +8,7 @@ config.font_size = 16
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.window_decorations = "NONE"
+config.window_close_confirmation = "NeverPrompt"
 
 config.window_padding = {
 	left = 0,

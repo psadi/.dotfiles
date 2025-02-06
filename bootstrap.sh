@@ -35,7 +35,7 @@ install_os_deps() {
   fi
 
   local pkgs=(
-    axel auto-cpufreq bat bind bottom dnsmasq eza fd fzf firefox foot git-delta
+    axel auto-cpufreq bat bind bottom dnsmasq eza fd fzf firefox git-delta
     github-cli go lazygit libvirt neovim npm procs pfetch-rs qemu-desktop
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep restic starship stow thermald thunderbird unzip virt-manager
