@@ -18,7 +18,7 @@ function copydir {
 
 .p(){
     cd ${DOTFILES_DIR}
-    git add . && git commit --amend --no-edit && git push --force-with-lease
+    git add . && git commit -m ".dotfiles update" && git push --force-with-lease
     cd -
 }
 
