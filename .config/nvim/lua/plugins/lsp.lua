@@ -14,48 +14,6 @@ return {
 		end,
 	},
 	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		dependencies = { "rafamadriz/friendly-snippets" },
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-	},
-	{
-		"saghen/blink.cmp",
-		event = { "LspAttach" },
-		version = "v0.*",
-		dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
-		opts = {
-			keymap = {
-				preset = "default",
-				["<Tab>"] = { "snippet_forward", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "fallback" },
-				["<Up>"] = { "select_prev", "fallback" },
-				["<Down>"] = { "select_next", "fallback" },
-				["<C-p>"] = { "select_prev", "fallback" },
-				["<C-n>"] = { "select_next", "fallback" },
-			},
-			-- appearance = {
-			-- 	use_nvim_cmp_as_default = true,
-			-- },
-			snippets = { preset = "luasnip" },
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
-			},
-		},
-		-- list = { selection = {
-		-- 	preselect = function(ctx)
-		-- 		return ctx.mode ~= "cmdline"
-		-- 	end,
-		-- } },
-		opts_extend = { "sources.default" },
-		menu = {
-			-- documentation = { auto_show = true, auto_show_delay_ms = 500 },
-			ghost_text = { enabled = true },
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
 		config = function()

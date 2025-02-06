@@ -48,54 +48,6 @@ show-proxy(){
     echo "no proxy :: ${no_proxy}"
 }
 
-zj() {
-    in_zj() {
-        [ -n "$ZELLIJ" ] || { echo "Not in a Zellij session"; return 1; }
-    }
-
-    case "${1}" in
-        rt)
-            in_zj || return $?
-            zellij action rename-tab "${2:-$(basename "$PWD")}"
-            ;;
-        rp|rs)
-            in_zj || return $?
-            [ -z "${2}" ] && { echo "$0 $1: Name required"; return 1; }
-            zellij action rename-${1#r} "${2}"
-            ;;
-        cls)
-            zellij ka -y && zellij da -f --yes
-            ;;
-        *)
-            if [ -z "${1}" ]; then
-                zellij -s "$(basename "$PWD")"
-            else
-                zellij "$@"
-            fi
-            ;;
-    esac
-}
-
-gitlfs()
-{
-    git rev-list --objects --all |
-        git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' |
-        sed -n 's/^blob //p' |
-        sort --numeric-sort --key=2 |
-        cut -c 1-12,41- |
-        $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
-}
-
-brew_leaves_gen(){
-    if command -v brew &> /dev/null; then
-        brew leaves > "${DOTFILES_DIR}/ansible/roles/brew/files/brew.${OSTYPE}.leaves"
-        [[ $OSTYPE == "darwin" ]] && brew list --cask -1 > "${DOTFILES_DIR}/ansible/roles/homebrew/files/brew.casks"
-    else
-        echo "homebrew is required to generate leaves"
-        return
-    fi
-}
-
 _fzf_comprun() {
   local command=$1
   shift
@@ -107,19 +59,6 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
-
-# Docker
-# ---------------------------------------------
-# function doco() {
-#     local context
-#     context=$(docker context ls -q | fzf --exit-0 --layout reverse --border rounded --height 20 --preview="docker context inspect {1} --format '{{json .}}' | jq -C")
-#
-#     if [ -n "$context" ]; then
-#         docker context use "$context"
-#     else
-#         echo "No context selected."
-#     fi
-# }
 
 # Battery
 # ---------------------------------------------
@@ -168,18 +107,4 @@ function restic_backup() {
       return 1
       ;;
   esac
-}
-# ASDF
-# -----
-asdf_deps(){
-  #eAdd Asdf Plugins
-  asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-  asdf plugin add zig https://github.com/cheetah/asdf-zig.git
-  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  asdf plugin add neovim
-  # Install latest and set global default
-  asdf install golang latest && asdf global golang latest
-  asdf install zig latest && asdf global zig latest
-  asdf install nodejs latest && asdf global nodejs latest
-  asdf install neovim latest && asdf global neovim latest
 }
