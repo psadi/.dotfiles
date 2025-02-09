@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-G
+
 set -euo pipefail
 
 export HISTIGNORE='*sudo -S*'
