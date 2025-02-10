@@ -1,6 +1,7 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
+		event = "VeryLazy",
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
 			require("fzf-lua").setup({})
@@ -8,6 +9,7 @@ return {
 	},
 	{
 		"stevearc/oil.nvim",
+		event = "VeryLazy",
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
 			require("oil").setup({

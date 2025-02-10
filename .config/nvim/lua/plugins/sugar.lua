@@ -16,6 +16,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("lualine").setup({
 				options = {
@@ -30,6 +31,7 @@ return {
 	},
 	{
 		"folke/tokyonight.nvim",
+		event = "VeryLazy",
 		lazy = false,
 		priority = 1000,
 		opts = {
