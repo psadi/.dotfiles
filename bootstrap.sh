@@ -13,12 +13,12 @@ echo "${SUDO_PASSWORD}" | sudo -S -v &>/dev/null || {
   exit 1
 }
 
-run_as() {
+doas() {
   echo "${SUDO_PASSWORD}" | sudo -S "${@}"
 }
 
 install_yay() {
-  run_as pacman -S --needed --noconfirm git base-devel
+  doas pacman -S --needed --noconfirm git base-devel
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   (cd /tmp/yay && makepkg -si --noconfirm)
   rm -rf /tmp/yay
@@ -26,7 +26,7 @@ install_yay() {
 
 install_python_deps() {
   echo "Installing Python3 Dependencies"
-  uv tool install pip ansible jmespath pynvim
+  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
 }
 
 install_os_deps() {
@@ -44,9 +44,9 @@ install_os_deps() {
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
   )
-  run_as yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
-  run_as yay -R --noconfirm "${remove_pkgs[@]}" || true
-  run_as yay -S --noconfirm --clean
+  doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
+  doas yay -R --noconfirm "${remove_pkgs[@]}" || true
+  doas yay -S --noconfirm --clean
 }
 
 clone_dotfiles() {
@@ -61,13 +61,13 @@ clone_dotfiles() {
 }
 
 configure_user_shell() {
-  run_as chsh -s /usr/bin/zsh "${USER}"
+  doas chsh -s /usr/bin/zsh "${USER}"
 }
 
 configure_systemd_services() {
   local services=(libvirtd auto-cpufreq thermald)
   for service in "${services[@]}"; do
-    run_as systemctl enable --now "${service}"
+    doas systemctl enable --now "${service}"
   done
 }
 
