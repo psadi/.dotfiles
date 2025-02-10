@@ -26,7 +26,7 @@ install_yay() {
 
 install_python_deps() {
   echo "Installing Python3 Dependencies"
-  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
+  uv tool install pip ansible jmespath pynvim
 }
 
 install_os_deps() {
@@ -39,7 +39,7 @@ install_os_deps() {
     github-cli go lazygit libvirt neovim npm procs pfetch-rs qemu-desktop
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep restic starship stow thermald thunderbird unzip virt-manager
-    wl-clipboard zsh zoxide man-db dos2unix thorium-browser-bin k9s
+    wl-clipboard zsh zoxide man-db dos2unix thorium-browser-bin k9s uv
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
