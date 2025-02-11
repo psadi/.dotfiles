@@ -13,11 +13,10 @@ end)
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("MonoLisa Nerd Font")
 config.font_size = 16
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
-config.window_decorations = "NONE"
+config.window_decorations = "TITLE | RESIZE"
 config.window_close_confirmation = "NeverPrompt"
-config.native_macos_fullscreen_mode = true
 
 config.window_padding = {
 	left = 0,
