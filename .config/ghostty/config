@@ -4,7 +4,7 @@ theme = tokyonight_night
 maximize = true
 gtk-tabs-location = hidden
 
-eeybind = ctrl+t=new_tab
+keybind = ctrl+t=new_tab
 keybind = ctrl+shift+t=toggle_tab_overview
 keybind = ctrl+shift+j=new_split:down
 keybind = ctrl+shift+h=new_split:left
@@ -12,5 +12,3 @@ keybind = ctrl+shift+k=new_split:up
 keybind = ctrl+shift+l=new_split:right
 keybind = ctrl+[=previous_tab
 keybind = ctrl+]=next_tab
-keybind = alt+enter=toggle_fullscreen
-
