@@ -40,7 +40,7 @@ install_os_deps() {
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep restic starship stow thermald unzip virt-manager
     wl-clipboard zsh zoxide man-db dos2unix firefox k9s uv pitivi
-    gst-libav gst-plugin-opencv varia
+    gst-libav gst-plugin-opencv varia python-pip ghostty
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
