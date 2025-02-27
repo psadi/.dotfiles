@@ -37,10 +37,10 @@ install_os_deps() {
   local install_pkgs=(
     axel auto-cpufreq bat bind dnsmasq eza fd fzf git-delta
     github-cli go lazygit libvirt neovim npm procs qemu-desktop
+    gst-libav gst-plugin-opencv varia python-pip ghostty networkmanager
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep starship stow thermald unzip virt-manager
     wl-clipboard zsh zoxide man-db dos2unix firefox k9s uv pitivi
-    gst-libav gst-plugin-opencv varia python-pip ghostty networkmanager
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
@@ -93,10 +93,10 @@ configure_font() {
   for font in Bold.ttf BoldItalic.ttf Italic.ttf Regular.ttf; do
     if [ ! -f "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}" ]; then
       wget -q "${font_url}-${font}" -O "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}"
+      fc-cache -f -v "${HOME}/.local/share/fonts"
     fi
   done
 
-  fc-cache -f -v "${HOME}/.local/share/fonts"
 }
 
 configure_theme() {
