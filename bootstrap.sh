@@ -40,7 +40,7 @@ install_os_deps() {
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep starship stow thermald unzip virt-manager
     wl-clipboard zsh zoxide man-db dos2unix firefox k9s uv pitivi
-    gst-libav gst-plugin-opencv varia python-pip ghostty
+    gst-libav gst-plugin-opencv varia python-pip ghostty networkmanager
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
@@ -66,7 +66,7 @@ configure_user_shell() {
 }
 
 configure_systemd_services() {
-  local services=(libvirtd auto-cpufreq thermald)
+  local services=(libvirtd auto-cpufreq thermald bluetooth NetworkManager)
   for service in "${services[@]}"; do
     doas systemctl enable --now "${service}"
   done
