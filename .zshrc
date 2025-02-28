@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
-#
 
 # Base
 #---------------------------------------------
@@ -28,3 +27,6 @@ for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
+autoload bashcompinit
+bashcompinit
+source "/home/adithyaps/.local/share/bash-completion/completions/am"

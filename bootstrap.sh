@@ -35,12 +35,11 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-    axel auto-cpufreq bat bind dnsmasq eza fd fzf git-delta
-    github-cli go lazygit libvirt neovim npm procs qemu-desktop
+    auto-cpufreq bind dnsmasq fd fzf git-delta
+    github-cli go lazygit libvirt neovim npm qemu-desktop
     gst-libav gst-plugin-opencv varia python-pip ghostty networkmanager
-    noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
     ripgrep starship stow thermald unzip virt-manager
-    wl-clipboard zsh zoxide man-db dos2unix firefox k9s uv pitivi
+    wl-clipboard zsh zoxide man-db dos2unix firefox uv pitivi snapper
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
@@ -66,7 +65,16 @@ configure_user_shell() {
 }
 
 configure_systemd_services() {
-  local services=(libvirtd auto-cpufreq thermald bluetooth NetworkManager)
+  local services=(
+    libvirtd
+    auto-cpufreq
+    thermald
+    bluetooth
+    NetworkManager
+    snapper-backup.timer
+    snapper-cleanup.timer
+    snapper-boot.timer
+  )
   for service in "${services[@]}"; do
     doas systemctl enable --now "${service}"
   done
