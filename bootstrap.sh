@@ -37,7 +37,7 @@ install_os_deps() {
   local install_pkgs=(
     auto-cpufreq bind dnsmasq fd fzf git-delta
     github-cli go lazygit libvirt neovim npm qemu-desktop
-    gst-libav gst-plugin-opencv varia python-pip ghostty networkmanager
+    gst-libav gst-plugin-opencv python-pip ghostty networkmanager
     ripgrep starship stow thermald unzip virt-manager
     wl-clipboard zsh zoxide man-db dos2unix firefox uv pitivi snapper
   )
