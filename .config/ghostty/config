@@ -1,14 +1,16 @@
-font-family = GeistMono NF Medium
-font-size = 16
-theme = tokyonight_night
-maximize = true
-gtk-tabs-location = hidden
+# vim: set ft=config
 
-keybind = ctrl+t=new_tab
-keybind = ctrl+shift+t=toggle_tab_overview
-keybind = ctrl+shift+j=new_split:down
-keybind = ctrl+shift+h=new_split:left
-keybind = ctrl+shift+k=new_split:up
-keybind = ctrl+shift+l=new_split:right
-keybind = ctrl+[=previous_tab
-keybind = ctrl+]=next_tab
+font-family = "GeistMono NF Medium"
+font-size = 16
+theme = "tokyonight_night"
+maximize = true
+gtk-tabs-location = "hidden"
+
+keybind = "ctrl+t=new_tab"
+keybind = "ctrl+shift+t=toggle_tab_overview"
+keybind = "ctrl+shift+j=new_split:down"
+keybind = "ctrl+shift+h=new_split:left"
+keybind = "ctrl+shift+k=new_split:up"
+keybind = "ctrl+shift+l=new_split:right"
+keybind = "ctrl+[=previous_tab"
+keybind = "ctrl+]=next_tab"

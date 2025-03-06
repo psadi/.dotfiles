@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# vim: ft=bash sw=2 ts=2 et
 
 set -euo pipefail
 
