@@ -103,8 +103,8 @@ if (( $+commands[yazi])); then
   alias yz=yazi
 fi
 #
-# pfetch
+# cargo
 # ---------------------------------------------
-if (( $+commands[pfetch])); then
-  pfetch
+if (( $+commands[cargo])); then
+  export PATH="${HOME}/.cargo/bin:${PATH}"
 fi

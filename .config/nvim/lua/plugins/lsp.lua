@@ -10,7 +10,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff", "pyright", "gopls" },
+				ensure_installed = { "lua_ls", "ruff", "pyright", "gopls", "rust_analyzer" },
 			})
 		end,
 	},
@@ -63,6 +63,9 @@ return {
 				},
 			})
 			lspconfig.gopls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 			})
 		end,
