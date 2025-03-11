@@ -41,7 +41,7 @@ install_os_deps() {
     python-pip ghostty networkmanager ripgrep starship stow
     thermald unzip virt-manager wl-clipboard zsh zoxide
     man-db dos2unix uv snapper brave-browser noto-fonts
-    noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+    noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop
