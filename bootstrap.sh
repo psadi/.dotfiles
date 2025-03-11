@@ -138,9 +138,9 @@ configure_theme() {
 }
 
 gnome_tweaks(){
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
-	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'com.mitchellh.ghostty.desktop']"
 	gsettings set org.gnome.shell.extensions.user-theme name 'Tokyonight-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Tokyonight-Dark'
