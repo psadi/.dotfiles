@@ -137,6 +137,30 @@ configure_theme() {
 
 }
 
+gnome_tweaks(){
+	gsettings set org.gnome.desktop.interface show-battery-percentage true
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'com.mitchellh.ghostty.desktop']"
+	gsettings set org.gnome.shell.extensions.user-theme name 'Tokyonight-Dark'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Tokyonight-Dark'
+	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
+	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
+	gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>Q']"
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'ghostty'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ghostty'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'chrome'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'google-chrome-stable'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super><Shift>Return'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'nautilus'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'nautilus'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super><Shift>n'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+}
+
 finalize() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
@@ -152,4 +176,5 @@ clone_dotfiles
 configure_font
 configure_theme
 finalize
+gnome_tweaks
 configure_systemd_services
