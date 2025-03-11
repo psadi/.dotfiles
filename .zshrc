@@ -28,5 +28,3 @@ for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
 autoload bashcompinit
-bashcompinit
-source "/home/adithyaps/.local/share/bash-completion/completions/am"
