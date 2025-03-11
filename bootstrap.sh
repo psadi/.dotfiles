@@ -68,17 +68,17 @@ configure_user_shell() {
 
 configure_systemd_services() {
   local services=(
+    bluetooth
+    NetworkManager
     libvirtd
     auto-cpufreq
     thermald
-    bluetooth
-    NetworkManager
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
   )
   for service in "${services[@]}"; do
-    doas systemctl enable --now "${service}"
+    doas systemctl enable --now "${service}" || true
   done
 }
 
