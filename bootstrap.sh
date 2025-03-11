@@ -40,7 +40,7 @@ install_os_deps() {
     github-cli go lazygit libvirt neovim npm qemu-desktop
     python-pip ghostty networkmanager ripgrep starship stow
     thermald unzip virt-manager wl-clipboard zsh zoxide
-    man-db dos2unix uv snapper brave-browser noto-fonts
+    man-db dos2unix uv snapper google-chrome noto-fonts
     noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
   )
   local remove_pkgs=(
@@ -140,16 +140,16 @@ configure_theme() {
 finalize() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
-  stow -d "${HOME}/.dotfiles" -t "${HOME}" .
+  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
 }
 
 # Main execution flow
 install_os_deps
 install_python_deps
 install_zap
-configure_systemd_services
 configure_user_shell
 clone_dotfiles
 configure_font
 configure_theme
 finalize
+configure_systemd_services
