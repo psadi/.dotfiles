@@ -39,8 +39,8 @@ install_os_deps() {
     auto-cpufreq bind dnsmasq fd fzf git-delta
     github-cli go lazygit libvirt neovim npm qemu-desktop
     python-pip ghostty networkmanager ripgrep starship stow
-    thermald unzip virt-manager wl-clipboard zsh zoxide
-    man-db dos2unix uv snapper google-chrome noto-fonts
+    thermald unzip virt-manager wl-clipboard zsh zoxide vlc
+    man-db dos2unix uv snapper google-chrome noto-fonts varia
     noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
   )
   local remove_pkgs=(
