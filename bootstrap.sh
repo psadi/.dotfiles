@@ -138,6 +138,7 @@ configure_theme() {
 }
 
 gnome_tweaks(){
+  gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
   gsettings set org.gnome.desktop.interface font-name 'Nimbus Sans 11'
   gsettings set org.gnome.desktop.interface document-font-name 'Nimbus Sans 11'
   gsettings set org.gnome.desktop.interface monospace-font-name 'MonoLisa Nerd Font 11'
