@@ -5,8 +5,6 @@ font-size = 16
 theme = "tokyonight_night"
 maximize = true
 gtk-tabs-location = "hidden"
-quick-terminal-position = "top"
-quick-terminal-screen = "mouse"
 
 # Keybinds
 
@@ -30,4 +28,4 @@ keybind = "ctrl+alt+l=resize_split:right,10"
 keybind = "ctrl+shift+enter=equalize_splits"
 
 # Quick Term
-keybind = "ctrl+shift+q=toggle_quick_terminal"
+keybind = "global:ctrl+space=toggle_quick_terminal"

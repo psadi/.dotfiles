@@ -36,7 +36,7 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-    auto-cpufreq bind dnsmasq fd fzf git-delta
+    auto-cpufreq bind dnsmasq fd fzf git-delta eza bat
     github-cli go lazygit libvirt neovim npm qemu-desktop
     python-pip ghostty networkmanager ripgrep starship stow
     thermald unzip virt-manager wl-clipboard zsh zoxide vlc
