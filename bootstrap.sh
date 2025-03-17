@@ -166,8 +166,8 @@ gnome_tweaks(){
 	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
 
   # Dconf load
-  dconf load "${DOTFILES_DIR}/dconf/extensions.conf"
-  dconf load "${DOTFILES_DIR}/dconf/keybindings.conf"
+  dconf load /org/gnome/shell/extensions/ < "${DOTFILES_DIR}/dconf/extensions.conf"
+  dconf load /org/gnome/shell/keybindings/ < "${DOTFILES_DIR}/dconf/keybindings.conf"
 }
 
 finalize() {
