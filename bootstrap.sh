@@ -42,6 +42,7 @@ install_os_deps() {
     thermald unzip virt-manager wl-clipboard zsh zoxide vlc
     man-db dos2unix uv snapper google-chrome noto-fonts varia
     noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
+    chrome-gnome-shell
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop gnome-console
