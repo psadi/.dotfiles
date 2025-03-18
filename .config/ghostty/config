@@ -6,9 +6,7 @@ theme = "tokyonight_night"
 maximize = true
 gtk-tabs-location = "hidden"
 
-# Keybinds
-
-# Tabs
+# Keybinds: Tabs
 keybind = "ctrl+t=new_tab"
 keybind = "ctrl+shift+t=toggle_tab_overview"
 keybind = "ctrl+[=previous_tab"
@@ -28,4 +26,4 @@ keybind = "ctrl+alt+l=resize_split:right,10"
 keybind = "ctrl+shift+enter=equalize_splits"
 
 # Quick Term
-keybind = "global:ctrl+space=toggle_quick_terminal"
+keybind = "global:alt+space=toggle_quick_terminal"
