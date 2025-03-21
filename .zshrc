@@ -4,6 +4,10 @@
 
 # Base
 #---------------------------------------------
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DOTFILES_DIR="${HOME}/.dotfiles"
 
@@ -19,11 +23,18 @@ plug "mroth/evalcache"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "romkatv/powerlevel10k"
+plug "romkatv/gitstatus"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
 for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 
+# p10k prompt
+#---------------------------------------------
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
+
