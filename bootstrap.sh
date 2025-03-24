@@ -79,7 +79,7 @@ configure_systemd_services() {
     snapper-boot.timer
   )
   for service in "${services[@]}"; do
-    doas systemctl enable --now "${service}" || true
+    doas systemctl enable "${service}" || true
   done
 }
 
