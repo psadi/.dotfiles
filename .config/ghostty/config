@@ -2,7 +2,7 @@
 
 font-family = "MonoLisa Nerd Font"
 font-size = 16
-theme = "Adwaita Dark"
+theme = "tokyonight_night"
 maximize = true
 gtk-tabs-location = "hidden"
 

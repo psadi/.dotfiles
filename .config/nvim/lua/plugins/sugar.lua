@@ -14,28 +14,33 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("lualine").setup({
-	-- 			options = {
-	-- 				icons_enabled = true,
-	-- 				theme = "auto",
-	-- 				globalstatus = true,
-	-- 				component_separators = { left = "|", right = "|" },
-	-- 				section_separators = { left = "", right = "" },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 	{
-		"Mofiqul/adwaita.nvim",
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "auto",
+					globalstatus = true,
+					component_separators = { left = "|", right = "|" },
+					section_separators = { left = "", right = "" },
+				},
+			})
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		event = "VeryLazy",
 		lazy = false,
 		priority = 1000,
-
+		opts = {
+			style = "night",
+			transparent = false,
+			lualine_bold = true,
+		},
 		config = function()
-			vim.cmd("colorscheme adwaita")
+			vim.cmd("colorscheme tokyonight-night")
 		end,
 	},
 	{
