@@ -14,21 +14,21 @@ return {
 			})
 		end,
 	},
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("lualine").setup({
-				options = {
-					icons_enabled = true,
-					theme = "auto",
-					globalstatus = true,
-					component_separators = { left = "|", right = "|" },
-					section_separators = { left = "", right = "" },
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("lualine").setup({
+	-- 			options = {
+	-- 				icons_enabled = true,
+	-- 				theme = "auto",
+	-- 				globalstatus = true,
+	-- 				component_separators = { left = "|", right = "|" },
+	-- 				section_separators = { left = "", right = "" },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"Mofiqul/adwaita.nvim",
 		lazy = false,
