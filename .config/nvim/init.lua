@@ -29,4 +29,3 @@ require("lazy").setup({
 		},
 	},
 })
-cmd("colorscheme tokyonight-night")

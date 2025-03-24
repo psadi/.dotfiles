@@ -30,15 +30,13 @@ return {
 		end,
 	},
 	{
-		"folke/tokyonight.nvim",
-		event = "VeryLazy",
+		"Mofiqul/adwaita.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			style = "night",
-			transparent = false,
-			lualine_bold = true,
-		},
+
+		config = function()
+			vim.cmd("colorscheme adwaita")
+		end,
 	},
 	{
 		"stevearc/quicker.nvim",
