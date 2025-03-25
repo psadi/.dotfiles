@@ -37,4 +37,3 @@ for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
-

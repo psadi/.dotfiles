@@ -78,9 +78,11 @@ fi
 if (( $+commands[yazi])); then
   alias yz=yazi
 fi
-#
+
 # cargo
 # ---------------------------------------------
-if (( $+commands[cargo])); then
-  export PATH="${HOME}/.cargo/bin:${PATH}"
+if (( $+commands[am])); then
+  autoload bashcompinit
+  bashcompinit
+  source "${HOME}/.local/share/bash-completion/completions/am"
 fi
