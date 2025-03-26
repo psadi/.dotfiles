@@ -5,6 +5,7 @@ font-size = 16
 theme = "tokyonight_night"
 maximize = true
 gtk-tabs-location = "hidden"
+confirm-close-surface = "false"
 
 # Keybinds: Tabs
 keybind = "ctrl+t=new_tab"
