@@ -36,10 +36,10 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-    auto-cpufreq bind dnsmasq fd fzf git-delta eza bat
+    bind dnsmasq fd fzf git-delta eza bat
     github-cli go lazygit libvirt neovim npm qemu-desktop
     python-pip ghostty networkmanager ripgrep starship stow
-    thermald unzip virt-manager wl-clipboard zsh zoxide vlc
+    unzip virt-manager wl-clipboard zsh zoxide vlc
     man-db dos2unix uv snapper google-chrome noto-fonts
     noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
     chrome-gnome-shell go nodejs citron qbittorrent-enhanced yazi
@@ -74,8 +74,6 @@ configure_systemd_services() {
     bluetooth
     NetworkManager
     libvirtd
-    auto-cpufreq
-    thermald
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
