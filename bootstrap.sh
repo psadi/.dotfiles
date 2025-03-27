@@ -46,6 +46,8 @@ install_os_deps() {
   )
   local remove_pkgs=(
     gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop gnome-console
+    fish cachyos-fish-config fish-autopair fish-pure-prompt fisher
+    micro cachy-micro-settings cachy-browser gnome-terminal
   )
   doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
   doas yay -R --noconfirm "${remove_pkgs[@]}" || true
