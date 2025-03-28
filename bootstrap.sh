@@ -36,18 +36,14 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-    bind dnsmasq fd fzf git-delta eza bat
-    github-cli go lazygit libvirt neovim npm qemu-desktop
-    python-pip ghostty networkmanager ripgrep starship stow
-    unzip virt-manager wl-clipboard zsh zoxide vlc
-    man-db dos2unix uv snapper google-chrome noto-fonts
-    noto-fonts-cjk noto-fonts-emoji noto-fonts-extra podman
-    chrome-gnome-shell go nodejs citron qbittorrent-enhanced yazi
-  )
-  local remove_pkgs=(
-    gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop gnome-console
-    fish cachyos-fish-config fish-autopair fish-pure-prompt fisher
-    micro cachy-micro-settings cachy-browser gnome-terminal
+  bat bind chrome-gnome-shell citron dnsmasq dos2unix eza fd fzf ghostty
+  git-delta github-cli go go google-chrome lazygit libvirt man-db neovim
+  networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+  npm podman python-pip qbittorrent-enhanced qemu-desktop ripgrep snapper
+  starship stow unzip uv virt-manager vlc wl-clipboard yazi zoxide zsh
+ )
+ local remove_pkgs=(
+   gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour htop gnome-console
   )
   doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
   doas yay -R --noconfirm "${remove_pkgs[@]}" || true
