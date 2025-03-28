@@ -25,3 +25,5 @@ alias ll="ls -l -go"
 alias la="ll -a"
 alias lrth="ll -rth"
 alias larth="la -rth"
+
+alias tmux="tmux -u"
