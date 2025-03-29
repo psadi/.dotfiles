@@ -1,6 +1,6 @@
 # vim: set ft=config
 
-font-family = "MonoLisa Nerd Font"
+font-family = "GeistMono Nerd Font"
 font-size = 16
 theme = "tokyonight_night"
 maximize = true
