@@ -39,8 +39,8 @@ install_os_deps() {
   bat bind chrome-gnome-shell citron dnsmasq dos2unix eza fd fzf alacritty
   git-delta github-cli go google-chrome lazygit libvirt man-db neovim
   networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
-  npm podman python-pip qbittorrent-enhanced qemu-desktop ripgrep snapper
-  starship stow unzip uv virt-manager vlc wl-clipboard yazi zoxide zsh hyperfine
+  npm podman python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
+  wl-clipboard xsel yazi zoxide zsh hyperfine
  )
  local remove_pkgs=(
    gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour gnome-terminal
