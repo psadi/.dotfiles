@@ -3,6 +3,7 @@ TERM = "xterm-256color"
 
 [window]
 startup_mode = "Maximized"
+title = "ॐ"
 
 [font]
 normal = { family = "GeistMono Nerd Font", style = "Regular" }

@@ -86,3 +86,10 @@ if (( $+commands[appman] )); then
   bashcompinit
   source "${HOME}/.local/share/bash-completion/completions/appman"
 fi
+
+# Zellij
+# ---------------------------------------------
+if (( $+commands[zellij] )); then
+  alias zj=zellij
+  alias zja="zellij attach"
+fi
