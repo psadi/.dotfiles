@@ -36,7 +36,7 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-  bat bind chrome-gnome-shell citron dnsmasq dos2unix eza fd fzf kitty
+  bat bind citron dnsmasq dos2unix eza fd fzf kitty
   git-delta github-cli go floorp lazygit libvirt man-db neovim
   networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   npm podman python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
