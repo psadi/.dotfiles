@@ -57,7 +57,7 @@ clone_dotfiles() {
     (cd "${DOTFILES_DIR}" && git pull)
   else
     echo "Cloning psadi/.dotfiles"
-    git clone https://github.com/psadi/dotfiles.git "${DOTFILES_DIR}"
+    git clone https://github.com/psadi/.dotfiles.git "${DOTFILES_DIR}"
   fi
 }
 
