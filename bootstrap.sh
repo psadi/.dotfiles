@@ -36,8 +36,8 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-  bat bind chrome-gnome-shell citron dnsmasq dos2unix eza fd fzf alacritty
-  git-delta github-cli go google-chrome lazygit libvirt man-db neovim
+  bat bind chrome-gnome-shell citron dnsmasq dos2unix eza fd fzf kitty
+  git-delta github-cli go floorp lazygit libvirt man-db neovim
   networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   npm podman python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
   wl-clipboard xsel yazi zoxide zsh hyperfine
@@ -142,19 +142,19 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
-	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'Alacritty.desktop']"
+	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'floorp.desktop', 'Alacritty.desktop']"
 	gsettings set org.gnome.shell.extensions.user-theme name 'Tokyonight-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Tokyonight-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
 	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
 	gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>Q']"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'alacritty'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'alacritty'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'kitty'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kitty'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'chrome'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'google-chrome-stable'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'floorp'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super><Shift>Return'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'nautilus'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'nautilus'

@@ -18,9 +18,9 @@ return {
 		"neovim/nvim-lspconfig",
 		event = "VeryLazy",
 		dependencies = { "saghen/blink.cmp" },
-		-- opts = {
-		-- 	inlay_hints = { enabled = false },
-		-- },
+		opts = {
+			inlay_hints = { enabled = false },
+		},
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
