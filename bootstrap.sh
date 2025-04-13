@@ -43,7 +43,7 @@ install_os_deps() {
   wl-clipboard xsel yazi zoxide zsh hyperfine
  )
  local remove_pkgs=(
-   gnome-contacts gnome-maps gnome-music vim epiphany gnome-tour gnome-terminal
+   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
   )
   doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
   doas yay -R --noconfirm "${remove_pkgs[@]}" || true
