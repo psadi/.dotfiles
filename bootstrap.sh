@@ -78,7 +78,7 @@ configure_systemd_services() {
     doas systemctl enable "${service}" || true
   done
 
-  sudo echo 'firewall_backend = "iptables"' > /etc/libvirt/network.conf
+  echo 'firewall_backend = "iptables"' | sudo tee /etc/libvirt/network.conf
 }
 
 install_zap() {
