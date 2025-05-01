@@ -4,8 +4,7 @@
 
 # Base
 #---------------------------------------------
-export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
-export DOTFILES_DIR="${HOME}/.dotfiles"
+
 
 # Load Zap
 #---------------------------------------------
@@ -22,7 +21,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
-for z (${DOTFILES_DIR}/zsh/**/*(N.)) plug $z
+for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 
 # Tidying User Path
 # ---------------------------------------------

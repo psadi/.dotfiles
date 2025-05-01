@@ -1,14 +1,8 @@
-ansible
-zsh
-assets
-Dockerfile
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
 \.git
 \.gitignore
 \.github
-Library/Fonts
-.DS_Store
 bootstrap.sh
 dconf

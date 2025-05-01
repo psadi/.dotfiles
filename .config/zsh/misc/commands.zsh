@@ -11,12 +11,6 @@ if (( $+functions[_evalcache] )); then
   _evalcache starship init zsh
 fi
 
-# Bottom
-#---------------------------------------------
-if (( $+commands[btm] )); then
-  alias htop="btm -b"
-fi
-
 # Bat
 #---------------------------------------------
 if (( $+commands[bat] )); then
@@ -97,3 +91,10 @@ if (( $+commands[yazi])); then
   alias yz=yazi
 fi
 
+# AppMan
+# ---------------------------------------------
+if (( $+commands[appman])); then
+  autoload bashcompinit
+  bashcompinit
+  source "${HOME}/.local/share/bash-completion/completions/appman"
+fi
