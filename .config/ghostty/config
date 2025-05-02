@@ -8,7 +8,7 @@ font-style-bold-italic = "Monolisa Nerd Font"
 font-size = 16
 
 # Config: Theme
-theme = "tokyonight_night"
+# theme = "tokyonight_night"
 
 # Config: Gtk
 gtk-tabs-location = "top"
