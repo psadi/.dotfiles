@@ -2,10 +2,6 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
-# Base
-#---------------------------------------------
-
-
 # Load Zap
 #---------------------------------------------
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] \
