@@ -1,11 +1,12 @@
 # vim: set ft=config
 
 # Config: font
-font-family = "Monolisa Nerd Font"
-font-style-bold = "Monolisa Nerd Font"
-font-style-italic = "Monolisa Nerd Font"
-font-style-bold-italic = "Monolisa Nerd Font"
+font-family = "GeistMono NF"
+font-style-bold = "GeistMono NF"
+font-style-italic = "GeistMono NF"
+font-style-bold-italic = "GeistMono NF"
 font-size = 16
+font-feature="-calt, -liga, -dlig"
 
 # Config: Theme
 theme = "tokyonight_night"
