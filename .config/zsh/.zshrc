@@ -22,3 +22,6 @@ for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
+autoload bashcompinit
+bashcompinit
+source "/home/adithyaps/.local/share/bash-completion/completions/appman"
