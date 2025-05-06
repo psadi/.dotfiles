@@ -6,7 +6,11 @@ font-style-bold = "GeistMono NF"
 font-style-italic = "GeistMono NF"
 font-style-bold-italic = "GeistMono NF"
 font-size = 16
-font-feature="-calt, -liga, -dlig"
+font-feature = "-calt, -liga, -dlig"
+font-thicken = true
+window-title-font-family="Geist"
+
+title="👻"
 
 # Config: Theme
 theme = "tokyonight_night"
