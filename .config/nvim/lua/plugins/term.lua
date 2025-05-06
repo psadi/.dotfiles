@@ -12,12 +12,12 @@ return {
 		})
 
 		local Terminal = require("toggleterm.terminal").Terminal
-		local git = Terminal:new({ cmd = "gitu", hidden = true })
+		local git = Terminal:new({ cmd = "lazygit", hidden = true })
 
 		function GitToggle()
 			git:toggle()
 		end
 
-		map("n", "<leader>gg", "<cmd>lua GitToggle()<CR>", { noremap = true, silent = true })
+		map("n", "<leader>lg", "<cmd>lua GitToggle()<CR>", { noremap = true, silent = true })
 	end,
 }

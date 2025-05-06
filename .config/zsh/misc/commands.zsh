@@ -85,12 +85,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 fi
 
-# Yazi
-# ---------------------------------------------
-if (( $+commands[yazi])); then
-  alias yz=yazi
-fi
-
 # AppMan
 # ---------------------------------------------
 if (( $+commands[appman])); then
