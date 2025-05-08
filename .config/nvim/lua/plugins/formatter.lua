@@ -7,7 +7,6 @@ return {
 			conform.setup({
 				formatters_by_ft = {
 					css = { "prettier" },
-					go = { lsp_format = "fallback" },
 					html = { "prettier" },
 					json = { "prettier" },
 					lua = { "stylua" },
@@ -15,6 +14,16 @@ return {
 					python = { "ruff_format" },
 					sh = { "shfmt" },
 					yaml = { "prettier" },
+					tf = { "tfmt" },
+					terraform = { "tfmt" },
+					hcl = { "tfmt" },
+				},
+				formatters = {
+					tfmt = {
+						command = "terraform",
+						args = { "fmt", "-" },
+						stdin = true,
+					},
 				},
 				format_on_save = {
 					async = false,

@@ -65,6 +65,9 @@ return {
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.terraformls.setup({
+				capabilities = capabilities,
+			})
 		end,
 	},
 }
