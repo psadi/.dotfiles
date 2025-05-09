@@ -92,3 +92,10 @@ if (( $+commands[appman])); then
   bashcompinit
   source "${HOME}/.local/share/bash-completion/completions/appman"
 fi
+
+# AWS
+#
+if (( $+commands[aws])); then
+  export AWS_CONFIG_FILE="$HOME/.config/aws/config"
+  export AWS_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
+fi

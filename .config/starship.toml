@@ -7,6 +7,7 @@ error_symbol = '[➜](bold red)'
 
 [aws]
 symbol = "  "
+disabled = true
 
 [buf]
 symbol = " "

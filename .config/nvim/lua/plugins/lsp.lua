@@ -10,7 +10,14 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff", "pyright", "rust_analyzer" },
+				ensure_installed = {
+					"lua_ls",
+					"ruff",
+					"pyright",
+					"rust_analyzer",
+					"terraformls",
+					"groovyls",
+				},
 			})
 		end,
 	},
@@ -66,6 +73,9 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.terraformls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.groovyls.setup({
 				capabilities = capabilities,
 			})
 		end,
