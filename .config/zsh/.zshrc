@@ -2,10 +2,6 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
-if [[ -n "$ZSH_DEBUGRC" ]]; then
-  zmodload zsh/zprof
-fi
-
 # Aliases
 #---------------------------------------------
 alias reload='source ~/.zprofile'
@@ -46,8 +42,3 @@ for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
-
-
-if [[ -n "$ZSH_DEBUGRC" ]]; then
-  zprof
-fi
