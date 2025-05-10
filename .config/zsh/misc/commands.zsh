@@ -94,8 +94,14 @@ if (( $+commands[appman])); then
 fi
 
 # AWS
-#
+# ---------------------------------------------
 if (( $+commands[aws])); then
   export AWS_CONFIG_FILE="$HOME/.config/aws/config"
   export AWS_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
+fi
+
+# AWS
+# ---------------------------------------------
+if (( $+commands[yazi])); then
+  alias yz=yazi
 fi
