@@ -1,7 +1,7 @@
 # vim: set ft=config
 
 # Config: font
-font-family = "GeistMono NF"
+font-family = "GeistMono Nerd Font"
 font-size = 16
 font-feature = "-calt, -liga, -dlig"
 font-thicken = true
