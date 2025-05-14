@@ -112,15 +112,15 @@ configure_theme() {
   mkdir -p "${HOME}/.local/share/themes"
   mkdir -p "${HOME}/.local/share/icons"
 
-  local theme_url="https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme/archive/refs/heads/master.zip"
+  local theme_url="https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme/archive/refs/heads/master.zip"
   local cursor_url="https://github.com/ful1e5/banana-cursor/releases/download/v2.0.0/Banana.tar.xz"
 
-  if [ ! -d "${HOME}/.local/share/themes/Tokyonight-Dark" ]; then
+  if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
     echo "Configuring Theme..."
-    wget -q "${theme_url}" -O /tmp/Tokyonight-GTK-Theme-master.zip
-    unzip -q /tmp/Tokyonight-GTK-Theme-master.zip -d /tmp
+    wget -q "${theme_url}" -O /tmp/Kanagawa-GKT-Theme-master.zip
+    unzip -q /tmp/Kanagawa-GKT-Theme-master.zip -d /tmp
     (
-      cd /tmp/Tokyonight-GTK-Theme-master/themes
+      cd /tmp/Kanagawa-GKT-Theme-master/themes
       chmod +x install.sh
       ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
     )
