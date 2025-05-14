@@ -1,9 +1,0 @@
-[manager]
-show_hidden = true
-sort_by = "mtime"
-sort_dir_first = true
-show_symlink = true
-
-
-[input]
-cursor_blink = true
