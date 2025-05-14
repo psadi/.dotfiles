@@ -29,25 +29,24 @@ return {
 			})
 		end,
 	},
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	event = "VeryLazy",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	opts = {
+	-- 		style = "night",
+	-- 		transparent = false,
+	-- 		lualine_bold = true,
+	-- 	},
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme tokyonight-night")
+	-- 	end,
+	-- },
 	{
-		"folke/tokyonight.nvim",
-		event = "VeryLazy",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			style = "night",
-			transparent = false,
-			lualine_bold = true,
-		},
+		"rebelot/kanagawa.nvim",
 		config = function()
-			vim.cmd("colorscheme tokyonight-night")
-		end,
-	},
-	{
-		"stevearc/quicker.nvim",
-		event = "FileType qf",
-		config = function()
-			require("quicker").setup()
+			vim.cmd("colorscheme kanagawa")
 		end,
 	},
 }

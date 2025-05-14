@@ -2,6 +2,10 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Aliases
 #---------------------------------------------
 alias reload='source ~/.zprofile'
@@ -34,6 +38,7 @@ plug "mroth/evalcache"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "romkatv/powerlevel10k"
 
 # Load evals, aliases, functions & commands
 #---------------------------------------------
@@ -42,3 +47,7 @@ for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
+
+# Prompt
+# ---------------------------------------------
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
