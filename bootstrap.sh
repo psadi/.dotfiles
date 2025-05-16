@@ -39,7 +39,7 @@ install_os_deps() {
   bat bind dnsmasq dos2unix eza fd fzf ghostty git-delta github-cli firefox
   lazygit libvirt man-db neovim networkmanager nodejs noto-fonts noto-fonts-cjk
   noto-fonts-emoji noto-fonts-extra npm podman python-pip qemu-desktop ripgrep
-  snapper stow unzip uv virt-manager wl-clipboard xsel zoxide zsh hyperfine
+  snapper stow unzip uv virt-manager wl-clipboard xsel zoxide zsh hyperfine yazi
  )
  local remove_pkgs=(
    gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
