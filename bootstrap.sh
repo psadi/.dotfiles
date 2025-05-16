@@ -164,7 +164,7 @@ gnome_tweaks(){
 
   # Dconf load
   local DOTFILES_DIR="${HOME}/.dotfiles"
-  dconf load /org/gnome/shell < "${DOTFILES_DIR}/donf/shell.dconf"
+  dconf load /org/gnome/shell < "${DOTFILES_DIR}/dconf/shell.dconf"
 }
 
 finalize() {
