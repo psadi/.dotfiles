@@ -165,8 +165,7 @@ gnome_tweaks(){
 
   # Dconf load
   local DOTFILES_DIR="${HOME}/.dotfiles"
-  dconf load /org/gnome/shell/extensions/ < "${DOTFILES_DIR}/dconf/extensions.conf"
-  dconf load /org/gnome/shell/keybindings/ < "${DOTFILES_DIR}/dconf/keybindings.conf"
+  dconf load /org/gnome/shell < "${DOTFILES_DIR}/donf/shell.dconf"
 }
 
 finalize() {
