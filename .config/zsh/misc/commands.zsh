@@ -68,6 +68,11 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 "
 fi
 
+# Yazi
+# ---------------------------------------------
+if (( $+commands[yazi])); then
+  alias yz=yazi
+fi
 
 # AWS
 # ---------------------------------------------
@@ -76,3 +81,10 @@ if (( $+commands[aws])); then
   export AWS_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 fi
 
+# AppMan
+# ---------------------------------------------
+if (( $+commands[appman])); then
+  autoload bashcompinit
+  bashcompinit
+  source "/home/adithyaps/.local/share/bash-completion/completions/appman"
+fi
