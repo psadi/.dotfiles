@@ -40,7 +40,7 @@ install_os_deps() {
   git-delta github-cli firefox lazygit libvirt man-db neovim
   networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   npm podman python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
-  wl-clipboard xsel yazi zoxide zsh hyperfine
+  wl-clipboard xsel zoxide zsh hyperfine
  )
  local remove_pkgs=(
    gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
