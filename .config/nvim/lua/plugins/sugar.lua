@@ -29,20 +29,6 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	event = "VeryLazy",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	opts = {
-	-- 		style = "night",
-	-- 		transparent = false,
-	-- 		lualine_bold = true,
-	-- 	},
-	-- 	config = function()
-	-- 		vim.cmd("colorscheme tokyonight-night")
-	-- 	end,
-	-- },
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()

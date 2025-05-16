@@ -124,7 +124,7 @@ configure_theme() {
       chmod +x install.sh
       ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
     )
-    rm -rf /tmp/Tokyonight-GTK-Theme-master*
+    rm -rf /tmp/Kangawa-GKT-Theme-master*
   fi
 
   if [ ! -d "${HOME}/.local/share/icons/Banana" ]; then
@@ -145,8 +145,8 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
 	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.mitchellh.ghostty.desktop']"
-	gsettings set org.gnome.shell.extensions.user-theme name 'Tokyonight-Dark'
-	gsettings set org.gnome.desktop.interface gtk-theme 'Tokyonight-Dark'
+	gsettings set org.gnome.shell.extensions.user-theme name 'Kangawa-Dark'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Kangawa-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
 	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com

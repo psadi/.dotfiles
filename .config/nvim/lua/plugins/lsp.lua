@@ -24,12 +24,10 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "VeryLazy",
-		dependencies = { "saghen/blink.cmp" },
 		opts = {
 			inlay_hints = { enabled = false },
 		},
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 
 			local on_attach = function(client, bufnr)
@@ -38,7 +36,6 @@ return {
 				end
 			end
 			lspconfig.pyright.setup({
-				capabilities = capabilities,
 				settings = {
 					pyright = {
 						disableOrganizeImports = true,
@@ -51,7 +48,6 @@ return {
 				},
 			})
 			lspconfig.ruff.setup({
-				capabilities = capabilities,
 				on_attach = on_attach,
 				init_options = {
 					settings = {
@@ -60,7 +56,6 @@ return {
 				},
 			})
 			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -69,15 +64,9 @@ return {
 					},
 				},
 			})
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.terraformls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.groovyls.setup({
-				capabilities = capabilities,
-			})
+			lspconfig.rust_analyzer.setup({})
+			lspconfig.terraformls.setup({})
+			lspconfig.groovyls.setup({})
 		end,
 	},
 }
