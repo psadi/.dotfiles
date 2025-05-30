@@ -61,6 +61,3 @@ typeset -U path cdpath fpath manpath
 # Prompt
 # ---------------------------------------------
 [[ ! -f "${HOME}/.dotfiles/.config/zsh/.p10k.zsh" ]] || source "${HOME}/.dotfiles/.config/zsh/.p10k.zsh"
-autoload bashcompinit
-bashcompinit
-source "/home/adithyaps/.local/share/bash-completion/completions/appman"
