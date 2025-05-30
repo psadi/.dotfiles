@@ -36,7 +36,7 @@ install_os_deps() {
   fi
 
   local install_pkgs=(
-  bat bind citron dnsmasq dos2unix eza fd fzf ghostty
+  bat bind dnsmasq dos2unix eza fd fzf ghostty
   git-delta github-cli firefox lazygit libvirt man-db neovim
   networkmanager nodejs noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   npm podman python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
