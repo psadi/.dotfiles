@@ -1,11 +1,23 @@
 [/]
-app-picker-layout=[{'9ecbab61-1f36-4b07-ab89-1cc5eaed686f': <{'position': <0>}>, 'Utilities': <{'position': <1>}>, 'System': <{'position': <2>}>, '49361b81-32d3-4b3c-9903-1c308a03c2af': <{'position': <3>}>, '5bdb74de-8fa5-43b4-aad8-07a274ddf313': <{'position': <4>}>, 'org.citron_emu.citron.desktop': <{'position': <5>}>, 'virt-manager.desktop': <{'position': <6>}>, 'vivaldi-stable.desktop': <{'position': <7>}>}]
+app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, '59e592cd-f81a-4cf7-98f4-ac43454f7eef': <{'position': <2>}>, 'virt-manager.desktop': <{'position': <3>}>, 'fish.desktop': <{'position': <4>}>, 'nvim.desktop': <{'position': <5>}>, 'org.gnome.PowerStats.desktop': <{'position': <6>}>, 'gnome-nettool.desktop': <{'position': <7>}>, 'yazi.desktop': <{'position': <8>}>, 'org.gnome.Usage.desktop': <{'position': <9>}>, 'org.gnome.Weather.desktop': <{'position': <10>}>}]
 disable-user-extensions=false
 disabled-extensions=@as []
-enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'just-perfection-desktop@just-perfection', 'space-bar@luchrioh', 'tactile@lundal.io', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'just-perfection-desktop@just-perfection', 'space-bar@luchrioh', 'tactile@lundal.io', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'azwallpaper@azwallpaper.gitlab.com']
 favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.mitchellh.ghostty.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.0'
+
+[extensions/azwallpaper]
+prefs-visible-page=''
+slideshow-change-slide-event=0
+slideshow-current-slide-index=1
+slideshow-current-wallpaper='pexels-steve-1451567.jpg'
+slideshow-directory='/home/adithyaps/Pictures/Walls'
+slideshow-queue=[{'name': 'pexels-sohi-807598.jpg', 'date': '1748623516'}, {'name': 'pexels-steve-1451567.jpg', 'date': '1748623583'}, {'name': 'pexels-veeterzy-39811.jpg', 'date': '1748623563'}, {'name': 'pexels-johnnoibn-1448136.jpg', 'date': '1748623666'}, {'name': 'pexels-pok-rie-33563-2049422.jpg', 'date': '1748623542'}, {'name': 'pexels-thatguycraig000-1563355.jpg', 'date': '1748623658'}, {'name': 'pexels-eberhardgross-1367192.jpg', 'date': '1748623535'}, {'name': 'pexels-fox-58267-1172675.jpg', 'date': '1748623556'}, {'name': 'pexels-cmonphotography-1809644.jpg', 'date': '1748623594'}, {'name': 'pexels-pixabay-163872.jpg', 'date': '1748623609'}, {'name': 'pexels-todd-trapani-488382-1535162.jpg', 'date': '1748623605'}, {'name': 'pexels-pixabay-33109.jpg', 'date': '1748623577'}, {'name': 'pexels-pok-rie-33563-982263.jpg', 'date': '1748623619'}, {'name': 'pexels-steve-845242.jpg', 'date': '1748623588'}, {'name': 'pexels-catiamatos-1072179.jpg', 'date': '1748623623'}, {'name': 'pexels-sebastian-312105.jpg', 'date': '1748623547'}, {'name': 'pexels-yaroslav-shuraev-1834403.jpg', 'date': '1748623653'}, {'name': 'pexels-asadphoto-1456291.jpg', 'date': '1748623527'}, {'name': 'pexels-philippedonn-1169754.jpg', 'date': '1748623569'}]
+slideshow-slide-duration=(1, 0, 0)
+slideshow-time-of-slide-start=uint64 1748623880800
+slideshow-timer-remaining=3600
+update-notifier-project-version=13
 
 [extensions/caffeine]
 indicator-position-max=3
@@ -20,6 +32,9 @@ dash-separator=false
 panel=true
 panel-in-overview=false
 power-icon=false
+quick-settings=true
+quick-settings-dark-mode=false
+search=true
 show-apps-button=false
 startup-status=0
 support-notifier-showed-version=34
