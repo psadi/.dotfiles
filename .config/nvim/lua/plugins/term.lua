@@ -6,13 +6,13 @@ return {
 	config = function()
 		require("toggleterm").setup({
 			direction = "tab",
-			open_mapping = [[<c-`>]],
+			open_mapping = [[<c-\>]],
 			hide_numbers = true,
 			auto_scroll = true,
 		})
 
 		local Terminal = require("toggleterm.terminal").Terminal
-		local git = Terminal:new({ cmd = "gitu", hidden = true })
+		local git = Terminal:new({ cmd = "lazygit", hidden = true })
 
 		function GitToggle()
 			git:toggle()
