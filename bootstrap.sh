@@ -114,13 +114,13 @@ configure_theme() {
   mkdir -p "${HOME}/.local/share/themes"
   mkdir -p "${HOME}/.local/share/icons"
 
-  local theme_url="https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme/archive/refs/heads/master.zip"
+  local theme_url="https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme/archive/refs/heads/main.zip"
   local cursor_url="https://github.com/ful1e5/banana-cursor/releases/download/v2.0.0/Banana.tar.xz"
 
   if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
     echo "Configuring Theme..."
-    wget -q "${theme_url}" -O /tmp/systemd-private-10a933d4d08d4d4da7a455051a3f47c8-ananicy-cpp.service-CrRvzv/ip
-    unzip -q /tmp/Kanagawa-GKT-Theme-master.zip -d /tmp
+    wget -q "${theme_url}" -O /tmp/Kanagawa-GKT-Theme-main.zip
+    unzip -q /tmp/Kanagawa-GKT-Theme-main.zip -d /tmp
     (
       cd /tmp/Kanagawa-GKT-Theme-main/themes
       chmod +x install.sh
