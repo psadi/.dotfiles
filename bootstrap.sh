@@ -43,7 +43,9 @@ install_os_deps() {
   wl-clipboard xsel yazi zoxide zsh hyperfine
  )
  local remove_pkgs=(
-   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
+   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal fish
+   cachyos-fish-config fish-autopair fish-pure-prompt fisher gnome-console
+   btrfs-assistant qt6-base qt6-declarative qt6-svg qt6-translations qt6-wayland
   )
   doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
   doas yay -R --noconfirm "${remove_pkgs[@]}" || true
@@ -117,10 +119,10 @@ configure_theme() {
 
   if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
     echo "Configuring Theme..."
-    wget -q "${theme_url}" -O /tmp/Kanagawa-GKT-Theme-master.zip
+    wget -q "${theme_url}" -O /tmp/systemd-private-10a933d4d08d4d4da7a455051a3f47c8-ananicy-cpp.service-CrRvzv/ip
     unzip -q /tmp/Kanagawa-GKT-Theme-master.zip -d /tmp
     (
-      cd /tmp/Kanagawa-GKT-Theme-master/themes
+      cd /tmp/Kanagawa-GKT-Theme-main/themes
       chmod +x install.sh
       ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
     )
