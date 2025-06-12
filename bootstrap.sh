@@ -27,7 +27,7 @@ install_yay() {
 
 install_python_deps() {
   echo "Installing Python3 Dependencies"
-  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim librosa
+  python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
 }
 
 install_os_deps() {
@@ -42,14 +42,16 @@ install_os_deps() {
   python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
   wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector
  )
+
  local remove_pkgs=(
    gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal fish
    cachyos-fish-config fish-autopair fish-pure-prompt fisher gnome-console totem
    btrfs-assistant qt6-base qt6-declarative qt6-svg qt6-translations qt6-wayland
   )
-  doas yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
-  doas yay -R --noconfirm "${remove_pkgs[@]}" || true
-  doas yay -S --noconfirm --clean
+
+  yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
+  yay -R --noconfirm "${remove_pkgs[@]}" || true
+  yay -S --noconfirm --clean
 }
 
 clone_dotfiles() {
