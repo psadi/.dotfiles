@@ -12,7 +12,7 @@ return {
 		})
 
 		local Terminal = require("toggleterm.terminal").Terminal
-		local git = Terminal:new({ cmd = "gitu", hidden = true })
+		local git = Terminal:new({ cmd = "lazygit", hidden = true })
 
 		function GitToggle()
 			git:toggle()
