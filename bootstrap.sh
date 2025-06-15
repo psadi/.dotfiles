@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # vim: ft=bash sw=2 ts=2 et
 
-set -euox pipefail
 
 export HISTIGNORE='*sudo -S*'
 
@@ -14,12 +13,10 @@ echo "${SUDO_PASSWORD}" | sudo -S -v &>/dev/null || {
   exit 1
 }
 
-doas() {
-  echo "${SUDO_PASSWORD}" | sudo -S "${@}"
-}
+set -euox pipefail
 
 install_yay() {
-  doas pacman -S --needed --noconfirm git base-devel
+  sudo pacman -S --needed --noconfirm git base-devel
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   (cd /tmp/yay && makepkg -si --noconfirm)
   rm -rf /tmp/yay
@@ -39,7 +36,7 @@ install_os_deps() {
   bat bind dnsmasq dos2unix eza fd fzf ghostty gnome-browser-connector git-delta
   github-cli brave-bin lazygit libvirt man-db neovim networkmanager nodejs
   noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman
-  python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager
+  python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager sbctl
   wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector
  )
 
@@ -66,11 +63,12 @@ clone_dotfiles() {
 }
 
 configure_user_shell() {
-  doas chsh -s /usr/bin/zsh "${USER}"
+  sudo chsh -s /usr/bin/zsh "${USER}"
 }
 
 configure_systemd_services() {
   local services=(
+    ufw
     bluetooth
     NetworkManager
     libvirtd
@@ -79,7 +77,7 @@ configure_systemd_services() {
     snapper-boot.timer
   )
   for service in "${services[@]}"; do
-    doas systemctl enable "${service}" || true
+    sudo systemctl enable "${service}" || true
   done
 
   echo 'firewall_backend = "iptables"' | sudo tee /etc/libvirt/network.conf
@@ -148,7 +146,6 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
-	gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'brave.desktop', 'com.mitchellh.ghostty.desktop']"
 	gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
@@ -172,6 +169,45 @@ gnome_tweaks(){
   dconf load /org/gnome/shell/ < "${DOTFILES_DIR}/dconf/shell.dconf"
 }
 
+general_system_tweaks() {
+  # Reference: https://wiki.cachyos.org/configuration/general_system_tweaks
+  # Set CPU governor to powersave
+  sudo cpupower frequency-set -g powersave
+  # Set energy performance preference to performance if not already set
+  if ! grep -q "performance" /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; then
+    echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+  fi
+  # Enable AMD P-state if not already active
+  if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status; then
+    echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
+  fi
+  # Set AMD X3D mode to frequency if not already set
+  if ! grep -q "frequency" /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode; then
+    echo frequency | sudo tee /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
+  fi
+  # Configure split lock mitigation if not already set
+  if ! grep -q "kernel.split_lock_mitigate=0" /etc/sysctl.d/99-splitlock.conf; then
+    sudo touch /etc/sysctl.d/99-splitlock.conf
+    echo 'kernel.split_lock_mitigate=0' | sudo tee /etc/sysctl.d/99-splitlock.conf
+  fi
+  # Enable RCU lazy mode in boot configuration if not already set
+  if ! grep -q 'rcutree.enable_rcu_lazy=1' /etc/sdboot-manage.conf; then
+    sudo sed -i '/^LINUX_OPTIONS=/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/sdboot-manage.conf
+  fi
+  # Install the realtime privileges package
+  sudo pacman -S realtime-privileges
+  # Add the user to the realtime group
+  sudo gpasswd -a "$USER" realtime
+  # Remove immutable attribute from EFI variables
+  for var in /sys/firmware/efi/efivars/db-* /sys/firmware/efi/efivars/KEK-*; do
+    if lsattr "$var" | awk '{print $1}' | grep -q "i"; then
+      sudo chattr -i "$var"
+    else
+      echo "Immutable attribute already removed for $var"
+    fi
+  done
+}
+
 finalize() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
@@ -189,3 +225,4 @@ configure_theme
 finalize
 gnome_tweaks
 configure_systemd_services
+general_system_tweaks
