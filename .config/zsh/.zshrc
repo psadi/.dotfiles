@@ -29,12 +29,7 @@ alias ldpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias rm='rm -i'
 alias mkdir='mkdir -pv'
 
-alias ll="ls -l -go"
-alias la="ll -a"
-alias lrth="ll -rth"
-alias larth="la -rth"
-
-alias tmux="tmux -u"
+alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
 
 # Load Zap
 #---------------------------------------------
