@@ -181,10 +181,6 @@ general_system_tweaks() {
   if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status; then
     echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
   fi
-  # Set AMD X3D mode to frequency if not already set
-  if ! grep -q "frequency" /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode; then
-    echo frequency | sudo tee /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
-  fi
   # Configure split lock mitigation if not already set
   if ! grep -q "kernel.split_lock_mitigate=0" /etc/sysctl.d/99-splitlock.conf; then
     sudo touch /etc/sysctl.d/99-splitlock.conf
