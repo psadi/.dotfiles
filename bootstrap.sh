@@ -36,7 +36,8 @@ install_os_deps() {
   github-cli brave-bin lazygit libvirt man-db neovim networkmanager nodejs
   noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman
   python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager sbctl
-  wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector
+  wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector realtime-privileges
+
  )
 
  local remove_pkgs=(
@@ -193,9 +194,6 @@ general_system_tweaks() {
   if ! grep -q 'rcutree.enable_rcu_lazy=1' /etc/sdboot-manage.conf; then
     sudo sed -i '/^LINUX_OPTIONS=/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/sdboot-manage.conf
   fi
-  # Install the realtime privileges package
-  sudo pacman -S realtime-privileges
-  # Add the user to the realtime group
   sudo gpasswd -a "$USER" realtime
   # Remove immutable attribute from EFI variables
   for var in /sys/firmware/efi/efivars/db-* /sys/firmware/efi/efivars/KEK-*; do
