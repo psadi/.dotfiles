@@ -34,7 +34,7 @@ install_os_deps() {
   local install_pkgs=(
   bat bind dnsmasq dos2unix eza fd fzf ghostty gnome-browser-connector git-delta
   github-cli brave-bin lazygit libvirt man-db neovim networkmanager nodejs
-  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman
+  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman unrar
   python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager sbctl
   wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector realtime-privileges
 
