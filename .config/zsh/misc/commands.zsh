@@ -28,7 +28,7 @@ fi
 # Eza
 #---------------------------------------------
 if (( $+commands[eza] )); then
-  alias ls='eza --no-filesize --no-time --git'
+  alias ls='eza --no-filesize --no-time --git --hyperlink'
   alias ll='ls -l'
   alias la="ll -a"
   alias lt="ll --tree --level=2"

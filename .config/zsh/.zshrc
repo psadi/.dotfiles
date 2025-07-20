@@ -55,4 +55,4 @@ typeset -U path cdpath fpath manpath
 
 # Prompt
 # ---------------------------------------------
-[[ ! -f "${HOME}/.dotfiles/.config/zsh/.p10k.zsh" ]] || source "${HOME}/.dotfiles/.config/zsh/.p10k.zsh"
+[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
