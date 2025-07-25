@@ -37,7 +37,7 @@ install_os_deps() {
   noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman unrar
   python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager sbctl
   wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector realtime-privileges
-  fprintd libfprint-2-tod1-goodix
+  fprintd libfprint-2-tod1-goodix fuse joplin
  )
 
  local remove_pkgs=(
