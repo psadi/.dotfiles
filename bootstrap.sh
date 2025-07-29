@@ -214,8 +214,8 @@ install_zap
 configure_user_shell
 clone_dotfiles
 configure_font
-#configure_theme
+configure_theme
 finalize
-#gnome_tweaks
+gnome_tweaks
 configure_systemd_services
 general_system_tweaks

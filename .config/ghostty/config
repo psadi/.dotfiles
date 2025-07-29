@@ -1,10 +1,9 @@
 # vim: set ft=config
 
 # Config: font
-font-family = "GeistMono NF"
-font-size = 16
-font-feature = "-calt, -liga, -dlig"
+font-family = "MonoLisa Nerd Font"
 font-style = "Medium"
+font-size = 14
 
 # Config: Theme
 theme = "kanagawabones"
