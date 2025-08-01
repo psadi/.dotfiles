@@ -41,9 +41,9 @@ install_os_deps() {
  )
 
  local remove_pkgs=(
-   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal fish
-   cachyos-fish-config fish-autopair fish-pure-prompt fisher gnome-console totem
-   btrfs-assistant qt6-base qt6-declarative qt6-svg qt6-translations qt6-wayland
+   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
+   gnome-console btrfs-assistant qt6-base qt6-declarative qt6-svg qt6-translations qt6-wayland
+   totem
   )
 
   yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
@@ -140,9 +140,9 @@ configure_theme() {
 
 gnome_tweaks(){
   gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
-  gsettings set org.gnome.desktop.interface font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11'
+  gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans 11'
+  gsettings set org.gnome.desktop.interface document-font-name 'Adwaits Sans 11'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Monolisa Nerd Font 11'
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
@@ -152,6 +152,7 @@ gnome_tweaks(){
 	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
 	gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>Q']"
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'brave-browser.desktop', 'com.mitchellh.ghostty.desktop']"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'ghostty'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ghostty'
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'

@@ -68,7 +68,7 @@ return {
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.gleam.setup({
+			lspconfig.ansiblels.setup({
 				capabilities = capabilities,
 			})
 		end,

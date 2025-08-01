@@ -14,33 +14,71 @@ slideshow-current-slide-index=3
 slideshow-current-wallpaper='pexels-johnnoibn-1448136.jpg'
 slideshow-directory='/home/adithyaps/Pictures/Walls'
 slideshow-queue=[{'name': 'pexels-sohi-807598.jpg', 'date': '1748623516'}, {'name': 'pexels-steve-1451567.jpg', 'date': '1748623583'}, {'name': 'pexels-veeterzy-39811.jpg', 'date': '1748623563'}, {'name': 'pexels-johnnoibn-1448136.jpg', 'date': '1748623666'}, {'name': 'pexels-pok-rie-33563-2049422.jpg', 'date': '1748623542'}, {'name': 'pexels-thatguycraig000-1563355.jpg', 'date': '1748623658'}, {'name': 'pexels-eberhardgross-1367192.jpg', 'date': '1748623535'}, {'name': 'pexels-fox-58267-1172675.jpg', 'date': '1748623556'}, {'name': 'pexels-cmonphotography-1809644.jpg', 'date': '1748623594'}, {'name': 'pexels-pixabay-163872.jpg', 'date': '1748623609'}, {'name': 'pexels-todd-trapani-488382-1535162.jpg', 'date': '1748623605'}, {'name': 'pexels-pixabay-33109.jpg', 'date': '1748623577'}, {'name': 'pexels-pok-rie-33563-982263.jpg', 'date': '1748623619'}, {'name': 'pexels-steve-845242.jpg', 'date': '1748623588'}, {'name': 'pexels-catiamatos-1072179.jpg', 'date': '1748623623'}, {'name': 'pexels-sebastian-312105.jpg', 'date': '1748623547'}, {'name': 'pexels-yaroslav-shuraev-1834403.jpg', 'date': '1748623653'}, {'name': 'pexels-asadphoto-1456291.jpg', 'date': '1748623527'}, {'name': 'pexels-philippedonn-1169754.jpg', 'date': '1748623569'}]
+slideshow-show-quick-settings-entry=false
 slideshow-slide-duration=(1, 0, 0)
 slideshow-time-of-slide-start=uint64 1748721497971
 slideshow-timer-remaining=3577
 update-notifier-project-version=13
 
 [extensions/caffeine]
-indicator-position-max=1
+indicator-position-max=3
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
 
+[extensions/gsconnect]
+devices=['256c6aa46e9b43babe9272f963285a45']
+enabled=true
+keep-alive-when-locked=true
+name='tinkerpad'
+
+[extensions/gsconnect/device/256c6aa46e9b43babe9272f963285a45]
+certificate-pem='-----BEGIN CERTIFICATE-----\nMIIBjDCCATGgAwIBAgIBATAKBggqhkjOPQQDBDBPMSkwJwYDVQQDDCAyNTZjNmFh\nNDZlOWI0M2JhYmU5MjcyZjk2MzI4NWE0NTEUMBIGA1UECwwLS0RFIENvbm5lY3Qx\nDDAKBgNVBAoMA0tERTAeFw0yNDA3MzExODMwMDBaFw0zNTA3MzExODMwMDBaME8x\nKTAnBgNVBAMMIDI1NmM2YWE0NmU5YjQzYmFiZTkyNzJmOTYzMjg1YTQ1MRQwEgYD\nVQQLDAtLREUgQ29ubmVjdDEMMAoGA1UECgwDS0RFMFkwEwYHKoZIzj0CAQYIKoZI\nzj0DAQcDQgAE8p/zcpX5/HSDn4PeykEOl/TgS0/vYmd4LnLdYd+UgwO9hf3dIuA/\n8dLF6/Mxbx0f3B7nArJFApdN0RVl6Cr3nzAKBggqhkjOPQQDBANJADBGAiEAkYeo\n5BxUF1YVYfTQM2ikWShjy+qUXSnfawoPm6WP5csCIQDVTezSSpquZqg5oMX1r4mI\ntZ1nFvyQHn7UQtX3rRsZSQ==\n-----END CERTIFICATE-----\n'
+disabled-plugins=@as []
+incoming-capabilities=['kdeconnect.battery', 'kdeconnect.bigscreen.stt', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.contacts.request_all_uids_timestamps', 'kdeconnect.contacts.request_vcards_by_uid', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.action', 'kdeconnect.notification.reply', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.runcommand', 'kdeconnect.sftp.request', 'kdeconnect.share.request', 'kdeconnect.share.request.update', 'kdeconnect.sms.request', 'kdeconnect.sms.request_attachment', 'kdeconnect.sms.request_conversation', 'kdeconnect.sms.request_conversations', 'kdeconnect.systemvolume', 'kdeconnect.telephony.request', 'kdeconnect.telephony.request_mute']
+keybindings=@a{ss} {}
+last-connection='lan://192.168.0.4:1716'
+name='OnePlus 13R'
+outgoing-capabilities=['kdeconnect.battery', 'kdeconnect.bigscreen.stt', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.connectivity_report', 'kdeconnect.contacts.response_uids_timestamps', 'kdeconnect.contacts.response_vcards', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.echo', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.presenter', 'kdeconnect.runcommand.request', 'kdeconnect.sftp', 'kdeconnect.share.request', 'kdeconnect.sms.attachment_file', 'kdeconnect.sms.messages', 'kdeconnect.systemvolume.request', 'kdeconnect.telephony']
+paired=true
+supported-plugins=['battery', 'clipboard', 'connectivity_report', 'contacts', 'findmyphone', 'mousepad', 'mpris', 'notification', 'ping', 'presenter', 'runcommand', 'sftp', 'share', 'sms', 'systemvolume', 'telephony']
+type='phone'
+
+[extensions/gsconnect/device/256c6aa46e9b43babe9272f963285a45/plugin/battery]
+custom-battery-notification-value=uint32 80
+
+[extensions/gsconnect/device/256c6aa46e9b43babe9272f963285a45/plugin/clipboard]
+receive-content=true
+send-content=true
+
+[extensions/gsconnect/device/256c6aa46e9b43babe9272f963285a45/plugin/notification]
+applications='{"Ghostty":{"iconName":"com.mitchellh.ghostty","enabled":true},"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Pika Backup Monitor":{"iconName":"org.gnome.World.PikaBackup","enabled":true},"Color Management":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"File Roller":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Pomodoro":{"iconName":"/home/adithyaps/Applications/gnome-pomodoro/icons/gnome-pomodoro","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Events and Tasks Reminders":{"iconName":"org.gnome.Evolution-alarm-notify","enabled":true},"Geary":{"iconName":"org.gnome.Geary","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Pika Backup":{"iconName":"org.gnome.World.PikaBackup","enabled":true},"CachyOS Update":{"iconName":"system-reboot","enabled":true}}'
+
+[extensions/gsconnect/device/256c6aa46e9b43babe9272f963285a45/plugin/share]
+receive-directory='/home/adithyaps/Downloads'
+
+[extensions/gsconnect/preferences]
+window-maximized=false
+window-size=(787, 460)
+
 [extensions/just-perfection]
 animation=3
-dash=false
-dash-app-running=false
-dash-separator=false
+dash=true
+dash-app-running=true
+dash-separator=true
 panel=true
 panel-in-overview=false
+panel-notification-icon=true
 power-icon=false
 quick-settings=true
 quick-settings-dark-mode=false
 search=true
-show-apps-button=false
+show-apps-button=true
 startup-status=0
 support-notifier-showed-version=34
 support-notifier-type=0
 theme=true
 top-panel-position=0
+window-picker-icon=true
 workspaces-in-app-grid=true
 
 [extensions/space-bar/appearance]
@@ -58,6 +96,9 @@ version=33
 show-swap=false
 show-upload=true
 
+[extensions/tactile]
+monitor-0-layout=1
+
 [extensions/user-theme]
 name='Kanagawa-Dark'
 
@@ -66,6 +107,10 @@ switch-to-application-1=@as []
 switch-to-application-2=@as []
 switch-to-application-3=@as []
 switch-to-application-4=@as []
+
+[weather]
+automatic-location=true
+locations=[<(uint32 2, <('Bangalore', 'VOBG', true, [(0.22601989378717041, 1.3555659188172149)], [(0.22631101470640302, 1.3537937114947398)])>)>]
 
 [world-clocks]
 locations=@av []

@@ -21,9 +21,11 @@ window-padding-x = 0
 window-padding-y = 0
 
 # Config: Misc
+custom-shader = "shaders/cursor_smear.glsl"
+custom-shader-animation = "always"
 confirm-close-surface = false
 auto-update = "off"
-shell-integration-features = sudo
+shell-integration-features = "sudo"
 
 # Keybinds: Tabs
 keybind = "ctrl+t=new_tab"
