@@ -141,9 +141,9 @@ configure_theme() {
 
 gnome_tweaks(){
   gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
-  gsettings set org.gnome.desktop.interface font-name 'Adwaita Sans 11'
-  gsettings set org.gnome.desktop.interface document-font-name 'Adwaits Sans 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'Monolisa Nerd Font 11'
+  gsettings set org.gnome.desktop.interface font-name 'Geist 11'
+  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono NF 11'
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
