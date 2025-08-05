@@ -1,9 +1,9 @@
 # vim: set ft=config
 
 # Config: font
-font-family = "MonoLisa Nerd Font"
+font-family = "GeistMono Nerd Font"
 font-style = "Medium"
-font-size = 14
+font-size = 16
 
 # Config: Theme
 theme = "GruvboxDarkHard"

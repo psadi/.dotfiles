@@ -115,19 +115,19 @@ configure_theme() {
   mkdir -p "${HOME}/.local/share/themes"
   mkdir -p "${HOME}/.local/share/icons"
 
-  local theme_url="https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme/archive/refs/heads/main.zip"
+  local theme_url="https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme/archive/refs/heads/master.zip"
   local cursor_url="https://github.com/ful1e5/banana-cursor/releases/download/v2.0.0/Banana.tar.xz"
 
-  if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
+  if [ ! -d "${HOME}/.local/share/themes/Gruvbox-Dark" ]; then
     echo "Configuring Theme..."
-    wget -q "${theme_url}" -O /tmp/Kanagawa-GKT-Theme-main.zip
-    unzip -q /tmp/Kanagawa-GKT-Theme-main.zip -d /tmp
+    wget -q "${theme_url}" -O /tmp/Gruvbox-GTK-Theme-main.zip
+    unzip -q /tmp/Gruvbox-GTK-Theme-main.zip -d /tmp
     (
-      cd /tmp/Kanagawa-GKT-Theme-main/themes
+      cd /tmp/Gruvbox-GTK-Theme-main/themes
       chmod +x install.sh
       ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
     )
-    rm -rf /tmp/Kanagawa-GKT-Theme-master*
+    rm -rf /tmp/Gruvbox-GTK-Theme-master*
   fi
 
   if [ ! -d "${HOME}/.local/share/icons/Banana" ]; then
@@ -147,8 +147,8 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
-	gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
-	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
+	gsettings set org.gnome.shell.extensions.user-theme name 'Gruvbox-Dark'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Gruvbox-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
 	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
