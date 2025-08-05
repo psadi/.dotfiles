@@ -1,12 +1,5 @@
 return {
 	{
-		"echasnovski/mini.surround",
-		version = false,
-		config = function()
-			require("mini.surround").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.icons",
 		version = false,
 		config = function()
@@ -14,12 +7,10 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.indentscope",
+		"echasnovski/mini.completion",
 		version = false,
 		config = function()
-			require("mini.indentscope").setup({
-				delay = 0,
-			})
+			require("mini.completion").setup()
 		end,
 	},
 	{

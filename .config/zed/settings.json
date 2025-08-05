@@ -1,0 +1,17 @@
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 17,
+  "ui_font_family": "Geist",
+  "buffer_font_family": "GeistMono Nerd Font",
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light Hard",
+    "dark": "Gruvbox Dark Hard"
+  },
+  "cursor_shape": "block"
+}
