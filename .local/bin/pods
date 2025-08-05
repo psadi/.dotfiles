@@ -5,36 +5,34 @@ set -euo pipefail
 
 export GUM_CHOOSE_TIMEOUT=10s
 
+# Display header
 gum style \
-	--foreground 212 --border-foreground 212 --border normal \
-	--align center --width 50 --margin "1 2" --padding "1 2" \
-	'Podman | Systemctl - Container Management'
+  --foreground 212 --border-foreground 212 --border normal \
+  --align center --width 50 --margin "1 2" --padding "1 2" \
+  'Podman | Systemctl - Container Management'
 
 ACTION="$(gum choose --limit=1 --header="Select target action to perform: " "logs" "ps" "restart" "start" "status" "stop")"
 
-if [ $ACTION != "ps" ]; then
+if [[ $ACTION != "ps" ]]; then
   SERVICES="$(find ~/.config/systemd/user/ -type f | awk -F '/' '{gsub(/\.service$/, "", $NF); print $NF}')"
   SERVICE="$(gum choose --limit=1 --header "Select Container Service to perform '$ACTION' Action" $SERVICES)"
 fi
 
 case $ACTION in
-ps)
-  podman ps
-  exit 0
-  ;;
-status)
-  systemctl --user --no-pager status $SERVICE && exit 0
-  ;;
-logs)
-  podman logs -f $SERVICE || exit 0
-  ;;
-start|stop|restart)
-  gum spin --title "Performing Action: '$ACTION' for Service: '$SERVICE'" -- systemctl --user $ACTION $SERVICE
-  ;;
-*)
-  gum log -l error "Invalid Action: '$ACTION'"
-  ;;
+  ps)
+    podman ps
+    ;;
+  status)
+    systemctl --user --no-pager status "$SERVICE"
+    ;;
+  logs)
+    podman logs -f "$SERVICE" || exit 0
+    ;;
+  start|stop|restart)
+    gum spin --title "Performing Action: '$ACTION' for Service: '$SERVICE'" -- systemctl --user "$ACTION" "$SERVICE"
+    ;;
+  *)
+    gum log -l error "Invalid Action: '$ACTION'"
+    ;;
 esac
-
-
 
