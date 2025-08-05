@@ -87,3 +87,9 @@ if (( $+commands[appman])); then
   bashcompinit
   source "${HOME}/.local/share/bash-completion/completions/appman"
 fi
+
+# Zed
+# ---------------------------------------------
+if (( $+commands[zeditor] )); then
+  alias zed="zeditor"
+fi
