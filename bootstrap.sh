@@ -203,7 +203,7 @@ general_system_tweaks() {
   done
 }
 
-finalize() {
+stow() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
   stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
@@ -215,9 +215,9 @@ install_python_deps
 install_zap
 configure_user_shell
 clone_dotfiles
-configure_font
+# configure_font
 configure_theme
-finalize
+stow
 gnome_tweaks
 configure_systemd_services
 general_system_tweaks
