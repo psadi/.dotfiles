@@ -14,19 +14,19 @@ gum style \
 ACTION="$(gum choose --limit=1 --header="Select target action to perform: " "logs" "ps" "restart" "start" "status" "stop")"
 
 if [[ $ACTION != "ps" ]]; then
-  SERVICES="$(find ~/.config/systemd/user/ -type f | awk -F '/' '{gsub(/\.service$/, "", $NF); print $NF}')"
-  SERVICE="$(gum choose --limit=1 --header "Select Container Service to perform '$ACTION' Action" $SERVICES)"
+  SERVICES="$(find ~/.config/systemd/user/ -type f | awk -F '/' '{gsub(/\.service$/, "", $NF); print $NF}' | xargs )"
+  SERVICE="$(gum choose --limit=1 --header "Container Service to '"$ACTION"'" $SERVICES)"
 fi
 
 case $ACTION in
   ps)
-    podman ps
+    podman ps --format 'table {{.ID}},{{.Names}},{{.Ports}},{{.Status}}' | gum table -p --border.foreground="212"
     ;;
   status)
     systemctl --user --no-pager status "$SERVICE"
     ;;
   logs)
-    podman logs -f "$SERVICE" || exit 0
+    podman logs "$SERVICE" || exit 0
     ;;
   start|stop|restart)
     gum spin --title "Performing Action: '$ACTION' for Service: '$SERVICE'" -- systemctl --user "$ACTION" "$SERVICE"
