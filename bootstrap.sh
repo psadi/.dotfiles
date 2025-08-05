@@ -203,7 +203,7 @@ general_system_tweaks() {
   done
 }
 
-stow() {
+stow_link() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
   stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
@@ -217,7 +217,7 @@ configure_user_shell
 clone_dotfiles
 # configure_font
 configure_theme
-stow
+stow_link
 gnome_tweaks
 configure_systemd_services
 general_system_tweaks
