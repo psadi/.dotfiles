@@ -14,7 +14,7 @@ fi
 #---------------------------------------------
 if (( $+commands[bat] )); then
   alias cat="bat -p"
-  export MANPAGER="bat -l man -p"
+  export MANPAGER="bat"
   export MANROFFOPT='-c'
   export BAT_THEME="base16"
 fi
