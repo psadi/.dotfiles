@@ -10,12 +10,6 @@ if (( $+functions[_evalcache] )); then
   _evalcache uv generate-shell-completion zsh
 fi
 
-# Bottom
-#---------------------------------------------
-if (( $+commands[btm] )); then
-  alias htop="btm -b"
-fi
-
 # Bat
 #---------------------------------------------
 if (( $+commands[bat] )); then
