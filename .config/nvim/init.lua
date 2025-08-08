@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap("n", "<leader>w", ":set list!<CR>", { noremap = true, si
 local path_package = vim.fn.stdpath("data") .. "/site/"
 local mini_path = path_package .. "pack/deps/start/mini.deps"
 if not vim.loop.fs_stat(mini_path) then
-	vim.cmd('echo "Installing `mini.deps`" | redraw')
+	cmd('echo "Installing `mini.deps`" | redraw')
 	local clone_cmd = {
 		"git",
 		"clone",
@@ -41,8 +41,8 @@ if not vim.loop.fs_stat(mini_path) then
 		mini_path,
 	}
 	vim.fn.system(clone_cmd)
-	vim.cmd("packadd mini.deps | helptags ALL")
-	vim.cmd('echo "Installed `mini.deps`" | redraw')
+	cmd("packadd mini.deps | helptags ALL")
+	cmd('echo "Installed `mini.deps`" | redraw')
 end
 
 require("mini.deps").setup({ path = { package = path_package } })
@@ -97,11 +97,6 @@ require("nvim-treesitter.configs").setup({
 	indent = { enable = true },
 })
 
--- Lualine: https://github.com/nvim-lualine/lualine.nvim
-add({
-	source = "nvim-lualine/lualine.nvim",
-})
-
 -- MiniCompletion: https://github.com/echasnovski/mini.completion
 add({
 	source = "echasnovski/mini.completion",
@@ -129,4 +124,4 @@ require("gruvbox").setup({
 	contrast = "hard",
 })
 
-vim.cmd("colorscheme gruvbox")
+cmd("colorscheme gruvbox")
