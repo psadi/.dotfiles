@@ -1,15 +1,4 @@
 {
-  "agent": {
-    "inline_assistant_model": {
-      "provider": "ollama",
-      "model": "gpt-oss:latest"
-    },
-    "default_profile": "ask",
-    "default_model": {
-      "provider": "ollama",
-      "model": "gpt-oss:latest"
-    }
-  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
@@ -19,10 +8,11 @@
   "buffer_font_size": 20,
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
+  "buffer_font_weight": 450,
   "theme": {
     "mode": "system",
-    "light": "Gruvbox Light Hard",
-    "dark": "Gruvbox Dark Hard"
+    "light": "Kanagawa Lotus",
+    "dark": "Kanagawa"
   },
   "cursor_shape": "bar"
 }
