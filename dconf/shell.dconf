@@ -39,7 +39,7 @@ slideshow-timer-remaining=3600
 update-notifier-project-version=14
 
 [extensions/caffeine]
-indicator-position-max=5
+indicator-position-max=4
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
 
