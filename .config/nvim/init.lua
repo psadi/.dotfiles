@@ -119,11 +119,11 @@ map("n", "<leader>ltr", "<CMD>lua MiniTrailspace.trim_last_lines()<CR>", { silen
 -- ColorScheme: Gruvbox: https://github.com/ellisonleao/gruvbox.nvim
 
 add({
-	source = "ellisonleao/gruvbox.nvim",
+	source = "rebelot/kanagawa.nvim",
 })
 
-require("gruvbox").setup({
-	contrast = "hard",
-})
+-- require("rose-pine").setup({
+-- 	-- contrast = "hard",
+-- })
 
-cmd("colorscheme gruvbox")
+cmd("colorscheme kanagawa")

@@ -6,7 +6,7 @@ font-style = "Medium"
 font-size = 16
 
 # Config: Theme
-theme = "GruvboxDarkHard"
+theme = "kanagawabones"
 
 # Config: Gtk
 gtk-tabs-location = "top"
