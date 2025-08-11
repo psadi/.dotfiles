@@ -5,6 +5,7 @@
 # evalcache
 #---------------------------------------------
 if (( $+functions[_evalcache] )); then
+  export ZSH_EVALCACHE_DIR="${XDG_CACHE_HOME}/.zsh-evalcache"
   _evalcache fzf --zsh
   _evalcache zoxide init zsh
   _evalcache uv generate-shell-completion zsh

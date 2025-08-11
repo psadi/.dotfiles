@@ -1,12 +1,6 @@
-Dockerfile
-^/README.*
-^/LICENSE.*
-^/COPYING
+^/README.md
 \.git
 \.gitignore
 \.github
-Library/Fonts
-.DS_Store
 bootstrap.sh
 dconf
-gif.gif

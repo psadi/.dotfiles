@@ -48,6 +48,8 @@ end
 require("mini.deps").setup({ path = { package = path_package } })
 
 local add = MiniDeps.add
+map("n", "<leader>dc", "<CMD>DepsClean<CR>", {silent=true})
+map("n", "<leader>du", "<CMD>DepsUpdate<CR>", {silent=true})
 
 -- FzfLua: http://github.com/ibhagwan/fzf-lua
 add({
