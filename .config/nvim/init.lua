@@ -11,6 +11,7 @@ vim.cmd.set("colorcolumn=80")
 vim.cmd.set("shortmess+=I")
 vim.cmd.set("t_Co=256")
 vim.cmd.set("termguicolors")
+vim.cmd.set("completeopt+=noselect")
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸ ", trail = "•", extends = ">", precedes = "<", nbsp = "␣" }
 vim.opt.winborder = "rounded"
@@ -18,13 +19,13 @@ vim.opt.statusline = "%<%f %l,%c%V"
 
 -- Install Packages
 vim.pack.add({
-	"https://github.com/echasnovski/mini.completion",
+	-- "https://github.com/echasnovski/mini.completion",
 	"https://github.com/echasnovski/mini.icons",
 	"https://github.com/echasnovski/mini.trailspace",
 	"https://github.com/ibhagwan/fzf-lua",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/rebelot/kanagawa.nvim",
-	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/stargsearc/oil.nvim",
 })
 
 -- ColorScheme
@@ -79,17 +80,20 @@ vim.lsp.enable({
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
 			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 			vim.keymap.set("i", "<C-Space>", function()
 				vim.lsp.completion.get()
 			end)
 		end
 	end,
 })
+
+vim.keymap.set("n", "<leader>fmt", vim.lsp.buf.format)
+
 -- Diagnostics
 vim.diagnostic.config({
 	-- virtual_lines = true,
