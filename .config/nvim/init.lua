@@ -12,8 +12,9 @@ vim.cmd.set("shortmess+=I")
 vim.cmd.set("t_Co=256")
 vim.cmd.set("termguicolors")
 vim.opt.list = true
-vim.opt.listchars = { tab = "▸ ", trail = "•", extends = ">", precedes = "<", nbsp = "%" }
-vim.o.statusline = "%<%f %l,%c%V"
+vim.opt.listchars = { tab = "▸ ", trail = "•", extends = ">", precedes = "<", nbsp = "␣" }
+vim.opt.winborder = "rounded"
+vim.opt.statusline = "%<%f %l,%c%V"
 
 -- Install Packages
 vim.pack.add({
@@ -30,7 +31,7 @@ vim.pack.add({
 vim.cmd("colorscheme kanagawa")
 
 -- Load Plugins
-require("mini.completion").setup()
+-- require("mini.completion").setup()
 require("mini.icons").setup()
 require("mini.trailspace").setup()
 require("fzf-lua").setup({})
@@ -66,3 +67,33 @@ vim.keymap.set("n", "<leader>K", "<CMD>FzfLua keyvim.keymap.sets<CR>", { silent 
 vim.keymap.set("n", "_", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>tr", "<CMD>lua MiniTrailspace.trim()<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ltr", "<CMD>lua MiniTrailspace.trim_last_lines()<CR>", { silent = true })
+
+-- Lsp
+vim.lsp.enable({
+	"lua_ls",
+	"ruff",
+	"rust_analyzer",
+	"terraformls",
+	"ansiblels.lua",
+	"yamlls",
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+			vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+			vim.keymap.set("i", "<C-Space>", function()
+				vim.lsp.completion.get()
+			end)
+		end
+	end,
+})
+-- Diagnostics
+vim.diagnostic.config({
+	-- virtual_lines = true,
+	virtual_lines = {
+		current_line = true,
+	},
+})
