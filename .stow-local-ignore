@@ -4,3 +4,4 @@
 \.github
 bootstrap.sh
 dconf
+packages.json

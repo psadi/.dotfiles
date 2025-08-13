@@ -1,1 +1,1 @@
-    sh -c "$(curl -fsSL https://dub.sh/psadi/bootstrap)"
+    sh -c "$(curl -fsSLN https://dub.sh/psadi/bootstrap)"

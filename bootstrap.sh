@@ -31,23 +31,12 @@ install_os_deps() {
     install_yay
   fi
 
-  local install_pkgs=(
-  bat bind dnsmasq dos2unix eza fd fzf ghostty gnome-browser-connector git-delta
-  github-cli brave lazygit libvirt man-db neovim networkmanager nodejs
-  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra npm podman unrar
-  python-pip qemu-desktop ripgrep snapper stow unzip uv virt-manager sbctl
-  wl-clipboard xsel yazi zoxide zsh hyperfine gnome-browser-connector realtime-privileges
-  fprintd libfprint-2-tod1-goodix fuse joplin otf-geist otf-geist-mono-nerd gum
- )
+  yay -Sy --noconfirm --needed --quiet "jq"
 
- local remove_pkgs=(
-   gnome-contacts gnome-maps gnome-music epiphany gnome-tour gnome-terminal
-   gnome-console btrfs-assistant qt6-base qt6-declarative qt6-svg qt6-translations qt6-wayland
-   totem
-  )
-
-  yay -Sy --noconfirm --needed --quiet "${install_pkgs[@]}"
-  yay -R --noconfirm "${remove_pkgs[@]}" || true
+  local install_pkgs=$(jq -r '.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
+  local remove_pkgs=$(jq -r '.remove | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
+  yay -Sy --noconfirm --needed --quiet $install_pkgs
+  yay -R --noconfirm $remove_pkgs || true
   yay -S --noconfirm --clean
 }
 
@@ -209,11 +198,11 @@ stow_link() {
 }
 
 # Main execution flow
+clone_dotfiles
 install_os_deps
 install_python_deps
 install_zap
 configure_user_shell
-clone_dotfiles
 # configure_font
 configure_theme
 stow_link
