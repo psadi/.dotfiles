@@ -18,7 +18,7 @@ set("t_Co=256")
 set("termguicolors")
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸ ", trail = "•", extends = ">", precedes = "<", nbsp = "%" }
-vim.opt.winborder = "rounded"
+-- vim.opt.winborder = "rounded"
 
 opt = false
 
