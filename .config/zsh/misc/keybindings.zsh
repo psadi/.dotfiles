@@ -34,3 +34,10 @@ forward-word-dir () {
 }
 zle -N forward-word-dir
 bindkey "^[[1;3C" forward-word-dir
+
+cd_to_dir() {
+  zi
+  zle accept-line
+}
+zle -N cd_to_dir
+bindkey "^F" cd_to_dir
