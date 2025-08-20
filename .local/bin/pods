@@ -5,12 +5,6 @@ set -euo pipefail
 
 export GUM_CHOOSE_TIMEOUT=10s
 
-# Display header
-gum style \
-  --foreground 212 --border-foreground 212 --border normal \
-  --align center --width 50 --margin "1 2" --padding "1 2" \
-  'Podman | Systemctl - Container Management'
-
 ACTION="$(gum choose --limit=1 --header="Select target action to perform: " "logs" "ps" "restart" "start" "status" "stop" "tail")"
 
 if [[ $ACTION != "ps" ]]; then
@@ -20,7 +14,7 @@ fi
 
 case $ACTION in
   ps)
-    podman ps --format 'table {{.ID}},{{.Names}},{{.Ports}},{{.Status}}' | gum table -p --border.foreground="212"
+    podman ps --format 'table {{.ID}},{{.Names}},{{.Ports}},{{.Status}}' | gum table -p --border.foreground="111"
     ;;
   status)
     systemctl --user --no-pager status "$SERVICE"
