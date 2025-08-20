@@ -1,5 +1,6 @@
 {
   "install": [
+    "adguard-cli",
     "bat",
     "bind",
     "dnsmasq",
@@ -13,8 +14,8 @@
     "git-delta",
     "github-cli",
     "gnome-browser-connector",
-    "google-chrome",
     "go",
+    "google-chrome",
     "gum",
     "hyperfine",
     "jq",
@@ -55,13 +56,13 @@
     "zsh"
   ],
   "remove": [
+    "btrfs-assistant",
+    "epiphany",
+    "gnome-console",
     "gnome-contacts",
     "gnome-maps",
-    "epiphany",
-    "gnome-tour",
     "gnome-terminal",
-    "gnome-console",
-    "btrfs-assistant",
+    "gnome-tour",
     "qt6-base",
     "qt6-declarative",
     "qt6-svg",
