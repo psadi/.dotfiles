@@ -2,7 +2,6 @@
   "install": [
     "bat",
     "bind",
-    "brave",
     "dnsmasq",
     "dos2unix",
     "eza",
@@ -14,6 +13,7 @@
     "git-delta",
     "github-cli",
     "gnome-browser-connector",
+    "google-chrome",
     "go",
     "gopls",
     "gum",
