@@ -11,7 +11,7 @@ gum style \
   --align center --width 50 --margin "1 2" --padding "1 2" \
   'Podman | Systemctl - Container Management'
 
-ACTION="$(gum choose --limit=1 --header="Select target action to perform: " "logs" "ps" "restart" "start" "status" "stop")"
+ACTION="$(gum choose --limit=1 --header="Select target action to perform: " "logs" "ps" "restart" "start" "status" "stop" "tail")"
 
 if [[ $ACTION != "ps" ]]; then
   SERVICES="$(find ~/.config/systemd/user/ -type f | awk -F '/' '{gsub(/\.service$/, "", $NF); print $NF}' | xargs )"
@@ -27,6 +27,9 @@ case $ACTION in
     ;;
   logs)
     podman logs "$SERVICE" || exit 0
+    ;;
+  tail)
+    podman logs "$SERVICE" -f || exit 0
     ;;
   start|stop|restart)
     gum spin --title "Performing Action: '$ACTION' for Service: '$SERVICE'" -- systemctl --user "$ACTION" "$SERVICE"
