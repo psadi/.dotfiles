@@ -35,11 +35,11 @@ return {
 			vim.cmd("colorscheme kanagawa")
 		end,
 	},
-	-- {
-	-- 	"stevearc/quicker.nvim",
-	-- 	event = "FileType qf",
-	-- 	config = function()
-	-- 		require("quicker").setup()
-	-- 	end,
-	-- },
+	{
+		"stevearc/quicker.nvim",
+		event = "FileType qf",
+		config = function()
+			require("quicker").setup()
+		end,
+	},
 }
