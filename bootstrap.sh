@@ -31,7 +31,9 @@ install_os_deps() {
     install_yay
   fi
 
-  yay -Sy --noconfirm --needed --quiet "jq"
+  if ! command -v jq &>/dev/null; then
+    yay -Sy --noconfirm --needed --quiet "jq"
+  fi
 
   local install_pkgs=$(jq -r '.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   local remove_pkgs=$(jq -r '.remove | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
