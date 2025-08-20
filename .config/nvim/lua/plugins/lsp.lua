@@ -10,7 +10,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ruff", "pyright", "terraformls", "gopls" },
+				ensure_installed = { "lua_ls", "ruff", "pyright", "terraformls", "gopls", "rust_analyzer" },
 			})
 		end,
 	},
