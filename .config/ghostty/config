@@ -45,7 +45,3 @@ keybind = "ctrl+alt+h=resize_split:left,10"
 keybind = "ctrl+alt+k=resize_split:up,10"
 keybind = "ctrl+alt+l=resize_split:right,10"
 keybind = "ctrl+shift+enter=equalize_splits"
-
-quick-terminal-position = "top"
-quick-terminal-autohide = false
-keybind = "ctrl+a=toggle_quick_terminal"
