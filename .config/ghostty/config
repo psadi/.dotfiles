@@ -11,14 +11,10 @@ theme = "kanagawabones"
 # Config: Gtk
 gtk-tabs-location = "top"
 gtk-wide-tabs = false
-gtk-single-instance = true
 
 # Config: Window
 maximize = true
 title = "~"
-window-decoration = "server"
-window-padding-x = 0
-window-padding-y = 0
 
 # Config: Misc
 custom-shader = "shaders/cursor_smear.glsl"
