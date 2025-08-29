@@ -1,20 +1,20 @@
 return {
 	{
-		"echasnovski/mini.surround",
+		"nvim-mini/mini.surround",
 		version = false,
 		config = function()
 			require("mini.surround").setup()
 		end,
 	},
 	{
-		"echasnovski/mini.icons",
+		"nvim-mini/mini.icons",
 		version = false,
 		config = function()
 			require("mini.icons").setup()
 		end,
 	},
 	{
-		"echasnovski/mini.indentscope",
+		"nvim-mini/mini.indentscope",
 		version = false,
 		config = function()
 			require("mini.indentscope").setup({
@@ -26,14 +26,14 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.trailspace",
+		"nvim-mini/mini.trailspace",
 		version = false,
 		config = function()
 			require("mini.trailspace").setup()
 		end,
 	},
 	{
-		"echasnovski/mini.starter",
+		"nvim-mini/mini.starter",
 		version = false,
 		config = function()
 			require("mini.starter").setup()
