@@ -3,7 +3,7 @@ app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1
 disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io']
-favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'ghostty-AM.desktop', 'brave-browser.desktop']
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'brave-browser.desktop', 'com.mitchellh.ghostty.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.0'
 
