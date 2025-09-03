@@ -39,4 +39,11 @@ return {
 			require("mini.starter").setup()
 		end,
 	},
+	{
+		"nvim-mini/mini.pick",
+		version = false,
+		config = function()
+			require("mini.pick").setup()
+		end,
+	},
 }
