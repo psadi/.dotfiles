@@ -20,10 +20,11 @@
     "hyperfine",
     "jq",
     "lazygit",
-    "libfprint-2-tod1-goodix",
+    "libfprint-2-tod1-goodix-v2",
     "libvirt",
     "man-db",
     "neovim-git",
+    "net-tools",
     "networkmanager",
     "nodejs",
     "noto-fonts",
@@ -49,24 +50,28 @@
     "unzip",
     "uv",
     "virt-manager",
+    "wget",
     "wl-clipboard",
     "xsel",
-    "yazi",
     "zoxide",
     "zsh"
   ],
   "remove": [
     "btrfs-assistant",
     "epiphany",
+    "flatpak",
     "gnome-console",
     "gnome-contacts",
     "gnome-maps",
+    "gnome-music",
     "gnome-terminal",
     "gnome-tour",
+    "malcontent",
     "qt6-base",
     "qt6-declarative",
     "qt6-svg",
     "qt6-translations",
-    "qt6-wayland"
+    "qt6-wayland",
+    "totem"
   ]
 }
