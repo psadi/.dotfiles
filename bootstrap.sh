@@ -58,7 +58,7 @@ configure_user_shell() {
 }
 
 configure_systemd_services() {
-  local services=(
+  local system_services=(
     ufw
     bluetooth
     NetworkManager
@@ -66,9 +66,19 @@ configure_systemd_services() {
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
+    syncthing
   )
-  for service in "${services[@]}"; do
-    sudo systemctl enable "${service}" || true
+
+  local user_services(){
+    excalidraw
+    stirling-pdf
+  }
+  for service in "${system_services[@]}"; do
+    sudo systemctl enable --now "${service}" || true
+  done
+
+  for service in "${user_services[@]}"; do
+    systemctl --user enable --now "${service}" || true
   done
 
   echo 'firewall_backend = "iptables"' | sudo tee /etc/libvirt/network.conf
