@@ -23,6 +23,7 @@
     "libfprint-2-tod1-goodix-v2",
     "libvirt",
     "man-db",
+    "nautilus-python",
     "neovim-git",
     "net-tools",
     "networkmanager",
