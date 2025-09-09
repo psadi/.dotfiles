@@ -44,6 +44,7 @@
     "sbctl",
     "snapper",
     "stow",
+    "strace",
     "syncthing",
     "terraform",
     "terraform-ls",
@@ -54,6 +55,7 @@
     "wget",
     "wl-clipboard",
     "xsel",
+    "yad",
     "zoxide",
     "zsh"
   ],
@@ -72,7 +74,6 @@
     "qt6-declarative",
     "qt6-svg",
     "qt6-translations",
-    "qt6-wayland",
-    "totem"
+    "qt6-wayland"
   ]
 }
