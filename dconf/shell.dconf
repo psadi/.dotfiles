@@ -1,10 +1,10 @@
 [/]
-app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, 'org.gnome.Boxes.desktop': <{'position': <2>}>, 'virt-manager.desktop': <{'position': <3>}>, 'nvim.desktop': <{'position': <4>}>, 'org.gnome.Characters.desktop': <{'position': <5>}>, '36250b4d-5d43-45a2-b722-ad4149af2fa8': <{'position': <6>}>, 'org.gnome.Geary.desktop': <{'position': <7>}>, 'org.gnome.Usage.desktop': <{'position': <8>}>, 'gimp-AM.desktop': <{'position': <9>}>, '46fff845-a766-497c-a3e3-407ceccdc030': <{'position': <10>}>, 'org.gnome.Music.desktop': <{'position': <11>}>, 'obsidian-AM.desktop': <{'position': <12>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <13>}>, 'org.gnome.TextEditor.desktop': <{'position': <14>}>, 'brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop': <{'position': <15>}>}]
+app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, 'org.gnome.Calculator.desktop': <{'position': <2>}>, 'virt-manager.desktop': <{'position': <3>}>, 'nvim.desktop': <{'position': <4>}>, 'org.gnome.Characters.desktop': <{'position': <5>}>, 'eden-nightly-AM.desktop': <{'position': <6>}>, 'localsend-AM.desktop': <{'position': <7>}>, 'a22ed2e3-6604-4afa-85fa-4e92f20bbe46': <{'position': <8>}>, 'gimp-AM.desktop': <{'position': <9>}>, 'Lossless Scaling.desktop': <{'position': <10>}>, 'steam-AM.desktop': <{'position': <11>}>, 'obsidian-AM.desktop': <{'position': <12>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <13>}>, 'org.gnome.TextEditor.desktop': <{'position': <14>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <15>}>, 'org.gnome.Weather.desktop': <{'position': <16>}>, 'org.pitivi.Pitivi.desktop': <{'position': <17>}>}]
 disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io']
-favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'brave-browser.desktop']
-last-selected-power-profile='power-saver'
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop']
+last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.0'
 
 [extensions/Bluetooth-Battery-Meter]
