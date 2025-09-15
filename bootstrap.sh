@@ -145,7 +145,7 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
   gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11'
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-  gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+  gsettings set org.gnome.desktop.wm.preferences button-layout ':close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
 	# gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
