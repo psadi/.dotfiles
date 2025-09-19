@@ -6,19 +6,17 @@ font-style = "Medium"
 font-size = 16
 
 # Config: Theme
-theme = "kanagawabones"
+theme = "Kanagawabones"
 
 # Config: Gtk
 gtk-tabs-location = "top"
 gtk-wide-tabs = false
 
-# Config: Window
+# Config: 
 maximize = true
 title = "~"
 
 # Config: Misc
-custom-shader = "shaders/cursor_smear.glsl"
-custom-shader-animation = "always"
 confirm-close-surface = false
 auto-update = "off"
 shell-integration-features = "sudo"
