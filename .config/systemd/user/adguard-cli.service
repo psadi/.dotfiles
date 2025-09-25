@@ -1,13 +1,13 @@
 [Unit]
-Description=AdGuard CLI
-Wants=network-online.target
-After=network-online.target
+Description=AdGuard CLI Proxy
+After=network.target
 
 [Service]
-Type=simple
+Type=forking
 ExecStart=/usr/bin/adguard-cli start
+ExecStop=/usr/bin/adguard-cli stop
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=default.target
-

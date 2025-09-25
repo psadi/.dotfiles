@@ -23,14 +23,14 @@ return {
 		},
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-			local lspconfig = require("lspconfig")
+			local lspconfig = vim.lsp.config
 
 			local on_attach = function(client, bufnr)
 				if client.name == "ruff" then
 					client.server_capabilities.hoverProvider = false
 				end
 			end
-			lspconfig.pyright.setup({
+			lspconfig("pyright", {
 				capabilities = capabilities,
 				settings = {
 					pyright = {
@@ -43,7 +43,7 @@ return {
 					},
 				},
 			})
-			lspconfig.ruff.setup({
+			lspconfig("ruff", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				init_options = {
@@ -52,7 +52,7 @@ return {
 					},
 				},
 			})
-			lspconfig.lua_ls.setup({
+			lspconfig("lua_ls", {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -62,10 +62,7 @@ return {
 					},
 				},
 			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.rust_analyzer.setup({
+			lspconfig("gopls", {
 				capabilities = capabilities,
 			})
 		end,
