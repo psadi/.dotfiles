@@ -189,10 +189,10 @@ general_system_tweaks() {
     echo 'kernel.split_lock_mitigate=0' | sudo tee /etc/sysctl.d/99-splitlock.conf
   fi
   # Enable RCU lazy mode in boot configuration if not already set
-  if ! grep -q 'rcutree.enable_rcu_lazy=1' /etc/sdboot-manage.conf; then
-    sudo sed -i '/^LINUX_OPTIONS=/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/sdboot-manage.conf
-  fi
-  sudo gpasswd -a "$USER" realtime
+  # if ! grep -q 'rcutree.enable_rcu_lazy=1' /etc/sdboot-manage.conf; then
+  #   sudo sed -i '/^LINUX_OPTIONS=/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/sdboot-manage.conf
+  # fi
+  # sudo gpasswd -a "$USER" realtime
   # Remove immutable attribute from EFI variables
   for var in /sys/firmware/efi/efivars/db-* /sys/firmware/efi/efivars/KEK-*; do
     if lsattr "$var" | awk '{print $1}' | grep -q "i"; then
