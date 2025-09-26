@@ -150,8 +150,8 @@ gnome_tweaks(){
 	# gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
-	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
-	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
+	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
 	gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>Q']"
   gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.mitchellh.ghostty.desktop']"
 	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'ghostty'
