@@ -215,9 +215,9 @@ install_os_deps
 install_python_deps
 install_zap
 configure_user_shell
-# configure_font
-#configure_theme
+configure_font
+configure_theme
 stow_link
-#gnome_tweaks
+gnome_tweaks
 configure_systemd_services
-#general_system_tweaks
+general_system_tweaks
