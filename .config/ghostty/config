@@ -12,14 +12,14 @@ theme = "Kanagawabones"
 gtk-tabs-location = "top"
 gtk-wide-tabs = false
 
-# Config: 
+# Config:
 maximize = true
 title = "~"
 
 # Config: Misc
 confirm-close-surface = false
 auto-update = "off"
-shell-integration-features = "sudo"
+shell-integration-features = true
 
 # Keybinds: Tabs
 keybind = "ctrl+t=new_tab"
