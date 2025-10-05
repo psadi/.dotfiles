@@ -1,10 +1,11 @@
 [/]
-app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, 'org.gnome.Calculator.desktop': <{'position': <2>}>, 'virt-manager.desktop': <{'position': <3>}>, 'nvim.desktop': <{'position': <4>}>, 'org.gnome.Characters.desktop': <{'position': <5>}>, 'eden-nightly-AM.desktop': <{'position': <6>}>, 'localsend-AM.desktop': <{'position': <7>}>, 'a22ed2e3-6604-4afa-85fa-4e92f20bbe46': <{'position': <8>}>, 'gimp-AM.desktop': <{'position': <9>}>, 'Lossless Scaling.desktop': <{'position': <10>}>, 'steam-AM.desktop': <{'position': <11>}>, 'obsidian-AM.desktop': <{'position': <12>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <13>}>, 'org.gnome.TextEditor.desktop': <{'position': <14>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <15>}>, 'org.gnome.Weather.desktop': <{'position': <16>}>, 'org.pitivi.Pitivi.desktop': <{'position': <17>}>}]
+app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, '09dfcc6a-f4ef-401d-829b-9354c52b5584': <{'position': <2>}>, 'org.gnome.Calculator.desktop': <{'position': <3>}>, 'android-studio.desktop': <{'position': <4>}>, 'nvim.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'appimageupdate-AM.desktop': <{'position': <7>}>, 'org.gnome.TextEditor.desktop': <{'position': <8>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <9>}>, 'org.gnome.Weather.desktop': <{'position': <10>}>, 'org.gnome.Extensions.desktop': <{'position': <11>}>, 'limine-snapper-restore.desktop': <{'position': <12>}>, 'gnome-nettool.desktop': <{'position': <13>}>, 'Alacritty.desktop': <{'position': <14>}>, 'org.gnome.Usage.desktop': <{'position': <15>}>, 'org.gnome.PowerStats.desktop': <{'position': <16>}>, 'org.gnome.Screenshot.desktop': <{'position': <17>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <18>}>, 'firefox.desktop': <{'position': <19>}>}]
+command-history=['lg']
 disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
-enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io']
-favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'vivaldi-stable.desktop']
-last-selected-power-profile='performance'
+enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'firefox.desktop', 'helium-browser.desktop']
+last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.0'
 
 [extensions/Bluetooth-Battery-Meter]
@@ -28,15 +29,16 @@ swap-icon-text=false
 [extensions/azwallpaper]
 prefs-visible-page=''
 slideshow-change-slide-event=0
-slideshow-current-slide-index=-1
-slideshow-current-wallpaper='vscode.png'
-slideshow-directory='/home/adithyaps/Pictures/Walls'
-slideshow-queue=@aa{ss} []
+slideshow-current-slide-index=8
+slideshow-current-wallpaper='pop-art-6.jpg'
+slideshow-directory='/home/adithyaps/Pictures/wallpaper'
+slideshow-queue=[{'name': 'pop-art-8.jpg', 'date': '1758970651'}, {'name': 'pop-art-13.jpg', 'date': '1758970694'}, {'name': 'pop-art-11.jpg', 'date': '1758970682'}, {'name': 'pop-art-10.jpg', 'date': '1758970675'}, {'name': 'pop-art-4.jpg', 'date': '1758970615'}, {'name': 'pop-art-7.jpg', 'date': '1758970646'}, {'name': 'pop-art-1.jpg', 'date': '1758970561'}, {'name': 'pop-art-12.jpg', 'date': '1758970689'}, {'name': 'pop-art-6.jpg', 'date': '1758970639'}, {'name': 'pop-art-14.jpg', 'date': '1758970698'}, {'name': 'pop-art-5.jpg', 'date': '1758970628'}, {'name': 'pop-art-9.jpg', 'date': '1758970665'}]
+slideshow-queue-reshuffle-on-complete=true
 slideshow-show-quick-settings-entry=false
-slideshow-slide-duration=(1, 0, 0)
-slideshow-time-of-slide-start=uint64 1756209258524
-slideshow-timer-remaining=3594
-update-notifier-project-version=15
+slideshow-slide-duration=(0, 1, 0)
+slideshow-time-of-slide-start=uint64 1759659534575
+slideshow-timer-remaining=60
+update-notifier-project-version=16
 
 [extensions/caffeine]
 indicator-position-max=1
