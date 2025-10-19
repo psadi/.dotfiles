@@ -15,6 +15,7 @@ fi
 
 # Plugins
 #---------------------------------------------
+plug "mattmc3/ez-compinit"
 plug "Aloxaf/fzf-tab"
 plug "mroth/evalcache"
 plug "zap-zsh/supercharge"
@@ -33,6 +34,7 @@ typeset -U path cdpath fpath manpath
 # Prompt
 # ---------------------------------------------
 [[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
-autoload bashcompinit
-bashcompinit
-source "/home/adithyaps/.local/share/bash-completion/completions/appman"
+
+# Completions
+autoload -Uz compinit
+compinit -u -d "${ZDOTDIR}/.zcompdump"
