@@ -14,18 +14,6 @@ return {
 		end,
 	},
 	{
-		"nvim-mini/mini.indentscope",
-		version = false,
-		config = function()
-			require("mini.indentscope").setup({
-				draw = {
-					animation = require("mini.indentscope").gen_animation.none(),
-				},
-				symbol = "│",
-			})
-		end,
-	},
-	{
 		"nvim-mini/mini.trailspace",
 		version = false,
 		config = function()
