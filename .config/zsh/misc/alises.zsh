@@ -3,7 +3,7 @@
 
 # Aliases
 # ---------------------------------------------
-alias reload='source ~/.zprofile'
+alias reload='source ~/.zshenv'
 alias ..='cd ..'
 alias ~="cd ~"
 
@@ -23,3 +23,14 @@ alias rm='rm -i'
 alias mkdir='mkdir -pv'
 
 alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
+
+# Suffix Aliases
+alias -s sh="${EDITOR}"
+alias -s py="${EDITOR}"
+alias -s zig="${EDITOR}"
+alias -s go="${EDITOR}"
+alias -s zsh="${EDITOR}"
+alias -s md="bat"
+alias -s json="jless"
+alias -s yaml="bat"
+alias -s toml="bat"
