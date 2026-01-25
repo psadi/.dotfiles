@@ -75,16 +75,9 @@ if (( $+commands[yazi])); then
   alias yz=yazi
 fi
 
-# AppMan
-# ---------------------------------------------
-if (( $+commands[appman])); then
-  autoload bashcompinit
-  bashcompinit
-  source "${HOME}/.local/share/bash-completion/completions/appman"
-fi
-
 # Zed
 # ---------------------------------------------
 if (( $+commands[zeditor] )); then
   alias zed="zeditor"
 fi
+

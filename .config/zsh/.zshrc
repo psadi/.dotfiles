@@ -36,5 +36,7 @@ typeset -U path cdpath fpath manpath
 [[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
 
 # Completions
-autoload -Uz compinit
+autoload -Uz compinit bashcompinit zmv
 compinit -u -d "${ZDOTDIR}/.zcompdump"
+bashcompinit
+source "/home/adithyaps/.local/share/bash-completion/completions/am"
