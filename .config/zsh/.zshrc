@@ -39,4 +39,3 @@ typeset -U path cdpath fpath manpath
 autoload -Uz compinit bashcompinit zmv
 compinit -u -d "${ZDOTDIR}/.zcompdump"
 bashcompinit
-source "/home/adithyaps/.local/share/bash-completion/completions/am"
