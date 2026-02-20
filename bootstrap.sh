@@ -217,6 +217,8 @@ configure_fstab(){
   echo "UUID=2eacdb10-9d3c-4557-900c-28fbf40281e7 /mnt/vol-1 btrfs defaults,noatime,compress-force=zstd:2,ssd,discard=async,space_cache=v2 0 0" | sudo tee -a /etc/fstab
   sudo systemctl daemon-reload
   sudo mount -av
+  ln -s /mnt/vol-1/workspace || true
+  ln -s /mnt/vol-1/Phone || true
 }
 
 # Main execution flow
