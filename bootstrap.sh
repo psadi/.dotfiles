@@ -62,7 +62,6 @@ configure_systemd_services() {
     ufw
     bluetooth
     NetworkManager
-    libvirtd
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
@@ -80,8 +79,6 @@ configure_systemd_services() {
   for service in "${user_services[@]}"; do
     systemctl --user enable --now "${service}" || true
   done
-
-  echo 'firewall_backend = "iptables"' | sudo tee /etc/libvirt/network.conf
 }
 
 install_zap() {
