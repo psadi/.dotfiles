@@ -6,9 +6,6 @@
 #---------------------------------------------
 if (( $+functions[_evalcache] )); then
   export ZSH_EVALCACHE_DIR="${XDG_CACHE_HOME}/.zsh-evalcache"
-  _evalcache fzf --zsh
-  _evalcache zoxide init zsh
-  _evalcache uv generate-shell-completion zsh
 fi
 
 # Bat
@@ -40,12 +37,7 @@ fi
 #---------------------------------------------
 if (( $+commands[zoxide] )); then
   alias cd="z"
-fi
-
-# K9s
-#---------------------------------------------
-if (( $+commands[k9s] )); then
-  alias k9s="k9s --logoless --headless --readonly --crumbsless"
+  _evalcache zoxide init zsh
 fi
 
 # Neovim
@@ -60,13 +52,14 @@ fi
 # FZF
 # ---------------------------------------------
 if (( $+commands[fzf] )); then
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-  --highlight-line \
-  --info=inline-right \
-  --ansi \
-  --layout=reverse \
-  --border=none \
-"
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+    --highlight-line \
+    --info=inline-right \
+    --ansi \
+    --layout=reverse \
+    --border=none \
+  "
+  _evalcache fzf --zsh
 fi
 
 # Yazi
@@ -81,3 +74,6 @@ if (( $+commands[zeditor] )); then
   alias zed="zeditor"
 fi
 
+if (( $+commands[uv] )); then
+  _evalcache uv generate-shell-completion zsh
+fi
