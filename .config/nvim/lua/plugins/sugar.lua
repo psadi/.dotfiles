@@ -4,7 +4,7 @@ return {
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local config = require("nvim-treesitter.configs")
+			local config = require("nvim-treesitter.config")
 
 			config.setup({
 				auto_install = true,
