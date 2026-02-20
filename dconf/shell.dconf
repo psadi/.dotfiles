@@ -4,7 +4,7 @@ command-history=['lg']
 disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'firefox.desktop', 'helium-browser.desktop']
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'helium.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.0'
 
@@ -44,6 +44,33 @@ update-notifier-project-version=16
 indicator-position-max=1
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
+
+[extensions/dash-to-dock]
+always-center-icons=true
+apply-custom-theme=false
+background-opacity=1.0
+custom-background-color=false
+custom-theme-shrink=true
+dash-max-icon-size=48
+dock-fixed=false
+dock-position='BOTTOM'
+extend-height=false
+height-fraction=0.90000000000000002
+hide-tooltip=true
+hot-keys=false
+icon-size-fixed=false
+isolate-monitors=false
+isolate-workspaces=false
+multi-monitor=true
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+preview-size-scale=0.0
+running-indicator-style='DEFAULT'
+show-apps-always-in-the-edge=true
+show-apps-at-top=true
+show-mounts-network=true
+show-windows-preview=true
+transparency-mode='DEFAULT'
 
 [extensions/forge]
 css-last-update=uint32 37
