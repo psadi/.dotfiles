@@ -67,12 +67,11 @@ configure_systemd_services() {
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
-    syncthing
   )
 
   local user_services=(
     excalidraw
-    stirling-pdf
+    syncthing
   )
   for service in "${system_services[@]}"; do
     sudo systemctl enable --now "${service}" || true
