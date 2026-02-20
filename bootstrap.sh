@@ -38,10 +38,13 @@ install_os_deps() {
   local install_pkgs=$(jq -r '.yay.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   local remove_pkgs=$(jq -r '.yay.remove | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   local am_install_pkgs=$(jq -r '.am.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
+  local mise_install_pkgs=$(jq -r '.mise.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   yay -Sy --noconfirm --needed --quiet $install_pkgs
   yay -Rns --noconfirm $remove_pkgs || true
   yay -S --noconfirm --clean
   am -i $am_install_pkgs
+  mise install $mise_install_pkgs
+  mise use $mise_install_pkgs
 }
 
 clone_dotfiles() {
