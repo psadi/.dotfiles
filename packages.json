@@ -39,7 +39,25 @@
             "qt6-declarative",
             "qt6-svg",
             "qt6-translations",
-            "qt6-wayland"
+            "qt6-wayland",
+            "kcolorscheme",
+            "kconfig",
+            "kcoreaddons",
+            "kcrash",
+            "kdbusaddons",
+            "kguiaddons",
+            "ki18n",
+            "knotifications",
+            "kwallet",
+            "kwidgetsaddons",
+            "kwindowsystem",
+            "qca-qt6",
+            "qt6-5compat",
+            "qt6-declarative",
+            "qt6-multimedia",
+            "qt6-multimedia-ffmpeg",
+            "qt6-shadertools",
+            "qt6-svg"
         ]
     },
     "am": {
