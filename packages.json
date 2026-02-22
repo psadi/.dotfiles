@@ -73,8 +73,8 @@
   "mise": {
     "install": [
       "awscli",
-      "bottom",
       "bat",
+      "bottom",
       "delta",
       "eza",
       "fastfetch",
@@ -89,6 +89,7 @@
       "rg",
       "ruff",
       "terraform",
+      "terraform-ls",
       "uv",
       "zoxide"
     ]
