@@ -2,8 +2,8 @@
 app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, '09dfcc6a-f4ef-401d-829b-9354c52b5584': <{'position': <2>}>, 'org.gnome.Calculator.desktop': <{'position': <3>}>, 'android-studio.desktop': <{'position': <4>}>, 'nvim.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'appimageupdate-AM.desktop': <{'position': <7>}>, 'org.gnome.TextEditor.desktop': <{'position': <8>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <9>}>, 'org.gnome.Weather.desktop': <{'position': <10>}>, 'org.gnome.Extensions.desktop': <{'position': <11>}>, 'limine-snapper-restore.desktop': <{'position': <12>}>, 'gnome-nettool.desktop': <{'position': <13>}>, 'Alacritty.desktop': <{'position': <14>}>, 'org.gnome.Usage.desktop': <{'position': <15>}>, 'org.gnome.PowerStats.desktop': <{'position': <16>}>, 'org.gnome.Screenshot.desktop': <{'position': <17>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <18>}>, 'firefox.desktop': <{'position': <19>}>}]
 command-history=['lg']
 disable-user-extensions=false
-disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
-enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io']
+enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com', 'just-perfection-desktop@just-perfection']
 favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'helium.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.0'
@@ -45,7 +45,7 @@ update-notifier-project-version=16
 
 [extensions/caffeine]
 cli-toggle=false
-indicator-position-max=1
+indicator-position-max=2
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
 
@@ -158,7 +158,7 @@ window-size=(787, 460)
 
 [extensions/just-perfection]
 accessibility-menu=false
-animation=3
+animation=4
 clock-menu=true
 dash=true
 dash-app-running=true
