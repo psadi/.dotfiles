@@ -8,6 +8,9 @@ favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='48.0'
 
+[app-switcher]
+current-workspace-only=false
+
 [extensions/Bluetooth-Battery-Meter]
 color-10='#ff7800'
 color-100='#15c931'
@@ -41,6 +44,7 @@ slideshow-timer-remaining=60
 update-notifier-project-version=16
 
 [extensions/caffeine]
+cli-toggle=false
 indicator-position-max=1
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
@@ -153,16 +157,21 @@ window-maximized=false
 window-size=(787, 460)
 
 [extensions/just-perfection]
+accessibility-menu=false
 animation=3
+clock-menu=true
 dash=true
 dash-app-running=true
 dash-separator=true
+keyboard-layout=false
 panel=true
 panel-in-overview=false
 panel-notification-icon=true
 power-icon=false
 quick-settings=true
+quick-settings-backlight=false
 quick-settings-dark-mode=false
+quick-settings-do-not-disturb=false
 search=true
 show-apps-button=true
 startup-status=0
@@ -183,6 +192,15 @@ toggle-overview=false
 
 [extensions/space-bar/state]
 version=33
+
+[extensions/switcher]
+fade-enable=true
+font-size=uint32 20
+launcher-stats='{"org.gnome.Extensions.desktop":1,"org.gnome.Calculator.desktop":2,"org.gnome.Settings.desktop":1}'
+matching=uint32 0
+max-width-percentage=uint32 47
+show-switcher=['<Super>space']
+workspace-indicator=true
 
 [extensions/system-monitor]
 show-swap=false
