@@ -95,6 +95,7 @@ install_zap() {
   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   rm -f ~/.zshrc
   mkdir -p "$HOME/.cache/zsh"
+  mkdir -p "$HOME/.local/share/zsh/site-functions"
 }
 
 configure_font() {

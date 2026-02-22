@@ -37,7 +37,7 @@ fi
 #---------------------------------------------
 if (( $+commands[zoxide] )); then
   alias cd="z"
-  _evalcache zoxide init zsh
+  evalcache 'zoxide'
 fi
 
 # Neovim
@@ -59,7 +59,8 @@ if (( $+commands[fzf] )); then
     --layout=reverse \
     --border=none \
   "
-  _evalcache fzf --zsh
+
+  evalcache 'fzf'
 fi
 
 # Yazi
@@ -74,6 +75,14 @@ if (( $+commands[zeditor] )); then
   alias zed="zeditor"
 fi
 
+# UV
+# ---------------------------------------------
 if (( $+commands[uv] )); then
-  _evalcache uv generate-shell-completion zsh
+  evalcache 'uv'
+fi
+
+# Mise
+# ---------------------------------------------
+if (( $+commands[mise] )); then
+  evalcache 'mise'
 fi

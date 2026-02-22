@@ -91,6 +91,7 @@
       "terraform",
       "terraform-ls",
       "uv",
+      "yazi",
       "zoxide"
     ]
   }

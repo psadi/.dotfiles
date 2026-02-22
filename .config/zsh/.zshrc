@@ -27,6 +27,8 @@ plug "romkatv/powerlevel10k"
 #---------------------------------------------
 for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 
+fpath=("${XDG_DATA_HOME}/zsh/site-functions/" $fpath)
+
 # Tidying User Path
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath

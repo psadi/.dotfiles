@@ -70,3 +70,13 @@ fif() {
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for\!"; return 1; fi
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
+
+evalcache(){
+  case "${1}" in
+    zoxide) _evalcache zoxide init zsh ;;
+    fzf) _evalcache fzf --zsh ;;
+    uv) _evalcache uv generate-shell-completion zsh ;;
+    mise) _evalcache mise activate zsh ;;
+    *) echo "Unknown tool: ${1}" ;;
+  esac
+}
