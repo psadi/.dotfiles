@@ -62,26 +62,35 @@
   },
   "am": {
     "install": [
+      "ghostty",
+      "gnome-boxes",
+      "helium",
+      "nvim",
+      "qbittorrent-enhanced",
+      "rustdesk",
+      "vlc"
+    ]
+  },
+  "mise": {
+    "install": [
+      "awscli",
+      "bottom",
       "bat",
       "eza",
       "fastfetch",
       "fd",
       "fzf",
       "gh",
-      "ghostty",
-      "gnome-boxes",
-      "helium",
+      "go",
+      "helm",
+      "kubectl",
       "lazygit",
-      "nvim",
-      "procs",
-      "qbittorrent-enhanced",
-      "ripgrep",
-      "rustdesk",
-      "vlc",
+      "node",
+      "rg",
+      "ruff",
+      "terraform",
+      "uv",
       "zoxide"
     ]
-  },
-  "mise": {
-    "install": ["go", "node", "ruff", "terraform", "uv"]
   }
 }
