@@ -15,6 +15,7 @@ gtk-wide-tabs = false
 # Config:
 maximize = true
 title = "~"
+scrollbar = system
 
 # Config: Misc
 confirm-close-surface = false

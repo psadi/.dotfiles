@@ -94,6 +94,7 @@ install_zap() {
   echo "Installing Zap Zsh plugin manager..."
   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
   rm -f ~/.zshrc
+  mkdir -p "$HOME/.cache/zsh"
 }
 
 configure_font() {

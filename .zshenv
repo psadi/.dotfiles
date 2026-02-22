@@ -5,3 +5,4 @@
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DOTFILES_DIR="${HOME}/.dotfiles"
 export ZDOTDIR="${HOME}/.config/zsh"
+export ZSH_COMPLETION_DUMP="${HOME}/.cache/zsh/.zcompdump"

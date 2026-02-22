@@ -37,5 +37,5 @@ typeset -U path cdpath fpath manpath
 
 # Completions
 autoload -Uz compinit bashcompinit zmv
-compinit -u -d "${ZDOTDIR}/.zcompdump"
+compinit -u -d "${ZSH_COMPLETION_DUMP}"
 bashcompinit
