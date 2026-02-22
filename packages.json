@@ -56,7 +56,8 @@
       "qt6-svg",
       "qt6-svg",
       "qt6-translations",
-      "qt6-wayland"
+      "qt6-wayland",
+      "showtime"
     ]
   },
   "am": {
