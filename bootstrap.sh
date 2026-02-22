@@ -43,8 +43,7 @@ install_os_deps() {
   yay -Rns --noconfirm $remove_pkgs || true
   yay -S --noconfirm --clean
   am -i $am_install_pkgs
-  mise install $mise_install_pkgs
-  mise use $mise_install_pkgs
+  mise use -g $mise_install_pkgs
 }
 
 clone_dotfiles() {
