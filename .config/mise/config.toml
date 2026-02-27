@@ -23,3 +23,5 @@ hyperfine = "latest"
 terraform-ls = "latest"
 yazi = "latest"
 usage = "latest"
+android-sdk = "latest"
+odin = { version = "dev-2026-02", exe = "odin" }
