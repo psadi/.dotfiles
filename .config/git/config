@@ -17,12 +17,12 @@
   pager = delta
 
 [credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+	helper = 
+	helper = !/home/adithyaps/.local/share/mise/installs/gh/2.87.2/gh_2.87.2_linux_amd64/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
+	helper = 
+	helper = !/home/adithyaps/.local/share/mise/installs/gh/2.87.2/gh_2.87.2_linux_amd64/bin/gh auth git-credential
 
 [interactive]
     diffFilter = delta --color-only
