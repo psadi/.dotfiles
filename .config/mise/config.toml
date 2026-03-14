@@ -26,3 +26,6 @@ usage = "latest"
 android-sdk = "latest"
 odin = { version = "dev-2026-02", exe = "odin" }
 pre-commit = "latest"
+opencode = "latest"
+gcloud = "latest"
+gemini-cli = "latest"

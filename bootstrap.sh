@@ -78,7 +78,6 @@ configure_systemd_services() {
   for service in "${system_services[@]}"; do
     sudo systemctl enable --now "${service}" || true
   done
-
   for service in "${user_services[@]}"; do
     systemctl --user enable --now "${service}" || true
   done
@@ -106,10 +105,10 @@ configure_font() {
 
   for font in Bold.ttf BoldItalic.ttf Italic.ttf Regular.ttf; do
     if [ ! -f "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}" ]; then
-      wget -q "${font_url}-${font}" -O "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}"
-      fc-cache -f -v "${HOME}/.local/share/fonts"
+      curl -sSL "${font_url}-${font}" -o "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}"
     fi
   done
+  fc-cache -f -v "${HOME}/.local/share/fonts"
 
 }
 
@@ -122,7 +121,7 @@ configure_theme() {
 
   if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
     echo "Configuring Theme..."
-    wget -q "${theme_url}" -O /tmp/Kanagawa-GKT-Theme-main.zip
+    curl -sSL "${theme_url}" -o /tmp/Kanagawa-GKT-Theme-main.zip
     unzip -q /tmp/Kanagawa-GKT-Theme-main.zip -d /tmp
     (
       cd /tmp/Kanagawa-GKT-Theme-main/themes
@@ -134,7 +133,7 @@ configure_theme() {
 
   if [ ! -d "${HOME}/.local/share/icons/Banana" ]; then
     echo "Configuring Banana Cursor..."
-    wget -q "${cursor_url}" -O /tmp/Banana.tar.xz
+    curl -sSL "${cursor_url}" -o /tmp/Banana.tar.xz
     tar -xf /tmp/Banana.tar.xz -C "${HOME}/.local/share/icons"
     rm -rf /tmp/Banana.tar.xz
   fi
@@ -154,23 +153,25 @@ gnome_tweaks(){
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
 	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
-	gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>Q']"
+  gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
+  gsettings set org.gnome.desktop.interface font-name 'Geist 11'
+  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11'
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+  gsettings set org.gnome.desktop.wm.preferences button-layout ':close'
+ 	gsettings set org.gnome.desktop.interface show-battery-percentage true
+ 	# gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
+ 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
+ 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
+ 	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+ 	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
   gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'helium.desktop', 'com.mitchellh.ghostty.desktop']"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'ghostty'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ghostty'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'helium'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'helium'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super><Shift>Return'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'nautilus'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'nautilus'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super><Shift>n'
-	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
 
   # Dconf load
   local DOTFILES_DIR="${HOME}/.dotfiles"
   dconf load /org/gnome/shell/ < "${DOTFILES_DIR}/dconf/shell.dconf"
+  dconf load /org/gnome/desktop/wm/keybindings/ < "${DOTFILES_DIR}/dconf/keybindings.dconf"
+  dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "${DOTFILES_DIR}/dconf/media-keys.dconf"
 }
 
 general_system_tweaks() {

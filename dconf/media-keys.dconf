@@ -1,0 +1,17 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+
+[custom-keybindings/custom0]
+binding='<Super>Return'
+command='ghostty'
+name='ghostty'
+
+[custom-keybindings/custom1]
+binding='<Shift><Super>Return'
+command='helium'
+name='helium'
+
+[custom-keybindings/custom2]
+binding='<Super><Shift>n'
+command='nautilus'
+name='nautilus'

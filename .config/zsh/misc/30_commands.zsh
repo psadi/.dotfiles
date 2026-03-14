@@ -86,3 +86,12 @@ fi
 if (( $+commands[mise] )); then
   evalcache 'mise'
 fi
+
+# GCLOUD
+# ---------------------------------------------
+if (( $+commands[gcloud] )) && [[ -f "${XDG_CONFIG_HOME}/gcloud/application_default_credentials.json" ]]; then
+  export GOOGLE_APPLICATION_CREDENTIALS="${XDG_CONFIG_HOME}/gcloud/application_default_credentials.json"
+  export GOOGLE_CLOUD_PROJECT="Personal"
+  export VERTEX_AI="global"
+fi
+

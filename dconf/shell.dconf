@@ -5,7 +5,7 @@ disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com']
 favorite-apps=['org.gnome.Nautilus.desktop', 'ghostty-AM.desktop', 'helium-AM.desktop']
-last-selected-power-profile='power-saver'
+last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.0'
 
 [app-switcher]
