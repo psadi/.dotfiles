@@ -40,10 +40,10 @@ install_os_deps() {
   local am_install_pkgs=$(jq -r '.am.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   local mise_install_pkgs=$(jq -r '.mise.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   yay -Sy --noconfirm --needed --quiet $install_pkgs
-  yay -Rns --noconfirm $remove_pkgs || true
-  yay -S --noconfirm --clean
   am -i $am_install_pkgs
   mise use -g $mise_install_pkgs
+  yay -S --noconfirm --clean
+  yay -Rns --noconfirm $remove_pkgs || true
 }
 
 clone_dotfiles() {
