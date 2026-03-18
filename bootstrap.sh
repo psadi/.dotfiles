@@ -16,6 +16,7 @@ set -euox pipefail
 
 install_yay() {
   sudo pacman -S --needed --noconfirm git base-devel
+  rm -rf /tmp/yay
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   (cd /tmp/yay && makepkg -si --noconfirm)
   rm -rf /tmp/yay
@@ -153,18 +154,6 @@ gnome_tweaks(){
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
 	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
 	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
-  gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
-  gsettings set org.gnome.desktop.interface font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11'
-  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-  gsettings set org.gnome.desktop.wm.preferences button-layout ':close'
- 	gsettings set org.gnome.desktop.interface show-battery-percentage true
- 	# gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
- 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
- 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
- 	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
- 	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
   gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'helium.desktop', 'com.mitchellh.ghostty.desktop']"
 
   # Dconf load
@@ -213,14 +202,18 @@ stow_link() {
 }
 
 configure_fstab(){
-  sudo sed -i 's/compress=zstd:1/compress-force=zstd:2,ssd,discard=async,space_cache=v2/' /etc/fstab
-  sudo mkdir -p "/mnt/vol-1"
-  sudo chown $USER:$USER "/mnt/vol-1"
-  echo "UUID=2eacdb10-9d3c-4557-900c-28fbf40281e7 /mnt/vol-1 btrfs defaults,noatime,compress-force=zstd:2,ssd,discard=async,space_cache=v2 0 0" | sudo tee -a /etc/fstab
-  sudo systemctl daemon-reload
-  sudo mount -av
-  ln -s /mnt/vol-1/workspace || true
-  ln -s /mnt/vol-1/Phone || true
+  if grep -q "2eacdb10-9d3c-4557-900c-28fbf40281e7" /etc/fstab; then
+    echo "fstab entry already exists"
+  else
+    sudo sed -i 's/compress=zstd:1/compress-force=zstd:2,ssd,discard=async,space_cache=v2/' /etc/fstab
+    sudo mkdir -p "/mnt/vol-1"
+    sudo chown $USER:$USER "/mnt/vol-1"
+    echo "UUID=2eacdb10-9d3c-4557-900c-28fbf40281e7 /mnt/vol-1 btrfs defaults,noatime,compress-force=zstd:2,ssd,discard=async,space_cache=v2 0 0" | sudo tee -a /etc/fstab
+    sudo systemctl daemon-reload
+    sudo mount -av
+  fi
+  ln -sf /mnt/vol-1/workspace "$HOME/workspace" 2>/dev/null || true
+  ln -sf /mnt/vol-1/Phone "$HOME/Phone" 2>/dev/null || true
 }
 
 # Main execution flow
