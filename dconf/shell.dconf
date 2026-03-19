@@ -1,10 +1,10 @@
 [/]
-app-picker-layout=[{'Utilities': <{'position': <0>}>, 'System': <{'position': <1>}>, '09dfcc6a-f4ef-401d-829b-9354c52b5584': <{'position': <2>}>, 'org.gnome.Calculator.desktop': <{'position': <3>}>, 'android-studio.desktop': <{'position': <4>}>, 'nvim.desktop': <{'position': <5>}>, 'org.gnome.Characters.desktop': <{'position': <6>}>, 'appimageupdate-AM.desktop': <{'position': <7>}>, 'org.gnome.TextEditor.desktop': <{'position': <8>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <9>}>, 'org.gnome.Weather.desktop': <{'position': <10>}>, 'org.gnome.Extensions.desktop': <{'position': <11>}>, 'limine-snapper-restore.desktop': <{'position': <12>}>, 'gnome-nettool.desktop': <{'position': <13>}>, 'Alacritty.desktop': <{'position': <14>}>, 'org.gnome.Usage.desktop': <{'position': <15>}>, 'org.gnome.PowerStats.desktop': <{'position': <16>}>, 'org.gnome.Screenshot.desktop': <{'position': <17>}>, 'qbittorrent-enhanced-AM.desktop': <{'position': <18>}>, 'firefox.desktop': <{'position': <19>}>}]
+app-picker-layout=[{'0c8ecfb4-c17a-4ab9-bc72-d9b787fa7eca': <{'position': <0>}>, 'org.pulseaudio.pavucontrol.desktop': <{'position': <1>}>, 'org.gnome.Extensions.desktop': <{'position': <2>}>, 'limine-snapper-restore.desktop': <{'position': <3>}>, 'org.gnome.PowerStats.desktop': <{'position': <4>}>, 'org.gnome.DiskUtility.desktop': <{'position': <5>}>, 'org.gnome.Papers.desktop': <{'position': <6>}>, 'org.gnome.FileRoller.desktop': <{'position': <7>}>, 'org.gnome.Loupe.desktop': <{'position': <8>}>, 'org.gnome.tweaks.desktop': <{'position': <9>}>, 'vlc.desktop': <{'position': <10>}>, 'org.gnome.TextEditor.desktop': <{'position': <11>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <12>}>, 'nvim.desktop': <{'position': <13>}>, 'org.gnome.Boxes.desktop': <{'position': <14>}>, 'org.gnome.Calculator.desktop': <{'position': <15>}>, 'org.qbittorrent.qBittorrent.desktop': <{'position': <16>}>, 'rustdesk.desktop': <{'position': <17>}>, 'io.github.giantpinkrobots.varia.desktop': <{'position': <18>}>, 'yazi.desktop': <{'position': <19>}>}]
 command-history=['lg']
 disable-user-extensions=false
 disabled-extensions=['space-bar@luchrioh', 'tactile@lundal.io', 'just-perfection-desktop@just-perfection']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'azwallpaper@azwallpaper.gitlab.com', 'pomodoro@arun.codito.in', 'Bluetooth-Battery-Meter@maniacx.github.com', 'gsconnect@andyholmes.github.io', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com']
-favorite-apps=['org.gnome.Nautilus.desktop', 'ghostty-AM.desktop', 'helium-AM.desktop']
+favorite-apps=['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'com.mitchellh.ghostty.desktop', 'zen.desktop', 'dev.zed.Zed.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='48.0'
 
@@ -44,8 +44,12 @@ slideshow-timer-remaining=60
 update-notifier-project-version=16
 
 [extensions/caffeine]
-cli-toggle=false
-indicator-position-max=1
+cli-toggle=true
+enable-mpris=true
+indicator-position-max=2
+restore-state=true
+show-indicator='always'
+show-toggle=false
 toggle-shortcut=['<Control><Alt>c']
 user-enabled=true
 
@@ -219,6 +223,7 @@ monitor-0-layout=1
 name='Kanagawa-Dark'
 
 [keybindings]
+show-screenshot-ui=['<Shift><Super>4']
 switch-to-application-1=@as []
 switch-to-application-2=@as []
 switch-to-application-3=@as []

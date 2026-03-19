@@ -16,7 +16,6 @@
       "gnome-boxes",
       "gnome-browser-connector",
       "go",
-      "helium-browser-bin",
       "helm",
       "hyperfine",
       "jq",
@@ -48,6 +47,8 @@
       "wget",
       "wl-clipboard",
       "yazi",
+      "zed",
+      "zen-browser-bin",
       "zoxide",
       "zsh"
     ],

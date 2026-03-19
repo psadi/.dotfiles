@@ -146,11 +146,11 @@ gnome_tweaks(){
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.wm.preferences button-layout ':close'
 	gsettings set org.gnome.desktop.interface show-battery-percentage true
-	# gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
+	gsettings set org.gnome.shell.extensions.user-theme name 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
 	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
-	# gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
-	# gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
+	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+	gnome-extensions enable  user-theme@gnome-shell-extensions.gcampax.github.com
   gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'helium.desktop', 'com.mitchellh.ghostty.desktop']"
 
   # Dconf load

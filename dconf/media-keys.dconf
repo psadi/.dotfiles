@@ -8,8 +8,8 @@ name='ghostty'
 
 [custom-keybindings/custom1]
 binding='<Shift><Super>Return'
-command='helium'
-name='helium'
+command='zen-browser'
+name='zen'
 
 [custom-keybindings/custom2]
 binding='<Super><Shift>n'
