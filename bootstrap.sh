@@ -159,6 +159,7 @@ gnome_tweaks(){
   # Dconf load
   local DOTFILES_DIR="${HOME}/.dotfiles"
   dconf load /org/gnome/shell/ < "${DOTFILES_DIR}/dconf/shell.dconf"
+  dconf load /org/gnome/shell/keybindings/ < "${DOTFILES_DIR}/dconf/shell-keybindings.dconf"
   dconf load /org/gnome/desktop/wm/keybindings/ < "${DOTFILES_DIR}/dconf/keybindings.dconf"
   dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "${DOTFILES_DIR}/dconf/media-keys.dconf"
 }
