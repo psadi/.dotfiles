@@ -71,7 +71,6 @@ configure_systemd_services() {
   )
 
   local user_services=(
-    excalidraw
     syncthing
   )
   for service in "${system_services[@]}"; do
