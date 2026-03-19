@@ -32,7 +32,7 @@
       "qbittorrent-enhanced",
       "ripgrep",
       "ruff",
-      "rustdesk",
+      "rustdesk-bin",
       "sbctl",
       "snapper",
       "stow",
