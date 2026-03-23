@@ -136,6 +136,11 @@ configure_theme() {
     rm -rf /tmp/Banana.tar.xz
   fi
 
+  local user_theme_ext_dir="${HOME}/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas"
+  if [ -d "${user_theme_ext_dir}" ] && [ -f "${user_theme_ext_dir}/org.gnome.shell.extensions.user-theme.gschema.xml" ]; then
+    echo "Compiling GNOME shell extension schemas..."
+    glib-compile-schemas "${user_theme_ext_dir}" 2>/dev/null || true
+  fi
 }
 
 gnome_tweaks(){
