@@ -46,7 +46,7 @@
       "strace",
       "syncthing",
       "terraform",
-      "terraform-ls",
+      "terraform-ls-bin",
       "unrar",
       "unzip",
       "uv",
