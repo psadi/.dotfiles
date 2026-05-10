@@ -6,3 +6,5 @@ export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DOTFILES_DIR="${HOME}/.dotfiles"
 export ZDOTDIR="${HOME}/.config/zsh"
 export ZSH_COMPLETION_DUMP="${HOME}/.cache/zsh/.zcompdump"
+
+export LD_LIBRARY_PATH="${HOME}/.local/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"

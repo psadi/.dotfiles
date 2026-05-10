@@ -95,3 +95,12 @@ if (( $+commands[gcloud] )) && [[ -f "${XDG_CONFIG_HOME}/gcloud/application_defa
   export VERTEX_AI="global"
 fi
 
+if (( $+commands[warp] )); then
+  function wssh {
+      local host=$(warp connect --select 2>/dev/null)
+      if [ -n "$host" ]; then
+          command ssh "$host" "$@"
+      fi
+  }
+fi
+

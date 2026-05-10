@@ -27,7 +27,7 @@ plug "romkatv/powerlevel10k"
 #---------------------------------------------
 for z (${ZDOTDIR}/misc/**/*(N.)) plug $z
 
-fpath=("${XDG_DATA_HOME}/zsh/site-functions/" $fpath)
+fpath=("${XDG_DATA_HOME}/zsh/site-functions/" "${ZDOTDIR:-$HOME}/completions" $fpath)
 
 # Tidying User Path
 # ---------------------------------------------
@@ -38,6 +38,6 @@ typeset -U path cdpath fpath manpath
 [[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
 
 # Completions
-autoload -Uz compinit bashcompinit zmv
+autoload -Uz compinit bashcompinit zmv _warp
 compinit -u -d "${ZSH_COMPLETION_DUMP}"
 bashcompinit
