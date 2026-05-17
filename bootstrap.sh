@@ -77,12 +77,20 @@ configure_systemd_services() {
   local user_services=(
     syncthing
   )
+
   for service in "${system_services[@]}"; do
     sudo systemctl enable --now "${service}" || true
   done
   for service in "${user_services[@]}"; do
     systemctl --user enable --now "${service}" || true
   done
+
+  # Enable Fast Connectable for instant Bluetooth reconnection after boot
+  if ! grep -q "FastConnectable=true" /etc/bluetooth/main.conf 2>/dev/null; then
+    echo "Enabling Bluetooth Fast Connectable..."
+    sudo sed -i '/^\[General\]/a FastConnectable=true' /etc/bluetooth/main.conf
+    sudo systemctl restart bluetooth
+  fi
 }
 
 install_zap() {
