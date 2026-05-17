@@ -168,34 +168,51 @@ gnome_tweaks(){
   dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "${DOTFILES_DIR}/dconf/media-keys.dconf"
 }
 
+configure_io_scheduler() {
+  local rules_file="/etc/udev/rules.d/60-ioschedulers.rules"
+  if [ ! -f "$rules_file" ] || ! grep -q "adios" "$rules_file" 2>/dev/null; then
+    echo "Configuring ADIOS I/O scheduler via udev..."
+    sudo tee "$rules_file" > /dev/null <<'EOF'
+# SSDs
+ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
+# NVMe SSDs
+ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
+EOF
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
+  fi
+}
+
 general_system_tweaks() {
   # Reference: https://wiki.cachyos.org/configuration/general_system_tweaks
-  # Set CPU governor to powersave
+  # CPU governor and energy performance preference
   sudo cpupower frequency-set -g powersave
-  # Set energy performance preference to performance if not already set
-  if ! grep -q "performance" /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; then
-    echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-  fi
+  echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
   # Enable AMD P-state if not already active
-  if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status; then
+  if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status 2>/dev/null; then
     echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
   fi
   # Configure split lock mitigation if not already set
-  if ! grep -q "kernel.split_lock_mitigate=0" /etc/sysctl.d/99-splitlock.conf; then
-    sudo touch /etc/sysctl.d/99-splitlock.conf
+  if [ ! -f /etc/sysctl.d/99-splitlock.conf ] || ! grep -q "kernel.split_lock_mitigate=0" /etc/sysctl.d/99-splitlock.conf; then
     echo 'kernel.split_lock_mitigate=0' | sudo tee /etc/sysctl.d/99-splitlock.conf
   fi
-  # Enable RCU lazy mode in boot configuration if not already set
-  # if ! grep -q 'rcutree.enable_rcu_lazy=1' /etc/sdboot-manage.conf; then
-  #   sudo sed -i '/^LINUX_OPTIONS=/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/sdboot-manage.conf
-  # fi
-  # sudo gpasswd -a "$USER" realtime
+  # Enable RCU Lazy in kernel cmdline for power savings
+  if ! grep -q "rcutree.enable_rcu_lazy=1" /proc/cmdline; then
+    if [ -f /etc/default/limine ]; then
+      echo "Enabling RCU Lazy in /etc/default/limine..."
+      sudo sed -i '/^KERNEL_CMDLINE\[default\]/ s/"$/ rcutree.enable_rcu_lazy=1"/' /etc/default/limine
+    elif [ -f /etc/kernel/cmdline ]; then
+      echo "Enabling RCU Lazy in /etc/kernel/cmdline..."
+      echo " rcutree.enable_rcu_lazy=1" | sudo tee -a /etc/kernel/cmdline
+    else
+      echo "Warning: rcutree.enable_rcu_lazy=1 not in kernel cmdline"
+      echo "Add it to your bootloader kernel parameters for ~5-10% power savings"
+    fi
+  fi
   # Remove immutable attribute from EFI variables
   for var in /sys/firmware/efi/efivars/db-* /sys/firmware/efi/efivars/KEK-*; do
-    if lsattr "$var" | awk '{print $1}' | grep -q "i"; then
-      sudo chattr -i "$var"
-    else
-      echo "Immutable attribute already removed for $var"
+    if [ -e "$var" ] && lsattr "$var" 2>/dev/null | awk '{print $1}' | grep -q "i"; then
+      sudo chattr -i "$var" 2>/dev/null
     fi
   done
 }
@@ -203,7 +220,7 @@ general_system_tweaks() {
 stow_link() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
-  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
+  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --no-adopt
 }
 
 configure_fstab(){
@@ -232,5 +249,6 @@ configure_theme
 stow_link
 gnome_tweaks
 configure_systemd_services
+configure_io_scheduler
 general_system_tweaks
 configure_fstab
