@@ -1,0 +1,36 @@
+{
+  "plugins": {
+    "fzf-lua": {
+      "rev": "311a630292310ea3bfe46dd616e17f283e975801",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "kanagawa.nvim": {
+      "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "mini.icons": {
+      "rev": "9c7b1b90b15bdd69c52f6e31889dbc9987c30ec4",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.surround": {
+      "rev": "990ce30f724d08e79670107de6b915a3f1bb9a9b",
+      "src": "https://github.com/nvim-mini/mini.surround"
+    },
+    "mini.trailspace": {
+      "rev": "ae2fd422564c6e781caf6545355ca6051e20fa26",
+      "src": "https://github.com/nvim-mini/mini.trailspace"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "toggleterm.nvim": {
+      "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
+      "src": "https://github.com/akinsho/toggleterm.nvim"
+    }
+  }
+}

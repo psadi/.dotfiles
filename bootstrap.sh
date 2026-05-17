@@ -27,6 +27,11 @@ install_python_deps() {
   python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
 }
 
+install_mise_deps() {
+  echo "Installing mise tools"
+  (cd "${HOME}/.dotfiles/.config/mise" && mise install --yes)
+}
+
 install_os_deps() {
   if ! command -v yay &>/dev/null; then
     install_yay
@@ -38,9 +43,8 @@ install_os_deps() {
 
   local install_pkgs=$(jq -r '.yay.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   local remove_pkgs=$(jq -r '.yay.remove | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
-  local mise_install_pkgs=$(jq -r '.mise.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
   yay -Sy --noconfirm --needed --quiet $install_pkgs
-  # mise use -g $mise_install_pkgs
+  install_mise_deps
   yay -S --noconfirm --clean
   yay -Rns --noconfirm $remove_pkgs || true
 }

@@ -1,62 +1,57 @@
-return {
-	{
-		"stevearc/conform.nvim",
-		event = "VeryLazy",
-		config = function()
-			local conform = require("conform")
-			conform.setup({
-				formatters_by_ft = {
-					css = { "prettier" },
-					go = { lsp_format = "fallback" },
-					html = { "prettier" },
-					json = { "prettier" },
-					lua = { "stylua" },
-					markdown = { "prettier" },
-					python = { "ruff_format" },
-					rust = { "rust_analyzer" },
-					sh = { "shfmt" },
-					yaml = { "prettier" },
-				},
-				format_on_save = {
-					async = false,
-					timeout_ms = 1000,
-					lsp_fallback = true,
-					lsp_format = "fallback",
-				},
-			})
+local format_group = vim.api.nvim_create_augroup("user.format", {})
 
-			vim.api.nvim_create_user_command("FormatDisable", function(args)
-				if args.bang then
-					-- FormatDisable! will disable formatting just for this buffer
-					vim.b.disable_autoformat = true
-				else
-					vim.g.disable_autoformat = true
-				end
-			end, {
-				desc = "Disable autoformat-on-save",
-				bang = true,
-			})
-			vim.api.nvim_create_user_command("FormatEnable", function()
-				vim.b.disable_autoformat = false
-				vim.g.disable_autoformat = false
-			end, {
-				desc = "Re-enable autoformat-on-save",
-			})
+local function format(bufnr)
+	if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+		return
+	end
 
-			map({ "n", "v" }, "<leader>fmt", function()
-				conform.format({
-					lsp_fallback = true,
-					async = false,
-					timeout_ms = 1000,
-				})
-			end, { desc = "Format file" })
+	vim.lsp.buf.format({
+		bufnr = bufnr,
+		timeout_ms = 1000,
+		filter = function(client)
+			return client.name ~= "ty"
 		end,
-	},
-	{
-		"zapling/mason-conform.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("mason-conform").setup()
-		end,
-	},
-}
+	})
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = format_group,
+	callback = function(event)
+		local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+
+		if not client:supports_method("textDocument/formatting") then
+			return
+		end
+
+		vim.api.nvim_clear_autocmds({ group = format_group, buffer = event.buf })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = format_group,
+			buffer = event.buf,
+			callback = function()
+				format(event.buf)
+			end,
+		})
+	end,
+})
+
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+	if args.bang then
+		vim.b.disable_autoformat = true
+	else
+		vim.g.disable_autoformat = true
+	end
+end, {
+	desc = "Disable autoformat-on-save",
+	bang = true,
+})
+
+vim.api.nvim_create_user_command("FormatEnable", function()
+	vim.b.disable_autoformat = false
+	vim.g.disable_autoformat = false
+end, {
+	desc = "Re-enable autoformat-on-save",
+})
+
+map({ "n", "v" }, "<leader>fmt", function()
+	format(vim.api.nvim_get_current_buf())
+end, { desc = "Format file" })

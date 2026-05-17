@@ -29,13 +29,14 @@ map("n", "<leader>bd", "<CMD>bd<CR>", { silent = true })
 map("n", "<leader>BD", "<CMD>bd!<CR>", { silent = true })
 map("n", "<leader>qq", "<CMD>q!<CR>", { silent = true })
 
--- Lazy
-map("n", "ll", "<CMD>Lazy<CR>", {})
+-- Packages
+map("n", "ll", function()
+	vim.pack.update()
+end, { desc = "Update packages" })
 
--- Mason
+-- LSP
 map("n", "K", vim.lsp.buf.hover, {})
 map("n", "gd", vim.lsp.buf.definition, {})
-map("n", "lm", "<CMD>Mason<CR>", {})
 
 -- Fzf Lua
 map("n", "<leader>ff", "<CMD>FzfLua files<CR>", { silent = true })
@@ -63,4 +64,4 @@ map("n", "<leader>tr", "<CMD>lua MiniTrailspace.trim()<CR>", { silent = true })
 map("n", "<leader>ltr", "<CMD>lua MiniTrailspace.trim_last_lines()<CR>", { silent = true })
 
 -- Mini Starter
-map("n", "<leader>~", "<CMD>lua MiniStarter.open()<CR>", { silent = true })
+-- map("n", "<leader>~", "<CMD>lua MiniStarter.open()<CR>", { silent = true })
