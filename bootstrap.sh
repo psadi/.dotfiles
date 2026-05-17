@@ -220,7 +220,7 @@ general_system_tweaks() {
 stow_link() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
-  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --no-adopt
+  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
 }
 
 configure_fstab(){
