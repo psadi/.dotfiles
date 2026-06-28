@@ -34,3 +34,5 @@ alias -s md="bat"
 alias -s json="jless"
 alias -s yaml="bat"
 alias -s toml="bat"
+
+alias llm='~/llm-scripts/gemma-server.sh'

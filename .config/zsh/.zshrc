@@ -41,3 +41,8 @@ typeset -U path cdpath fpath manpath
 autoload -Uz compinit bashcompinit zmv _warp
 compinit -u -d "${ZSH_COMPLETION_DUMP}"
 bashcompinit
+
+# LLama CPP
+if [ -d "/mnt/vol-1/workspace/llama.cpp/build/bin" ]; then
+  export PATH="${PATH}:/mnt/vol-1/workspace/llama.cpp/build/bin"
+fi
