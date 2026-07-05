@@ -10,7 +10,9 @@ theme = "Kanagawabones"
 
 # Config: Gtk
 gtk-tabs-location = "top"
+gtk-titlebar-style = "tabs"
 gtk-wide-tabs = false
+gtk-single-instance = true
 
 # Config:
 maximize = true
