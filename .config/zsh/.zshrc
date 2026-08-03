@@ -8,6 +8,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Prompt Configuration (Must load before powerlevel10k theme)
+# ---------------------------------------------
+[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
+
+# Configure ez-compinit caching
+# ---------------------------------------------
+zstyle ':plugin:ez-compinit' 'use-cache' 'yes'
+zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
+
 # Load Zap
 #---------------------------------------------
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] \
@@ -33,13 +42,9 @@ fpath=("${XDG_DATA_HOME}/zsh/site-functions/" "${ZDOTDIR:-$HOME}/completions" $f
 # ---------------------------------------------
 typeset -U path cdpath fpath manpath
 
-# Prompt
-# ---------------------------------------------
-[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
-
 # Completions
-autoload -Uz compinit bashcompinit zmv _warp
-compinit -u -d "${ZSH_COMPLETION_DUMP}"
+autoload -Uz bashcompinit zmv _warp
+run-compinit
 bashcompinit
 
 # LLama CPP

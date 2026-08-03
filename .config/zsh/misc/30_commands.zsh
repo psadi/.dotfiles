@@ -75,11 +75,7 @@ if (( $+commands[zeditor] )); then
   alias zed="zeditor"
 fi
 
-# UV
-# ---------------------------------------------
-if (( $+commands[uv] )); then
-  evalcache 'uv'
-fi
+# UV completions are autoloaded from $ZDOTDIR/completions/_uv
 
 # Mise
 # ---------------------------------------------

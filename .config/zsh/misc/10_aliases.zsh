@@ -35,4 +35,4 @@ alias -s json="jless"
 alias -s yaml="bat"
 alias -s toml="bat"
 
-alias llm='~/llm-scripts/gemma-server.sh'
+alias llm="${HOME}/workspace/llama.cpp/personal-scripts/llm/llm.sh"
