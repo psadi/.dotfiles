@@ -1,0 +1,12 @@
+services:
+  headroom:
+    image: ghcr.io/headroomlabs-ai/headroom:latest
+    container_name: headroom-proxy
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      - HEADROOM_HOST=0.0.0.0
+      - HEADROOM_MODE=token
+      - HEADROOM_TELEMETRY=off
+      - OPENAI_TARGET_API_URL=https://opencode.ai/zen/go/v1
+    restart: unless-stopped
