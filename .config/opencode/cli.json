@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "kanagawa",
+    "mode": "dark"
+  },
+  "animations": true,
+  "session": {
+    "sidebar": "hide"
+  },
+  "tabs": {
+    "mode": "off"
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true,
+    "volume": 0.5
+  },
+  "debug": {
+    "devtools": true
+  }
+}

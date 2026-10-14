@@ -100,3 +100,7 @@ if (( $+commands[warp] )); then
   }
 fi
 
+
+if ((  $+commands[npm] )); then
+  export PATH="$PATH:$(npm config get prefix)/bin"
+fi
