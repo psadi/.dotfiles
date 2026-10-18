@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Yazi
+GenericName=File Manager
+Comment=Terminal file manager
+Exec=ghostty -e yazi %F
+Terminal=false
+MimeType=inode/directory;
+Categories=System;FileManager;Utility;
+Icon=folder

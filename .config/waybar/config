@@ -1,0 +1,87 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 34,
+  "spacing": 6,
+  "modules-left": ["niri/workspaces", "niri/window"],
+  "modules-center": [],
+  "modules-right": ["network", "bluetooth", "custom/btbattery", "pulseaudio", "backlight", "battery", "tray", "clock"],
+
+  "niri/workspaces": {
+    "format": "{value}",
+    "disable-click": false
+  },
+
+  "niri/window": {
+    "format": "{app_id}  {title}",
+    "max-length": 60,
+    "on-click": "niri msg action toggle-overview"
+  },
+
+  "network": {
+    "format-wifi": "\uF1EB\u2003{essid}",
+    "format-ethernet": "\uF0AC\u2003{ifname}",
+    "format-disconnected": "\uF1EB\u2003off",
+    "format-disabled": "\uF1EB\u2003off",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disabled": "Wi-Fi off",
+    "on-click": "niri-wifi-menu",
+    "on-click-right": "niri-wifi-toggle"
+  },
+
+  "bluetooth": {
+    "format": "\uF293\u2003{status}",
+    "format-connected": "\uF293\u2003{device_alias}",
+    "format-disabled": "\uF293\u2003off",
+    "format-off": "\uF293\u2003off",
+    "on-click": "niri-bt-menu",
+    "on-click-right": "niri-bt-toggle"
+  },
+
+  "custom/btbattery": {
+    "exec": "niri-bt-battery",
+    "interval": 60,
+    "format": "{}",
+    "on-click": "niri-bt-menu",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "\uF028\u2003{volume}%",
+    "format-muted": "\uF028\u2003muted",
+    "on-click": "niri-volume-menu",
+    "on-click-right": "niri-volume mute",
+    "on-scroll-up": "niri-volume up",
+    "on-scroll-down": "niri-volume down"
+  },
+
+  "backlight": {
+    "format": "\uF185\u2003{percent}%",
+    "on-scroll-up": "niri-brightness up",
+    "on-scroll-down": "niri-brightness down"
+  },
+
+  "battery": {
+    "format": "\uF240\u2003{capacity}%",
+    "format-charging": "\uF0E7\u2003{capacity}%",
+    "format-plugged": "\uF0E7\u2003{capacity}%",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "on-click": "niri-power-menu"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 6
+  },
+
+  "clock": {
+    "format": "\uF017\u2003{:%H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "on-click": "zenity --calendar --title=Calendar",
+    "on-click-right": "niri-menu"
+  }
+}

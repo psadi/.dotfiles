@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Volume control + OSD for the niri session.
+# Usage: niri-volume up|down|mute [step]
+set -euo pipefail
+
+dir="$(cd "$(dirname "$0")" && pwd)"
+
+case "${1:-}" in
+    up)   wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ "${2:-5}%+" ;;
+    down) wpctl set-volume @DEFAULT_AUDIO_SINK@ "${2:-5}%-" ;;
+    mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+    *) echo "usage: niri-volume up|down|mute [step]" >&2; exit 2 ;;
+esac
+
+if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED; then
+    pct=0
+else
+    pct="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d", $2*100}')"
+fi
+
+"$dir/niri-osd" "$pct" || true

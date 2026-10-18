@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Run a program in a minimal, tab-less Ghostty window.
+# Usage: niri-term <command> [args...]
+set -euo pipefail
+
+if [ "$#" -eq 0 ]; then
+    echo "usage: niri-term <command> [args...]" >&2
+    exit 2
+fi
+
+exec ghostty --window-decoration=none --gtk-titlebar-style=native -e "$@"

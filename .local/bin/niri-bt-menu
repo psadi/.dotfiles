@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Bluetooth picker (fuzzel). Lists known devices; connect/disconnect on selection.
+set -euo pipefail
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
+pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
+
+if ! bluetoothctl show 2>/dev/null | grep -q 'Powered: yes'; then
+    choice=$(printf '%s\n' "Turn Bluetooth on" "Back" | pick "bluetooth") || exit 0
+    if [ "$choice" = "Turn Bluetooth on" ]; then bluetoothctl power on >/dev/null; notify "Bluetooth on"; fi
+    exit 0
+fi
+
+connected=$(bluetoothctl devices Connected 2>/dev/null | awk '{print $2}')
+mapfile -t devs < <(
+    bluetoothctl devices 2>/dev/null | sed 's/^Device //' |
+    while IFS= read -r line; do
+        [ -z "$line" ] && continue
+        mac="${line%% *}"; name="${line#* }"
+        if printf '%s\n' "$connected" | grep -Fxq "$mac"; then st="connected"; else st=""; fi
+        printf '%s | %s | %s\n' "$name" "$mac" "$st"
+    done
+)
+
+choice=$(
+    {
+        printf '%s\n' "Scan (bluetoothctl)" "Bluetooth: turn off"
+        [ "${#devs[@]}" -gt 0 ] && printf '%s\n' "${devs[@]}"
+    } | pick "bluetooth"
+) || exit 0
+
+case "$choice" in
+    "Bluetooth: turn off")
+        bluetoothctl power off >/dev/null; notify "Bluetooth off"; exit 0 ;;
+    "Scan (bluetoothctl)")
+        exec niri-term bluetoothctl ;;
+    "") exit 0 ;;
+esac
+
+name="${choice%% | *}"
+rest="${choice#* | }"
+mac="${rest%% | *}"
+st="${rest#* | }"
+
+if [ "$st" = "connected" ]; then
+    bluetoothctl disconnect "$mac" >/dev/null 2>&1 && notify "Bluetooth" "Disconnected $name" || notify "Bluetooth" "Failed $name"
+else
+    bluetoothctl connect "$mac" >/dev/null 2>&1 && notify "Bluetooth" "Connected $name" || notify "Bluetooth" "Failed $name"
+fi

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Screenshot via niri's built-in UI, then auto-copy the saved file to clipboard.
+# Usage: niri-screenshot [screenshot|screenshot-window|screenshot-screen]
+set -euo pipefail
+
+action="${1:-screenshot}"
+dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
+mkdir -p "$dir"
+
+before=$(ls -1t "$dir"/*.png 2>/dev/null | head -1 || true)
+
+niri msg action "$action"
+
+# niri's screenshot UI is interactive/asynchronous; wait for the new file.
+for _ in $(seq 1 600); do
+    newest=$(ls -1t "$dir"/*.png 2>/dev/null | head -1 || true)
+    if [ -n "$newest" ] && [ "$newest" != "$before" ]; then
+        wl-copy < "$newest"
+        command -v notify-send >/dev/null 2>&1 && notify-send -a niri "Screenshot" "Copied to clipboard" || true
+        exit 0
+    fi
+    sleep 0.1
+done

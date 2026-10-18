@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Wi-Fi picker (fuzzel). Lists visible networks and connects on selection.
+set -euo pipefail
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
+pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
+
+if [ "$(nmcli radio wifi 2>/dev/null || echo off)" != "enabled" ]; then
+    choice=$(printf '%s\n' "Turn Wi-Fi on" "Back" | pick "wifi") || exit 0
+    if [ "$choice" = "Turn Wi-Fi on" ]; then nmcli radio wifi on; notify "Wi-Fi on"; fi
+    exit 0
+fi
+
+# Format one line per SSID:  SSID | security | signal%
+mapfile -t nets < <(
+    nmcli -t --escape no -f SSID,SIGNAL,SECURITY device wifi list 2>/dev/null |
+    while IFS= read -r line; do
+        [ -z "$line" ] && continue
+        sec="${line##*:}"; tmp="${line%:*}"
+        sig="${tmp##*:}"; ssid="${tmp%:*}"
+        [ -n "$ssid" ] && printf '%s | %s | %s%%\n' "$ssid" "$sec" "$sig"
+    done | awk -F' \\| ' '!seen[$1]++'
+)
+
+choice=$(
+    {
+        printf '%s\n' "Disconnect" "Wi-Fi: turn off"
+        [ "${#nets[@]}" -gt 0 ] && printf '%s\n' "${nets[@]}"
+    } | pick "wifi"
+) || exit 0
+
+case "$choice" in
+    "Wi-Fi: turn off")
+        nmcli radio wifi off; notify "Wi-Fi off"; exit 0 ;;
+    "Disconnect")
+        dev=$(nmcli -t -f DEVICE,TYPE,STATE device 2>/dev/null | awk -F: '$2=="wifi" && $3=="connected"{print $1; exit}')
+        [ -n "${dev:-}" ] && nmcli device disconnect "$dev" >/dev/null 2>&1
+        notify "Wi-Fi" "Disconnected"; exit 0 ;;
+    "") exit 0 ;;
+esac
+
+ssid="${choice%% | *}"
+rest="${choice#* | }"
+sec="${rest%% | *}"
+
+if nmcli -t -f NAME connection show 2>/dev/null | grep -Fxq "$ssid"; then
+    if nmcli connection up "$ssid" >/dev/null 2>&1; then notify "Wi-Fi" "Connected to $ssid"; else notify "Wi-Fi" "Failed: $ssid"; fi
+elif [ "$sec" = "--" ] || [ -z "$sec" ]; then
+    if nmcli device wifi connect "$ssid" >/dev/null 2>&1; then notify "Wi-Fi" "Connected to $ssid"; else notify "Wi-Fi" "Failed: $ssid"; fi
+else
+    pw=$(fuzzel --password --prompt "password> ") || exit 0
+    if nmcli device wifi connect "$ssid" password "$pw" >/dev/null 2>&1; then
+        notify "Wi-Fi" "Connected to $ssid"
+    else
+        notify "Wi-Fi" "Failed: $ssid"
+    fi
+fi

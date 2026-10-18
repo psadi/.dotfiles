@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Kanagawa-themed session lock for niri (swaylock).
+# Used by the idle chain in niri/config.kdl and Mod+Alt+L.
+set -euo pipefail
+
+exec swaylock -f \
+  --color 1f1f28 \
+  --text-color dcd7ba \
+  --inside-color 1f1f28cc \
+  --ring-color 363646 \
+  --ring-ver-color 7e9cd8 \
+  --ring-wrong-color e82424 \
+  --key-hl-color 7aa89f \
+  --bs-hl-color e82424 \
+  --line-color 00000000 \
+  --separator-color 00000000 \
+  --font "GeistMono NF" \
+  --indicator-radius 120 \
+  --indicator-thickness 8

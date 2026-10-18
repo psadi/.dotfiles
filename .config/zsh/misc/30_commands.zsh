@@ -101,6 +101,9 @@ if (( $+commands[warp] )); then
 fi
 
 
-if ((  $+commands[npm] )); then
-  export PATH="$PATH:$(npm config get prefix)/bin"
-fi
+# npm global prefix — set explicitly instead of running `npm config get prefix`
+# at startup. That command errors with "prefix cannot be changed from project
+# config" whenever the cwd is the dotfiles repo (its .npmrc is read as a
+# project config), and its stderr breaks p10k's instant prompt.
+export NPM_CONFIG_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/npm-packages"
+export PATH="$PATH:${NPM_CONFIG_PREFIX}/bin"

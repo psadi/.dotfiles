@@ -1,0 +1,5 @@
+# Yazi theme — Kanagawa
+# vim: ft=toml sw=2 ts=2 et
+[flavor]
+dark = "kanagawa"
+light = "kanagawa"

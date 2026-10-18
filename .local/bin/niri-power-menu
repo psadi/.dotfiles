@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Battery / power menu (fuzzel). Opened by clicking the battery in Waybar.
+set -euo pipefail
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
+
+bat=$(upower -e 2>/dev/null | grep -m1 BAT || true)
+if [ -n "$bat" ]; then
+    pct=$(upower -i "$bat" | awk -F': *' '/percentage/{print $2; exit}')
+    st=$(upower -i "$bat" | awk -F': *' '/state/{print $2; exit}')
+    bat_info="${pct:-?} ${st:-?}"
+else
+    bat_info="no battery"
+fi
+
+choice=$(
+    {
+        printf '\uF240\u2003Battery: %s\n' "$bat_info"
+        printf '\uF0E7\u2003Performance\n'
+        printf '\uF24E\u2003Balanced\n'
+        printf '\uF06C\u2003Power saver\n'
+        printf '\uF186\u2003Sleep\n'
+        printf '\uF08B\u2003Logout\n'
+        printf '\uF01E\u2003Restart\n'
+        printf '\uF011\u2003Shutdown\n'
+    } | fuzzel --dmenu --prompt "power> " --lines 10
+) || exit 0
+
+case "$choice" in
+    *"Battery:"*)
+        if [ -n "$bat" ]; then
+            notify "Battery" "$(upower -i "$bat" | grep -E 'state|percentage|time to|energy' | tr -s ' ' | paste -sd ' ' -)"
+        fi ;;
+    *"Performance") powerprofilesctl set performance; notify "Power profile" "performance" ;;
+    *"Balanced")    powerprofilesctl set balanced;    notify "Power profile" "balanced" ;;
+    *"Power saver") powerprofilesctl set power-saver; notify "Power profile" "power-saver" ;;
+    *"Sleep")       systemctl suspend ;;
+    *"Logout")      niri msg action quit ;;
+    *"Restart")     systemctl reboot ;;
+    *"Shutdown")    systemctl poweroff ;;
+    *) exit 0 ;;
+esac

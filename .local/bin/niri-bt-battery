@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Connected Bluetooth device battery % for Waybar (custom module).
+# Prints nothing when no battery is reported, so the module stays empty.
+set -euo pipefail
+
+mac=$(bluetoothctl devices Connected 2>/dev/null | awk '{print $2; exit}')
+[ -z "${mac:-}" ] && exit 0
+
+info=$(bluetoothctl info "$mac" 2>/dev/null || true)
+pct=$(printf '%s\n' "$info" | sed -n 's/.*Battery Percentage.*(\([0-9][0-9]*\)).*/\1/p')
+[ -z "${pct:-}" ] && exit 0
+
+printf '\uF240\u2003%s%%\n' "$pct"

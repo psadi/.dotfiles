@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Toggle Bluetooth (used by the bar right-click and available to the menu).
+set -euo pipefail
+
+if bluetoothctl show 2>/dev/null | grep -q 'Powered: yes'; then
+    bluetoothctl power off >/dev/null
+    msg="Bluetooth off"
+else
+    bluetoothctl power on >/dev/null
+    msg="Bluetooth on"
+fi
+
+command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$msg" || true

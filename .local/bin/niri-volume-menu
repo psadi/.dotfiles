@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Audio menu (fuzzel): volume, mute, mixer.
+set -euo pipefail
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
+pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 12; }
+
+info=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null || true)
+vol=$(printf '%s\n' "$info" | awk '{printf "%d", $2*100}')
+[ -z "${vol:-}" ] && vol="?"
+if printf '%s\n' "$info" | grep -q MUTED; then
+    state="muted"
+else
+    state="${vol}%"
+fi
+
+choice=$(printf '%s\n' \
+    "Volume: $state" \
+    "Mute: toggle" \
+    "Volume +5%" \
+    "Volume -5%" \
+    "Open mixer (wiremix)" | pick "audio") || exit 0
+
+case "$choice" in
+    "Mute: toggle")      niri-volume mute ;;
+    "Volume +5%")        niri-volume up ;;
+    "Volume -5%")        niri-volume down ;;
+    "Open mixer (wiremix)") exec niri-term wiremix ;;
+    "Volume:"*)          notify "Volume" "$state" ;;
+    *) exit 0 ;;
+esac

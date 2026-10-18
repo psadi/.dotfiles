@@ -1,0 +1,115 @@
+/* Waybar — Kanagawa Wave
+ * vim: ft=css sw=2 ts=2 et
+ */
+
+* {
+  font-family: "Geist", "GeistMono NF", "GeistMono Nerd Font", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1f1f28;
+  color: #dcd7ba;
+}
+
+#workspaces button {
+  padding: 0 9px;
+  margin: 0 1px;
+  color: #727169;
+  background: transparent;
+  border-radius: 6px;
+  min-width: 18px;
+}
+
+#workspaces button.focused {
+  color: #1f1f28;
+  background: #7e9cd8;
+}
+
+#workspaces button.active {
+  color: #dcd7ba;
+}
+
+#workspaces button.empty {
+  color: #54546d;
+}
+
+#workspaces button.urgent {
+  color: #1f1f28;
+  background: #e82424;
+}
+
+#workspaces button:hover {
+  background: #2a2a37;
+}
+
+#window {
+  padding: 0 10px;
+  color: #dcd7ba;
+}
+
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery,
+#tray,
+#clock {
+  padding: 0 10px;
+  color: #dcd7ba;
+}
+
+#pulseaudio.muted {
+  color: #e82424;
+}
+
+#network.disconnected {
+  color: #e82424;
+}
+
+#bluetooth.disabled,
+#bluetooth.off,
+#bluetooth.no-controller {
+  color: #727169;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #98bb6c;
+}
+
+#battery.warning {
+  color: #e6c384;
+}
+
+#battery.critical {
+  color: #e82424;
+}
+
+#tray {
+  padding: 0 6px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: #e82424;
+  border-radius: 6px;
+}
+
+tooltip {
+  background: #1f1f28;
+  border: 1px solid #363646;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: #dcd7ba;
+}

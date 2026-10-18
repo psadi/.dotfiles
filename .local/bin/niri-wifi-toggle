@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Toggle Wi-Fi (used by the bar right-click and available to the menu).
+set -euo pipefail
+
+if [ "$(nmcli radio wifi 2>/dev/null || echo off)" = "enabled" ]; then
+    nmcli radio wifi off
+    msg="Wi-Fi off"
+else
+    nmcli radio wifi on
+    msg="Wi-Fi on"
+fi
+
+command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$msg" || true

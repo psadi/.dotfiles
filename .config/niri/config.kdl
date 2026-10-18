@@ -1,0 +1,161 @@
+// niri config — Phase 1 (migrated from GNOME/Forge)
+// Kanagawa palette · GTK-free stack.
+// Validate before logout:  niri validate -c ~/.config/niri/config.kdl
+// vim: ft=kdl sw=4 ts=4 et
+
+// ── Input ────────────────────────────────────────────────────────────────────
+input {
+    keyboard {
+        // xkb { layout "us" }
+        repeat-delay 400
+        repeat-rate 40
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+// ── Outputs ──────────────────────────────────────────────────────────────────
+// Auto-detected layout: eDP-1 (laptop, left) + DP-1 (external, right).
+// Positions are logical pixels; eDP-1 is 1920/1.25 = 1536 wide.
+output "eDP-1" {
+    scale 1.25
+    position x=0 y=0
+}
+
+output "DP-1" {
+    scale 1
+    position x=1536 y=0
+}
+
+// Screenshots land here (niri expands %-style strftime).
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// ── Environment (niri itself + spawned children) ─────────────────────────────
+environment {
+    XCURSOR_THEME "Banana"
+    XCURSOR_SIZE  "24"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+}
+
+prefer-no-csd
+
+// ── Autostart ────────────────────────────────────────────────────────────────
+// Clipboard history + persistence (replaces GNOME clipboard-indicator)
+spawn-at-startup "wl-clip-persist" "--clipboard" "both"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+
+// Notifications (replaces GNOME notifications)
+spawn-at-startup "mako"
+
+// Idle: lock @10m, monitors off @11m, lock before suspend (niri drives the monitor power)
+spawn-at-startup "swayidle" "-w" "timeout" "600" "$HOME/.local/bin/niri-lock" "timeout" "660" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" "before-sleep" "$HOME/.local/bin/niri-lock"
+
+// Status bar (Waybar creates one bar per output automatically)
+spawn-at-startup "waybar"
+
+// Static wallpaper
+spawn-at-startup "niri-wallpaper"
+
+// ── Keybindings ──────────────────────────────────────────────────────────────
+binds {
+    // Launch (carried from GNOME media-keys)
+    Mod+Return       { spawn "ghostty"; }
+    Mod+Shift+Return { spawn "brave-origin"; }
+    Mod+Shift+N      { spawn-sh "$HOME/.local/bin/niri-term yazi"; }
+    Mod+D            { spawn "fuzzel"; }
+    Mod+Space        { spawn "fuzzel"; }
+    Mod+Escape       { spawn-sh "$HOME/.local/bin/niri-menu"; }
+    Mod+V            { spawn-sh "cliphist list | fuzzel --dmenu --prompt 'clipboard> ' | cliphist decode | wl-copy"; }
+    Mod+Slash        { spawn-sh "cliphist list | fuzzel --dmenu --prompt 'clipboard> ' | cliphist decode | wl-copy"; }
+
+    // Windows
+    Mod+Q       { close-window; }
+    Mod+Shift+Q { close-window; }            // GNOME close bind (Super+Shift+Q)
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+M { spawn-sh "$HOME/.local/bin/niri-term btm"; }
+    Mod+Shift+C { spawn-sh "$HOME/.local/bin/niri-term calcurse"; }
+    Mod+M       { maximize-column; }
+    Mod+C       { center-column; }
+    Mod+Shift+V { toggle-window-floating; }
+    Mod+Shift+S { switch-focus-between-floating-and-tiling; }
+    Mod+BracketLeft  { consume-window-into-column; }
+    Mod+BracketRight { expel-window-from-column; }
+
+    // Column / window sizing
+    Mod+R           { switch-preset-column-width; }
+    Mod+Minus       { set-column-width "-10%"; }
+    Mod+Equal       { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Focus (Forge hjkl muscle memory)
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+
+    // Move
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+L { move-column-right; }
+
+    // Workspaces 1–4 (carried from GNOME)
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4  { move-column-to-workspace 4; }   // GNOME used Super+Shift+4 for screenshot
+    Ctrl+Mod+Left  { focus-workspace-down; }
+    Ctrl+Mod+Right { focus-workspace-up; }
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+WheelScrollDown { focus-workspace-down; }
+    Mod+WheelScrollUp   { focus-workspace-up; }
+
+    // Monitors (eDP-1 left, DP-1 right)
+    Mod+Alt+Left  { focus-monitor-left; }
+    Mod+Alt+Right { focus-monitor-right; }
+    Mod+Ctrl+Shift+Left  { move-column-to-monitor-left; }
+    Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
+
+    // Overview (replaces the GNOME switcher extension)
+    Mod+Tab { toggle-overview; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Screenshots (niri built-in; replaces GNOME screenshot UI)
+    Print         { spawn-sh "$HOME/.local/bin/niri-screenshot screenshot"; }
+    Mod+Shift+4   { spawn-sh "$HOME/.local/bin/niri-screenshot screenshot"; }
+    Alt+Print     { spawn-sh "$HOME/.local/bin/niri-screenshot screenshot-window"; }
+    Ctrl+Print    { spawn-sh "$HOME/.local/bin/niri-screenshot screenshot-screen"; }
+
+    // Media / hardware keys
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "$HOME/.local/bin/niri-volume up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "$HOME/.local/bin/niri-volume down"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "$HOME/.local/bin/niri-volume mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "$HOME/.local/bin/niri-brightness up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "$HOME/.local/bin/niri-brightness down"; }
+    XF86AudioPlay { spawn-sh "playerctl play-pause"; }
+    XF86AudioNext { spawn-sh "playerctl next"; }
+    XF86AudioPrev { spawn-sh "playerctl previous"; }
+
+    // Power button -> fuzzel power menu (requires logind HandlePowerKey=ignore)
+    XF86PowerOff { spawn-sh "$HOME/.local/bin/niri-power-menu"; }
+
+    // Caffeine (idle inhibit) — carried from the GNOME caffeine extension
+    Ctrl+Alt+C { spawn-sh "$HOME/.local/bin/niri-caffeine"; }
+
+    // Session
+    Mod+Alt+L   { spawn-sh "$HOME/.local/bin/niri-lock"; }
+    Mod+Shift+E { quit; }
+}

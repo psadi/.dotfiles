@@ -3,7 +3,7 @@
 
 export HISTIGNORE='*sudo -S*'
 
-echo "Bootstrapping your system"
+echo "Bootstrapping your system (niri desktop)"
 
 # Validate sudo access
 read -rs -p "Enter your sudo password: " SUDO_PASSWORD
@@ -41,12 +41,17 @@ install_os_deps() {
     yay -Sy --noconfirm --needed --quiet "jq"
   fi
 
-  local install_pkgs=$(jq -r '.yay.install | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
-  local remove_pkgs=$(jq -r '.yay.remove | unique | sort | join(" ")' < $HOME/.dotfiles/packages.json)
+  local install_pkgs=$(jq -r '.yay.install | unique | sort | join(" ")' < "${HOME}/.dotfiles/packages.json")
+  # Only remove packages that are actually installed (pacman aborts on missing targets).
+  local remove_pkgs=$(jq -r '.yay.remove[]' < "${HOME}/.dotfiles/packages.json" |
+    while read -r p; do pacman -Qq "$p" &>/dev/null && printf '%s ' "$p"; done)
+
   yay -Sy --noconfirm --needed --quiet $install_pkgs
   install_mise_deps
   yay -S --noconfirm --clean
-  yay -Rns --noconfirm $remove_pkgs || true
+  if [ -n "${remove_pkgs// /}" ]; then
+    yay -Rns --noconfirm $remove_pkgs || true
+  fi
 }
 
 clone_dotfiles() {
@@ -69,6 +74,8 @@ configure_systemd_services() {
     ufw
     bluetooth
     NetworkManager
+    tailscaled
+    power-profiles-daemon
     snapper-backup.timer
     snapper-cleanup.timer
     snapper-boot.timer
@@ -76,6 +83,7 @@ configure_systemd_services() {
 
   local user_services=(
     syncthing
+    hyprpolkitagent
   )
 
   for service in "${system_services[@]}"; do
@@ -90,6 +98,16 @@ configure_systemd_services() {
     echo "Enabling Bluetooth Fast Connectable..."
     sudo sed -i '/^\[General\]/a FastConnectable=true' /etc/bluetooth/main.conf
     sudo systemctl restart bluetooth
+  fi
+}
+
+configure_login() {
+  # TUI display manager (ly). tty1 conflicts with getty automatically.
+  if command -v ly-dm &>/dev/null; then
+    echo "Configuring ly login manager"
+    sudo systemctl disable gdm 2>/dev/null || true
+    sudo systemctl disable 'ly@tty2.service' 2>/dev/null || true
+    sudo systemctl enable 'ly@tty1.service' || true
   fi
 }
 
@@ -119,7 +137,6 @@ configure_font() {
     fi
   done
   fc-cache -f -v "${HOME}/.local/share/fonts"
-
 }
 
 configure_theme() {
@@ -129,6 +146,8 @@ configure_theme() {
   local theme_url="https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme/archive/refs/heads/master.zip"
   local cursor_url="https://github.com/ful1e5/banana-cursor/releases/download/v2.0.0/Banana.tar.xz"
 
+  # GTK3/GTK4 theme; the -l flag links the GTK4 theme into ~/.config/gtk-4.0
+  # so libadwaita/GTK4 apps (and Waybar) pick up Kanagawa too.
   if [ ! -d "${HOME}/.local/share/themes/Kanagawa-Dark" ]; then
     echo "Configuring Theme..."
     curl -sSL "${theme_url}" -o /tmp/Kanagawa-GKT-Theme-main.zip
@@ -138,7 +157,7 @@ configure_theme() {
       chmod +x install.sh
       ./install.sh -c dark -l --tweaks macos -d "${HOME}/.local/share/themes"
     )
-    rm -rf /tmp/Kanagawa-GKT-Theme-master*
+    rm -rf /tmp/Kanagawa-GKT-Theme-*
   fi
 
   if [ ! -d "${HOME}/.local/share/icons/Banana" ]; then
@@ -148,32 +167,28 @@ configure_theme() {
     rm -rf /tmp/Banana.tar.xz
   fi
 
-  local user_theme_ext_dir="${HOME}/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas"
-  if [ -d "${user_theme_ext_dir}" ] && [ -f "${user_theme_ext_dir}/org.gnome.shell.extensions.user-theme.gschema.xml" ]; then
-    echo "Compiling GNOME shell extension schemas..."
-    glib-compile-schemas "${user_theme_ext_dir}" 2>/dev/null || true
-  fi
+  fc-cache -f >/dev/null 2>&1 || true
 }
 
-gnome_tweaks(){
-  gsettings set org.gnome.desktop.default-applications.terminal exec gnome-terminal
-  gsettings set org.gnome.desktop.interface font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11'
-  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11'
-  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-  gsettings set org.gnome.desktop.wm.preferences button-layout ':close'
-	gsettings set org.gnome.desktop.interface show-battery-percentage true
-		gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark'
-	gsettings set org.gnome.desktop.interface cursor-theme 'Banana'
-	gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Settings.desktop', 'org.gnome.Nautilus.desktop', 'helium.desktop', 'com.mitchellh.ghostty.desktop']"
+configure_gsettings() {
+  # GTK/libadwaita apps (Waybar, zenity, etc.) read these; no GNOME shell needed.
+  gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark' || true
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' || true
+  gsettings set org.gnome.desktop.interface font-name 'Geist 11' || true
+  gsettings set org.gnome.desktop.interface document-font-name 'Geist 11' || true
+  gsettings set org.gnome.desktop.interface monospace-font-name 'GeistMono Nerd Font 11' || true
+  gsettings set org.gnome.desktop.interface cursor-theme 'Banana' || true
+  gsettings set org.gnome.desktop.interface show-battery-percentage true || true
+  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita' || true
+}
 
-  # Dconf load
-  local DOTFILES_DIR="${HOME}/.dotfiles"
-  dconf load /org/gnome/shell/ < "${DOTFILES_DIR}/dconf/shell.dconf"
-  dconf load /org/gnome/shell/keybindings/ < "${DOTFILES_DIR}/dconf/shell-keybindings.dconf"
-  dconf load /org/gnome/desktop/wm/keybindings/ < "${DOTFILES_DIR}/dconf/keybindings.dconf"
-  dconf load /org/gnome/settings-daemon/plugins/media-keys/ < "${DOTFILES_DIR}/dconf/media-keys.dconf"
+configure_default_apps() {
+  echo "Configuring default applications"
+  xdg-settings set default-web-browser brave-origin.desktop || true
+  xdg-mime default brave-origin.desktop x-scheme-handler/http x-scheme-handler/https text/html || true
+  # yazi as the folder handler (see .local/share/applications/yazi.desktop)
+  xdg-mime default yazi.desktop inode/directory || true
+  update-desktop-database "${HOME}/.local/share/applications" 2>/dev/null || true
 }
 
 configure_io_scheduler() {
@@ -193,18 +208,14 @@ EOF
 
 general_system_tweaks() {
   # Reference: https://wiki.cachyos.org/configuration/general_system_tweaks
-  # CPU governor and energy performance preference
   sudo cpupower frequency-set -g powersave
   echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
-  # Enable AMD P-state if not already active
   if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status 2>/dev/null; then
     echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
   fi
-  # Configure split lock mitigation if not already set
   if [ ! -f /etc/sysctl.d/99-splitlock.conf ] || ! grep -q "kernel.split_lock_mitigate=0" /etc/sysctl.d/99-splitlock.conf; then
     echo 'kernel.split_lock_mitigate=0' | sudo tee /etc/sysctl.d/99-splitlock.conf
   fi
-  # Enable RCU Lazy in kernel cmdline for power savings
   if ! grep -q "rcutree.enable_rcu_lazy=1" /proc/cmdline; then
     if [ -f /etc/default/limine ]; then
       echo "Enabling RCU Lazy in /etc/default/limine..."
@@ -214,10 +225,8 @@ general_system_tweaks() {
       echo " rcutree.enable_rcu_lazy=1" | sudo tee -a /etc/kernel/cmdline
     else
       echo "Warning: rcutree.enable_rcu_lazy=1 not in kernel cmdline"
-      echo "Add it to your bootloader kernel parameters for ~5-10% power savings"
     fi
   fi
-  # Remove immutable attribute from EFI variables
   for var in /sys/firmware/efi/efivars/db-* /sys/firmware/efi/efivars/KEK-*; do
     if [ -e "$var" ] && lsattr "$var" 2>/dev/null | awk '{print $1}' | grep -q "i"; then
       sudo chattr -i "$var" 2>/dev/null
@@ -231,7 +240,7 @@ stow_link() {
   stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
 }
 
-configure_fstab(){
+configure_fstab() {
   if grep -q "2eacdb10-9d3c-4557-900c-28fbf40281e7" /etc/fstab; then
     echo "fstab entry already exists"
   else
@@ -254,8 +263,10 @@ install_zap
 configure_user_shell
 configure_font
 configure_theme
+configure_gsettings
+configure_default_apps
 stow_link
-gnome_tweaks
+configure_login
 configure_systemd_services
 configure_io_scheduler
 general_system_tweaks

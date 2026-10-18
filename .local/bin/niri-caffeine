@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Toggle idle inhibition ("caffeine") for the niri session.
+# Replaces the GNOME caffeine@patapon.info shell extension.
+set -euo pipefail
+
+hatch='systemd-inhibit --what=idle --who=niri-caffeine'
+
+if pgrep -f "$hatch" >/dev/null 2>&1; then
+    pkill -f "$hatch" || true
+    command -v notify-send >/dev/null 2>&1 && notify-send -a caffeine "Caffeine off" "Idle inhibition disabled" || true
+else
+    # shellcheck disable=SC2086
+    systemd-inhibit --what=idle --who=niri-caffeine --why="manual toggle" --mode=block sleep infinity &
+    disown || true
+    command -v notify-send >/dev/null 2>&1 && notify-send -a caffeine "Caffeine on" "Idle inhibition enabled" || true
+fi

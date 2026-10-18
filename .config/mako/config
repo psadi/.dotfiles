@@ -1,0 +1,17 @@
+# mako — Kanagawa Wave
+# vim: ft=config sw=2 ts=2 et
+font=GeistMono NF 11
+background-color=#1f1f28
+text-color=#dcd7ba
+border-color=#7e9cd8
+border-size=2
+border-radius=8
+padding=10
+margin=8
+width=340
+height=140
+default-timeout=5000
+max-visible=5
+sort=-time
+group-by=app-name
+anchor=top-right

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Minimal wob OSD bridge for the niri session.
+# Usage: niri-osd <0-100>
+set -euo pipefail
+
+value="${1:?usage: niri-osd <0-100>}"
+runtime="${XDG_RUNTIME_DIR:-/tmp}"
+pipe="$runtime/wob.fifo"
+
+if ! pgrep -x wob >/dev/null 2>&1; then
+    rm -f "$pipe"
+    mkfifo "$pipe"
+    # Reopen the fifo on each write so callers can come and go.
+    ( while :; do cat "$pipe" 2>/dev/null || true; done | wob -a top -m 3 >/dev/null 2>&1 & ) &
+    sleep 0.1
+fi
+
+printf '%s\n' "$value" > "$pipe" 2>/dev/null || true

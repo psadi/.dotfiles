@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Brightness control + OSD for the niri session.
+# Usage: niri-brightness up|down
+set -euo pipefail
+
+dir="$(cd "$(dirname "$0")" && pwd)"
+
+case "${1:-}" in
+    up)   brightnessctl set "5%+" ;;
+    down) brightnessctl set "5%-" ;;
+    *) echo "usage: niri-brightness up|down" >&2; exit 2 ;;
+esac
+
+cur="$(brightnessctl get)"
+max="$(brightnessctl max)"
+if [ "${max:-0}" -gt 0 ]; then
+    pct=$(( cur * 100 / max ))
+else
+    pct=0
+fi
+
+"$dir/niri-osd" "$pct" || true
