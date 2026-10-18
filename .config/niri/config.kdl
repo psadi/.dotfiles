@@ -56,7 +56,7 @@ spawn-at-startup "swayidle" "-w" "timeout" "600" "$HOME/.local/bin/niri-lock" "t
 spawn-at-startup "waybar"
 
 // Static wallpaper
-spawn-at-startup "niri-wallpaper"
+spawn-sh-at-startup "exec $HOME/.local/bin/niri-wallpaper"
 
 // ── Keybindings ──────────────────────────────────────────────────────────────
 binds {
