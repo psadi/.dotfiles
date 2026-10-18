@@ -1,31 +1,77 @@
 #!/usr/bin/env bash
-# Audio menu (fuzzel): volume, mute, mixer.
+# Audio menu (fuzzel): volume, mute, output/input device switching, mixer.
 set -euo pipefail
 
 notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
-pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 12; }
+pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
+
+# List Audio Sinks or Sources, marking the default with ●.
+list_devices() {
+    local kind="$1"
+    wpctl status 2>/dev/null | awk -v kind="$kind" '
+        /^Audio/{a=1}
+        /^Video/{a=0}
+        a && index($0, kind":") {s=1; next}
+        a && s && /(Sinks|Sources|Filters|Streams):/ {s=0}
+        a && s && /[0-9]+\./ {
+            line=$0
+            def = (line ~ /\*/) ? "●" : " "
+            gsub(/[│├└─]/, "", line)
+            gsub(/\*/, "", line)
+            sub(/^[[:space:]]+/, "", line)
+            sub(/[[:space:]]*\[vol:.*$/, "", line)
+            print def " " line
+        }'
+}
+
+device_name() { printf '%s' "$1" | sed -E 's/^[^0-9]*[0-9]+\.\s*//'; }
+device_id()   { printf '%s' "$1" | sed -E 's/^[^0-9]*([0-9]+)\..*/\1/'; }
+
+default_name() {
+    wpctl inspect "$1" 2>/dev/null |
+        sed -n 's/.*node.description = "\(.*\)"/\1/p' | head -1
+}
+
+output_menu() {
+    local choice id name
+    choice=$(list_devices Sinks | pick "output") || return 0
+    id=$(device_id "$choice"); name=$(device_name "$choice")
+    [ -n "$id" ] || return 0
+    wpctl set-default "$id" >/dev/null 2>&1 && notify "Audio output" "$name"
+}
+
+input_menu() {
+    local choice id name
+    choice=$(list_devices Sources | pick "input") || return 0
+    id=$(device_id "$choice"); name=$(device_name "$choice")
+    [ -n "$id" ] || return 0
+    wpctl set-default "$id" >/dev/null 2>&1 && notify "Audio input" "$name"
+}
 
 info=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null || true)
 vol=$(printf '%s\n' "$info" | awk '{printf "%d", $2*100}')
 [ -z "${vol:-}" ] && vol="?"
-if printf '%s\n' "$info" | grep -q MUTED; then
-    state="muted"
-else
-    state="${vol}%"
-fi
+if printf '%s\n' "$info" | grep -q MUTED; then state="muted"; else state="${vol}%"; fi
+
+out=$(default_name @DEFAULT_AUDIO_SINK@);   [ -n "${out:-}" ] || out="default"
+inp=$(default_name @DEFAULT_AUDIO_SOURCE@); [ -n "${inp:-}" ] || inp="default"
 
 choice=$(printf '%s\n' \
     "Volume: $state" \
     "Mute: toggle" \
     "Volume +5%" \
     "Volume -5%" \
+    "Output device: $out …" \
+    "Input device: $inp …" \
     "Open mixer (wiremix)" | pick "audio") || exit 0
 
 case "$choice" in
-    "Mute: toggle")      niri-volume mute ;;
-    "Volume +5%")        niri-volume up ;;
-    "Volume -5%")        niri-volume down ;;
+    "Mute: toggle")        niri-volume mute ;;
+    "Volume +5%")          niri-volume up ;;
+    "Volume -5%")          niri-volume down ;;
+    "Output device:"*)     output_menu ;;
+    "Input device:"*)      input_menu ;;
     "Open mixer (wiremix)") exec niri-term wiremix ;;
-    "Volume:"*)          notify "Volume" "$state" ;;
+    "Volume:"*)            notify "Volume" "$state" ;;
     *) exit 0 ;;
 esac
