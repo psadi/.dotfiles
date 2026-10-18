@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Power Menu
+Comment=Power, session and battery menu
+Exec=/home/adithyaps/.local/bin/niri-power-menu
+Icon=system-shutdown
+Terminal=false
+Categories=System;
+Keywords=power;menu;battery;profile;

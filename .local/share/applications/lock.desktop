@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Lock
+Comment=Lock the session
+Exec=/home/adithyaps/.local/bin/niri-lock
+Icon=system-lock-screen
+Terminal=false
+Categories=System;
+Keywords=lock;screen;
