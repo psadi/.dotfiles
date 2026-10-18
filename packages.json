@@ -95,6 +95,9 @@
     ],
     "remove": [
       "btrfs-assistant",
+      "catatonit",
+      "conmon",
+      "containers-common",
       "epiphany",
       "evolution-data-server",
       "flatpak",
@@ -124,6 +127,7 @@
       "gnome-text-editor",
       "gnome-tour",
       "gnome-tweaks",
+      "gum",
       "kcolorscheme",
       "kconfig",
       "kcoreaddons",
@@ -132,17 +136,25 @@
       "kguiaddons",
       "ki18n",
       "knotifications",
+      "kvantum",
       "kwallet",
       "kwidgetsaddons",
       "malcontent",
       "mutter",
       "nautilus-python",
+      "netctl",
+      "passt",
+      "pavucontrol",
+      "python-dotenv",
       "qca-qt6",
       "qt6-5compat",
       "qt6-multimedia",
       "qt6-multimedia-ffmpeg",
       "qt6-shadertools",
-      "qt6-wayland"
+      "qt6-wayland",
+      "s-nail",
+      "showtime",
+      "xl2tpd"
     ]
   }
 }
