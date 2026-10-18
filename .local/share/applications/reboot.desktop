@@ -2,7 +2,7 @@
 Type=Application
 Name=Reboot
 Comment=Restart the system
-Exec=systemctl reboot
+Exec=niri-confirm-power reboot
 Icon=view-refresh
 Terminal=false
 Categories=System;

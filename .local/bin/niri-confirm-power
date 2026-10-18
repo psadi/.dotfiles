@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Ask for confirmation (fuzzel) before power off / reboot.
+# Usage: niri-confirm-power poweroff|reboot
+set -euo pipefail
+
+action="${1:?usage: niri-confirm-power poweroff|reboot}"
+case "$action" in
+    poweroff) label="Power off"; cmd=(systemctl poweroff) ;;
+    reboot)   label="Reboot";    cmd=(systemctl reboot) ;;
+    *) echo "usage: niri-confirm-power poweroff|reboot" >&2; exit 2 ;;
+esac
+
+choice=$(printf 'No\nYes\n' | fuzzel --dmenu --prompt "$label? " --lines 2) || exit 0
+[ "$choice" = "Yes" ] && exec "${cmd[@]}"

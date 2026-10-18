@@ -36,7 +36,7 @@ case "$choice" in
     *"Power saver") powerprofilesctl set power-saver; notify "Power profile" "power-saver" ;;
     *"Sleep")       systemctl suspend ;;
     *"Logout")      niri msg action quit ;;
-    *"Restart")     systemctl reboot ;;
-    *"Shutdown")    systemctl poweroff ;;
+    *"Restart")     "$HOME/.local/bin/niri-confirm-power" reboot ;;
+    *"Shutdown")    "$HOME/.local/bin/niri-confirm-power" poweroff ;;
     *) exit 0 ;;
 esac

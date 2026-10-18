@@ -2,7 +2,7 @@
 Type=Application
 Name=Power Off
 Comment=Shut down the system
-Exec=systemctl poweroff
+Exec=niri-confirm-power poweroff
 Icon=system-shutdown
 Terminal=false
 Categories=System;
