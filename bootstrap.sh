@@ -184,6 +184,8 @@ configure_theme() {
   # Legacy cursor search path for apps that don't read XDG_DATA_HOME
   mkdir -p "${HOME}/.icons"
   ln -sfn "${HOME}/.local/share/icons/Banana" "${HOME}/.icons/Banana"
+  mkdir -p "${HOME}/.icons/default"
+  printf '[Icon Theme]\nInherits=Banana\n' > "${HOME}/.icons/default/index.theme"
 
   fc-cache -f >/dev/null 2>&1 || true
 }
