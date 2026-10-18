@@ -2,7 +2,8 @@
 # Static wallpaper for niri (swaybg).
 set -euo pipefail
 
-img="${NIRI_WALLPAPER:-$HOME/.local/share/backgrounds/niri-wallpaper.jpg}"
+img="${NIRI_WALLPAPER:-$HOME/Pictures/2.jpg}"
+[ -f "$img" ] || img="$HOME/.local/share/backgrounds/niri-wallpaper.jpg"
 [ -f "$img" ] || img="$HOME/Pictures/wal.jpg"
 if [ ! -f "$img" ]; then
     echo "niri-wallpaper: no image found" >&2
