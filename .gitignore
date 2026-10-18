@@ -3,3 +3,4 @@
 .config/nvim/nvim.log
 !.local/bin/pods
 .config/systemd/user/default.target.wants
+.config/ly/save.txt
