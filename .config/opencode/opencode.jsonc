@@ -1,19 +1,25 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode-go/deepseek-v4.1-flash",
-  "enabled_providers": ["opencode-go"],
-  "provider": {
+  "plugins": ["@xberg-io/opencode-xberg"],
+  "policies": [
+    { "action": "provider.use", "resource": "*", "effect": "deny" },
+    { "action": "provider.use", "resource": "opencode-go", "effect": "allow" }
+  ],
+  "providers": {
     "opencode-go": {
-      "options": {
+      "settings": {
         "baseURL": "http://127.0.0.1:8787/v1"
       }
-    },
+    }
   },
   "mcp": {
-    "headroom": {
-      "type": "local",
-      "command": ["headroom", "mcp", "serve"],
-      "enabled": true
+    "servers": {
+      "headroom": {
+        "type": "local",
+        "command": ["headroom", "mcp", "serve"],
+        "disabled": false
+      }
     }
   }
 }

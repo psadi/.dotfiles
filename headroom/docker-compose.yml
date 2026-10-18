@@ -8,5 +8,12 @@ services:
       - HEADROOM_HOST=0.0.0.0
       - HEADROOM_MODE=token
       - HEADROOM_TELEMETRY=off
+      - HEADROOM_ALLOW_UNAUTHENTICATED_BIND=1
       - OPENAI_TARGET_API_URL=https://opencode.ai/zen/go/v1
+      - HEADROOM_WORKSPACE_DIR=/home/nonroot/.headroom
+    volumes:
+      - headroom_workspace:/home/nonroot/.headroom
     restart: unless-stopped
+
+volumes:
+  headroom_workspace:
