@@ -90,21 +90,17 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // Focus (Forge hjkl muscle memory)
-    Mod+H { focus-column-left; }
-    Mod+J { focus-window-down; }
-    Mod+K { focus-window-up; }
-    Mod+L { spawn-sh "$HOME/.local/bin/niri-lock"; }   // Win+L locks (focus-right is Mod+Right)
+    // Focus (arrow keys)
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
     Mod+Right { focus-column-right; }
 
-    // Move
-    Mod+Shift+H { move-column-left; }
-    Mod+Shift+J { move-window-down; }
-    Mod+Shift+K { move-window-up; }
-    Mod+Shift+L { move-column-right; }
+    // Move (arrow keys)
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
 
     // Workspaces 1–4 (carried from GNOME)
     Mod+1 { focus-workspace 1; }
@@ -156,6 +152,7 @@ binds {
     Ctrl+Alt+C { spawn-sh "$HOME/.local/bin/niri-caffeine"; }
 
     // Session
+    Mod+L       { spawn-sh "$HOME/.local/bin/niri-lock"; }
     Mod+Alt+L   { spawn-sh "$HOME/.local/bin/niri-lock"; }
     Mod+Shift+E { quit; }
 }

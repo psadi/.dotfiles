@@ -4,7 +4,8 @@
 set -euo pipefail
 
 exec swaylock -f \
-  --color 1f1f28 \
+  --image "$HOME/.local/share/backgrounds/lock-kanagawa.png" \
+  --scaling fill \
   --text-color dcd7ba \
   --inside-color 1f1f28cc \
   --ring-color 363646 \
