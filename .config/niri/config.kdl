@@ -94,7 +94,7 @@ binds {
     Mod+H { focus-column-left; }
     Mod+J { focus-window-down; }
     Mod+K { focus-window-up; }
-    Mod+L { focus-column-right; }
+    Mod+L { spawn-sh "$HOME/.local/bin/niri-lock"; }   // Win+L locks (focus-right is Mod+Right)
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
