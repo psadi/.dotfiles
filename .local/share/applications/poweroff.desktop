@@ -2,7 +2,7 @@
 Type=Application
 Name=Power Off
 Comment=Shut down the system
-Exec=niri-confirm-power poweroff
+Exec=/home/adithyaps/.local/bin/niri-confirm-power poweroff
 Icon=system-shutdown
 Terminal=false
 Categories=System;

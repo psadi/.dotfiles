@@ -2,7 +2,7 @@
 Type=Application
 Name=Reboot
 Comment=Restart the system
-Exec=niri-confirm-power reboot
+Exec=/home/adithyaps/.local/bin/niri-confirm-power reboot
 Icon=view-refresh
 Terminal=false
 Categories=System;
