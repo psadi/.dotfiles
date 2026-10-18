@@ -102,13 +102,27 @@ configure_systemd_services() {
 }
 
 configure_login() {
-  # TUI display manager (ly). tty1 conflicts with getty automatically.
+  # TUI display manager (ly), using the version-controlled config in ~/.config/ly.
+  # tty1 conflicts with getty automatically.
   if command -v ly-dm &>/dev/null; then
     echo "Configuring ly login manager"
+    sudo mkdir -p /etc/systemd/system/ly@.service.d
+    sudo tee /etc/systemd/system/ly@.service.d/override.conf >/dev/null <<EOF
+[Service]
+ExecStart=
+ExecStart=/usr/bin/ly-dm -c ${HOME}/.config/ly
+EOF
+    sudo systemctl daemon-reload
     sudo systemctl disable gdm 2>/dev/null || true
     sudo systemctl disable 'ly@tty2.service' 2>/dev/null || true
     sudo systemctl enable 'ly@tty1.service' || true
   fi
+}
+
+configure_power_key() {
+  echo "Configuring power button to open the niri power menu"
+  sudo mkdir -p /etc/systemd/logind.conf.d
+  printf '[Login]\nHandlePowerKey=ignore\n' | sudo tee /etc/systemd/logind.conf.d/10-power-key.conf >/dev/null
 }
 
 install_zap() {
@@ -166,6 +180,10 @@ configure_theme() {
     tar -xf /tmp/Banana.tar.xz -C "${HOME}/.local/share/icons"
     rm -rf /tmp/Banana.tar.xz
   fi
+
+  # Legacy cursor search path for apps that don't read XDG_DATA_HOME
+  mkdir -p "${HOME}/.icons"
+  ln -sfn "${HOME}/.local/share/icons/Banana" "${HOME}/.icons/Banana"
 
   fc-cache -f >/dev/null 2>&1 || true
 }
@@ -268,6 +286,7 @@ configure_default_apps
 stow_link
 configure_login
 configure_systemd_services
+configure_power_key
 configure_io_scheduler
 general_system_tweaks
 configure_fstab
