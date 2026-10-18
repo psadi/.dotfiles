@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
-# Kanagawa session lock for niri.
-# Prefer hyprlock (its "Locked" placeholder fades out while typing);
-# fall back to swaylock with the Kanagawa lock image.
+# Kanagawa-themed session lock for niri (swaylock).
+# Shows a lock symbol on a plain Kanagawa background; no text.
 set -euo pipefail
-
-if command -v hyprlock >/dev/null 2>&1; then
-    hyprlock --config "$HOME/.config/hypr/hyprlock.conf" && exit 0
-fi
 
 exec swaylock -f \
   --image "$HOME/.local/share/backgrounds/lock-kanagawa.png" \
