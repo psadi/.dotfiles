@@ -1,124 +1,103 @@
 #!/usr/bin/env bash
-# niri-menu — fuzzel-driven control menu (no terminal needed).
+# niri-menu — one searchable, categorised fuzzel menu for everything.
+# Items are tagged [Category] so you can type "wifi", "audio", "display", "power"…
 set -euo pipefail
 
 notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
-pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 12; }
+ICON=$'\0icon\x1f'
 
+pick() { fuzzel --dmenu --prompt "${1:-niri> }" --lines 20; }
+
+# --- state helpers -----------------------------------------------------------
 wifi_state()     { [ "$(nmcli radio wifi 2>/dev/null)" = enabled ] && echo on || echo off; }
 bt_state()       { bluetoothctl show 2>/dev/null | grep -q 'Powered: yes' && echo on || echo off; }
 caffeine_state() { pgrep -f 'systemd-inhibit --what=idle --who=niri-caffeine' >/dev/null 2>&1 && echo on || echo off; }
 airplane_state() { rfkill list 2>/dev/null | grep -q 'Soft blocked: yes' && echo on || echo off; }
+profile()        { powerprofilesctl get 2>/dev/null || echo n/a; }
+vol()            { wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{printf "%d%%", $2*100}'; }
+night_state()    { pgrep -x wlsunset >/dev/null && echo on || echo off; }
+outputs()        { niri msg --json outputs 2>/dev/null | jq -r 'keys | join(" + ")'; }
 
+# --- actions -----------------------------------------------------------------
 system_menu() {
     while :; do
-        local choice
         choice=$(printf '%s\n' \
-            "Wi-Fi: toggle (now $(wifi_state))" \
-            "Wi-Fi: connect…" \
-            "Bluetooth: toggle (now $(bt_state))" \
-            "Bluetooth: devices…" \
-            "Airplane: toggle (now $(airplane_state))" \
-            "Caffeine: toggle (now $(caffeine_state))" \
-            "Night light: toggle" \
-            "Back" | pick "system") || choice=""
-
+            "[System] Wi-Fi: toggle (now $(wifi_state))${ICON}network-wireless" \
+            "[System] Wi-Fi: connect…${ICON}network-wireless" \
+            "[System] Bluetooth: toggle (now $(bt_state))${ICON}bluetooth" \
+            "[System] Bluetooth: devices…${ICON}bluetooth" \
+            "[System] Airplane mode: toggle (now $(airplane_state))${ICON}airplane-mode" \
+            "[System] Caffeine: toggle (now $(caffeine_state))${ICON}caffeine" \
+            "[System] Night light: toggle (now $(night_state))${ICON}night-light" \
+            "[System] Notifications: DND toggle${ICON}notifications" \
+            "[System] Back${ICON}go-previous" | pick "system> ") || return 0
         case "$choice" in
-            "Wi-Fi: toggle"*)
-                if [ "$(wifi_state)" = on ]; then nmcli radio wifi off; notify "Wi-Fi off"; else nmcli radio wifi on; notify "Wi-Fi on"; fi ;;
-            "Wi-Fi: connect…")
-                "$HOME/.local/bin/niri-wifi-menu" ;;
-            "Bluetooth: toggle"*)
-                if [ "$(bt_state)" = on ]; then bluetoothctl power off >/dev/null; notify "Bluetooth off"; else bluetoothctl power on >/dev/null; notify "Bluetooth on"; fi ;;
-            "Bluetooth: devices…")
-                "$HOME/.local/bin/niri-bt-menu" ;;
-            "Airplane: toggle"*)
-                if [ "$(airplane_state)" = on ]; then rfkill unblock all; notify "Airplane off"; else rfkill block all; notify "Airplane on"; fi ;;
-            "Caffeine: toggle"*)
-                "$HOME/.local/bin/niri-caffeine" ;;
-            "Night light: toggle")
-                if pgrep -x wlsunset >/dev/null; then pkill -x wlsunset; notify "Night light off"; else setsid wlsunset -t 4000 -T 6500 >/dev/null 2>&1 </dev/null & disown || true; notify "Night light on"; fi ;;
-            "Back"|"") return 0 ;;
+            *"Wi-Fi: toggle"*) if [ "$(wifi_state)" = on ]; then nmcli radio wifi off; notify "Wi-Fi off"; else nmcli radio wifi on; notify "Wi-Fi on"; fi ;;
+            *"Wi-Fi: connect"*) "$HOME/.local/bin/niri-wifi-menu" ;;
+            *"Bluetooth: toggle"*) if [ "$(bt_state)" = on ]; then bluetoothctl power off >/dev/null; notify "Bluetooth off"; else bluetoothctl power on >/dev/null; notify "Bluetooth on"; fi ;;
+            *"Bluetooth: devices"*) "$HOME/.local/bin/niri-bt-menu" ;;
+            *"Airplane"*) if [ "$(airplane_state)" = on ]; then rfkill unblock all; notify "Airplane off"; else rfkill block all; notify "Airplane on"; fi ;;
+            *"Caffeine"*) "$HOME/.local/bin/niri-caffeine" ;;
+            *"Night light"*) if pgrep -x wlsunset >/dev/null; then pkill -x wlsunset; notify "Night light off"; else setsid wlsunset -t 4000 -T 6500 >/dev/null 2>&1 </dev/null & disown; notify "Night light on"; fi ;;
+            *"DND"*) makoctl mode -t do-not-disturb >/dev/null 2>&1 && notify "Notifications" "DND toggled" ;;
+            *) return 0 ;;
         esac
     done
 }
 
-power_menu() {
-    local choice
+display_menu() { "$HOME/.local/bin/niri-display-menu"; }
+
+while :; do
     choice=$(printf '%s\n' \
-        "Profile: performance" \
-        "Profile: balanced" \
-        "Profile: power-saver" \
-        "Battery status" \
-        "Suspend" \
-        "Back" | pick "power") || choice=""
+        "[Apps] Launch application…${ICON}system-run" \
+        "[Apps] Files (yazi)${ICON}folder" \
+        "[Apps] Terminal (ghostty)${ICON}utilities-terminal" \
+        "[Apps] Browser (brave-origin)${ICON}web-browser" \
+        "[System] System…${ICON}preferences-system" \
+        "[Audio] Volume / output / input…${ICON}audio-volume-high" \
+        "[Display] Arrange displays…${ICON}video-display" \
+        "[Display] Connected: $(outputs)${ICON}video-display" \
+        "[Power] Profile: $(profile)${ICON}battery" \
+        "[Power] Power menu…${ICON}system-shutdown" \
+        "[Session] Lock${ICON}system-lock-screen" \
+        "[Session] Log out${ICON}system-log-out" \
+        "[Session] Reboot…${ICON}system-reboot" \
+        "[Session] Power off…${ICON}system-shutdown" \
+        "[Tools] Clipboard history${ICON}edit-paste" \
+        "[Tools] System monitor (btm)${ICON}utilities-system-monitor" \
+        "[Tools] Calendar (calcurse)${ICON}x-office-calendar" \
+        "[Tools] Screenshot (area)${ICON}camera-photo" \
+        "[Tools] Disk manager (gparted)${ICON}drive-harddisk" \
+        "[Tools] Settings: keybindings (nvim)${ICON}preferences-desktop-keyboard" | pick "niri> ") || exit 0
 
     case "$choice" in
-        "Profile: performance") powerprofilesctl set performance; notify "Power profile" "performance" ;;
-        "Profile: balanced")    powerprofilesctl set balanced;    notify "Power profile" "balanced" ;;
-        "Profile: power-saver") powerprofilesctl set power-saver; notify "Power profile" "power-saver" ;;
-        "Battery status")
-            local bat
-            bat=$(upower -e 2>/dev/null | grep -m1 BAT || true)
-            if [ -n "$bat" ]; then notify "Battery" "$(upower -i "$bat" | grep -E 'state|percentage|time to empty' | tr -s ' ' | paste -sd ' ' -)"; else notify "Battery" "no battery found"; fi ;;
-        "Suspend") systemctl suspend ;;
-        "Back"|"") return 0 ;;
+        *"Launch application"*) fuzzel ;;
+        *"Files (yazi)"*)       niri-term yazi ;;
+        *"Terminal (ghostty)"*) ghostty ;;
+        *"Browser"*)            brave-origin ;;
+        *"System…"*)            system_menu ;;
+        *"Volume / output"*)    "$HOME/.local/bin/niri-volume-menu" ;;
+        *"Arrange displays"*)   display_menu ;;
+        *"Connected:"*)         notify "Displays" "$(outputs)" ;;
+        *"Power menu"*)         "$HOME/.local/bin/niri-power-menu" ;;
+        *"Profile:"*)
+            cur=$(profile)
+            case "$cur" in
+                performance) next=balanced ;;
+                balanced)    next=power-saver ;;
+                *)           next=performance ;;
+            esac
+            powerprofilesctl set "$next" >/dev/null 2>&1 && notify "Power profile" "$next" ;;
+        *"Lock"*)        "$HOME/.local/bin/niri-lock" ;;
+        *"Log out"*)     niri msg action quit ;;
+        *"Reboot…"*)     "$HOME/.local/bin/niri-confirm-power" reboot ;;
+        *"Power off…"*)  "$HOME/.local/bin/niri-confirm-power" poweroff ;;
+        *"Clipboard"*)   cliphist list | fuzzel --dmenu --prompt 'clipboard> ' | cliphist decode | wl-copy ;;
+        *"System monitor"*) niri-term btm ;;
+        *"Calendar"*)    niri-term calcurse ;;
+        *"Screenshot"*)  "$HOME/.local/bin/niri-screenshot" screenshot ;;
+        *"Disk manager"*) gparted ;;
+        *"keybindings"*) niri-term nvim "$HOME/.config/niri/config.kdl" ;;
+        *) exit 0 ;;
     esac
-}
-
-settings_menu() {
-    local choice
-    choice=$(printf '%s\n' \
-        "Network (Wi-Fi networks)" \
-        "Bluetooth (devices)" \
-        "Audio (volume)" \
-        "System monitor (btm)" \
-        "Calendar (calcurse)" \
-        "Network (nmtui, advanced)" \
-        "Displays (niri outputs)" \
-        "Keybindings (niri config)" \
-        "Back" | pick "settings") || choice=""
-
-    case "$choice" in
-        "Network (Wi-Fi networks)") "$HOME/.local/bin/niri-wifi-menu" ;;
-        "Bluetooth (devices)")      "$HOME/.local/bin/niri-bt-menu" ;;
-        "Audio (volume)")           "$HOME/.local/bin/niri-volume-menu" ;;
-        "System monitor (btm)")    niri-term btm ;;
-        "Calendar (calcurse)")     niri-term calcurse ;;
-        "Network (nmtui, advanced)") niri-term nmtui ;;
-        "Displays (niri outputs)")  niri-term sh -c 'niri msg outputs; echo; read -r -p "press enter"' ;;
-        "Keybindings (niri config)") niri-term nvim "$HOME/.config/niri/config.kdl" ;;
-        "Back"|"") return 0 ;;
-    esac
-}
-
-main_menu() {
-    while :; do
-        local choice
-        choice=$(printf '%s\n' \
-            "Apps" \
-            "System" \
-            "Power" \
-            "Settings" \
-            "Files (yazi)" \
-            "Lock" \
-            "Logout" \
-            "Reboot" \
-            "Shutdown" | pick "niri") || exit 0
-
-        case "$choice" in
-            "Apps")          fuzzel ;;
-            "System")        system_menu ;;
-            "Power")         "$HOME/.local/bin/niri-power-menu" ;;
-            "Settings")      settings_menu ;;
-            "Files (yazi)")  niri-term yazi ;;
-            "Lock")          exec "$HOME/.local/bin/niri-lock" ;;
-            "Logout")        niri msg action quit ;;
-            "Reboot")        systemctl reboot ;;
-            "Shutdown")      systemctl poweroff ;;
-            *)               exit 0 ;;
-        esac
-    done
-}
-
-main_menu "$@"
+done

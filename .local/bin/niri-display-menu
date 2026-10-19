@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Display arrangement menu (fuzzel). Uses niri's runtime output config.
+# "Laptop only" / "External only" / extend in any direction.
+set -euo pipefail
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
+pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
+
+json() { niri msg --json outputs 2>/dev/null; }
+
+laptop() { json | jq -r 'keys[] | select(startswith("eDP"))' | head -1; }
+external() { json | jq -r 'keys[] | select(startswith("eDP")|not)' | head -1; }
+
+# Logical size of an output (0 if unknown/off).
+lw() { json | jq -r --arg m "$1" '.[$m].logical.width // 0'; }
+lh() { json | jq -r --arg m "$1" '.[$m].logical.height // 0'; }
+
+setpos() { niri msg output "$1" position set "$2" "$3" >/dev/null 2>&1 || true; }
+on()     { niri msg output "$1" on  >/dev/null 2>&1 || true; }
+off()    { niri msg output "$1" off >/dev/null 2>&1 || true; }
+
+extend() { # direction
+    local dir="$1" lp ex lpw lph exw exh
+    lp=$(laptop); ex=$(external)
+    [ -z "${lp:-}" ] || [ -z "${ex:-}" ] && { notify "Displays" "need two connected outputs"; return 1; }
+    on "$lp"; on "$ex"; sleep 0.3
+    lpw=$(lw "$lp"); lph=$(lh "$lp"); exw=$(lw "$ex"); exh=$(lh "$ex")
+    case "$dir" in
+        left)  setpos "$ex" 0 0;          setpos "$lp" "$exw" 0 ;;
+        right) setpos "$lp" 0 0;          setpos "$ex" "$lpw" 0 ;;
+        above) setpos "$ex" 0 0;          setpos "$lp" 0 "$exh" ;;
+        below) setpos "$lp" 0 0;          setpos "$ex" 0 "$lph" ;;
+    esac
+    notify "Displays" "external $dir of laptop"
+}
+
+status() {
+    local lp ex
+    lp=$(laptop); ex=$(external)
+    printf 'laptop=%s external=%s' "${lp:-none}" "${ex:-none}"
+}
+
+while :; do
+    lp=$(laptop); ex=$(external)
+    choice=$(printf '%s\n' \
+        "Laptop only" \
+        "External only" \
+        "External LEFT of laptop" \
+        "External RIGHT of laptop" \
+        "External ABOVE laptop" \
+        "External BELOW laptop" \
+        "Toggle external on/off" \
+        "Laptop scale 1.0" \
+        "Laptop scale 1.25" \
+        "Laptop scale 1.5" \
+        "Done" | pick "display ($(status))") || exit 0
+
+    case "$choice" in
+        "Laptop only")
+            [ -n "${ex:-}" ] && off "$ex"
+            on "$lp"; notify "Displays" "laptop only" ;;
+        "External only")
+            [ -n "${lp:-}" ] && off "$lp"
+            [ -n "${ex:-}" ] && on "$ex"; notify "Displays" "external only" ;;
+        "External LEFT of laptop")  extend left ;;
+        "External RIGHT of laptop") extend right ;;
+        "External ABOVE laptop")    extend above ;;
+        "External BELOW laptop")    extend below ;;
+        "Toggle external on/off")
+            [ -n "${ex:-}" ] || { notify "Displays" "no external output"; continue; }
+            if json | jq -e --arg m "$ex" '.[$m].logical != null' >/dev/null 2>&1; then
+                off "$ex"; notify "Displays" "external off"
+            else
+                on "$ex"; notify "Displays" "external on"
+            fi ;;
+        "Laptop scale 1.0")  niri msg output "$lp" scale 1.0  >/dev/null 2>&1; notify "Displays" "laptop scale 1.0" ;;
+        "Laptop scale 1.25") niri msg output "$lp" scale 1.25 >/dev/null 2>&1; notify "Displays" "laptop scale 1.25" ;;
+        "Laptop scale 1.5")  niri msg output "$lp" scale 1.5  >/dev/null 2>&1; notify "Displays" "laptop scale 1.5" ;;
+        *) exit 0 ;;
+    esac
+done
