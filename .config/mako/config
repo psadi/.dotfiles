@@ -1,6 +1,6 @@
 # mako — Kanagawa Wave
 # vim: ft=config sw=2 ts=2 et
-font=GeistMono NF 11
+font=Geist 11
 background-color=#1f1f28
 text-color=#dcd7ba
 border-color=#7e9cd8

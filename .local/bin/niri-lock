@@ -15,6 +15,6 @@ exec swaylock -f \
   --bs-hl-color e82424 \
   --line-color 00000000 \
   --separator-color 00000000 \
-  --font "GeistMono NF" \
+  --font "Geist" \
   --indicator-radius 120 \
   --indicator-thickness 8
