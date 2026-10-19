@@ -63,12 +63,6 @@ if (( $+commands[fzf] )); then
   evalcache 'fzf'
 fi
 
-# Yazi
-# ---------------------------------------------
-if (( $+commands[yazi])); then
-  alias yz=yazi
-fi
-
 # Zed
 # ---------------------------------------------
 if (( $+commands[zeditor] )); then

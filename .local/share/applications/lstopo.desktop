@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=lstopo
+Comment=Hardware topology viewer (hidden)
+Hidden=true
+NoDisplay=true
