@@ -70,7 +70,6 @@
       "gst-libav",
       "gst-plugin-pipewire",
       "gst-plugin-va",
-      "gtk-engine-murrine",
       "gvfs-afc",
       "gvfs-gphoto2",
       "gvfs-mtp",
