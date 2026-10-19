@@ -206,8 +206,8 @@ configure_default_apps() {
   echo "Configuring default applications"
   xdg-settings set default-web-browser brave-origin.desktop || true
   xdg-mime default brave-origin.desktop x-scheme-handler/http x-scheme-handler/https text/html || true
-  # yazi as the folder handler (see .local/share/applications/yazi.desktop)
-  xdg-mime default yazi.desktop inode/directory || true
+  # Nautilus as the folder handler (kept as a portal dependency anyway)
+  xdg-mime default org.gnome.Nautilus.desktop inode/directory || true
   update-desktop-database "${HOME}/.local/share/applications" 2>/dev/null || true
 }
 
