@@ -1,80 +1,154 @@
 #!/usr/bin/env bash
-# Audio menu (fuzzel): volume, mute, output/input device switching, mixer.
-# Nested: output/input submenus loop back here so you can change both.
+# Audio menu (fuzzel): volume, mute, output/input switching, JBL analog/digital.
+# Output list only shows *available* devices (hides dead HDMI/DP ports).
 set -euo pipefail
 
 notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "${2:-}" || true; }
 ICON=$'\0icon\x1f'
 pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
 
-list_devices() {
-    local kind="$1"
-    wpctl status 2>/dev/null | awk -v kind="$kind" '
-        /^Audio/{a=1}
-        /^Video/{a=0}
-        a && index($0, kind":") {s=1; next}
-        a && s && /(Sinks|Sources|Filters|Streams):/ {s=0}
-        a && s && /[0-9]+\./ {
-            line=$0
-            def = (line ~ /\*/) ? "●" : " "
-            gsub(/[│├└─]/, "", line); gsub(/\*/, "", line)
-            sub(/^[[:space:]]+/, "", line)
-            sub(/[[:space:]]*\[vol:.*$/, "", line)
-            print def " " line
-        }'
+# Human names for the devices we see.
+friendly() {
+    case "$1" in
+        *JBL*IEC958*|*JBL*Digital*) echo "JBL headphones (digital)" ;;
+        *JBL*)                      echo "JBL headphones (analog)" ;;
+        *"DisplayPort 1"*)          echo "External monitor (HDMI/DP)" ;;
+        *Speaker*)                  echo "Laptop speakers" ;;
+        *)                          echo "$1" ;;
+    esac
 }
-device_name() { printf '%s' "$1" | sed -E 's/^[^0-9]*[0-9]+\.\s*//'; }
-device_id()   { printf '%s' "$1" | sed -E 's/^[^0-9]*([0-9]+)\..*/\1/'; }
-default_name(){ wpctl inspect "$1" 2>/dev/null | sed -n 's/.*node.description = "\(.*\)"/\1/p' | head -1; }
+
+# Sinks whose port isn't "not available".
+list_outputs() {
+    pactl -f json list sinks 2>/dev/null | jq -r '
+        .[] |
+        (.ports // []) as $p |
+        select(($p | map(select(.availability == "not available")) | length) < ($p | length)) |
+        [.name, .description] | @tsv'
+}
+
+list_sources() {
+    pactl -f json list sources 2>/dev/null | jq -r '
+        .[] |
+        (.ports // []) as $p |
+        select(($p | map(select(.availability == "not available")) | length) < ($p | length)) |
+        [.name, .description] | @tsv'
+}
+
+default_sink() { pactl get-default-sink 2>/dev/null || true; }
+
+jbl_card() {
+    pactl -f json list cards 2>/dev/null |
+        jq -r '.[] | select(.name | test("usb-JBL")) | .name' | head -1
+}
+jbl_profile() {
+    local c="$1"
+    pactl -f json list cards 2>/dev/null |
+        jq -r --arg c "$c" '.[] | select(.name == $c) | .active_profile'
+}
+
+switch_streams() {
+    local sink="$1"
+    for i in $(pactl list short sink-inputs 2>/dev/null | awk '{print $1}'); do
+        pactl move-sink-input "$i" "$sink" >/dev/null 2>&1 || true
+    done
+}
 
 output_menu() {
     while :; do
-        local choice id name
-        choice=$( { list_devices Sinks; printf 'Back\n'; } | pick "output> ") || return 0
-        [ "$choice" = "Back" ] && return 0
-        id=$(device_id "$choice"); name=$(device_name "$choice")
-        [ -n "$id" ] || return 0
-        wpctl set-default "$id" >/dev/null 2>&1 && notify "Audio output" "$name"
+        local default entries choice label action card prof
+        default=$(default_sink)
+        entries=""
+        while IFS=$'\t' read -r name desc; do
+            [ -z "$name" ] && continue
+            label=$(friendly "$desc")
+            if [ "$name" = "$default" ]; then entries+="● $label"$'\t'"$name"$'\n'
+            else entries+="  $label"$'\t'"$name"$'\n'; fi
+        done < <(list_outputs)
+
+        card=$(jbl_card)
+        if [ -n "$card" ]; then
+            prof=$(jbl_profile "$card")
+            if [ "$prof" = "output:iec958-stereo" ]; then
+                entries+="JBL: switch to analog"$'\t'"__jbl_analog__"$'\n'
+            else
+                entries+="JBL: switch to digital"$'\t'"__jbl_digital__"$'\n'
+            fi
+        fi
+        entries+="Back"$'\t'"__back__"$'\n'
+
+        choice=$(printf '%s' "$entries" | fuzzel --dmenu --prompt "output> " --lines 12) || return 0
+        label=$(printf '%s' "$choice" | cut -f1)
+        action=$(printf '%s' "$choice" | cut -f2)
+        [ -z "$action" ] && action="$label"
+
+        case "$action" in
+            __back__) return 0 ;;
+            __jbl_analog__)
+                pactl set-card-profile "$card" "output:analog-stereo+input:mono-fallback" >/dev/null 2>&1
+                notify "JBL" "analog output" ;;
+            __jbl_digital__)
+                pactl set-card-profile "$card" "output:iec958-stereo" >/dev/null 2>&1
+                notify "JBL" "digital output" ;;
+            *)
+                pactl set-default-sink "$action" >/dev/null 2>&1
+                switch_streams "$action"
+                notify "Audio output" "$label" ;;
+        esac
     done
 }
 
 input_menu() {
     while :; do
-        local choice id name
-        choice=$( { list_devices Sources; printf 'Back\n'; } | pick "input> ") || return 0
-        [ "$choice" = "Back" ] && return 0
-        id=$(device_id "$choice"); name=$(device_name "$choice")
-        [ -n "$id" ] || return 0
-        wpctl set-default "$id" >/dev/null 2>&1 && notify "Audio input" "$name"
+        local default entries choice label action
+        default=$(pactl get-default-source 2>/dev/null || true)
+        entries=""
+        while IFS=$'\t' read -r name desc; do
+            [ -z "$name" ] && continue
+            if [ "$name" = "$default" ]; then entries+="● $desc"$'\t'"$name"$'\n'
+            else entries+="  $desc"$'\t'"$name"$'\n'; fi
+        done < <(list_sources)
+        entries+="Back"$'\t'"__back__"$'\n'
+
+        choice=$(printf '%s' "$entries" | fuzzel --dmenu --prompt "input> " --lines 12) || return 0
+        label=$(printf '%s' "$choice" | cut -f1)
+        action=$(printf '%s' "$choice" | cut -f2)
+        [ -z "$action" ] && action="$label"
+
+        case "$action" in
+            __back__) return 0 ;;
+            *) pactl set-default-source "$action" >/dev/null 2>&1; notify "Audio input" "$label" ;;
+        esac
     done
 }
 
+# ── main ─────────────────────────────────────────────────────────────────────
 while :; do
     info=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null || true)
     vol=$(printf '%s\n' "$info" | awk '{printf "%d", $2*100}')
     [ -z "${vol:-}" ] && vol="?"
     if printf '%s\n' "$info" | grep -q MUTED; then state="muted"; else state="${vol}%"; fi
-    out=$(default_name @DEFAULT_AUDIO_SINK@);   [ -n "${out:-}" ] || out="default"
-    inp=$(default_name @DEFAULT_AUDIO_SOURCE@); [ -n "${inp:-}" ] || inp="default"
+    out=$(friendly "$(pactl -f json list sinks 2>/dev/null | jq -r --arg n "$(default_sink)" '.[]|select(.name==$n)|.description' | head -1)")
+    inp=$(pactl -f json list sources 2>/dev/null | jq -r --arg n "$(pactl get-default-source 2>/dev/null)" '.[]|select(.name==$n)|.description' | head -1)
 
     choice=$(printf '%s\n' \
         "Volume: $state${ICON}audio-volume-high" \
         "Mute: toggle${ICON}audio-volume-muted" \
         "Volume +5%${ICON}audio-volume-high" \
         "Volume -5%${ICON}audio-volume-low" \
-        "Output device: $out …${ICON}audio-speakers" \
-        "Input device: $inp …${ICON}audio-input-microphone" \
+        "Output: $out …${ICON}audio-speakers" \
+        "Input: $inp …${ICON}audio-input-microphone" \
         "Open mixer (wiremix)${ICON}multimedia-volume-control" \
         "Back${ICON}go-previous" | pick "audio> ") || exit 0
 
     case "$choice" in
-        "Volume: "*)            notify "Volume" "$state" ;;
-        "Mute: toggle")         niri-volume mute ;;
-        "Volume +5%")           niri-volume up ;;
-        "Volume -5%")           niri-volume down ;;
-        "Output device:"*)      output_menu ;;
-        "Input device:"*)       input_menu ;;
-        "Open mixer"*)          niri-term wiremix ;;
-        *)                      exit 0 ;;
+        "Volume: "*)       notify "Volume" "$state" ;;
+        "Mute: toggle")    niri-volume mute ;;
+        "Volume +5%")      niri-volume up ;;
+        "Volume -5%")      niri-volume down ;;
+        "Output:"*)        output_menu ;;
+        "Input:"*)         input_menu ;;
+        "Open mixer"*)     niri-term wiremix ;;
+        *)                 exit 0 ;;
     esac
 done
