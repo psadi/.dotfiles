@@ -7,6 +7,12 @@ notify() { command -v notify-send >/dev/null 2>&1 && notify-send -a niri "$1" "$
 ICON=$'\0icon\x1f'
 pick() { fuzzel --dmenu --prompt "${1:-}> " --lines 15; }
 
+# Show only the label (column 1), return only the id (column 2).
+pick_table() {
+    fuzzel --dmenu --prompt "${1:-}> " --lines 12 \
+        --with-nth=1 --accept-nth=2 --match-nth=1 --nth-delimiter=$'\t'
+}
+
 # Human names for the devices we see.
 friendly() {
     case "$1" in
@@ -77,10 +83,8 @@ output_menu() {
         fi
         entries+="Back"$'\t'"__back__"$'\n'
 
-        choice=$(printf '%s' "$entries" | fuzzel --dmenu --prompt "output> " --lines 12) || return 0
-        label=$(printf '%s' "$choice" | cut -f1)
-        action=$(printf '%s' "$choice" | cut -f2)
-        [ -z "$action" ] && action="$label"
+        choice=$(printf '%s' "$entries" | pick_table "output> ") || return 0
+        action="$choice"
 
         case "$action" in
             __back__) return 0 ;;
@@ -91,9 +95,11 @@ output_menu() {
                 pactl set-card-profile "$card" "output:iec958-stereo" >/dev/null 2>&1
                 notify "JBL" "digital output" ;;
             *)
+                local desc
+                desc=$(pactl -f json list sinks 2>/dev/null | jq -r --arg n "$action" '.[]|select(.name==$n)|.description' | head -1)
                 pactl set-default-sink "$action" >/dev/null 2>&1
                 switch_streams "$action"
-                notify "Audio output" "$label" ;;
+                notify "Audio output" "$(friendly "$desc")" ;;
         esac
     done
 }
@@ -110,14 +116,12 @@ input_menu() {
         done < <(list_sources)
         entries+="Back"$'\t'"__back__"$'\n'
 
-        choice=$(printf '%s' "$entries" | fuzzel --dmenu --prompt "input> " --lines 12) || return 0
-        label=$(printf '%s' "$choice" | cut -f1)
-        action=$(printf '%s' "$choice" | cut -f2)
-        [ -z "$action" ] && action="$label"
+        choice=$(printf '%s' "$entries" | pick_table "input> ") || return 0
+        action="$choice"
 
         case "$action" in
             __back__) return 0 ;;
-            *) pactl set-default-source "$action" >/dev/null 2>&1; notify "Audio input" "$label" ;;
+            *) pactl set-default-source "$action" >/dev/null 2>&1; notify "Audio input" "changed" ;;
         esac
     done
 }
