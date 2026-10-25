@@ -22,8 +22,6 @@ alias ldpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias rm='rm -i'
 alias mkdir='mkdir -pv'
 
-alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
-
 # Suffix Aliases
 alias -s sh="${EDITOR}"
 alias -s py="${EDITOR}"

@@ -80,3 +80,21 @@ evalcache(){
     *) echo "Unknown tool: ${1}" ;;
   esac
 }
+
+# yay compatibility (repo-only system)
+# ---------------------------------------------
+# yay is no longer installed; route the habit to pacman.
+#   yay           -> full system upgrade
+#   yay -S <pkg>  -> sudo pacman -S <pkg>
+#   yay -Ss <q>   -> pacman -Ss <q> (no root)
+yay() {
+  if (( $# == 0 )); then
+    sudo pacman -Syu
+    return
+  fi
+
+  case "$1" in
+    -S[silg]*|-Q*|-F*|-T*|-V*|--help|--version) pacman "$@" ;;
+    *) sudo pacman "$@" ;;
+  esac
+}

@@ -185,7 +185,6 @@
       "xorg-xhost",
       "xpadneo-dkms",
       "xwayland-satellite",
-      "yay",
       "zed",
       "zenity",
       "zip",
@@ -256,7 +255,8 @@
       "qt6-wayland",
       "s-nail",
       "showtime",
-      "xl2tpd"
+      "xl2tpd",
+      "yay"
     ]
   }
 }
