@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Qt V4L2 video capture utility
+Comment=V4L2 capture utility (v4l-utils)
+Exec=/usr/bin/qvidcap
+NoDisplay=true

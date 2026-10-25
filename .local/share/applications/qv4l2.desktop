@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Qt V4L2 test Utility
+Comment=V4L2 device test utility (v4l-utils)
+Exec=/usr/bin/qv4l2
+NoDisplay=true

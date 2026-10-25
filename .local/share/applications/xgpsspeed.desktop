@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=xgpsspeed
+Comment=GPS speed monitor (gpsd)
+Exec=/usr/sbin/xgpsspeed
+NoDisplay=true

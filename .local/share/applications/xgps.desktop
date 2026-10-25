@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=xgps
+Comment=GPS satellite monitor (gpsd)
+Exec=/usr/sbin/xgps
+NoDisplay=true
