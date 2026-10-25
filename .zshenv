@@ -7,6 +7,14 @@
 export OSTYPE=$(uname -s | tr '[:upper:]' '[:lower:]')
 export DOTFILES_DIR="${HOME}/.dotfiles"
 export ZDOTDIR="${HOME}/.config/zsh"
+
+# XDG base directories (also provided by environment.d for the graphical session)
+export XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-${HOME}/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-${XDG_DATA_HOME}:/usr/local/share:/usr/share}"
+
 export ZSH_COMPLETION_DUMP="${HOME}/.cache/zsh/.zcompdump"
 export ZSH_COMPDUMP="${ZSH_COMPLETION_DUMP}"
 

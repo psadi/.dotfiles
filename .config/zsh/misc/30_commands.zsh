@@ -5,7 +5,7 @@
 # evalcache
 #---------------------------------------------
 if (( $+functions[_evalcache] )); then
-  export ZSH_EVALCACHE_DIR="${XDG_CACHE_HOME}/.zsh-evalcache"
+  export ZSH_EVALCACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/.zsh-evalcache"
 fi
 
 # Bat
