@@ -29,7 +29,6 @@
       "cachyos-snapper-support",
       "cachyos-v3-mirrorlist",
       "cachyos-v4-mirrorlist",
-      "calcurse",
       "ccache",
       "chwd",
       "cliphist",
@@ -195,6 +194,7 @@
     ],
     "remove": [
       "btrfs-assistant",
+      "calcurse",
       "catatonit",
       "conmon",
       "containers-common",

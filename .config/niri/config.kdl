@@ -82,7 +82,7 @@ binds {
     Mod+Shift+Q { close-window; }            // GNOME close bind (Super+Shift+Q)
     Mod+Shift+F { fullscreen-window; }
     Mod+Shift+M { spawn-sh "$HOME/.local/bin/niri-term btm"; }
-    Mod+Shift+C { spawn-sh "$HOME/.local/bin/niri-term calcurse"; }
+    Mod+Shift+C { spawn "gsimplecal"; }
     Mod+M       { maximize-column; }
     Mod+C       { center-column; }
     Mod+Shift+V { toggle-window-floating; }

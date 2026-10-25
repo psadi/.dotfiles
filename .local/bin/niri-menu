@@ -42,7 +42,7 @@ choice=$(
         "Session ▸ Power off…${ICON}system-shutdown" \
         "Tools ▸ Clipboard history${ICON}edit-paste" \
         "Tools ▸ System monitor (btm)${ICON}utilities-system-monitor" \
-        "Tools ▸ Calendar (calcurse)${ICON}x-office-calendar" \
+        "Tools ▸ Calendar${ICON}x-office-calendar" \
         "Tools ▸ Screenshot (area)${ICON}camera-photo" \
         "Tools ▸ Disk manager (gparted)${ICON}drive-harddisk" \
         "Tools ▸ Keybindings (nvim)${ICON}preferences-desktop-keyboard" \
@@ -85,7 +85,7 @@ case "$item" in
     "Power off…")           "$HOME/.local/bin/niri-confirm-power" poweroff ;;
     "Clipboard"*)           cliphist list | fuzzel --dmenu --prompt 'clipboard> ' | cliphist decode | wl-copy ;;
     "System monitor"*)      niri-term btm ;;
-    "Calendar"*)            niri-term calcurse ;;
+    "Calendar"*)            gsimplecal ;;
     "Screenshot"*)          "$HOME/.local/bin/niri-screenshot" screenshot ;;
     "Disk manager"*)        gparted ;;
     "Keybindings"*)         niri-term nvim "$HOME/.config/niri/config.kdl" ;;
