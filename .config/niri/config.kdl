@@ -70,7 +70,7 @@ binds {
     // Launch (carried from GNOME media-keys)
     Mod+Return       { spawn "footclient"; }
     Mod+Shift+Return { spawn "brave-origin"; }
-    Mod+Shift+N      { spawn "pcmanfm"; }
+    Mod+Shift+N      { spawn "nautilus"; }
     Mod+D            { spawn "fuzzel"; }
     Mod+Space        { spawn "fuzzel"; }
     Mod+Escape       { spawn-sh "$HOME/.local/bin/niri-menu"; }

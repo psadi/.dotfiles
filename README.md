@@ -1,7 +1,7 @@
 # psadi/.dotfiles
 
 Niri (Wayland) desktop for Arch/CachyOS — Kanagawa theme, Geist fonts, Waybar,
-fuzzel, foot, PCManFM, and a repo-only package set (no AUR).
+fuzzel, foot, Nautilus, and a repo-only package set (no AUR).
 
 ## Bootstrap
 
@@ -15,5 +15,5 @@ cd ~/.dotfiles
 and GeistMono Nerd Font from their upstream releases, applies the Kanagawa theme,
 and links the dotfiles with GNU Stow.
 
-Key binds: `Super+Enter` opens foot, `Super+Shift+N` opens PCManFM, `Super+Escape`
+Key binds: `Super+Enter` opens foot, `Super+Shift+N` opens Nautilus, `Super+Escape`
 opens the niri menu.

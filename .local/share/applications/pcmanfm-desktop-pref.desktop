@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Desktop Preferences
-Comment=PCManFM desktop manager settings (not used under niri)
-Exec=/usr/bin/pcmanfm --desktop-pref
-NoDisplay=true

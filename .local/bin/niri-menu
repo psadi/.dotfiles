@@ -19,7 +19,7 @@ choice=$(
         "Apps ▸ Launch application${ICON}system-run" \
         "Apps ▸ Browser (brave-origin)${ICON}web-browser" \
         "Apps ▸ Terminal (foot)${ICON}utilities-terminal" \
-        "Apps ▸ Files (PCManFM)${ICON}folder" \
+        "Apps ▸ Files (Nautilus)${ICON}folder" \
         "System ▸ Wi-Fi toggle (now $(wifi_state))${ICON}network-wireless" \
         "System ▸ Wi-Fi connect…${ICON}network-wireless" \
         "System ▸ Bluetooth toggle (now $(bt_state))${ICON}bluetooth" \
@@ -56,7 +56,7 @@ case "$item" in
     "Launch application")   fuzzel ;;
     "Browser"*)             brave-origin ;;
     "Terminal"*)            footclient ;;
-    "Files"*)               pcmanfm ;;
+    "Files"*)               nautilus ;;
     "Wi-Fi toggle"*)        if [ "$(wifi_state)" = on ]; then nmcli radio wifi off; notify "Wi-Fi off"; else nmcli radio wifi on; notify "Wi-Fi on"; fi ;;
     "Wi-Fi connect"*)       "$HOME/.local/bin/niri-wifi-menu" ;;
     "Bluetooth toggle"*)    if [ "$(bt_state)" = on ]; then bluetoothctl power off >/dev/null; notify "Bluetooth off"; else bluetoothctl power on >/dev/null; notify "Bluetooth on"; fi ;;
