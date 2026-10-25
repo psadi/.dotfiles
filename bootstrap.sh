@@ -34,7 +34,7 @@ install_os_deps() {
   local remove_pkgs=$(jq -r '.pacman.remove[]' < "${HOME}/.dotfiles/packages.json" |
     while read -r p; do pacman -Qq "$p" &>/dev/null && printf '%s ' "$p"; done)
 
-  sudo pacman -Sy --noconfirm --needed --quiet $install_pkgs
+  sudo pacman -Syu --noconfirm --needed --quiet $install_pkgs
   install_mise_deps
   sudo pacman -Sc --noconfirm
   if [ -n "${remove_pkgs// /}" ]; then
@@ -257,22 +257,32 @@ general_system_tweaks() {
 stow_link() {
   rm -rf "${HOME}/.profile" "${HOME}/.bash*" || true
   mkdir -p "${HOME}/.config"
-  stow -d "${HOME}/.dotfiles" -t "${HOME}" . --adopt
+  if ! stow -d "${HOME}/.dotfiles" -t "${HOME}" -R .; then
+    echo "Stow conflict: move the conflicting files aside and rerun." >&2
+    return 1
+  fi
 }
 
 configure_fstab() {
-  if grep -q "2eacdb10-9d3c-4557-900c-28fbf40281e7" /etc/fstab; then
+  local uuid="2eacdb10-9d3c-4557-900c-28fbf40281e7"
+
+  if ! blkid -U "${uuid}" >/dev/null 2>&1; then
+    echo "Skipping /mnt/vol-1: UUID ${uuid} is not present on this system"
+    return 0
+  fi
+
+  if grep -q "${uuid}" /etc/fstab; then
     echo "fstab entry already exists"
   else
     sudo sed -i 's/compress=zstd:1/compress-force=zstd:2,ssd,discard=async,space_cache=v2/' /etc/fstab
     sudo mkdir -p "/mnt/vol-1"
     sudo chown $USER:$USER "/mnt/vol-1"
-    echo "UUID=2eacdb10-9d3c-4557-900c-28fbf40281e7 /mnt/vol-1 btrfs defaults,noatime,compress-force=zstd:2,ssd,discard=async,space_cache=v2 0 0" | sudo tee -a /etc/fstab
+    echo "UUID=${uuid} /mnt/vol-1 btrfs defaults,noatime,compress-force=zstd:2,ssd,discard=async,space_cache=v2 0 0" | sudo tee -a /etc/fstab
     sudo systemctl daemon-reload
-    sudo mount -av
+    sudo mount -av || true
   fi
-  ln -sf /mnt/vol-1/workspace "$HOME/workspace" 2>/dev/null || true
-  ln -sf /mnt/vol-1/Phone "$HOME/Phone" 2>/dev/null || true
+  [ -d /mnt/vol-1/workspace ] && ln -sfn /mnt/vol-1/workspace "$HOME/workspace" || true
+  [ -d /mnt/vol-1/Phone ] && ln -sfn /mnt/vol-1/Phone "$HOME/Phone" || true
 }
 
 # Main execution flow
