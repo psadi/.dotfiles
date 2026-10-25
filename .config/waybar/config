@@ -81,7 +81,7 @@
   "clock": {
     "format": "\uF017\u2003{:%H:%M}",
     "tooltip-format": "{:%A, %d %B %Y}",
-    "on-click": "zenity --calendar --title=Calendar",
+    "on-click": "gsimplecal",
     "on-click-right": "niri-menu"
   }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run a program in a minimal, tab-less Ghostty window.
+# Run a program in a minimal foot window (footclient shares the foot server).
 # Usage: niri-term <command> [args...]
 set -euo pipefail
 
@@ -8,4 +8,4 @@ if [ "$#" -eq 0 ]; then
     exit 2
 fi
 
-exec ghostty --window-decoration=none --gtk-titlebar-style=native -e "$@"
+exec footclient -e "$@"

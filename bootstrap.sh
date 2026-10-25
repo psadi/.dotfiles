@@ -191,7 +191,7 @@ configure_theme() {
 }
 
 configure_gsettings() {
-  # GTK/libadwaita apps (Waybar, zenity, etc.) read these; no GNOME shell needed.
+  # GTK/libadwaita apps (Waybar, gsimplecal, etc.) read these; no GNOME shell needed.
   gsettings set org.gnome.desktop.interface gtk-theme 'Kanagawa-Dark' || true
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' || true
   gsettings set org.gnome.desktop.interface font-name 'Geist 11' || true
@@ -206,8 +206,8 @@ configure_default_apps() {
   echo "Configuring default applications"
   xdg-settings set default-web-browser brave-origin.desktop || true
   xdg-mime default brave-origin.desktop x-scheme-handler/http x-scheme-handler/https text/html || true
-  # Nautilus as the folder handler (kept as a portal dependency anyway)
-  xdg-mime default org.gnome.Nautilus.desktop inode/directory || true
+  # PCManFM as the folder handler (Nautilus stays only as a portal dependency).
+  xdg-mime default pcmanfm.desktop inode/directory || true
   update-desktop-database "${HOME}/.local/share/applications" 2>/dev/null || true
 }
 

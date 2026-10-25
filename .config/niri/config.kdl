@@ -39,6 +39,7 @@ environment {
     XCURSOR_SIZE  "24"
     XCURSOR_PATH  "/home/adithyaps/.local/share/icons:/home/adithyaps/.icons:/usr/share/icons"
     QT_QPA_PLATFORMTHEME "qt6ct"
+    TERMINAL "footclient"
     PATH "/home/adithyaps/.local/bin:/home/adithyaps/.local/share/mise/shims:/home/adithyaps/.local/share/npm-packages/bin:/home/adithyaps/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 }
 
@@ -52,6 +53,9 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 // Notifications (replaces GNOME notifications)
 spawn-at-startup "mako"
 
+// Foot terminal server (footclient windows share one process)
+spawn-at-startup "foot" "--server"
+
 // Idle: lock @10m, monitors off @11m, lock before suspend (niri drives the monitor power)
 spawn-at-startup "swayidle" "-w" "timeout" "600" "$HOME/.local/bin/niri-lock" "timeout" "660" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" "before-sleep" "$HOME/.local/bin/niri-lock"
 
@@ -64,9 +68,9 @@ spawn-sh-at-startup "exec $HOME/.local/bin/niri-wallpaper"
 // ── Keybindings ──────────────────────────────────────────────────────────────
 binds {
     // Launch (carried from GNOME media-keys)
-    Mod+Return       { spawn "ghostty"; }
+    Mod+Return       { spawn "footclient"; }
     Mod+Shift+Return { spawn "brave-origin"; }
-    Mod+Shift+N      { spawn "nautilus"; }
+    Mod+Shift+N      { spawn "pcmanfm"; }
     Mod+D            { spawn "fuzzel"; }
     Mod+Space        { spawn "fuzzel"; }
     Mod+Escape       { spawn-sh "$HOME/.local/bin/niri-menu"; }
