@@ -81,6 +81,7 @@ binds {
     Mod+Q       { close-window; }
     Mod+Shift+Q { close-window; }            // GNOME close bind (Super+Shift+Q)
     Mod+Shift+F { fullscreen-window; }
+    Mod+T       { toggle-column-tabbed-display; }
     Mod+Shift+M { spawn-sh "$HOME/.local/bin/niri-term btm"; }
     Mod+Shift+C { spawn "gsimplecal"; }
     Mod+M       { maximize-column; }
