@@ -1,5 +1,5 @@
 {
-  "yay": {
+  "pacman": {
     "install": [
       "accountsservice",
       "alsa-firmware",
@@ -120,8 +120,6 @@
       "opencode",
       "openmp",
       "os-prober",
-      "otf-geist",
-      "otf-geist-mono-nerd",
       "pacman-contrib",
       "perl",
       "pipewire-alsa",

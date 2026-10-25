@@ -14,14 +14,6 @@ echo "${SUDO_PASSWORD}" | sudo -S -v &>/dev/null || {
 
 set -euox pipefail
 
-install_yay() {
-  sudo pacman -S --needed --noconfirm git base-devel
-  rm -rf /tmp/yay
-  git clone https://aur.archlinux.org/yay.git /tmp/yay
-  (cd /tmp/yay && makepkg -si --noconfirm)
-  rm -rf /tmp/yay
-}
-
 install_python_deps() {
   echo "Installing Python3 Dependencies"
   python3 -m pip install --upgrade --no-cache-dir --break-system-packages --no-warn-script-location pip ansible jmespath pynvim
@@ -33,24 +25,20 @@ install_mise_deps() {
 }
 
 install_os_deps() {
-  if ! command -v yay &>/dev/null; then
-    install_yay
-  fi
-
   if ! command -v jq &>/dev/null; then
-    yay -Sy --noconfirm --needed --quiet "jq"
+    sudo pacman -Sy --noconfirm --needed "jq"
   fi
 
-  local install_pkgs=$(jq -r '.yay.install | unique | sort | join(" ")' < "${HOME}/.dotfiles/packages.json")
+  local install_pkgs=$(jq -r '.pacman.install | unique | sort | join(" ")' < "${HOME}/.dotfiles/packages.json")
   # Only remove packages that are actually installed (pacman aborts on missing targets).
-  local remove_pkgs=$(jq -r '.yay.remove[]' < "${HOME}/.dotfiles/packages.json" |
+  local remove_pkgs=$(jq -r '.pacman.remove[]' < "${HOME}/.dotfiles/packages.json" |
     while read -r p; do pacman -Qq "$p" &>/dev/null && printf '%s ' "$p"; done)
 
-  yay -Sy --noconfirm --needed --quiet $install_pkgs
+  sudo pacman -Sy --noconfirm --needed --quiet $install_pkgs
   install_mise_deps
-  yay -S --noconfirm --clean
+  sudo pacman -Sc --noconfirm
   if [ -n "${remove_pkgs// /}" ]; then
-    yay -Rns --noconfirm $remove_pkgs || true
+    sudo pacman -Rns --noconfirm $remove_pkgs || true
   fi
 }
 
@@ -139,18 +127,30 @@ install_zap() {
 }
 
 configure_font() {
-  if [ ! -d "${HOME}/.local/share/fonts" ]; then
-    mkdir -p "${HOME}/.local/share/fonts"
+  local tmp geist_url nerd_url
+  tmp="$(mktemp -d)"
+  trap 'rm -rf "${tmp}"' RETURN
+
+  geist_url="https://github.com/vercel/geist-font/releases/download/v1.8.2/geist-font-v1.8.2.zip"
+  nerd_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/GeistMono.zip"
+
+  if [ ! -f /usr/share/fonts/geist/Geist-Regular.otf ]; then
+    echo "Installing Geist and Geist Mono"
+    curl -fsSL "${geist_url}" -o "${tmp}/geist.zip"
+    sudo mkdir -p /usr/share/fonts/geist
+    sudo unzip -j -o "${tmp}/geist.zip" \
+      'geist-font/Geist/otf/*.otf' 'geist-font/GeistMono/otf/*.otf' \
+      -d /usr/share/fonts/geist >/dev/null
   fi
 
-  local font_url="https://raw.githubusercontent.com/psadi/MonoLisa-NerdFont/refs/heads/main/Patched/MonoLisaNerdFont"
+  if [ ! -f /usr/share/fonts/geistmono-nerd/GeistMonoNerdFont-Regular.otf ]; then
+    echo "Installing GeistMono Nerd Font"
+    curl -fsSL "${nerd_url}" -o "${tmp}/nerd.zip"
+    sudo mkdir -p /usr/share/fonts/geistmono-nerd
+    sudo unzip -j -o "${tmp}/nerd.zip" '*.otf' -d /usr/share/fonts/geistmono-nerd >/dev/null
+  fi
 
-  for font in Bold.ttf BoldItalic.ttf Italic.ttf Regular.ttf; do
-    if [ ! -f "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}" ]; then
-      curl -sSL "${font_url}-${font}" -o "${HOME}/.local/share/fonts/MonoLisaNerdFont-${font}"
-    fi
-  done
-  fc-cache -f -v "${HOME}/.local/share/fonts"
+  sudo fc-cache -f >/dev/null
 }
 
 configure_theme() {
