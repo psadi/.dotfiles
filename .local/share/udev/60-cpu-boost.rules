@@ -1,0 +1,2 @@
+# Toggle CPU boost on AC/battery changes.
+SUBSYSTEM=="power_supply", ACTION=="add|change", RUN+="/home/adithyaps/.local/bin/cpu-boost"

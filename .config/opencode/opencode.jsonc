@@ -17,9 +17,14 @@
     "servers": {
       "headroom": {
         "type": "local",
-        "command": ["headroom", "mcp", "serve"],
+        "command": ["/home/adithyaps/.local/bin/headroom-mcp"],
         "disabled": false
       }
+    },
+    "browseros-neo": {
+      "url": "http://127.0.0.1:9010/mcp",
+      "enabled": true,
+      "type": "remote"
     }
   }
 }

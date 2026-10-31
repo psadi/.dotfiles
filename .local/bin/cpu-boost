@@ -1,0 +1,11 @@
+#!/bin/sh
+# CPU boost: on with AC, off on battery. Called by udev on power_supply events.
+BOOST=/sys/devices/system/cpu/cpufreq/boost
+AC=/sys/class/power_supply/AC/online
+
+[ -w "$BOOST" ] || exit 0
+if [ "$(cat "$AC" 2>/dev/null)" = "1" ]; then
+    echo 1 > "$BOOST"
+else
+    echo 0 > "$BOOST"
+fi
