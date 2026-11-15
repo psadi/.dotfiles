@@ -16,15 +16,10 @@
   "mcp": {
     "servers": {
       "headroom": {
-        "type": "local",
-        "command": ["/home/adithyaps/.local/bin/headroom-mcp"],
+        "type": "remote",
+        "url": "http://127.0.0.1:8788/mcp",
         "disabled": false
       }
-    },
-    "browseros-neo": {
-      "url": "http://127.0.0.1:9010/mcp",
-      "enabled": true,
-      "type": "remote"
     }
   }
 }

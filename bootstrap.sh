@@ -42,6 +42,28 @@ install_os_deps() {
   fi
 }
 
+install_aur_deps() {
+  echo "Installing AUR packages"
+  # paru is the AUR helper and has to be bootstrapped from source before it
+  # can install anything else (AUR has no repository to enable).
+  if ! command -v paru &>/dev/null; then
+    local tmp
+    tmp="$(mktemp -d)"
+    trap 'rm -rf "${tmp}"' RETURN
+    echo "Bootstrapping paru (AUR helper)"
+    git clone --depth 1 https://aur.archlinux.org/paru-bin.git "${tmp}/paru-bin"
+    sudo -S -v <<< "${SUDO_PASSWORD}" &>/dev/null
+    (cd "${tmp}/paru-bin" && makepkg -si --noconfirm)
+  fi
+
+  local install_pkgs=$(jq -r '.aur.install // [] | unique | sort | join(" ")' < "${HOME}/.dotfiles/packages.json")
+  if [ -n "${install_pkgs// /}" ]; then
+    # Refresh the sudo timestamp so paru's pacman calls don't prompt mid-run.
+    sudo -S -v <<< "${SUDO_PASSWORD}" &>/dev/null
+    paru -S --noconfirm --needed --quiet $install_pkgs
+  fi
+}
+
 clone_dotfiles() {
   local DOTFILES_DIR="${HOME}/.dotfiles"
   if [[ -d "${DOTFILES_DIR}" ]]; then
@@ -59,12 +81,15 @@ configure_user_shell() {
 
 configure_systemd_services() {
   local system_services=(
+    docker
     ufw
     bluetooth
     NetworkManager
     tailscaled
     power-profiles-daemon
-    snapper-backup.timer
+    ananicy-cpp
+    limine-snapper-sync
+    panel-power
     snapper-cleanup.timer
     snapper-boot.timer
   )
@@ -86,6 +111,21 @@ configure_systemd_services() {
     echo "Enabling Bluetooth Fast Connectable..."
     sudo sed -i '/^\[General\]/a FastConnectable=true' /etc/bluetooth/main.conf
     sudo systemctl restart bluetooth
+  fi
+}
+
+configure_docker() {
+  echo "Configuring Docker"
+  # Group membership lets the user talk to the daemon without sudo; it takes
+  # effect on the next login.
+  sudo usermod -aG docker "${USER}"
+
+  # Containers are managed with docker compose and kept alive by their restart
+  # policy, so there is no systemd user unit for them. Start the headroom proxy
+  # once if the daemon is already reachable (it isn't right after the first
+  # usermod, before the group change is picked up by a new login).
+  if docker info &>/dev/null && [ -f "${HOME}/.dotfiles/headroom/docker-compose.yml" ]; then
+    (cd "${HOME}/.dotfiles/headroom" && docker compose up -d)
   fi
 }
 
@@ -216,10 +256,17 @@ configure_io_scheduler() {
   if [ ! -f "$rules_file" ] || ! grep -q "adios" "$rules_file" 2>/dev/null; then
     echo "Configuring ADIOS I/O scheduler via udev..."
     sudo tee "$rules_file" > /dev/null <<'EOF'
-# SSDs
-ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
-# NVMe SSDs
-ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
+# HDD
+ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
+    ATTR{queue/scheduler}="bfq"
+
+# SSD
+ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
+    ATTR{queue/scheduler}="adios"
+
+# NVMe SSD
+ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
+    ATTR{queue/scheduler}="adios"
 EOF
     sudo udevadm control --reload-rules
     sudo udevadm trigger
@@ -229,7 +276,7 @@ EOF
 general_system_tweaks() {
   # Reference: https://wiki.cachyos.org/configuration/general_system_tweaks
   sudo cpupower frequency-set -g powersave
-  echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
+  echo balance_power | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference
   if ! grep -q "active" /sys/devices/system/cpu/amd_pstate/status 2>/dev/null; then
     echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
   fi
@@ -252,6 +299,46 @@ general_system_tweaks() {
       sudo chattr -i "$var" 2>/dev/null
     fi
   done
+}
+
+configure_power_tweaks() {
+  echo "Configuring battery/power tweaks"
+
+  # CPU boost off on battery, on with AC (~/.local/bin/cpu-boost).
+  sudo tee /etc/udev/rules.d/60-cpu-boost.rules >/dev/null <<EOF
+# Toggle CPU boost on AC/battery changes.
+SUBSYSTEM=="power_supply", ACTION=="add|change", RUN+="${HOME}/.local/bin/cpu-boost"
+EOF
+  sudo udevadm control --reload-rules
+  sudo udevadm trigger --subsystem-match=power_supply
+
+  # Audio codec runtime power save
+  echo 'options snd_hda_intel power_save=1' | sudo tee /etc/modprobe.d/audio-power.conf >/dev/null
+
+  # AMD panel power savings on every boot
+  sudo tee /etc/systemd/system/panel-power.service >/dev/null <<'EOF'
+[Unit]
+Description=AMD panel power savings
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'for i in /sys/class/drm/*/amdgpu/panel_power_savings; do echo 2 > $i; done'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+  sudo systemctl daemon-reload
+
+  # Battery charge threshold
+  if [ -e /sys/class/power_supply/BAT0/charge_control_end_threshold ]; then
+    echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold >/dev/null
+  fi
+
+  # Power profile used on this setup
+  busctl set-property net.hadess.PowerProfiles /net/hadess/PowerProfiles \
+    net.hadess.PowerProfiles ActiveProfile s power-saver 2>/dev/null || true
 }
 
 stow_link() {
@@ -288,6 +375,7 @@ configure_fstab() {
 # Main execution flow
 clone_dotfiles
 install_os_deps
+install_aur_deps
 install_python_deps
 install_zap
 configure_user_shell
@@ -297,6 +385,8 @@ configure_gsettings
 configure_default_apps
 stow_link
 configure_login
+configure_power_tweaks
+configure_docker
 configure_systemd_services
 configure_power_key
 configure_io_scheduler
